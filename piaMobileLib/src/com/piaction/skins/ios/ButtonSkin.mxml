@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                   xmlns:s="library://ns.adobe.com/flex/spark" 
+                   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+                   minWidth="40" minHeight="40" 
+                   alpha.disabled="0.5">
+  
+  <fx:Metadata>
+    <![CDATA[ 
+    /** 
+    * @copy spark.skins.spark.ApplicationSkin#hostComponent
+    */
+    [HostComponent("spark.components.Button")]
+    [Style(name="labelDropShadowColor", inherit="no", type="uint")]
+    ]]>
+  </fx:Metadata>
+  
+  <fx:Script fb:purpose="styling">
+    <![CDATA[         
+      import spark.components.Group;
+      /* Define the skin elements that should not be colorized. 
+      For button, the graphics are colorized but the label is not. */
+      static private const exclusions:Array = ["labelDisplay","whiteHalo","innerShadow","border"];
+      
+      /** 
+       * @private
+       */     
+      override public function get colorizeExclusions():Array {return exclusions;}
+      
+      /**
+       * @private
+       */
+      override protected function initializationComplete():void
+      {
+        useChromeColor = true;
+        super.initializationComplete();
+      }  
+      
+      /**
+       *  @private
+       */
+      override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number) : void
+      {
+        var cr:Number = getStyle("cornerRadius");
+        
+        if (cornerRadius != cr)
+        {
+          cornerRadius = cr;
+          fill.radiusX = cornerRadius;
+          whiteHalo.radiusX = cornerRadius;
+          down.radiusX = cornerRadius;
+          innerShadow.radiusX = cornerRadius;
+          border.radiusX = cornerRadius;
+        }
+        
+        
+        var dpColor:uint = getStyle("labelDropShadowColor");
+        
+        labelDropShadowColor.color = dpColor;
+        
+        
+        super.updateDisplayList(unscaledWidth, unscaledHeight);
+      }
+      
+      private var cornerRadius:Number = 5;
+      
+    ]]>        
+  </fx:Script>
+  
+  <!-- states -->
+  <s:states>
+    <s:State name="up" />
+    <s:State name="over" />
+    <s:State name="down" />
+    <s:State name="disabled" />
+  </s:states>
+  
+  <s:Rect id="fill" left="0" right="0" top="0" bottom="0" radiusX="5">
+    <s:fill>
+      <s:LinearGradient rotation="90">
+        <s:GradientEntry color="#F5F5F5" ratio="0"/>
+        <s:GradientEntry color="#DBDBDB" ratio=".49"/>
+        <s:GradientEntry color="#CACACA" ratio=".5"/>
+        <s:GradientEntry color="#D7D7D7" ratio="1"/>
+      </s:LinearGradient>
+    </s:fill>
+  </s:Rect>
+  
+  <s:Rect id="whiteHalo" left="0" right="0" top="0" bottom="0" radiusX="5">
+    <s:fill>
+      <s:LinearGradient rotation="90">
+        <s:GradientEntry color="#FFFFFF" ratio="0" alpha=".3"/>
+        <s:GradientEntry color="#FFFFFF" ratio=".49" alpha="0"/>
+      </s:LinearGradient>
+    </s:fill>
+  </s:Rect>
+  
+  <s:Rect id="down" left="0" right="0" top="0" bottom="0" radiusX="5" visible="false" visible.down="true">
+    <s:fill>
+      <s:SolidColor color="#000000" alpha=".3"/>
+    </s:fill>
+  </s:Rect>
+  
+  <s:Rect id="innerShadow" left="0" right="0" top="1" bottom="0" radiusX="5">
+    <s:stroke>
+      <s:LinearGradientStroke rotation="90" weight="1">
+        <s:GradientEntry color="0x000000" alpha=".3" ratio="0"/>
+        <s:GradientEntry color="0x000000" alpha="0" ratio=".2"/>
+      </s:LinearGradientStroke>
+    </s:stroke>  
+  </s:Rect>
+  
+  <s:Rect id="border" left="0" right="0" top="0" bottom="-1" radiusX="5">
+    <s:stroke>
+      <s:SolidColorStroke weight="1" color="#222222"/>
+    </s:stroke>  
+  </s:Rect>
+  
+  <s:Line left="5" right="5" bottom="-1">
+    <s:stroke>
+      <s:SolidColorStroke color="white" alpha=".2" weight="1"/>
+    </s:stroke>
+  </s:Line>
+  
+ 
+  
+  <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+  <s:Label id="labelDisplay"
+           textAlign="center"
+           color="#FFFFFF"
+           maxDisplayedLines="1"
+           horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
+           fontWeight="normal"
+           fontSize="16"
+           left="10" right="10" top="2" bottom="2">
+    <s:filters>
+      <s:DropShadowFilter id="labelDropShadowColor" distance="1" angle="-90" blurY="1" blurX="0" alpha="0.7"/>
+    </s:filters>
+  </s:Label>
+  
+</s:SparkButtonSkin>
