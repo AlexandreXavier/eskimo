@@ -1,17 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-
-ADOBE SYSTEMS INCORPORATED
-Copyright 2008 Adobe Systems Incorporated
-All Rights Reserved.
-
-NOTICE: Adobe permits you to use, modify, and distribute this file
-in accordance with the terms of the license agreement accompanying it.
-
--->
-
-<!--- The default skin class for a Spark List component.  
+<!--- The default skin class for a ListWheel component.  
 
 @see spark.components.List
 
@@ -168,7 +156,7 @@ in accordance with the terms of the license agreement accompanying it.
   </s:Scroller>
   
   <!-- fill -->
-  <!--- Defines the background appearance of the list-based component. -->
+  <!--- Defines the rounded gradient component. -->
   <s:Rect id="shadow" left="3" right="3" top="0" bottom="0" >
     <s:fill>
       <!--- Defines the color of the background. The default color is 0xFFFFFF. -->
@@ -184,6 +172,7 @@ in accordance with the terms of the license agreement accompanying it.
       </s:LinearGradient>
     </s:fill>
   </s:Rect>
+  <!--- right path -->
   <s:Path right="0" data="{('M 0 0 L 3 3 V '+ (height-3) +' L 0 '+ height)}" width="3">
     <s:fill>
       <s:LinearGradient rotation="90">
@@ -195,6 +184,7 @@ in accordance with the terms of the license agreement accompanying it.
       </s:LinearGradient>
     </s:fill>
   </s:Path>
+  <!--- left path -->
   <s:Path left="0" data="{('M 3 0 L 0 3 V '+ (height-3) +' L 3 '+ height)}" width="3">
     <s:fill>
       <s:LinearGradient rotation="90">
@@ -206,6 +196,7 @@ in accordance with the terms of the license agreement accompanying it.
       </s:LinearGradient>
     </s:fill>
   </s:Path>
+  <!--- selection rectangle -->
   <s:Rect id="selection" left="0" right="0" height="{hostComponent.rowHeight}" verticalCenter="0">
     <s:fill>
       <s:LinearGradient rotation="90">
@@ -216,11 +207,13 @@ in accordance with the terms of the license agreement accompanying it.
       </s:LinearGradient>
     </s:fill>
   </s:Rect>
+  <!--- selection rectangle top stroke -->
   <s:Line verticalCenter="{-hostComponent.rowHeight/2}" left="0" right="0">
     <s:stroke>
       <s:SolidColorStroke color="#8A8BA0"/>
     </s:stroke>
   </s:Line>
+  <!--- selection rectangle bottom stroke -->
   <s:Line verticalCenter="{hostComponent.rowHeight/2}" left="0" right="0">
     <s:stroke>
       <s:SolidColorStroke color="#8A8BA0"/>

@@ -27,6 +27,11 @@ package com.piaction.components
   import spark.effects.easing.Sine;
   
   use namespace mx_internal;
+  
+  /**
+  * ListWheel class is a lopped list
+  * Only vertical layout is supported
+  */ 
   public class ListWheel extends List
   {
     private static const EVENT_HISTORY_LENGTH:int = 5;
@@ -34,43 +39,85 @@ package com.piaction.components
     private static const MOTION_BLUR:Number = 20;
     
     
+    /**
+    * @private
+    * data provider setted by user
+    */ 
     private var _dataProvider:ArrayCollection = new ArrayCollection();
+    
+    /**
+     * @private
+     * used data provider which is 3 times the _dataProvider
+     */ 
     private var _customDataprovider:ArrayCollection;
     
+    /**
+     * @private
+     * History of EVENT_HISTORY_LENGTH last mouse positions
+     */ 
     private var mouseEventCoordinatesHistory:Vector.<Point>;
+    
+    /**
+     * @private
+     * History of EVENT_HISTORY_LENGTH last mouse positions
+     */ 
     private var mouseEventTimeHistory:Vector.<int>;
+    
+    /**
+     * @private
+     * Current position on histories arrays
+     */ 
     private var mouseEventLength:Number = 0;
+    
+    /**
+     * @private
+     * startTime of historisation
+     */
     private var startTime:int;
     
+    /**
+     * @private
+     * Roll animations
+     */
     private var _animate:Animate = new Animate();
     private var _animateThrow:Animate = new Animate();
     
+    /**
+     * @private
+     * Motion blur
+     */
+    private var effect:BlurFilter = new BlurFilter(0,0);
+    
+    /**
+     * @private
+     * Scroll velovity (px/ms)
+     */
+    private var _currentVelocity:Number;
+    
+    /**
+     * @private
+     * Boolean to know if we need to animate
+     */
     private var _haveToAnimate:Boolean;
     
+    /**
+     * @private
+     * Vertical scroll position
+     */
+    private var _verticalScrollPosition:Number = 0;
+    
+    /**
+     * @private
+     */
     private var _dataProviderChange:Boolean;
-    
-    override public function get dataProvider():IList
-    {
-      return _dataProvider;
-    }
-    
-    override public function set dataProvider( value:IList ):void
-    {
-      if(value != _dataProvider)
-      {
-        _dataProvider = value as ArrayCollection;
-        
-        _dataProviderChange = true;
-        
-        invalidateProperties();
-      }
-    }
+    private var _selectedItemChanged:Boolean;
+    private var _oldY:Number;
+    private var _rowHeight:Number = 0.1;
     
     
-    //--------------------------------------------------------------------------
-    //  Constructor
-    //--------------------------------------------------------------------------
-    
+    /**
+    * Constructor
+    */ 
     public function ListWheel()
     {
       super();
@@ -87,21 +134,41 @@ package com.piaction.components
       
     }
     
-    private function onChange(event:Event):void
+   /**
+    * DataProvider property (that shout be an ArrayCollection)
+    */ 
+    override public function get dataProvider():IList
     {
-      if(dataProvider)
+      return _dataProvider;
+    }
+    
+    /**
+     * @private
+     */
+    override public function set dataProvider( value:IList ):void
+    {
+      if(value != _dataProvider)
       {
-        ensureIndexIsVisible(selectedIndex);
+        _dataProvider = value as ArrayCollection;
+        
+        _dataProviderChange = true;
+        
+        invalidateProperties();
       }
     }
     
-    private var _selectedItemChanged:Boolean;
+    /**
+     * @private
+     */
     override public function set selectedItem(value:*):void
     {
       super.selectedItem = value;
       _selectedItemChanged = true;
     }
     
+    /**
+     * @private
+     */
     override protected function commitProperties():void
     {
       if(_dataProviderChange)
@@ -117,6 +184,9 @@ package com.piaction.components
       super.commitProperties();
     }
     
+    /**
+     * @private
+     */
     override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
     {
       super.updateDisplayList(unscaledWidth, unscaledHeight);
@@ -129,6 +199,9 @@ package com.piaction.components
       }
     }
     
+    /**
+     * @private
+     */
     override protected function partAdded(partName:String, instance:Object):void
     {
       super.partAdded(partName, instance)
@@ -143,6 +216,22 @@ package com.piaction.components
       }
     }
     
+    /**
+     * @private
+     * Index change handler
+     */ 
+    private function onChange(event:Event):void
+    {
+      if(dataProvider)
+      {
+        ensureIndexIsVisible(selectedIndex);
+      }
+    }
+    
+    /**
+     * @private
+     * MouseDown handler
+     */ 
     private function onMouseDown(event:MouseEvent):void
     {
       clearHistory();
@@ -164,6 +253,10 @@ package com.piaction.components
       
     }
     
+    /**
+     * @private
+     * MouseUp handler
+     */ 
     private function onMouseUp(event:Event):void
     {
       var sbRoot:DisplayObject = this.systemManager.getSandboxRoot();        
@@ -176,11 +269,18 @@ package com.piaction.components
       throwScroll();
     }
     
-    private var _oldY:Number;
+    /**
+     * @private
+     * MouseMove handler
+     */ 
     private function onMouseMove(event:MouseEvent):void
     {
     }
     
+    /**
+     * @private
+     * Enterframe during mouse pressed
+     */ 
     private function onEnterFrame(event:Event):void
     {
       verticalScrollPosition += (_oldY - this.mouseY);
@@ -200,7 +300,10 @@ package com.piaction.components
       updateBlurFilter();
     }
     
-    private var _verticalScrollPosition:Number = 0;
+    /**
+     * vertical position in the list
+     * @param value Valur of the vertical scroll position of the scroller
+     */ 
     public function set verticalScrollPosition(value:Number):void
     {
       _verticalScrollPosition = value;
@@ -222,12 +325,17 @@ package com.piaction.components
       
     }
     
-    
+    /**
+     * @private
+     */ 
     public function get verticalScrollPosition():Number
     {
       return _verticalScrollPosition;
     }
     
+    /**
+     * Throw the list thanks to move histories to compute velocity
+     */ 
     private function throwScroll():void
     {
       var currentIndex:int = (mouseEventLength % EVENT_HISTORY_LENGTH);
@@ -257,7 +365,10 @@ package com.piaction.components
       _animateThrow.play([this]);  //run the animation
     }
     
-    public var effect:BlurFilter = new BlurFilter(0,0);
+    /**
+     * @private
+     * During throw animation
+     */ 
     private function onThrowUpdate(event:EffectEvent):void
     {
       var ratio:Number = 1 - (event.effectInstance.playheadTime/event.effectInstance.duration);
@@ -265,6 +376,9 @@ package com.piaction.components
       updateBlurFilter(ratio);
     }
     
+    /**
+     * @private
+     */ 
     private function onThowFinish(event:Event):void
     {
       dataGroup.filters = null;
@@ -272,6 +386,10 @@ package com.piaction.components
       scrollToItem();
     }
     
+    /**
+     * @private
+     * Move history cleaning
+     */ 
     private function clearHistory():void
     {
       for(var i:int = 0; i < EVENT_HISTORY_LENGTH; i++ )
@@ -281,8 +399,10 @@ package com.piaction.components
       }
     }
     
-    private var _currentVelocity:Number;
-    private function get currentVelocity():Number
+    /**
+     * Get the current velovity of movment
+     */ 
+    public function get currentVelocity():Number
     {
       var dist:Number = 0;
       var time:Number = 0;
@@ -305,6 +425,9 @@ package com.piaction.components
       return _currentVelocity;
     }
     
+    /**
+     * @private
+     */ 
     private function updateBlurFilter(ratio:Number = 1):void
     {
       effect.blurY = MOTION_BLUR * ratio * Math.abs(currentVelocity);
@@ -312,6 +435,9 @@ package com.piaction.components
       dataGroup.filters = [effect];
     }
     
+    /**
+     * Scroll to selected item
+     */ 
     public function scrollToItem():void
     {
       if (!layout)
@@ -326,6 +452,9 @@ package com.piaction.components
       ensureIndexIsVisible(scrollIndex);
     }
     
+    /**
+    * @private
+    */ 
     override public function ensureIndexIsVisible(index:int):void
     {
       _verticalScrollPosition = (_verticalScrollPosition%(_dataProvider.length * rowHeight)) + (_dataProvider.length * rowHeight);
@@ -350,6 +479,9 @@ package com.piaction.components
         verticalScrollPosition = newScrollPosition;
     }
     
+    /**
+     * @private
+     */ 
     private function onRollEnd(event:Event):void
     {
       var verticalScrollCenterPosition:Number = dataGroup.verticalScrollPosition + dataGroup.scrollRect.height / 2;
@@ -361,7 +493,9 @@ package com.piaction.components
       _haveToAnimate = false;
     }
     
-    private var _rowHeight:Number = 0.1;
+    /**
+     * Get the row height
+     */ 
     [Bindable("rowHeightChange")]
     public function get rowHeight():Number
     {

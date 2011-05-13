@@ -1,0 +1,136 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.piaction</groupId>
+  <artifactId>mobileLib</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>swc</packaging>
+
+  <name>mobileLib Flex</name>
+  
+  <properties>
+    <com.piaction.svn.root>dev.piaction.com/svn/pia-common</com.piaction.svn.root>
+    <com.piaction.mvn.repo>http://dev.piaction.com:8180/artifactory</com.piaction.mvn.repo>
+  </properties>
+
+  <scm>
+    <connection>scm:svn:https://dev.piaction.com/svn/pia-common/trunk</connection>
+    <developerConnection>scm:svn:https://dev.piaction.com/svn/pia-common/trunk</developerConnection>
+    <url>https://dev.piaction.com/svn/pia-common/trunk</url>
+  </scm>
+  
+  <repositories>
+    <repository>
+      <id>pia-mvn-repo-releases</id>
+      <name>Internal PIA Maven Repository</name>
+      <url>${com.piaction.mvn.repo}/libs-releases-local</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <id>pia-mvn-repo-snapshots</id>
+      <name>Snapshot PIA Maven Repository</name>
+      <url>${com.piaction.mvn.repo}/libs-snapshots-local</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+
+
+  <build>
+    <sourceDirectory>src/main/flex</sourceDirectory>
+    <testSourceDirectory>src/test/flex</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.sonatype.flexmojos</groupId>
+        <artifactId>flexmojos-maven-plugin</artifactId>
+        <version>3.6</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+
+   <dependencies>
+     <dependency>
+       <groupId>org.sonatype.flexmojos</groupId>
+       <artifactId>flexmojos-unittest-support</artifactId>
+       <type>swc</type>
+       <scope>test</scope>
+     </dependency>
+   
+    <dependency>
+      <groupId>com.adobe.flash.core</groupId>
+      <artifactId>playerglobal</artifactId>
+      <scope>provided</scope>
+      <type>swc</type>
+    </dependency>
+
+    <dependency>
+      <groupId>com.adobe.flex.sdkcore</groupId>
+      <artifactId>framework</artifactId>
+      <type>swc</type>
+    </dependency>
+
+    <dependency>
+      <groupId>com.adobe.flex.sdkcore</groupId>
+      <artifactId>flex</artifactId>
+      <type>swc</type>
+    </dependency>
+
+    <dependency>
+      <groupId>com.adobe.flex.sdkcore</groupId>
+      <artifactId>rpc</artifactId>
+      <type>swc</type>
+    </dependency>
+
+    <dependency>
+      <groupId>com.adobe.flex.sdkcore</groupId>
+      <artifactId>utilities</artifactId>
+      <type>swc</type>
+    </dependency>
+
+    <!-- Flex Ressource Bundle -->
+    <dependency>
+      <groupId>com.adobe.flex.locales</groupId>
+      <artifactId>framework_rb</artifactId>
+      <classifier>en_US</classifier>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>com.adobe.flex.locales</groupId>
+      <artifactId>rpc_rb</artifactId>
+      <classifier>en_US</classifier>
+      <type>swc</type>
+    </dependency>
+
+    <!-- data visualization -->
+    <dependency>
+      <groupId>com.adobe.charts</groupId>
+      <artifactId>datavisualization</artifactId>
+      <type>swc</type>
+    </dependency>
+    <dependency>
+      <groupId>com.adobe.charts</groupId>
+      <artifactId>datavisualization_rb</artifactId>
+      <classifier>en_US</classifier>
+      <type>swc</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.as3xls</groupId>
+      <artifactId>as3xls</artifactId>
+      <type>swc</type>
+    </dependency>
+
+  </dependencies>
+
+</project>
