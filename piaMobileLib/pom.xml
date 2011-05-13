@@ -1,8 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <groupId>com.piaction</groupId>
+    <artifactId>mobileLib</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
   <groupId>com.piaction</groupId>
-  <artifactId>mobileLib</artifactId>
+  <artifactId>mobileLibFlex</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>swc</packaging>
 
@@ -53,7 +58,7 @@
       <plugin>
         <groupId>org.sonatype.flexmojos</groupId>
         <artifactId>flexmojos-maven-plugin</artifactId>
-        <version>3.6</version>
+        <version>4.0-SNAPSHOT</version>
         <extensions>true</extensions>
       </plugin>
     </plugins>
@@ -67,70 +72,14 @@
        <scope>test</scope>
      </dependency>
    
-    <dependency>
-      <groupId>com.adobe.flash.core</groupId>
-      <artifactId>playerglobal</artifactId>
-      <scope>provided</scope>
-      <type>swc</type>
-    </dependency>
 
     <dependency>
-      <groupId>com.adobe.flex.sdkcore</groupId>
-      <artifactId>framework</artifactId>
-      <type>swc</type>
-    </dependency>
-
-    <dependency>
-      <groupId>com.adobe.flex.sdkcore</groupId>
-      <artifactId>flex</artifactId>
-      <type>swc</type>
-    </dependency>
-
-    <dependency>
-      <groupId>com.adobe.flex.sdkcore</groupId>
-      <artifactId>rpc</artifactId>
-      <type>swc</type>
-    </dependency>
-
-    <dependency>
-      <groupId>com.adobe.flex.sdkcore</groupId>
-      <artifactId>utilities</artifactId>
-      <type>swc</type>
-    </dependency>
-
-    <!-- Flex Ressource Bundle -->
-    <dependency>
-      <groupId>com.adobe.flex.locales</groupId>
-      <artifactId>framework_rb</artifactId>
-      <classifier>en_US</classifier>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>com.adobe.flex.locales</groupId>
-      <artifactId>rpc_rb</artifactId>
-      <classifier>en_US</classifier>
-      <type>swc</type>
-    </dependency>
-
-    <!-- data visualization -->
-    <dependency>
-      <groupId>com.adobe.charts</groupId>
-      <artifactId>datavisualization</artifactId>
-      <type>swc</type>
-    </dependency>
-    <dependency>
-      <groupId>com.adobe.charts</groupId>
-      <artifactId>datavisualization_rb</artifactId>
-      <classifier>en_US</classifier>
-      <type>swc</type>
+        <groupId>com.adobe.flex.framework</groupId>
+        <artifactId>flex-framework</artifactId>
+        <version>${flex.sdk.version}</version>
+        <type>pom</type>
     </dependency>
     
-    <dependency>
-      <groupId>com.as3xls</groupId>
-      <artifactId>as3xls</artifactId>
-      <type>swc</type>
-    </dependency>
-
   </dependencies>
 
 </project>

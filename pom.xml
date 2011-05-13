@@ -1,0 +1,146 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>com.piaction</groupId>
+  <artifactId>mobileLib</artifactId>
+  <packaging>pom</packaging>
+  <name>mobileLib POM</name>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <flex.sdk.source.path>.</flex.sdk.source.path>
+    <flex.sdk.version>4.5.0.17689</flex.sdk.version>
+    <flex.playerglobal.version>10.2</flex.playerglobal.version>
+  </properties>
+
+  <repositories>
+    <repository>
+      <id>ibiblio</id>
+      <name>IBiblio Mirror Repo</name>
+      <url>http://mirrors.ibiblio.org/pub/mirrors/maven2</url>
+    </repository>
+    <repository>
+      <id>flex-mojos-repository</id>
+      <url>http://repository.sonatype.org/content/groups/flexgroup</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+	  <id>flash-nexus-repository</id>
+	  <url>http://www.flashnexus.org/nexus/content/groups/public</url>
+	</repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>flex-mojos-repository</id>
+      <url>http://repository.sonatype.org/content/groups/flexgroup/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>${basedir}/src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <testResources>
+      <testResource>
+        <directory>${basedir}/src/test/resources</directory>
+        <filtering>true</filtering>
+        <excludes>
+          <exclude>**/*.xls</exclude>
+        </excludes>
+      </testResource>
+      <testResource>
+        <directory>${basedir}/src/test/resources</directory>
+        <filtering>false</filtering>
+        <includes>
+          <include>**/*.xls</include>
+        </includes>
+      </testResource>
+    </testResources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-clean-plugin</artifactId>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>${basedir}/null</directory>
+            </fileset>
+            <fileset>
+              <directory>${basedir}/src/main/bin</directory>
+            </fileset>
+            <fileset>
+              <directory>${basedir}/src/test/bin</directory>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-eclipse-plugin</artifactId>
+        <configuration>
+          <ajdtVersion>none</ajdtVersion>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- FLEX -->
+      <!-- *** Please keep the alphabetical order (by groupId then artifactId) *** -->
+      <!-- flex framework -->
+      <!--flex unit test-->
+      <dependency>
+        <groupId>com.adobe.flexunit</groupId>
+        <artifactId>flexunit</artifactId>
+        <version>0.90</version>
+        <scope>test</scope>
+        <type>swc</type>
+      </dependency>
+      <dependency>
+       <groupId>org.sonatype.flexmojos</groupId>
+       <artifactId>flexmojos-unittest-support</artifactId>
+       <type>swc</type>
+       <scope>test</scope>
+       <version>3.1.0</version>
+     </dependency>
+     
+     <dependency>
+       <groupId>org.sonatype.flexmojos</groupId>
+       <artifactId>flexmojos-unittest-support</artifactId>
+       <type>swc</type>
+       <scope>test</scope>
+       <version>3.1.0</version>
+     </dependency>
+     
+    
+    </dependencies>
+  </dependencyManagement>
+  
+  <modules>
+    <module>piaMobileLib</module>
+  </modules>
+</project>
