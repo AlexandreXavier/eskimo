@@ -11,31 +11,67 @@ package com.piaction.layouts
   import spark.layouts.supportClasses.LayoutBase;
   import spark.primitives.Rect;
   
+  /**
+   * Layout that enable slide bitween visual element
+   */
   public class SlideLayout  extends LayoutBase
   {
+    /**
+     * Oriantation vertival
+     */
     public static var VERTICAL:String = "vertical";
+    /**
+     * Oriantation horizontal
+     */
     public static var HORIZONTAL:String = "horizontal";
     
+    /**
+     * @private
+     */
     private var _mask:Sprite = new Sprite();
-    
+    /**
+     * @private
+     */
     protected var _tween:Tween;
+    /**
+     * @private
+     */
     protected var _oldIndex:int = -1;
-    
+    /**
+     * @private
+     */
     protected var _index:uint = 0;
     
+    /**
+    * Direction of the slide
+    */
     public var direction:int = 1;
     
+    /**
+     * Oriantation of the slide
+     */
     public var orientation:String = HORIZONTAL;
     
+    /**
+     * @private
+     */
     private var _newElement:IVisualElement;
+    /**
+     * @private
+     */
     private var _oldElement:IVisualElement
-
     
+    /**
+     * currentitem index visible in the layout
+     */
     public function get index() : Number
     {
       return _index;
     }
     
+    /**
+     * @private
+     */
     public function set index(value:Number):void
     {
       if (_index != value && target != null && value >= 0 && value < target.numElements)
@@ -51,6 +87,9 @@ package com.piaction.layouts
       
     }
     
+    /**
+     * @private
+     */
     override public function updateDisplayList(width:Number, height:Number):void
     {
       super.updateDisplayList(width, height);
@@ -95,7 +134,9 @@ package com.piaction.layouts
       }
     }
     
-    
+    /**
+     * @private
+     */
     private function createViewPort(width:Number, height:Number):void
     {
       var targetPosition:Point = target.localToGlobal(new Point())
@@ -105,7 +146,9 @@ package com.piaction.layouts
       _mask.graphics.endFill();
       target.mask = _mask
     }
-    
+    /**
+     * @private
+     */
     private function tweenUpdateHandler(value:String):void
     {
       var position:int = int(value);
@@ -113,7 +156,7 @@ package com.piaction.layouts
       if (orientation == HORIZONTAL)
       {
         _newElement.setLayoutBoundsPosition(direction * position - direction * _oldElement.width, 0);
-      
+        
         _oldElement.setLayoutBoundsPosition(direction * position, 0);
       }
       else if (orientation == VERTICAL)
@@ -123,7 +166,9 @@ package com.piaction.layouts
         _oldElement.setLayoutBoundsPosition(0, direction * position);
       }
     }
-    
+    /**
+     * @private
+     */
     private function tweenEndHandler(value:String):void
     {
       _newElement.setLayoutBoundsPosition(0, 0);
@@ -131,16 +176,20 @@ package com.piaction.layouts
       showVisualElement(_oldElement, false);
       
       _oldIndex = -1
-        
+      
       target.mask = null;
     }
-    
+    /**
+     * @private
+     */
     protected function showVisualElement(element:IVisualElement, show:Boolean):void
     {
       element.visible = show;
       element.includeInLayout = show;
     }
-    
+    /**
+     * @private
+     */
     protected function getVisualElement(index:int):IVisualElement
     {
       var element:IVisualElement;
