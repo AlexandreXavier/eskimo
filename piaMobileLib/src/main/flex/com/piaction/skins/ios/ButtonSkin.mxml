@@ -43,7 +43,7 @@
       {
         var cr:Number = getStyle("cornerRadius");
         
-        if (cornerRadius != cr)
+        if (cornerRadius != cr && !isNaN(cr))
         {
           cornerRadius = cr;
           fill.radiusX = cornerRadius;

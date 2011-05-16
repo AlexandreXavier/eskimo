@@ -112,7 +112,7 @@ package com.piaction.components
     private var _dataProviderChange:Boolean;
     private var _selectedItemChanged:Boolean;
     private var _oldY:Number;
-    private var _rowHeight:Number = 0.1;
+    private var _rowHeight:Number = 50;
     
     
     /**
@@ -197,6 +197,7 @@ package com.piaction.components
         ensureIndexIsVisible(selectedIndex);
         _selectedItemChanged = false;
       }
+      
     }
     
     /**
