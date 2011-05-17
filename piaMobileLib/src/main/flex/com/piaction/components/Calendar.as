@@ -115,7 +115,7 @@ package com.piaction.components
      */
     private var _mode:String;
     
-    private var _currentDate:Date = new Date();
+    private var _currentDate:Date = getFirstDateOfWeek(new Date());
     
     private var _startDate:int = 8;
     
@@ -388,7 +388,7 @@ package com.piaction.components
         if (mode == DAY_MODE)
         {
           dateFormatter.formatString = "EEEE DD MMMM";
-          _firstDisplayedDate = currentDate;
+          _firstDisplayedDate = getFirstDateOfWeek(currentDate);
           _lastDisplayedDate = new Date();
           _lastDisplayedDate.setTime(currentDate.getTime());
           _lastDisplayedDate.setDate(_lastDisplayedDate.date + 1);
