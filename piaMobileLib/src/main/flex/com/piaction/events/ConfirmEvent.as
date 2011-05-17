@@ -8,7 +8,7 @@ package com.piaction.events
   public class ConfirmEvent extends Event
   {
     public static const ENTER_CONFIRMATION:String = "enterConfirmation";
-    public static const CONFIRM:String = "comfirm";
+    public static const CONFIRM:String = "confirm";
     public static const CANCEL:String = "cancel";
     
     
