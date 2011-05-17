@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" title="SecondView" xmlns:components="com.piaction.components.*"
+        creationComplete="onCreationComplete()">
+  <fx:Declarations>
+    <!-- Place non-visual elements (e.g., services, value objects) here -->
+  </fx:Declarations>
+  
+  <fx:Script>
+    <![CDATA[
+      import mx.collections.ArrayCollection;
+      private function onCreationComplete():void
+      {
+        var dp:ArrayCollection = new ArrayCollection();
+        var date:Date;
+        var endDate:Date;
+        
+        date = new Date();
+        endDate = new Date();
+        date.setHours(8,0,0,0)
+        endDate.setHours(10,0,0,0)
+        dp.addItem({startDate:date,endDate:endDate,summary:"summary"});
+        date = new Date();
+        endDate = new Date();
+        date.setHours(10,0,0,0)
+        endDate.setHours(12,0,0,0)
+        dp.addItem({startDate:date,endDate:endDate,summary:"summary"});
+        date = new Date();
+        endDate = new Date();
+        date.setHours(15,30,0,0)
+        endDate.setHours(18,30,0,0)
+        dp.addItem({startDate:date,endDate:endDate,summary:"summary"});
+        
+        calendar.dataProvider = dp;
+      }
+        
+        
+    ]]>
+  </fx:Script>
+  
+  <s:layout>
+    <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10" paddingLeft="10"/>
+  </s:layout>
+  <components:Calendar id="calendar" width="100%" height="100%" mode="{Calendar.DAY_MODE}"
+                       startTimeField="startDate" endTimeField="endDate">
+  </components:Calendar>
+  
+  <s:Button label="Home" click="navigator.popToFirstView()"/>
+</s:View>
