@@ -47,6 +47,8 @@ package com.piaction.layouts
     */
     public var direction:int = 1;
     
+    private var _direction:int;
+    
     /**
      * Oriantation of the slide
      */
@@ -120,13 +122,14 @@ package com.piaction.layouts
         showVisualElement(_newElement, true);
         _newElement.setLayoutBoundsSize(width, height);
         
+        _direction = direction * (_oldIndex - index);
         if (orientation == HORIZONTAL)
         {
-          _newElement.setLayoutBoundsPosition(-direction * width, 0);
+          _newElement.setLayoutBoundsPosition(-_direction * width, 0);
         }
         else if (orientation == VERTICAL)
         {
-          _newElement.setLayoutBoundsPosition(0, -direction * height);
+          _newElement.setLayoutBoundsPosition(0, -_direction * height);
         }
         _oldElement = getVisualElement(_oldIndex);
         
@@ -155,15 +158,15 @@ package com.piaction.layouts
       
       if (orientation == HORIZONTAL)
       {
-        _newElement.setLayoutBoundsPosition(direction * position - direction * _oldElement.width, 0);
+        _newElement.setLayoutBoundsPosition(_direction * position - _direction * _oldElement.width, 0);
         
-        _oldElement.setLayoutBoundsPosition(direction * position, 0);
+        _oldElement.setLayoutBoundsPosition(_direction * position, 0);
       }
       else if (orientation == VERTICAL)
       {
-        _newElement.setLayoutBoundsPosition(0, direction * position - direction * _oldElement.height);
+        _newElement.setLayoutBoundsPosition(0, _direction * position - _direction * _oldElement.height);
         
-        _oldElement.setLayoutBoundsPosition(0, direction * position);
+        _oldElement.setLayoutBoundsPosition(0, _direction * position);
       }
     }
     /**
