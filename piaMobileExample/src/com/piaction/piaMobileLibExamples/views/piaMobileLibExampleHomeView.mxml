@@ -37,10 +37,27 @@
   
   <s:Form>
     <s:FormItem label="name" width="100">
-      <s:TextInput id="fName" maxChars="64" width="150"/>
+      <s:TextInput id="fName" maxChars="64" width="150" height="100%"/>
     </s:FormItem>
     <s:FormItem label="password">
-      <s:TextInput id="fPass" maxChars="64" displayAsPassword="true" width="150"/>
+      <s:TextInput id="fPass" maxChars="64" displayAsPassword="true" width="150" height="100%"/>
     </s:FormItem>
   </s:Form>
+  
+  <components:SlideDataGroup width="200" height="200" orientation="{SlideDataGroup.HORIZONTAL}" direction="{SlideDataGroup.NORMAL}" itemRenderer="com.piaction.piaMobileLibExamples.renderers.ImageRenderer">
+    <components:dataProvider>
+      <s:ArrayCollection>
+        <fx:Object source="data/img/photo01.jpg"/>
+        <fx:Object source="data/img/photo02.jpg"/>
+        <fx:Object source="data/img/photo03.jpg"/>
+        <fx:Object source="data/img/photo04.jpg"/>
+        <fx:Object source="data/img/photo05.jpg"/>
+        <fx:Object source="data/img/photo06.jpg"/>
+        <fx:Object source="data/img/photo07.jpg"/>
+        <fx:Object source="data/img/photo08.jpg"/>
+        <fx:Object source="data/img/photo09.jpg"/>
+        <fx:Object source="data/img/photo10.jpg"/>
+      </s:ArrayCollection>  
+    </components:dataProvider>
+  </components:SlideDataGroup>
 </s:View>
