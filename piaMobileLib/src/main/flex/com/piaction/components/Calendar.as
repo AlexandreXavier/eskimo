@@ -388,7 +388,7 @@ package com.piaction.components
         if (mode == DAY_MODE)
         {
           dateFormatter.formatString = "EEEE DD MMMM";
-          _firstDisplayedDate = getFirstDateOfWeek(currentDate);
+          _firstDisplayedDate = currentDate;
           _lastDisplayedDate = new Date();
           _lastDisplayedDate.setTime(currentDate.getTime());
           _lastDisplayedDate.setDate(_lastDisplayedDate.date + 1);
@@ -442,12 +442,15 @@ package com.piaction.components
       
       if (_redrawCalendar && !isNaN(_rowHeight))
       {
-        for(var i:int=0; i< calendarLayer.numElements; i++){
+        for(var i:int=0; i< calendarLayer.numElements; i++)
+        {
           storeItemRenderer( calendarLayer.getElementAt(i) as CalendarItem );
         }
+        
         calendarLayer.removeAllElements();
         for( i = 0; i<_timeDataProvider.length; i++ )
         {
+         
           var item:Object = _timeDataProvider[i];
           
           if( (item[startTimeField] as Date).time >= _firstDisplayedDate.time && (item[endTimeField] as Date).time <= _lastDisplayedDate.time )

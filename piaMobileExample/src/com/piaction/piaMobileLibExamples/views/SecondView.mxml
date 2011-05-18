@@ -9,6 +9,10 @@
   <fx:Script>
     <![CDATA[
       import mx.collections.ArrayCollection;
+      
+      [Bindable]
+      public var currentDate:Date;
+      
       private function onCreationComplete():void
       {
         var dp:ArrayCollection = new ArrayCollection();
@@ -33,6 +37,12 @@
         dp.addItem({startDate:date,endDate:endDate,summary:"summary"});
         
         calendar.dataProvider = dp;
+        
+        currentDate = new Date();
+        currentDate.setHours(0);
+        currentDate.setMinutes(0);
+        currentDate.setSeconds(0);
+        currentDate.setMilliseconds(0);
       }
         
         
@@ -44,7 +54,7 @@
   </s:layout>
   <components:Calendar id="calendar" width="100%" height="100%" mode="{Calendar.DAY_MODE}"
                        startTimeField="startDate" endTimeField="endDate" textField="summary"
-                       >
+                       currentDate="{currentDate}">
   </components:Calendar>
   
   <s:Button label="Home" click="navigator.popToFirstView()"/>
