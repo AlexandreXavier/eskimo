@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
         xmlns:s="library://ns.adobe.com/flex/spark" title="SecondView" xmlns:components="com.piaction.components.*"
-        creationComplete="onCreationComplete()">
+        creationComplete="onCreationComplete()" xmlns:mx="library://ns.adobe.com/flex/mx">
   <fx:Declarations>
     <!-- Place non-visual elements (e.g., services, value objects) here -->
   </fx:Declarations>
   
   <fx:Script>
     <![CDATA[
+      import com.piaction.components.MobileDateChooser;
+      
       import mx.collections.ArrayCollection;
       
       [Bindable]
@@ -44,18 +46,29 @@
         currentDate.setSeconds(0);
         currentDate.setMilliseconds(0);
       }
-        
-        
+      
+      
+      protected function openDateChoser(event:MouseEvent):void
+      {
+        dateChooserAnchor.displayPopUp = true;
+      }
+      
     ]]>
   </fx:Script>
-  
-  <s:layout>
-    <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10" paddingLeft="10"/>
-  </s:layout>
-  <components:Calendar id="calendar" width="100%" height="100%" mode="{Calendar.DAY_MODE}"
-                       startTimeField="startDate" endTimeField="endDate" textField="summary"
-                       currentDate="{currentDate}">
-  </components:Calendar>
-  
-  <s:Button label="Home" click="navigator.popToFirstView()"/>
+  <s:Group width="100%" height="100%">
+    <s:layout>
+      <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10" paddingLeft="10"/>
+    </s:layout>
+    
+    <s:Button click="openDateChoser(event)" label="Open date chooser"/>
+    
+    <components:Calendar id="calendar" width="100%" height="100%" mode="{Calendar.DAY_MODE}"
+                         startTimeField="startDate" endTimeField="endDate" textField="summary"
+                         currentDate="{currentDate}">
+    </components:Calendar>
+    
+  </s:Group>
+  <s:PopUpAnchor id="dateChooserAnchor" x="50" y="50" popUpPosition="topLeft">
+    <components:MobileDateChooser width="300" height="300"/>
+  </s:PopUpAnchor>
 </s:View>

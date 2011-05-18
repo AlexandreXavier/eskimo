@@ -6,6 +6,7 @@
   </fx:Declarations>
   <fx:Style>
     @namespace s "library://ns.adobe.com/flex/spark";
+    @namespace components "com.piaction.components.*";
     s|Button
     {
       skinClass:ClassReference("com.piaction.skins.ios.ButtonSkin");
@@ -17,6 +18,21 @@
     {
       skinClass:ClassReference("com.piaction.skins.ios.FormSkin");
     } 
+    
+    components|MobileDateChooser
+    {
+      todayStyleName: today;
+      gridAlpha: 0.3;
+    }
+    
+    components|MobileDateChooserHeader{
+      color: #FFFFFF;
+    }
+    
+    .today
+    {
+      color:#FFFFFF;
+    }
     
   </fx:Style>
 </s:ViewNavigatorApplication>
