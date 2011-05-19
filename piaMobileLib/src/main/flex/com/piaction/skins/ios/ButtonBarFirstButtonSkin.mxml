@@ -93,10 +93,10 @@
   <s:Rect id="whiteHalo" left="1" right="1" top="0" bottom="1"  topLeftRadiusX="5" bottomLeftRadiusX="5">
     <s:fill>
       <s:LinearGradient rotation="90">
-        <s:GradientEntry color="#FFFFFF" ratio="0" alpha="0.41"/>
-        <s:GradientEntry color="#FFFFFF" ratio="0.5" alpha="0.11"/>
-        <s:GradientEntry color="#FFFFFF" ratio="0.5" alpha="0"/>
-        <s:GradientEntry color="#FFFFFF" ratio="1" alpha="0"/>
+        <s:GradientEntry color="#FFFFFF" ratio="0" alpha="0.41" alpha.upAndSelected="0.71"/>
+        <s:GradientEntry color="#FFFFFF" ratio="0.5" alpha="0.11" alpha.upAndSelected="0.41"/>
+        <s:GradientEntry color="#FFFFFF" ratio="0.5" alpha="0" alpha.upAndSelected="0.30"/>
+        <s:GradientEntry color="#FFFFFF" ratio="1" alpha="0" alpha.upAndSelected="0.30"/>
       </s:LinearGradient>
     </s:fill>
   </s:Rect>
