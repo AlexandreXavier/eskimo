@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
-        xmlns:s="library://ns.adobe.com/flex/spark" title="HomeView" creationComplete="view1_creationCompleteHandler(event)" xmlns:components="com.piaction.components.*">
+        xmlns:s="library://ns.adobe.com/flex/spark" title="HomeView" 
+        creationComplete="view1_creationCompleteHandler(event)" xmlns:components="com.piaction.components.*"
+        backgroundColor="#CCCCCC">
   
   <fx:Script>
     <![CDATA[
@@ -21,7 +23,17 @@
   <s:layout>
     <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10" paddingLeft="10"/>
   </s:layout>
-  
+  <s:Button label="Button Example"/>
+  <s:ButtonBar>
+    <s:dataProvider>
+      <s:ArrayCollection>
+        <fx:Object label="button 1"/>
+        <fx:Object label="button 2"/>
+        <fx:Object label="button 3"/>
+        <fx:Object label="button 4"/>
+      </s:ArrayCollection>
+    </s:dataProvider>
+  </s:ButtonBar>
   <s:Form>
     <s:FormItem label="name" width="100">
       <s:TextInput id="fName" maxChars="64" width="150" height="100%"/>
