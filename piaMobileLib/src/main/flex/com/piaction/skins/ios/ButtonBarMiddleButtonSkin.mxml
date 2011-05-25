@@ -135,8 +135,6 @@
            color="#FFFFFF"
            maxDisplayedLines="1"
            horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
-           fontWeight="normal"
-           fontSize="16"
            left="10" right="10" top="2" bottom="2">
     <s:filters>
       <s:DropShadowFilter id="labelDropShadowColor" distance="1" angle="-90" blurY="1" blurX="0" alpha="0.7"/>
