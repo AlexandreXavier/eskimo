@@ -50,7 +50,7 @@
   
   <!-- drop shadow can't be hittable so all other graphics go in this group -->
   <s:Group left="0" right="0" top="0" bottom="0">
-    <s:Rect id="background" left="1" top="1" right="1" bottom="1" radiusX="20" alpha=".8">
+    <s:Rect id="background" left="1" top="1" right="1" bottom="1" radiusX="20" alpha=".9">
       <s:fill>
         <s:SolidColor id="backgroundFill" color="#031037"/>
       </s:fill>
