@@ -13,6 +13,8 @@ package com.piaction.controls
   import mx.events.FlexEvent;
   import mx.managers.ISystemManager;
   import mx.managers.PopUpManager;
+  import mx.styles.CSSStyleDeclaration;
+  import mx.styles.StyleManager;
   
   import spark.components.Button;
   import spark.components.Group;
@@ -82,6 +84,9 @@ package com.piaction.controls
     protected static var _noLabel:String = "No";
     protected static var _buttonHeight:Number = 50;
     
+    private static var classConstructed:Boolean = classConstruct();
+
+    
     /**
      * Constructor
      */
@@ -107,12 +112,26 @@ package com.piaction.controls
       buttonYES.label = _yesLabel;
       buttonNO.label = _noLabel;
       
-      if( getStyle("skinClass") == null )
+    }
+    
+    private static function classConstruct():Boolean
+    {
+      var styles:CSSStyleDeclaration = FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration("com.piaction.controls.SkinnableAlert");
+      if(!styles)
       {
-        setStyle("skinClass", AlertSkin);
+        styles = new CSSStyleDeclaration();
       }
       
+      styles.defaultFactory = function():void
+      {
+        this.skinClass =  AlertSkin;
+      }
+      
+      FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("com.piaction.controls.SkinnableAlert", styles, false);
+      
+      return true;
     }
+
     
     /**
      * @private
