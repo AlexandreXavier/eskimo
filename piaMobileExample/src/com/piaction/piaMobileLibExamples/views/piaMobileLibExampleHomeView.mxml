@@ -23,7 +23,7 @@
   <s:layout>
     <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10" paddingLeft="10"/>
   </s:layout>
-  <s:Button label="Button Example"/>
+
   <s:ButtonBar>
     <s:dataProvider>
       <s:ArrayCollection>
@@ -80,4 +80,22 @@
                             buttonLabel="Show Calendar" confirmLabel="Quit this view" confirmChromeColor="#FF3333"
                             confirm="navigator.pushView(SecondView)"/>
   
+  <s:HGroup>
+    <s:Button label="Edition" click="deletableList.currentState = 'edition'"/>
+    <s:Button label="Normal" click="deletableList.currentState = 'normal'"/>
+  </s:HGroup>
+  <components:DeletableList id="deletableList" width="100%" height="100%" 
+                            itemRenderer="com.piaction.piaMobileLibExamples.renderers.MyDeletableItemRenderer"
+                            alternatingItemColors="[0xEDEDED, 0xFFFFFF]">
+    <components:dataProvider>
+      <s:ArrayCollection>
+        <fx:Object label="Item 1"/>
+        <fx:Object label="Item 2"/>
+        <fx:Object label="Item 3"/>
+        <fx:Object label="Item 4"/>
+        <fx:Object label="Item 5"/>
+        <fx:Object label="Item 6"/>
+      </s:ArrayCollection>
+    </components:dataProvider>
+  </components:DeletableList>
 </s:View>
