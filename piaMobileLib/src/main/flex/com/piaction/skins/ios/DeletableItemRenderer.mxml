@@ -83,8 +83,9 @@
         if(editionButton != null)
         {
           editionButton.source = getStyle("editIcon");
-          editionGroup.width = editionButton.width = getStyle("editIconWidth");
-          editionGroup.height = editionButton.height = getStyle("editIconHeight");
+          editionButton.width = getStyle("editIconWidth");
+          editionGroup.width = getStyle("editIconWidth") + 10;
+          editionButton.height = getStyle("editIconHeight");
         }
         
       }
@@ -193,13 +194,13 @@
   <s:transitions>
     <s:Transition fromState="normal" toState="edition">
       <s:Parallel >
-        <s:Move target="{editionGroup}" xFrom="{-editionButton.width}" xTo="5" duration="200"/>
+        <s:Move target="{editionGroup}" xFrom="{-editionGroup.width}" xTo="0" duration="200"/>
       </s:Parallel>
     </s:Transition>
     
     <s:Transition toState="normal">
       <s:Parallel>
-        <s:Move target="{editionGroup}" xFrom="5" xTo="{-editionButton.width}" duration="200"/>
+        <s:Move target="{editionGroup}" xFrom="0" xTo="{-editionGroup.width}" duration="200"/>
       </s:Parallel>
     </s:Transition>
     
@@ -226,13 +227,13 @@
     
   </s:Group>
   
-  <s:Group id="editionGroup" verticalCenter="0" x.edition="5" x.confirmation="5" x.normal="{-editionButton.width}"
+  <s:HGroup id="editionGroup" height="100%" x.edition="0" x.confirmation="0" x.normal="{-editionGroup.width}"
            click.edition="onEditClick(event)" mouseEnabled.confirmation="false" mouseChildren.confirmation="false"
+           paddingLeft="5" paddingRight="5" 
+           verticalAlign="middle" horizontalAlign="center"
            >
-    <s:Image id="editionButton"
-             verticalCenter="0" horizontalCenter="0"
-             />
-  </s:Group>
+    <s:Image id="editionButton" />
+  </s:HGroup>
   
   <s:Button id="deleteButton" label="Delete" height="100%" includeIn="confirmation"
             verticalCenter="0" 
