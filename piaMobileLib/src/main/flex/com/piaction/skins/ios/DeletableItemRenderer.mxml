@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
                 xmlns:s="library://ns.adobe.com/flex/spark"
-                xmlns:mx="library://ns.adobe.com/flex/mx" 
+                xmlns:mx="library://ns.adobe.com/flex/mx" clipAndEnableScrolling="true"
                 click="event.stopImmediatePropagation()" initialize="onInitialize(event)"
                 >
   
@@ -207,13 +207,17 @@
     <s:Transition toState="confirmation">
       <s:Parallel>
         <s:Rotate target="{editionButton}" angleFrom="0" angleTo="90" duration="200"/>
-        <s:Wipe target="{deleteButton}" direction="left" duration="200"/>
+        <s:Resize target="{buttonMask}" widthFrom="0" widthTo="{deleteButton.width}" duration="200"/>
+        <!--<s:Wipe target="{deleteButton}" direction="left" duration="200"/>-->
+        <!--<s:Resize target="{deleteButton}" duration="200"/>-->
       </s:Parallel>
     </s:Transition>
     <s:Transition fromState="confirmation" toState="edition"  >
       <s:Parallel id="confirmToEdit">
         <s:Rotate target="{editionButton}" angleFrom="90" angleTo="0" duration="200"/>
-        <s:Wipe target="{deleteButton}" direction="right" duration="200"/>
+        <s:Resize target="{buttonMask}" widthFrom="{deleteButton.width}" widthTo="0" duration="200"/>
+        <s:RemoveAction target="{buttonMask}" startDelay="200"/>
+        <s:RemoveAction target="{deleteButton}" startDelay="200"/>
       </s:Parallel>
     </s:Transition>
   </s:transitions>
@@ -235,8 +239,16 @@
     <s:Image id="editionButton" />
   </s:HGroup>
   
-  <s:Button id="deleteButton" label="Delete" height="100%" includeIn="confirmation"
+  <s:Button id="deleteButton" label="Delete" includeIn="confirmation" mask="{buttonMask}"
             verticalCenter="0" 
-            right="10" top="20" bottom="20" click="onDeleteClick(event)"/>
+            right="10" height="40" click="onDeleteClick(event)"/>
+  <s:SkinnableContainer  id="buttonMask" width.confirmation="{deleteButton.width}" width="0"
+                         right="10" height="100%" includeIn="confirmation">
+    <s:Rect top="0" right="0" bottom="0" left="0">
+      <s:fill>
+        <s:SolidColor/>
+      </s:fill>
+    </s:Rect>
+  </s:SkinnableContainer>
   
 </s:ItemRenderer>
