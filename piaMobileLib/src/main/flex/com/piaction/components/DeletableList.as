@@ -13,18 +13,28 @@ package com.piaction.components
   import spark.components.List;
   
   /**
-  * Dispatched when an item is deleted
-  */
+   * Dispatched when an item is deleted
+   */
   [Event(name="itemDeleted", type="com.piaction.events.DeletableListEvent")]
   
   /**
-  * List that can contain deletable itemrenderers
-  */
+   * List that can contain deletable itemrenderers
+   */
   public class DeletableList extends List
   {
     /**
-    * @private
-    */
+     * Normal State const
+     */
+    public static const NORMAL_STATE:String = "normal";
+    /**
+     * Edition State const
+     */
+    public static const EDITION_STATE:String = "edition";
+    
+    
+    /**
+     * @private
+     */
     private var _invalidateItemRendererState:Boolean;
     
     /**
