@@ -75,7 +75,7 @@
         if(deleteButton != null)
         {
           deleteButton.setStyle("chromeColor", getStyle("deleteButtonChromeColor"));
-          deleteButton.setStyle("color", "deleteButtonColor");
+          deleteButton.setStyle("color", getStyle("deleteButtonColor"));
           
           if(!isNaN(getStyle("deleteButtonWidth")))
             deleteButton.width = getStyle("deleteButtonWidth");
@@ -100,12 +100,10 @@
       {
         var parentList:DeletableList = owner as DeletableList;
         
-        parentList.dataProvider.removeItemAt(parentList.dataProvider.getItemIndex(data));
-          
         var e:DeletableListEvent = new DeletableListEvent(DeletableListEvent.ITEM_DELETED, false, false, event.localX, event.localY, this, false, false, false, true, 0, itemIndex, data, this);
-        dispatchEvent(e);
+        parentList.dispatchEvent(e);
         
-        
+        parentList.dataProvider.removeItemAt(parentList.dataProvider.getItemIndex(data));
       }
       
       protected function onEditClick(event:MouseEvent):void
