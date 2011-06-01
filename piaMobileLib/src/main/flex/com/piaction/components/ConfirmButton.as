@@ -5,11 +5,14 @@ package com.piaction.components
   
   import flash.events.Event;
   import flash.events.MouseEvent;
+  import flash.system.Capabilities;
   
+  import mx.core.FlexGlobals;
   import mx.core.IButton;
   import mx.events.FlexEvent;
   import mx.events.StateChangeEvent;
   import mx.states.State;
+  import mx.styles.CSSStyleDeclaration;
   
   import spark.components.Button;
   import spark.components.supportClasses.SkinnableComponent;
@@ -127,14 +130,45 @@ package com.piaction.components
     public static var CONFIRMATION_STATE:String = "confirmation";
     
     /**
+     * @private
+     */
+    private static var classConstructed:Boolean = classConstruct();
+    
+    /**
+     * @private
+     */
+    protected static function classConstruct():Boolean
+    {
+      var styles:CSSStyleDeclaration = FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration("com.piaction.components.ConfirmButton");
+      if(!styles)
+      {
+        styles = new CSSStyleDeclaration();
+      }
+      
+      styles.defaultFactory = function():void
+      {
+        if (Capabilities.version.substr(0,3) == "IOS")
+        {
+          this.skinClass =  ConfirmButtonSkin;
+        }
+        else
+        {
+          this.skinClass = ConfirmButtonSkin;
+        }
+      }
+      
+      FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("com.piaction.components.ConfirmButton", styles, false);
+      
+      return true;
+    }
+    
+    /**
      * Constructor
      */ 
     public function ConfirmButton()
     {
       addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
       addEventListener(StateChangeEvent.CURRENT_STATE_CHANGING, onStateChange);
-      
-      if(getStyle("skinClass") == null) setStyle("skinClass", ConfirmButtonSkin);
     }
     
     /**

@@ -1,11 +1,13 @@
 package com.piaction.controls
 {
+  import com.piaction.skins.android.AlertSkin;
   import com.piaction.skins.ios.AlertSkin;
   import com.piaction.skins.ios.ButtonSkin;
   
   import flash.display.Sprite;
   import flash.events.Event;
   import flash.events.MouseEvent;
+  import flash.system.Capabilities;
   
   import mx.core.FlexGlobals;
   import mx.core.IFlexDisplayObject;
@@ -20,7 +22,7 @@ package com.piaction.controls
   import spark.components.Group;
   import spark.components.Label;
   import spark.components.supportClasses.SkinnableComponent;
-
+  
   [Event(name="close", type="mx.events.CloseEvent")]
   public class SkinnableAlert extends SkinnableComponent
   {
@@ -53,8 +55,8 @@ package com.piaction.controls
     public var buttonFlags:uint = OK;
     
     /**
-    * @private
-    */
+     * @private
+     */
     public var buttonFlagsChanged:Boolean = true;
     
     private var _text:String;
@@ -84,8 +86,38 @@ package com.piaction.controls
     protected static var _noLabel:String = "No";
     protected static var _buttonHeight:Number = 50;
     
+    /**
+     * @private
+     */
     private static var classConstructed:Boolean = classConstruct();
-
+    
+    /**
+     * @private
+     */
+    protected static function classConstruct():Boolean
+    {
+      var styles:CSSStyleDeclaration = FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration("com.piaction.controls.SkinnableAlert");
+      if(!styles)
+      {
+        styles = new CSSStyleDeclaration();
+      }
+      
+      styles.defaultFactory = function():void
+      {
+        if (Capabilities.version.substr(0,3) == "IOS")
+        {
+          this.skinClass =  com.piaction.skins.ios.AlertSkin;
+        }
+        else
+        {
+          this.skinClass = com.piaction.skins.android.AlertSkin
+        }
+      }
+      
+      FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("com.piaction.controls.SkinnableAlert", styles, false);
+      
+      return true;
+    }
     
     /**
      * Constructor
@@ -113,25 +145,6 @@ package com.piaction.controls
       buttonNO.label = _noLabel;
       
     }
-    
-    private static function classConstruct():Boolean
-    {
-      var styles:CSSStyleDeclaration = FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration("com.piaction.controls.SkinnableAlert");
-      if(!styles)
-      {
-        styles = new CSSStyleDeclaration();
-      }
-      
-      styles.defaultFactory = function():void
-      {
-        this.skinClass =  AlertSkin;
-      }
-      
-      FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("com.piaction.controls.SkinnableAlert", styles, false);
-      
-      return true;
-    }
-
     
     /**
      * @private
@@ -239,7 +252,7 @@ package com.piaction.controls
         alert.addEventListener(CloseEvent.CLOSE, closeHandler);
       
       alert.addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete, false, 0, true);
-
+      
       
       PopUpManager.addPopUp(alert, parent, modal);
     }
@@ -251,7 +264,7 @@ package com.piaction.controls
     {
       PopUpManager.centerPopUp(event.target as IFlexDisplayObject);
     }
-
+    
     /**
      * Text of the Alert control
      */
@@ -259,7 +272,7 @@ package com.piaction.controls
     {
       return _text;
     }
-
+    
     /**
      * @private
      */
@@ -267,7 +280,7 @@ package com.piaction.controls
     {
       _text = value;
     }
-
+    
     /**
      * Text of the title control
      */
@@ -275,7 +288,7 @@ package com.piaction.controls
     {
       return _title;
     }
-
+    
     /**
      * @private
      */
@@ -283,7 +296,7 @@ package com.piaction.controls
     {
       _title = value;
     }
-
+    
     /**
      * Text of the o lLabel control
      */
@@ -291,7 +304,7 @@ package com.piaction.controls
     {
       return _okLabel;
     }
-
+    
     /**
      * @private
      */
@@ -299,7 +312,7 @@ package com.piaction.controls
     {
       _okLabel = value;
     }
-
+    
     /**
      * Text of the cancel label of Alert control
      */
@@ -307,7 +320,7 @@ package com.piaction.controls
     {
       return _cancelLabel;
     }
-
+    
     /**
      * @private
      */
@@ -315,7 +328,7 @@ package com.piaction.controls
     {
       _cancelLabel = value;
     }
-
+    
     /**
      * Text of the yes Label of Alert control
      */
@@ -323,7 +336,7 @@ package com.piaction.controls
     {
       return _yesLabel;
     }
-
+    
     /**
      * @private
      */
@@ -331,7 +344,7 @@ package com.piaction.controls
     {
       _yesLabel = value;
     }
-
+    
     /**
      * Text of the no Label of Alert control
      */
@@ -339,7 +352,7 @@ package com.piaction.controls
     {
       return _noLabel;
     }
-
+    
     /**
      * @private
      */
@@ -347,7 +360,7 @@ package com.piaction.controls
     {
       _noLabel = value;
     }
-
+    
     /**
      * Text of the button height of Alert control
      */
@@ -355,15 +368,15 @@ package com.piaction.controls
     {
       return _buttonHeight;
     }
-
+    
     /**
-    * @private
-    */
+     * @private
+     */
     public static function set buttonHeight(value:Number):void
     {
       _buttonHeight = value;
     }
-
+    
     /**
      * @private
      */
@@ -399,6 +412,6 @@ package com.piaction.controls
       dispatchEvent(new CloseEvent(CloseEvent.CLOSE,false, false, SkinnableAlert.NO));
       PopUpManager.removePopUp(this);
     }
-
+    
   }
 }

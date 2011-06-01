@@ -8,16 +8,19 @@ package com.piaction.components
   import flash.events.MouseEvent;
   import flash.filters.BlurFilter;
   import flash.geom.Point;
+  import flash.system.Capabilities;
   import flash.utils.getTimer;
   
   import mx.collections.ArrayCollection;
   import mx.collections.IList;
   import mx.core.ClassFactory;
+  import mx.core.FlexGlobals;
   import mx.core.IVisualElement;
   import mx.core.mx_internal;
   import mx.events.EffectEvent;
   import mx.events.FlexEvent;
   import mx.events.SandboxMouseEvent;
+  import mx.styles.CSSStyleDeclaration;
   
   import spark.components.List;
   import spark.effects.Animate;
@@ -114,6 +117,31 @@ package com.piaction.components
     private var _oldY:Number;
     private var _rowHeight:Number = 50;
     
+    /**
+     * @private
+     */
+    private static var classConstructed:Boolean = classConstruct();
+    
+    /**
+     * @private
+     */
+    protected static function classConstruct():Boolean
+    {
+      var styles:CSSStyleDeclaration = FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration("com.piaction.components.ListWheel");
+      if(!styles)
+      {
+        styles = new CSSStyleDeclaration();
+      }
+      
+      styles.defaultFactory = function():void
+      {
+         this.skinClass =  ListWheelSkin;
+      }
+      
+      FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("com.piaction.components.ListWheel", styles, false);
+      
+      return true;
+    }
     
     /**
     * Constructor
@@ -129,8 +157,6 @@ package com.piaction.components
       addEventListener(FlexEvent.CREATION_COMPLETE, onChange);
       
       if(itemRenderer == null) itemRenderer = new ClassFactory(ListWheelItemRenderer);
-      
-      if(getStyle("skinClass") == null) setStyle("skinClass", ListWheelSkin);
       
     }
     
