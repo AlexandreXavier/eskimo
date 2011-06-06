@@ -8,6 +8,7 @@ package com.piaction.events
   public class DeletableListEvent extends ListEvent
   {
     public static const ITEM_DELETED:String = "itemDeleted";
+    public static const ITEM_LONG_PRESS:String = "mouseLongPress";
     
     public function DeletableListEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false, localX:Number=NaN, localY:Number=NaN, relatedObject:InteractiveObject=null, ctrlKey:Boolean=false, altKey:Boolean=false, shiftKey:Boolean=false, buttonDown:Boolean=false, delta:int=0, itemIndex:int=-1, item:Object=null, itemRenderer:IItemRenderer=null)
     {

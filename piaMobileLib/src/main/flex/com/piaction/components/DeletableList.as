@@ -1,8 +1,12 @@
 package com.piaction.components
 {
+  import com.piaction.events.DeletableListEvent;
   import com.piaction.skins.ios.DeletableItemRenderer;
   
   import flash.events.Event;
+  import flash.events.MouseEvent;
+  import flash.events.TimerEvent;
+  import flash.utils.Timer;
   
   import mx.core.ClassFactory;
   import mx.core.IVisualElement;
@@ -30,7 +34,6 @@ package com.piaction.components
      * Edition State const
      */
     public static const EDITION_STATE:String = "edition";
-    
     
     /**
      * @private

@@ -3,6 +3,7 @@
                 xmlns:s="library://ns.adobe.com/flex/spark"
                 xmlns:mx="library://ns.adobe.com/flex/mx" clipAndEnableScrolling="true"
                 click="event.stopImmediatePropagation()" initialize="onInitialize(event)"
+                removedFromStage="onRemoveEdit(event)"
                 >
   
   <fx:Metadata>
@@ -23,6 +24,7 @@
       import mx.core.IVisualElement;
       import mx.events.FlexEvent;
       import mx.events.ItemClickEvent;
+      import mx.managers.PopUpManager;
       
       import spark.layouts.BasicLayout;
       import spark.layouts.supportClasses.LayoutBase;
@@ -31,6 +33,8 @@
       
       [Embed(source='com/piaction/assets/img/delete.png')]
       private static var defaultEditIcon:Class;
+      
+      protected var _longPressTimer:Timer = new Timer(1500, 1);
       
       private static function classConstruct():Boolean
       {
@@ -97,7 +101,7 @@
         invalidateProperties();
       }
       
-      protected function onDeleteClick(event:MouseEvent):void
+      public function onDeleteClick(event:MouseEvent):void
       {
         var parentList:DeletableList = owner as DeletableList;
         
@@ -113,10 +117,13 @@
         stage.addEventListener(MouseEvent.MOUSE_DOWN, onRemoveEdit, false, 0, true);
       }
       
-      protected function onRemoveEdit(event:MouseEvent):void
+      protected function onRemoveEdit(event:Event):void
       {
-        stage.removeEventListener(MouseEvent.MOUSE_DOWN, onRemoveEdit);
-        currentState = "edition";
+        if(currentState == "confirmation" && event.target != deleteButton)
+        {
+          stage.removeEventListener(MouseEvent.MOUSE_DOWN, onRemoveEdit);
+          currentState = "edition";
+        }
       }
       
       override protected function getCurrentRendererState():String
@@ -185,6 +192,12 @@
     ]]>
   </fx:Script>
   
+  <fx:Declarations>
+    <fx:Component className="RemovePopUp">
+      <s:Button label="remove" click="outerDocument.onDeleteClick(event)"/>
+    </fx:Component>
+  </fx:Declarations>
+  
   <s:states>
     <s:State name="normal"/>
     <s:State name="edition"/>
@@ -232,10 +245,10 @@
   </s:Group>
   
   <s:HGroup id="editionGroup" height="100%" x.edition="0" x.confirmation="0" x.normal="{-editionGroup.width}"
-           click.edition="onEditClick(event)" mouseEnabled.confirmation="false" mouseChildren.confirmation="false"
-           paddingLeft="5" paddingRight="5" 
-           verticalAlign="middle" horizontalAlign="center"
-           >
+            click.edition="onEditClick(event)" mouseEnabled.confirmation="false" mouseChildren.confirmation="false"
+            paddingLeft="5" paddingRight="5" 
+            verticalAlign="middle" horizontalAlign="center"
+            >
     <s:Image id="editionButton" />
   </s:HGroup>
   
