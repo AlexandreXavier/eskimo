@@ -19,7 +19,7 @@
       
       /* Define the skin elements that should not be colorized. 
       For panel, border and title background are skinned, but the content area, background, border, and title text are not. */
-      static private const exclusions:Array = ["background", "titleDisplay", "contentGroup", "controlBarGroup", "border"];
+      static private const exclusions:Array = ["background", "titleDisplay", "contentGroup", "controlBarGroup", "border", "titleSeparation"];
       
       
       /**
@@ -36,6 +36,11 @@
       override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
       {
         super.updateDisplayList(unscaledWidth, unscaledHeight);
+        
+        if(titleDisplay && titleSeparation)
+        {
+          titleSeparation.visible = titleDisplay.text != ""; 
+        }
       }
       
       private var cornerRadius:Number;
@@ -66,12 +71,20 @@
     </s:stroke>
   </s:Rect>
   
-  
+  <s:Line id="titleSeparation" left="10" right="10" top="{titleDisplay.y + titleDisplay.height}">
+    <s:stroke>
+      <s:LinearGradientStroke weight="1">
+        <s:GradientEntry ratio="0" color="#FFFFFF" alpha="0"/>
+        <s:GradientEntry ratio="0.5" color="#FFFFFF" alpha="1"/>
+        <s:GradientEntry ratio="1" color="#FFFFFF" alpha="0"/>
+      </s:LinearGradientStroke>
+    </s:stroke>
+  </s:Line>
   
   <!--- Contains the vertical stack of titlebar content and controlbar. -->
   <s:Group left="3" right="3" top="3" bottom="3" id="contents" >
     <s:layout>
-      <s:VerticalLayout gap="0" paddingTop="10" horizontalAlign="justify" />
+      <s:VerticalLayout gap="5" paddingTop="5" horizontalAlign="justify" />
     </s:layout>
     <s:Label id="titleDisplay" maxDisplayedLines="1" color="#FFFFFF"
              left="10" right="10" minHeight="30"
