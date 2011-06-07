@@ -96,7 +96,7 @@
     
     <s:Group id="controlBarGroup" width="100%">
       <s:layout>
-        <s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="7" paddingBottom="7" gap="10" horizontalAlign="center" />
+        <s:HorizontalLayout paddingLeft="5" paddingRight="5" paddingTop="7" paddingBottom="7" gap="3" horizontalAlign="center" />
       </s:layout>
       
     </s:Group>

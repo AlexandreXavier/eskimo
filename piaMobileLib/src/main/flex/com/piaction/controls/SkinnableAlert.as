@@ -134,6 +134,11 @@ package com.piaction.controls
       buttonYES.addEventListener(MouseEvent.CLICK, onYesClick);
       buttonNO.addEventListener(MouseEvent.CLICK, onNoClick);
       
+      buttonOK.percentWidth = 100;
+      buttonCANCEL.percentWidth = 100;
+      buttonYES.percentWidth = 100;
+      buttonNO.percentWidth = 100;
+      
       buttonOK.percentHeight = 100;
       buttonCANCEL.percentHeight = 100;
       buttonYES.percentHeight = 100;
