@@ -34,19 +34,45 @@ package com.piaction.components
   [Event(name="contextMenuItemClick", type="com.piaction.events.ContextableListEvent")]
   
   [Style(name="contexListStyleName", inherit="no", type="String")]
+  
+  /**
+   * List that enable long click and a menu on Item
+   */
   public class ContextableList extends List
   {
+    /**
+     * @private
+     */
     private var _timer:Timer = new Timer(800, 1);
-    private var _contextMenuItems:ArrayCollection;
-    
-    private var _contextList:List = new List();
-    
+    /**
+     * @private
+     */
+    private var _contextMenuItems:Array;
+    /**
+     * @private
+     */
+    protected var _contextList:List = new List();
+    /**
+     * @private
+     */
     protected var _mouseDownPoint:Point;
     
+    /**
+     * @private
+     */
     private var _contextListLayout:LayoutBase;
     
+    /**
+     * @private
+     */
     protected var _contextIndex:int;
+    /**
+     * @private
+     */
     protected var _contextRenderer:IItemRenderer;
+    /**
+     * @private
+     */
     protected var _contextData:Object;
     
     /**
@@ -69,7 +95,7 @@ package com.piaction.components
       {
         this.contexListStyleName =  "defaultContextListStyle";
       }
-        
+      
       FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("com.piaction.components.ContextableList", styles, false);
       
       styles = FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration(".defaultContextListStyle");
@@ -88,12 +114,15 @@ package com.piaction.components
       return true;
     }
     
+    /**
+     * Constructor
+     */
     public function ContextableList()
     {
       super();
       
-      _contextList.filters = [new GlowFilter(0, 1, 10, 10)];
-
+      _contextList.filters = [new GlowFilter(0, 1, 15, 15)];
+      
       _contextListLayout = new VerticalLayout();
       
       (_contextListLayout as VerticalLayout).verticalAlign = "contentHeight";
@@ -104,7 +133,10 @@ package com.piaction.components
       
       
     }
-
+    
+    /**
+     * @private
+     */
     override protected function item_mouseDownHandler(event:MouseEvent):void
     {
       super.item_mouseDownHandler(event);
@@ -118,6 +150,9 @@ package com.piaction.components
       _mouseDownPoint = event.target.localToGlobal(new Point(event.localX, event.localY));
     }
     
+    /**
+     * @private
+     */
     override protected function mouseUpHandler(event:Event):void
     {
       super.mouseUpHandler(event);
@@ -129,6 +164,9 @@ package com.piaction.components
       systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
     }
     
+    /**
+     * @private
+     */
     protected function onMouseMove(event:MouseEvent):void
     {
       if (!_mouseDownPoint)
@@ -149,7 +187,9 @@ package com.piaction.components
       
     }
     
-    
+    /**
+     * @private
+     */
     private function onTimerComplete(event:TimerEvent):void
     {
       _timer.removeEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
@@ -162,29 +202,21 @@ package com.piaction.components
       _contextRenderer = dataGroup.getElementAt(mouseDownIndex) as IItemRenderer;
       
       dispatchEvent(new ContextableListEvent(ContextableListEvent.ITEM_LONG_PRESS, false, false, mouseX, mouseY, this, false, false, false, true, 0, _contextIndex, _contextData, _contextRenderer));
-    
+      
       if(_contextMenuItems) showContextMenu();
     }
     
-    public function get contextMenuItems():ArrayCollection
+    /**
+     * Context menu items
+     */
+    public function get contextMenuItems():Array
     {
       return _contextMenuItems;
     }
     
-    public function set contextMenuItems(value:ArrayCollection):void
-    {
-      _contextMenuItems = value;
-    }
-    
-    override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
-    {
-      super.updateDisplayList(unscaledWidth, unscaledHeight);
-      
-      _contextList.styleName = getStyle("contexListStyleName");
-      _contextList.width = unscaledWidth * 0.80;
-      _contextList.maxHeight = unscaledHeight * 0.80;
-    }
-    
+    /**
+     * @private
+     */
     protected function onKeyDown(event:KeyboardEvent):void
     {
       if(event.keyCode == Keyboard.BACK)
@@ -194,9 +226,14 @@ package com.piaction.components
       }
     }
     
+    /**
+     * @private
+     */
     protected function showContextMenu():void
     {
-      _contextList.dataProvider = _contextMenuItems;
+      selectedIndex = _contextIndex;
+      
+      _contextList.dataProvider = new ArrayCollection(_contextMenuItems);
       PopUpManager.addPopUp(_contextList, this, true, PopUpManagerChildList.PARENT);
       PopUpManager.centerPopUp(_contextList);
       
@@ -205,6 +242,9 @@ package com.piaction.components
       _contextList.addEventListener(IndexChangeEvent.CHANGE, onIndexChange, false, 0, true);
     }
     
+    /**
+     * @private
+     */
     protected function hideContextMenu():void
     {
       PopUpManager.removePopUp(_contextList);
@@ -212,13 +252,37 @@ package com.piaction.components
       _contextList.removeEventListener(IndexChangeEvent.CHANGE, onIndexChange);
     }
     
+    /**
+     * @private
+     */
     protected function onIndexChange(event:IndexChangeEvent):void
     {
-      var evt:ContextableListEvent = new ContextableListEvent(ContextableListEvent.CONTEX_MENU_ITEM_CLICK, false, false, mouseX, mouseY, this, false, false, false, true, 0, _contextIndex, _contextData, _contextRenderer, _contextMenuItems.getItemAt(event.newIndex));
+      var evt:ContextableListEvent = new ContextableListEvent(ContextableListEvent.CONTEX_MENU_ITEM_CLICK, false, false, mouseX, mouseY, this, false, false, false, true, 0, _contextIndex, _contextData, _contextRenderer, _contextMenuItems[event.newIndex]);
       
       dispatchEvent(evt);
       
       hideContextMenu();
+    }
+    
+    
+    /**
+     * @private
+     */
+    public function set contextMenuItems(value:Array):void
+    {
+      _contextMenuItems = value;
+    }
+    
+    /**
+     * @private
+     */
+    override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+    {
+      super.updateDisplayList(unscaledWidth, unscaledHeight);
+      
+      _contextList.styleName = getStyle("contexListStyleName");
+      _contextList.width = unscaledWidth * 0.80;
+      _contextList.maxHeight = unscaledHeight * 0.80;
     }
   }
 }
