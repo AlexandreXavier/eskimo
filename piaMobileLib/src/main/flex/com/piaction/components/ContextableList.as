@@ -31,7 +31,14 @@ package com.piaction.components
   
   use namespace mx_internal;
   
+  /**
+   * Item long press event
+   */
   [Event(name="itemLongPress", type="com.piaction.events.ContextableListEvent")]
+  
+  /**
+   * Context menu item click event
+   */
   [Event(name="contextMenuItemClick", type="com.piaction.events.ContextableListEvent")]
   
   /**
