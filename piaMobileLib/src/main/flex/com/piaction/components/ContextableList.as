@@ -41,6 +41,8 @@ package com.piaction.components
     
     private var _contextList:List = new List();
     
+    protected var _mouseDownPoint:Point;
+    
     private var _contextListLayout:LayoutBase;
     
     protected var _contextIndex:int;
@@ -110,12 +112,17 @@ package com.piaction.components
       _timer.addEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete, false, 0, true);
       _timer.start();
       
+      
       systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove, false, 0, true);
+      
+      _mouseDownPoint = event.target.localToGlobal(new Point(event.localX, event.localY));
     }
     
     override protected function mouseUpHandler(event:Event):void
     {
       super.mouseUpHandler(event);
+      
+      _mouseDownPoint = null
       
       _timer.removeEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
       _timer.stop();
@@ -124,16 +131,16 @@ package com.piaction.components
     
     protected function onMouseMove(event:MouseEvent):void
     {
-      if (!mouseDownPoint)
+      if (!_mouseDownPoint)
         return;
       
       var pt:Point = new Point(event.localX, event.localY);
-      pt = DisplayObject(event.target).localToGlobal(pt);
+      pt = event.target.localToGlobal(pt);
       
-      const DRAG_THRESHOLD:int = 5;
+      const DRAG_THRESHOLD:int = 20;
       
-      if (Math.abs(mouseDownPoint.x - pt.x) > DRAG_THRESHOLD ||
-        Math.abs(mouseDownPoint.y - pt.y) > DRAG_THRESHOLD)
+      if (Math.abs(_mouseDownPoint.x - pt.x) > DRAG_THRESHOLD ||
+        Math.abs(_mouseDownPoint.y - pt.y) > DRAG_THRESHOLD)
       {
         _timer.removeEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
         _timer.stop();
@@ -146,6 +153,9 @@ package com.piaction.components
     private function onTimerComplete(event:TimerEvent):void
     {
       _timer.removeEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
+      
+      if(mouseDownIndex == -1)
+        return;
       
       _contextIndex = mouseDownIndex;
       _contextData = dataProvider.getItemAt(mouseDownIndex);
@@ -180,6 +190,7 @@ package com.piaction.components
       if(event.keyCode == Keyboard.BACK)
       {
         hideContextMenu();
+        event.preventDefault();
       }
     }
     
