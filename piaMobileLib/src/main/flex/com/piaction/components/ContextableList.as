@@ -1,6 +1,7 @@
 package com.piaction.components
 {
   import com.piaction.events.ContextableListEvent;
+  import com.piaction.events.MobileContextMenuEvent;
   
   import flash.display.DisplayObject;
   import flash.events.ContextMenuEvent;
@@ -33,8 +34,6 @@ package com.piaction.components
   [Event(name="itemLongPress", type="com.piaction.events.ContextableListEvent")]
   [Event(name="contextMenuItemClick", type="com.piaction.events.ContextableListEvent")]
   
-  [Style(name="contexListStyleName", inherit="no", type="String")]
-  
   /**
    * List that enable long click and a menu on Item
    */
@@ -43,7 +42,7 @@ package com.piaction.components
     /**
      * @private
      */
-    private var _timer:Timer = new Timer(800, 1);
+    private var _timer:Timer = new Timer(700, 1);
     /**
      * @private
      */
@@ -51,16 +50,11 @@ package com.piaction.components
     /**
      * @private
      */
-    protected var _contextList:List = new List();
+    protected var _contextList:MobileContextMenu;
     /**
      * @private
      */
     protected var _mouseDownPoint:Point;
-    
-    /**
-     * @private
-     */
-    private var _contextListLayout:LayoutBase;
     
     /**
      * @private
@@ -75,44 +69,7 @@ package com.piaction.components
      */
     protected var _contextData:Object;
     
-    /**
-     * @private
-     */
-    private static var classConstructed:Boolean = classConstruct();
     
-    /**
-     * @private
-     */
-    protected static function classConstruct():Boolean
-    {
-      var styles:CSSStyleDeclaration = FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration("com.piaction.components.ContextableList");
-      if(!styles)
-      {
-        styles = new CSSStyleDeclaration();
-      }
-      
-      styles.defaultFactory = function():void
-      {
-        this.contexListStyleName =  "defaultContextListStyle";
-      }
-      
-      FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("com.piaction.components.ContextableList", styles, false);
-      
-      styles = FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration(".defaultContextListStyle");
-      if(!styles)
-      {
-        styles = new CSSStyleDeclaration();
-      }
-      
-      styles.defaultFactory = function():void
-      {
-        this.borderVisible =  true;
-        this.borderColor = 0xAAAAAA;
-      }
-      
-      FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration(".defaultContextListStyle", styles, false);
-      return true;
-    }
     
     /**
      * Constructor
@@ -120,17 +77,6 @@ package com.piaction.components
     public function ContextableList()
     {
       super();
-      
-      _contextList.filters = [new GlowFilter(0, 1, 15, 15)];
-      
-      _contextListLayout = new VerticalLayout();
-      
-      (_contextListLayout as VerticalLayout).verticalAlign = "contentHeight";
-      (_contextListLayout as VerticalLayout).horizontalAlign = "justify";
-      (_contextListLayout as VerticalLayout).gap = 0;
-      
-      _contextList.layout = _contextListLayout;
-      
       
     }
     
@@ -217,51 +163,26 @@ package com.piaction.components
     /**
      * @private
      */
-    protected function onKeyDown(event:KeyboardEvent):void
-    {
-      if(event.keyCode == Keyboard.BACK)
-      {
-        hideContextMenu();
-        event.preventDefault();
-      }
-    }
-    
-    /**
-     * @private
-     */
     protected function showContextMenu():void
     {
       selectedIndex = _contextIndex;
       
-      _contextList.dataProvider = new ArrayCollection(_contextMenuItems);
-      PopUpManager.addPopUp(_contextList, this, true, PopUpManagerChildList.PARENT);
-      PopUpManager.centerPopUp(_contextList);
+      _contextList = MobileContextMenu.show(_contextMenuItems, _contextRenderer.label, this, true, "parent");
       
-      addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown, false, 0, true);
+      _contextList.addEventListener(MobileContextMenuEvent.MENU_ITEM_CLICKED, onMobileContextMenuClicked);
       
-      _contextList.addEventListener(IndexChangeEvent.CHANGE, onIndexChange, false, 0, true);
+      _contextList.width = unscaledWidth * 0.90;
+      _contextList.maxHeight = unscaledHeight * 0.90;
     }
     
     /**
      * @private
      */
-    protected function hideContextMenu():void
+    protected function onMobileContextMenuClicked(event:MobileContextMenuEvent):void
     {
-      PopUpManager.removePopUp(_contextList);
-      removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
-      _contextList.removeEventListener(IndexChangeEvent.CHANGE, onIndexChange);
-    }
-    
-    /**
-     * @private
-     */
-    protected function onIndexChange(event:IndexChangeEvent):void
-    {
-      var evt:ContextableListEvent = new ContextableListEvent(ContextableListEvent.CONTEX_MENU_ITEM_CLICK, false, false, mouseX, mouseY, this, false, false, false, true, 0, _contextIndex, _contextData, _contextRenderer, _contextMenuItems[event.newIndex]);
+      var evt:ContextableListEvent = new ContextableListEvent(ContextableListEvent.CONTEX_MENU_ITEM_CLICK, false, false, mouseX, mouseY, this, false, false, false, true, 0, _contextIndex, _contextData, _contextRenderer, event.menuItem);
       
       dispatchEvent(evt);
-      
-      hideContextMenu();
     }
     
     
@@ -279,10 +200,6 @@ package com.piaction.components
     override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
     {
       super.updateDisplayList(unscaledWidth, unscaledHeight);
-      
-      _contextList.styleName = getStyle("contexListStyleName");
-      _contextList.width = unscaledWidth * 0.80;
-      _contextList.maxHeight = unscaledHeight * 0.80;
     }
   }
 }
