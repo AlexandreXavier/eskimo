@@ -6,6 +6,21 @@
 
 @media (os-platform:"IOS")
 {
+  global
+  {
+    chromeColor: #294867;
+    color: #CEE7F4;
+    contentBackgroundColor: #39628C;
+    symbolColor: #000000;
+    rollOverColor: #355D89;
+    selectionColor: #294867;
+    focusColor: #333300;
+    accentColor: #6589AD;
+    
+    fontFamily: Hevetica;
+  }
+  
+  
   s|Button
   {
     skinClass:ClassReference("com.piaction.skins.ios.ButtonSkin");
@@ -38,6 +53,8 @@
   {
     skinClass: ClassReference("com.piaction.skins.ios.AlertSkin");
   }
+  
+  
 }
 
 @media (os-platform:"ANDROID")

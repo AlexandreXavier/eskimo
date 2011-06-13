@@ -118,6 +118,7 @@ package com.piaction.components
         {
           list = new List();
           list.itemRenderer = new ClassFactory(UniqueChoiceItemRenderer);
+          list.setStyle("verticalScrollPolicy", "off");
         }
         else
         {
