@@ -1,0 +1,49 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace components "com.piaction.components.*";
+@namespace controls "com.piaction.controls.*";
+
+@media (os-platform:"IOS")
+{
+  s|Button
+  {
+    skinClass:ClassReference("com.piaction.skins.ios.ButtonSkin");
+    cornerRadius: 5;
+    chromeColor: #5A7FAA;
+  }
+  
+  s|Form
+  {
+    skinClass:ClassReference("com.piaction.skins.ios.FormSkin");
+  } 
+  
+  s|ButtonBar
+  {
+    skinClass: ClassReference("com.piaction.skins.ios.ButtonBarSkin");
+  }
+  
+  s|ButtonBarButton
+  {
+    cornerRadius: 5;
+    chromeColor: #5A7FAA;
+  }
+  
+  components|MobileCheckBox
+  {
+    skinClass: ClassReference("com.piaction.skins.ios.MobileCheckBoxSkin");
+  }
+  
+  controls|SkinnableAlert
+  {
+    skinClass: ClassReference("com.piaction.skins.ios.AlertSkin");
+  }
+}
+
+@media (os-platform:"ANDROID")
+{
+  controls|SkinnableAlert
+  {
+    skinClass: ClassReference("com.piaction.skins.android.AlertSkin");
+  }
+}

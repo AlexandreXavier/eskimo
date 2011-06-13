@@ -104,14 +104,7 @@ package com.piaction.controls
       
       styles.defaultFactory = function():void
       {
-        if (Capabilities.version.substr(0,3) == "IOS")
-        {
-          this.skinClass =  com.piaction.skins.ios.AlertSkin;
-        }
-        else
-        {
-          this.skinClass = com.piaction.skins.android.AlertSkin
-        }
+        this.skinClass = com.piaction.skins.android.AlertSkin
       }
       
       FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("com.piaction.controls.SkinnableAlert", styles, false);

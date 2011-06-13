@@ -147,14 +147,7 @@ package com.piaction.components
       
       styles.defaultFactory = function():void
       {
-        if (Capabilities.version.substr(0,3) == "IOS")
-        {
-          this.skinClass =  ConfirmButtonSkin;
-        }
-        else
-        {
-          this.skinClass = ConfirmButtonSkin;
-        }
+        this.skinClass =  ConfirmButtonSkin;
       }
       
       FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("com.piaction.components.ConfirmButton", styles, false);
