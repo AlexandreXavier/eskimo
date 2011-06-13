@@ -24,6 +24,9 @@ package com.piaction.components
     [SkinPart(required="false")]
     public var cursorGroup:Group;
     
+    [SkinPart(required="false")]
+    public var buttonGroup:Group;
+    
     public var cursorPosition:Number;
     
     protected var cursorDragged:Boolean;
@@ -55,6 +58,8 @@ package com.piaction.components
         if (Capabilities.version.substr(0,3) == "IOS")
         {
           this.skinClass =  MobileCheckBoxSkin;
+          this.fontFamily = "Helvetica";
+          this.symbolColor = 0x0073F5;
         }
       }
       
@@ -84,11 +89,14 @@ package com.piaction.components
     
     protected function onCursorDown(event:MouseEvent):void
     {
-      systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
-      
-      dragOffset = cursorGroup.mouseX;
-      
-      dragInitialX = mouseX;
+      if(cursorGroup)
+      {
+        systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+        
+        dragOffset = cursorGroup.mouseX;
+        
+        dragInitialX = mouseX;
+      }
     }
     
     protected function onMouseMove(event:MouseEvent):void
@@ -105,20 +113,20 @@ package com.piaction.components
       {
         var point:Point = new Point(event.localX, event.localY);
         point = event.target.localToGlobal(point);
-        point = this.globalToLocal(point);
+        point = buttonGroup.globalToLocal(point);
         
         var cursorX:int = point.x - dragOffset;
-        cursorX = Math.min(cursorX, width - cursorGroup.width);
+        cursorX = Math.min(cursorX, buttonGroup.width - cursorGroup.width);
         cursorX = Math.max(cursorX, 0);
         cursorGroup.x = cursorX;
-        //removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
       }
     }
     
     override protected function buttonReleased():void
     {
-      if(!cursorDragged)
+      if(!cursorDragged){
         selected = !selected;
+      }
       
       finishDrag();
       
@@ -140,7 +148,7 @@ package com.piaction.components
       
       if(cursorDragged)
       {
-        if(cursorGroup.x + cursorGroup.width/2 < unscaledWidth/2)
+        if(cursorGroup.x + cursorGroup.width/2 < buttonGroup.width/2)
         {
           selected = false;
         }
