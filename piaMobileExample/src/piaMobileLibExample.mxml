@@ -9,25 +9,29 @@
   <fx:Style>
     @namespace s "library://ns.adobe.com/flex/spark";
     @namespace components "com.piaction.components.*";
-    s|Button
+    
+    @media (os-platform:"IOS")
     {
-      skinClass:ClassReference("com.piaction.skins.ios.ButtonSkin");
-      cornerRadius: 5;
-      chromeColor: #5A7FAA;
-    }
-    
-    s|Form
-    {
-      skinClass:ClassReference("com.piaction.skins.ios.FormSkin");
-    } 
-    
-    s|ButtonBar{
-      skinClass: ClassReference("com.piaction.skins.ios.ButtonBarSkin")
-    }
-    
-    s|ButtonBarButton{
-      cornerRadius: 5;
-      chromeColor: #5A7FAA;
+      s|Button
+      {
+        skinClass:ClassReference("com.piaction.skins.ios.ButtonSkin");
+        cornerRadius: 5;
+        chromeColor: #5A7FAA;
+      }
+      
+      s|Form
+      {
+        skinClass:ClassReference("com.piaction.skins.ios.FormSkin");
+      } 
+      
+      s|ButtonBar{
+        skinClass: ClassReference("com.piaction.skins.ios.ButtonBarSkin")
+      }
+      
+      s|ButtonBarButton{
+        cornerRadius: 5;
+        chromeColor: #5A7FAA;
+      }
     }
     
     components|MobileDateChooser
@@ -45,9 +49,6 @@
       color:#FFFFFF;
     }
     
-    components|MobileCheckBox{
-      skinClass: ClassReference("com.piaction.skins.ios.MobileCheckBoxSkin");
-    }
     
   </fx:Style>
 </s:ViewNavigatorApplication>
