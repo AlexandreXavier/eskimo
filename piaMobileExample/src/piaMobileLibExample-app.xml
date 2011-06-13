@@ -175,9 +175,9 @@
 	<!-- </fileTypes> -->
 
     <!-- iOS specific capabilities -->
-	<!-- <iPhone> -->
-		<!-- A list of plist key/value pairs to be added to the application Info.plist -->
-		<!-- <InfoAdditions>
+	 <iPhone> 
+<!--		 A list of plist key/value pairs to be added to the application Info.plist -->
+		 <InfoAdditions>
             <![CDATA[
                 <key>UIDeviceFamily</key>
                 <array>
@@ -189,9 +189,9 @@
                 <key>UIRequiresPersistentWiFi</key>
                 <string>YES</string>
             ]]>
-        </InfoAdditions> -->
-        <!-- <requestedDisplayResolution></requestedDisplayResolution> -->
-	<!-- </iPhone> -->
+        </InfoAdditions> 
+         <requestedDisplayResolution></requestedDisplayResolution> 
+	 </iPhone> 
 
 	<!-- Specify Android specific tags that get passed to AndroidManifest.xml file. -->
 	<!--<android> 
