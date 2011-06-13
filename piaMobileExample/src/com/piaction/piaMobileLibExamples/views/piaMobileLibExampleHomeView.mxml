@@ -24,7 +24,7 @@
     <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10" paddingLeft="10"/>
   </s:layout>
 
-  <s:ButtonBar>
+  <s:ButtonBar change="SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK|SkinnableAlert.CANCEL);">
     <s:dataProvider>
       <s:ArrayCollection>
         <fx:Object label="button 1"/>
@@ -44,7 +44,7 @@
   </s:Form>
   
   <s:HGroup width="100%" height="150">
-    <components:ListWheel id="list" width="100%" height="100%" change="SkinnableAlert.show(list.selectedItem.label, 'Slected item', SkinnableAlert.OK|SkinnableAlert.CANCEL);">
+    <components:UniqueChoiceList id="list" width="100%" height="100%" labelField="label">
       <components:dataProvider>
         <s:ArrayCollection>
           <fx:Object label="Item 1"/>
@@ -55,7 +55,7 @@
           <fx:Object label="Item 6"/>
         </s:ArrayCollection>
       </components:dataProvider>
-    </components:ListWheel>
+    </components:UniqueChoiceList>
     
     <components:SlideDataGroup width="150" height="100%" orientation="{SlideDataGroup.HORIZONTAL}" direction="{SlideDataGroup.NORMAL}" itemRenderer="com.piaction.piaMobileLibExamples.renderers.ImageRenderer">
       <components:dataProvider>

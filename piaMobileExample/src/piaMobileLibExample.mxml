@@ -10,30 +10,6 @@
     @namespace s "library://ns.adobe.com/flex/spark";
     @namespace components "com.piaction.components.*";
     
-    @media (os-platform:"IOS")
-    {
-      s|Button
-      {
-        skinClass:ClassReference("com.piaction.skins.ios.ButtonSkin");
-        cornerRadius: 5;
-        chromeColor: #5A7FAA;
-      }
-      
-      s|Form
-      {
-        skinClass:ClassReference("com.piaction.skins.ios.FormSkin");
-      } 
-      
-      s|ButtonBar{
-        skinClass: ClassReference("com.piaction.skins.ios.ButtonBarSkin")
-      }
-      
-      s|ButtonBarButton{
-        cornerRadius: 5;
-        chromeColor: #5A7FAA;
-      }
-    }
-    
     components|MobileDateChooser
     {
       todayStyleName: today;
