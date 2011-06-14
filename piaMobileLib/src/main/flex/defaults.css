@@ -47,6 +47,7 @@
   components|MobileCheckBox
   {
     skinClass: ClassReference("com.piaction.skins.ios.MobileCheckBoxSkin");
+    symbolColor: #0073F5;
   }
   
   controls|SkinnableAlert

@@ -19,54 +19,38 @@ package com.piaction.components
   [SkinState("draggedAndSelected")]
   [SkinState("dragged")]
   
+  /**
+   * Check box that enable switch between android checkbox and ios switch
+   */
   public class MobileCheckBox extends CheckBox
   {
+    /**
+     *  @private
+     */
     [SkinPart(required="false")]
     public var cursorGroup:Group;
-    
+    /**
+     *  @private
+     */
     [SkinPart(required="false")]
     public var buttonGroup:Group;
-    
+    /**
+     *  @private
+     */
     public var cursorPosition:Number;
-    
+    /**
+     *  @private
+     */
     protected var cursorDragged:Boolean;
-    
+    /**
+     *  @private
+     */
     protected var dragOffset:int;
     protected var dragInitialX:int;
-    
+    /**
+     *  @private
+     */
     protected var DRAG_THRESHOLD:int = 5;
-    
-    /**
-     * @private
-     */
-    private static var classConstructed:Boolean = classConstruct();
-    
-    /**
-     * @private
-     */
-    protected static function classConstruct():Boolean
-    {
-      var styles:CSSStyleDeclaration = FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration("com.piaction.components.MobileCheckBox");
-      if(!styles)
-      {
-        styles = new CSSStyleDeclaration();
-      }
-      
-      styles.defaultFactory = function():void
-      {
-        
-        if (Capabilities.version.substr(0,3) == "IOS")
-        {
-          this.skinClass =  MobileCheckBoxSkin;
-          this.fontFamily = "Helvetica";
-          this.symbolColor = 0x0073F5;
-        }
-      }
-      
-      FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("com.piaction.components.MobileCheckBox", styles, false);
-      
-      return true;
-    }
     
     /**
      * Constructor
@@ -76,7 +60,9 @@ package com.piaction.components
       super();
     }
     
-    
+    /**
+     *  @private
+     */
     override protected function partAdded(partName:String, instance:Object):void
     {
       super.partAdded(partName, instance);
@@ -87,6 +73,9 @@ package com.piaction.components
       }
     }
     
+    /**
+     *  @private
+     */
     protected function onCursorDown(event:MouseEvent):void
     {
       if(cursorGroup)
@@ -99,6 +88,9 @@ package com.piaction.components
       }
     }
     
+    /**
+     *  @private
+     */
     protected function onMouseMove(event:MouseEvent):void
     {
       var delta:int = Math.abs(dragInitialX - mouseX);
@@ -122,6 +114,9 @@ package com.piaction.components
       }
     }
     
+    /**
+     *  @private
+     */
     override protected function buttonReleased():void
     {
       if(!cursorDragged){
@@ -133,13 +128,17 @@ package com.piaction.components
       dispatchEvent(new Event(Event.CHANGE));
     }
     
-    
+    /**
+     *  @private
+     */
     private function onStageUp(event:MouseEvent):void
     {
       finishDrag();
       
     }
-    
+    /**
+     *  @private
+     */
     protected function finishDrag():void
     {
       systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
