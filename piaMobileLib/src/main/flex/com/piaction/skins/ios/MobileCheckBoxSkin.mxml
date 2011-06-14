@@ -176,23 +176,32 @@
       override public function set currentState(value:String):void
       {
         var state:String = "up";
-        switch(value)
+        
+        if(!cursorDragged)
         {
-          case "up":
-          case "over":
-          case "down":
-          case "disabled":
-            state = "up";
-            break;
-          case "upAndSelected":
-          case "overAndSelected":
-          case "downAndSelected":
-          case "disabledAndSelected":
-            state = "upAndSelected";
-            break;
+          switch(value)
+          {
+            case "up":
+            case "over":
+            case "down":
+            case "disabled":
+              state = "up";
+              break;
+            case "upAndSelected":
+            case "overAndSelected":
+            case "downAndSelected":
+            case "disabledAndSelected":
+              state = "upAndSelected";
+              break;
+          }
+        }
+        else
+        {
+          state= "dragged";
         }
         super.currentState = state;
       }
+      
     ]]>
   </fx:Script>
   
