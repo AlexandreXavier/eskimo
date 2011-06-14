@@ -55,6 +55,10 @@
     skinClass: ClassReference("com.piaction.skins.ios.AlertSkin");
   }
   
+  components|UniqueChoiceList
+  {
+    skinClass: ClassReference("com.piaction.skins.ios.UniqueChoiceListSkin");
+  }
   
 }
 
@@ -63,5 +67,11 @@
   controls|SkinnableAlert
   {
     skinClass: ClassReference("com.piaction.skins.android.AlertSkin");
+  }
+  
+  
+  components|UniqueChoiceList
+  {
+    skinClass: ClassReference("com.piaction.skins.android.UniqueChoiceListSkin");
   }
 }

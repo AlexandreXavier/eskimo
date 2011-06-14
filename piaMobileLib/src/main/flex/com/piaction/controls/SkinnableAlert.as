@@ -85,32 +85,7 @@ package com.piaction.controls
     protected static var _yesLabel:String = "Yes";
     protected static var _noLabel:String = "No";
     protected static var _buttonHeight:Number = 50;
-    
-    /**
-     * @private
-     */
-    private static var classConstructed:Boolean = classConstruct();
-    
-    /**
-     * @private
-     */
-    protected static function classConstruct():Boolean
-    {
-      var styles:CSSStyleDeclaration = FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration("com.piaction.controls.SkinnableAlert");
-      if(!styles)
-      {
-        styles = new CSSStyleDeclaration();
-      }
-      
-      styles.defaultFactory = function():void
-      {
-        this.skinClass = com.piaction.skins.android.AlertSkin
-      }
-      
-      FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("com.piaction.controls.SkinnableAlert", styles, false);
-      
-      return true;
-    }
+
     
     /**
      * Constructor

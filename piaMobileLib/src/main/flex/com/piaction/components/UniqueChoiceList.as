@@ -1,20 +1,16 @@
 package com.piaction.components
 {
-  import com.piaction.skins.android.UniqueChoiceItemRenderer;
+  import com.piaction.skins.android.UniqueChoiceListSkin;
   
   import flash.events.Event;
-  import flash.system.Capabilities;
   
   import mx.collections.IList;
-  import mx.core.ClassFactory;
-  import mx.core.IVisualElement;
+  import mx.core.FlexGlobals;
+  import mx.styles.CSSStyleDeclaration;
   
-  import spark.components.Group;
   import spark.components.List;
-  import spark.components.RadioButtonGroup;
+  import spark.components.supportClasses.SkinnableComponent;
   import spark.events.IndexChangeEvent;
-  import spark.layouts.BasicLayout;
-  import spark.layouts.supportClasses.LayoutBase;
   
   /**
    * Selected index changed
@@ -24,12 +20,13 @@ package com.piaction.components
   /**
    * Component that switch between ListWheel and list of radioButton item
    */
-  public class UniqueChoiceList extends Group
+  public class UniqueChoiceList extends SkinnableComponent
   {
     /**
-     * @private
+     * List Display Skin Part
      */
-    protected var list:List;
+    [SkinPart(required="true")]
+    public var listDisplay:List;
     
     /**
      * @private
@@ -47,27 +44,15 @@ package com.piaction.components
     protected var _labelField:String;
     
     /**
-     * @private
-     */
-    protected var _layout:LayoutBase;
-    
-    /**
-     * @private
-     */
-    private var _layoutChange:Boolean;
-    
-    /**
-     * @private
+     * Constructor
      */
     public function UniqueChoiceList()
     {
       super();
-      
-      super.layout = new BasicLayout();
     }
     
     /**
-     * @private
+     * LabelField of the list
      */
     public function get labelField():String
     {
@@ -108,29 +93,14 @@ package com.piaction.components
     /**
      * @private
      */
-    override protected function createChildren():void
+    override protected function partAdded(partName:String, instance:Object):void
     {
-      super.createChildren();
+      super.partAdded(partName, instance);
       
-      if(list == null)
+      if(instance == listDisplay)
       {
-        if (Capabilities.version.substr(0,3) == "AND")
-        {
-          list = new List();
-          list.itemRenderer = new ClassFactory(UniqueChoiceItemRenderer);
-          list.setStyle("verticalScrollPolicy", "off");
-        }
-        else
-        {
-          list = new ListWheel();
-        }
-        
-        list.percentWidth = 100;
-        list.percentHeight = 100;
-        
-        list.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
-        
-        addElement(list);
+        listDisplay.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
+        listDisplay.labelField = labelField;
       }
     }
     
@@ -143,23 +113,11 @@ package com.piaction.components
       
       if(_dataProviderChange)
       {
-        list.dataProvider = dataProvider;
+        listDisplay.dataProvider = dataProvider;
         _dataProviderChange = false;
       }
       
-      if(list.selectedIndex == -1)
-      {
-        list.selectedIndex = -1;
-      }
-      
-      if(_layoutChange)
-      {
-        if(!(list is ListWheel))
-          list.layout = _layout;
-        _layoutChange = false;
-      }
-      
-      list.labelField = labelField;
+      if(listDisplay != null)  listDisplay.labelField = labelField;
       
     }
     
@@ -174,11 +132,11 @@ package com.piaction.components
     }
     
     /**
-     * @private
+     * The current selected item
      */
     public function set selectedItem(value:Object):void
     {
-      list.selectedItem = value;  
+      listDisplay.selectedItem = value;  
     }
     
     /**
@@ -186,27 +144,7 @@ package com.piaction.components
      */
     public function get selecteditem():Object
     {
-      return list.selectedItem;
-    }
-    
-    /**
-     * @private
-     */
-    override public function set layout(value:LayoutBase):void
-    {
-      _layout = value;
-      
-      _layoutChange = true;
-      
-      invalidateProperties();
-    }
-    
-    /**
-     * @private
-     */
-    override public function get layout():LayoutBase
-    {
-      return _layout;
+      return listDisplay.selectedItem;
     }
   }
 }
