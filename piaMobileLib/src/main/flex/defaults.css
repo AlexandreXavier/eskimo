@@ -9,7 +9,6 @@
   global
   {
     color: #000000;
-    fontFamily: Hevetica;
   }
   
   
@@ -17,7 +16,9 @@
   {
     skinClass:ClassReference("com.piaction.skins.ios.ButtonSkin");
     cornerRadius: 5;
+    fontWeight: normal;
     chromeColor: #5A7FAA;
+    fon
   }
   
   s|Form
@@ -36,7 +37,7 @@
     chromeColor: #5A7FAA;
   }
   
-  s|Application s|CheckBox
+  s|CheckBox
   {
     skinClass: ClassReference("com.piaction.skins.ios.MobileCheckBoxSkin");
     symbolColor: #0073F5;
