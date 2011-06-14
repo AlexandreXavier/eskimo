@@ -81,7 +81,7 @@
                             confirm="navigator.pushView(SecondView)"/>
   
   <s:HGroup width="100%">
-    <components:MobileCheckBox id="checkbox" change="deletableList.currentState = checkbox.selected ? 'edition' : 'normal'"
+    <s:CheckBox id="checkbox" change="deletableList.currentState = checkbox.selected ? 'edition' : 'normal'"
                                label="Edition mode" width="100%"/>
   </s:HGroup>
   <s:HGroup width="100%" height="100%">
