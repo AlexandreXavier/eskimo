@@ -148,6 +148,7 @@ package com.piaction.components
       styles.defaultFactory = function():void
       {
         this.skinClass =  ConfirmButtonSkin;
+        this.buttonColor = 0;
       }
       
       FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("com.piaction.components.ConfirmButton", styles, false);

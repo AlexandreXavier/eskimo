@@ -14,6 +14,106 @@
       import mx.core.FlexGlobals;
       import mx.events.FlexEvent;
       
+      /**
+       *  @private
+       */
+      public var cursorPosition:Number;
+      /**
+       *  @private
+       */
+      protected var cursorDragged:Boolean;
+      /**
+       *  @private
+       */
+      protected var dragOffset:int;
+      protected var dragInitialX:int;
+      /**
+       *  @private
+       */
+      protected var DRAG_THRESHOLD:int = 5;
+      
+      /**
+       *  @private
+       */
+      protected function onCursorDown(event:MouseEvent):void
+      {
+        if(mouseX > buttonGroup.x && mouseX < width)
+        {
+        
+          systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+          systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_UP, onStageUp, false, 0, true);
+          dragOffset = cursorGroup.mouseX;
+          
+          dragInitialX = mouseX;
+        }
+      }
+      
+      /**
+       *  @private
+       */
+      protected function onMouseMove(event:MouseEvent):void
+      {
+        hostComponent.mouseEnabled = false;
+        
+        var delta:int = Math.abs(dragInitialX - mouseX);
+        
+        if(!cursorDragged && delta > DRAG_THRESHOLD){
+          super.currentState = "dragged";
+          cursorDragged = true;
+        }
+        
+        if(cursorDragged)
+        {
+          var point:Point = new Point(event.localX, event.localY);
+          point = event.target.localToGlobal(point);
+          point = buttonGroup.globalToLocal(point);
+          
+          var cursorX:int = point.x - dragOffset;
+          cursorX = Math.min(cursorX, buttonGroup.width - cursorGroup.width);
+          cursorX = Math.max(cursorX, 0);
+          cursorGroup.x = cursorX;
+        }
+      }
+      
+      /**
+       *  @private
+       */
+      private function onStageUp(event:MouseEvent):void
+      {
+        finishDrag();
+        
+      }
+      /**
+       *  @private
+       */
+      protected function finishDrag():void
+      {
+        systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+        
+        systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_UP, onStageUp);
+        
+        if(cursorDragged)
+        {
+          if(cursorGroup.x + cursorGroup.width/2 < buttonGroup.width/2)
+          {
+            hostComponent.selected = false;
+          }
+          else
+          {
+            hostComponent.selected = true;
+          }
+          
+          hostComponent.dispatchEvent(new Event(Event.CHANGE));
+        }
+        
+        cursorDragged = false;
+        
+        hostComponent.mouseEnabled = true;
+        hostComponent.invalidateSkinState();
+      }
+      
+      
+      
       override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
       {
         super.updateDisplayList(unscaledWidth, unscaledHeight);
@@ -69,8 +169,30 @@
             break;
           }
         }
+        
+        hostComponent.addEventListener(MouseEvent.MOUSE_DOWN, onCursorDown, false, 0, true);
       }
       
+      override public function set currentState(value:String):void
+      {
+        var state:String = "up";
+        switch(value)
+        {
+          case "up":
+          case "over":
+          case "down":
+          case "disabled":
+            state = "up";
+            break;
+          case "upAndSelected":
+          case "overAndSelected":
+          case "downAndSelected":
+          case "disabledAndSelected":
+            state = "upAndSelected";
+            break;
+        }
+        super.currentState = state;
+      }
     ]]>
   </fx:Script>
   
@@ -85,7 +207,6 @@
     <s:State name="downAndSelected" stateGroups="downStates, selectedStates" />
     <s:State name="disabledAndSelected" stateGroups="disabledStates, selectedStates" />
     <s:State name="dragged" stateGroups="draggedStates"/>
-    <s:State name="draggedAndSelected" stateGroups="draggedStates"/>
   </s:states>
   
   <!-- SkinParts
