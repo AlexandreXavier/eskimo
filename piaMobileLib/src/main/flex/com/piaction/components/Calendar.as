@@ -36,13 +36,11 @@ package com.piaction.components
     /**
     * layer of the calendar
     */
-    [Bindable]
     [SkinPart(required="true")]
     public var calendarLayer:Group;
     /**
      * layer of the content
      */
-    [Bindable]
     [SkinPart(required="true")]
     public var contentLayer:Group;
     
