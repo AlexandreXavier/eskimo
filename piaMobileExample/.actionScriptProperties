@@ -31,6 +31,7 @@
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
+  <theme themeIsDefault="false" themeIsSDK="false" themeLocation="${EXTERNAL_THEME_DIR}/PiaMobileLib"/>
   <applications>
     <application path="piaMobileLibExample.mxml">
       <airExcludes/>
@@ -52,6 +53,13 @@
         <airExcludes/>
       </airSettings>
       <multiPlatformSettings enabled="false" includePlatformLibs="false" platformID="default" version="2"/>
+      <actionScriptSettings version="1"/>
+    </buildTarget>
+    <buildTarget buildTargetName="com.adobe.flexide.multiplatform.ios.platform" iosSettingsVersion="1" provisioningFile="/Users/elsa/Documents/Projects/Mobile/workspace/piaMobileLibExample/iOs/Test_profile.mobileprovision" releasePackageType="">
+      <multiPlatformSettings enabled="true" includePlatformLibs="false" platformID="com.adobe.flexide.multiplatform.ios.platform" version="2"/>
+      <airSettings airCertificatePath="/Users/elsa/Documents/Projects/Mobile/workspace/field-agent-swt/iOs/Certificats.p12" airTimestamp="true" version="1">
+        <airExcludes/>
+      </airSettings>
       <actionScriptSettings version="1"/>
     </buildTarget>
   </buildTargets>

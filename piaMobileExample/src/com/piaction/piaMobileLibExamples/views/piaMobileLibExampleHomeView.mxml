@@ -43,6 +43,8 @@
     </s:FormItem>
   </s:Form>
   
+  <s:HSlider stepSize="0.1" width="300"/>
+  
   <s:HGroup width="100%" height="150">
     <components:UniqueChoiceList id="list" width="100%" height="100%" labelField="label">
       <components:dataProvider>

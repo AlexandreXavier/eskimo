@@ -15,7 +15,7 @@
 
 	<!-- A universally unique application identifier. Must be unique across all AIR applications.
 	Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
-	<id>piaMobileLibExample</id>
+	<id>com.pia.test</id>
 
 	<!-- Used as the filename for the application. Required. -->
 	<filename>piaMobileLibExample</filename>
@@ -175,9 +175,9 @@
 	<!-- </fileTypes> -->
 
     <!-- iOS specific capabilities -->
-	 <iPhone> 
-<!--		 A list of plist key/value pairs to be added to the application Info.plist -->
-		 <InfoAdditions>
+	<!-- <iPhone> -->
+		<!-- A list of plist key/value pairs to be added to the application Info.plist -->
+		<!-- <InfoAdditions>
             <![CDATA[
                 <key>UIDeviceFamily</key>
                 <array>
@@ -189,9 +189,9 @@
                 <key>UIRequiresPersistentWiFi</key>
                 <string>YES</string>
             ]]>
-        </InfoAdditions> 
-         <requestedDisplayResolution></requestedDisplayResolution> 
-	 </iPhone> 
+        </InfoAdditions> -->
+        <!-- <requestedDisplayResolution></requestedDisplayResolution> -->
+	<!-- </iPhone> -->
 
 	<!-- Specify Android specific tags that get passed to AndroidManifest.xml file. -->
 	<!--<android> 
@@ -242,4 +242,16 @@
 			
 		]]></manifestAdditions>
     </android>
+    
+    <iPhone>
+        <InfoAdditions><![CDATA[
+			<key>UIDeviceFamily</key>
+			<array>
+				<string>1</string>
+				<string>2</string>
+			</array>
+		]]></InfoAdditions>
+        <requestedDisplayResolution>high</requestedDisplayResolution>
+    </iPhone>
+    
 </application>
