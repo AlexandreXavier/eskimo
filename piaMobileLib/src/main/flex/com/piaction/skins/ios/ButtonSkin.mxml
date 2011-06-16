@@ -75,7 +75,7 @@
     <s:State name="disabled" />
   </s:states>
   
-  <s:Rect id="fill" left="0" right="0" top="0" bottom="0" radiusX="5">
+  <s:Rect id="fill" left="1" right="1" top="1" bottom="0" radiusX="5">
     <s:fill>
       <s:LinearGradient rotation="90">
         <s:GradientEntry color="#F5F5F5" ratio="0"/>
@@ -127,7 +127,6 @@
   <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
   <s:Label id="labelDisplay"
            textAlign="center"
-           color="#FFFFFF"
            maxDisplayedLines="1"
            horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
            left="10" right="10" top="2" bottom="2">

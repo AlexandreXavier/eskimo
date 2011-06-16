@@ -6,69 +6,74 @@
 
 @media (os-platform:"IOS")
 {
-  global
-  {
-    color: #000000;
-  }
-  
-  
-  s|Button
-  {
-    skinClass:ClassReference("com.piaction.skins.ios.ButtonSkin");
-    cornerRadius: 5;
-    fontWeight: normal;
-    chromeColor: #5A7FAA;
-  }
-  
-  s|Form
-  {
-    skinClass:ClassReference("com.piaction.skins.ios.FormSkin");
-  } 
-  
-  s|ButtonBar
-  {
-    skinClass: ClassReference("com.piaction.skins.ios.ButtonBarSkin");
-  }
-  
-  s|ButtonBarButton
-  {
-    cornerRadius: 5;
-    chromeColor: #5A7FAA;
-  }
-  
-  s|CheckBox
-  {
-    skinClass: ClassReference("com.piaction.skins.ios.MobileCheckBoxSkin");
-    symbolColor: #0073F5;
-  }
-  
-  s|HSlider
-  {
-    skinClass: ClassReference("com.piaction.skins.ios.HSliderSkin");
-  }
-  
-  controls|SkinnableAlert
-  {
-    skinClass: ClassReference("com.piaction.skins.ios.AlertSkin");
-  }
-  
-  components|UniqueChoiceList
-  {
-    skinClass: ClassReference("com.piaction.skins.ios.UniqueChoiceListSkin");
-  }
-  
+    global
+    {
+        color: #000000;
+    }
+    
+    
+    s|Button
+    {
+        skinClass:ClassReference("com.piaction.skins.ios.ButtonSkin");
+        cornerRadius: 5;
+        fontWeight: normal;
+        chromeColor: #5A7FAA;
+        color: #FFFFFF;
+    }
+    
+    s|Form
+    {
+        skinClass:ClassReference("com.piaction.skins.ios.FormSkin");
+    } 
+    
+    s|ButtonBar
+    {
+        skinClass: ClassReference("com.piaction.skins.ios.ButtonBarSkin");
+    }
+    
+    s|ButtonBarButton
+    {
+        cornerRadius: 5;
+        chromeColor: #5A7FAA;
+    }
+    
+    s|CheckBox
+    {
+        skinClass: ClassReference("com.piaction.skins.ios.MobileCheckBoxSkin");
+        symbolColor: #0073F5;
+    }
+    
+    s|HSlider
+    {
+        skinClass: ClassReference("com.piaction.skins.ios.HSliderSkin");
+    }
+    
+    controls|SkinnableAlert
+    {
+        skinClass: ClassReference("com.piaction.skins.ios.AlertSkin");
+    }
+    
+    components|UniqueChoiceList
+    {
+        skinClass: ClassReference("com.piaction.skins.ios.UniqueChoiceListSkin");
+    }
+    
+    components|PopOver
+    {
+        skinClass: ClassReference("com.piaction.skins.ios.PopOverSkin");
+    }
 }
 
 @media (os-platform:"ANDROID")
 {
-  controls|SkinnableAlert
-  {
-    skinClass: ClassReference("com.piaction.skins.android.AlertSkin");
-  }
-  
-  
-  components|UniqueChoiceList
-  {
-    skinClass: ClassReference("com.piaction.skins.android.UniqueChoiceListSkin");
-  }
+    controls|SkinnableAlert
+    {
+        skinClass: ClassReference("com.piaction.skins.android.AlertSkin");
+    }
+    
+    
+    components|UniqueChoiceList
+    {
+        skinClass: ClassReference("com.piaction.skins.android.UniqueChoiceListSkin");
+    }
 }
