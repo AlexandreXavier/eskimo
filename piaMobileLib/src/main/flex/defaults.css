@@ -42,6 +42,11 @@
     symbolColor: #0073F5;
   }
   
+  s|HSlider
+  {
+    skinClass: ClassReference("com.piaction.skins.ios.HSliderSkin");
+  }
+  
   controls|SkinnableAlert
   {
     skinClass: ClassReference("com.piaction.skins.ios.AlertSkin");

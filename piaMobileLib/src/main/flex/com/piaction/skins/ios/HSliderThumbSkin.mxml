@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" alpha.disabled="1">
+  <!-- host component -->
+  <fx:Metadata>
+    [HostComponent("spark.components.Button")]
+  </fx:Metadata>
+  
+  <!-- states -->
+  <s:states>
+    <s:State name="disabled" />
+    <s:State name="down" />
+    <s:State name="over" />
+    <s:State name="up" />
+  </s:states>
+  
+  <!-- SkinParts
+  name=iconDisplay, type=spark.primitives.BitmapImage, required=false
+  name=labelDisplay, type=spark.core.IDisplayText, required=false
+  -->
+  
+  <!-- border -->
+  <s:Ellipse top="0" right="0" bottom="0" left="0">
+    <s:stroke>
+      <s:SolidColorStroke color="#a8a8a8"/>
+    </s:stroke>
+    <s:fill>
+      <s:SolidColor color="#fafafa"/>
+    </s:fill>
+  </s:Ellipse>
+  
+  <!-- fill -->
+  <s:Ellipse top="2" right="2" bottom="2" left="2">
+    <s:fill>
+      <s:LinearGradient rotation="90">
+        <s:GradientEntry ratio="0" color="#000000" alpha="0.15" alpha.down="0.4"/>
+        <s:GradientEntry ratio="1" color="#000000" alpha="0"/>
+      </s:LinearGradient>
+    </s:fill>
+  </s:Ellipse>
+  
+  <s:Ellipse id="whiteHalo" left="0" right="0" top="0" bottom="0">
+    <s:fill>
+      <s:LinearGradient rotation="90">
+        <s:GradientEntry color="#FFFFFF" ratio="0" alpha=".3"/>
+        <s:GradientEntry color="#FFFFFF" ratio=".49" alpha="0"/>
+      </s:LinearGradient>
+    </s:fill>
+  </s:Ellipse>
+  
+  <!-- drop shadow -->
+  <s:Ellipse left="-2" top="-2" right="-2" bottom="-2">
+    <s:stroke>
+      <s:LinearGradientStroke rotation="90" weight="1">
+        <s:GradientEntry color="0x000000" alpha="0" />
+        <s:GradientEntry color="0x000000" alpha="0" />
+        <s:GradientEntry color="0x000000" alpha="0.03"/>
+      </s:LinearGradientStroke>
+    </s:stroke>
+  </s:Ellipse>
+  <s:Ellipse left="-1" top="-1" right="-1" bottom="-1">
+    <s:stroke>
+      <s:LinearGradientStroke rotation="90" weight="1">
+        <s:GradientEntry color="0x000000" alpha="0.011" />
+        <s:GradientEntry color="0x000000" alpha="0.121" />
+      </s:LinearGradientStroke>
+    </s:stroke>
+  </s:Ellipse>
+  
+  <!-- shadow -->
+  <!--<s:filters>
+    <s:DropShadowFilter angle="90" alpha="0.75" distance="2" alpha.disabled="1"/>
+  </s:filters>--> 
+</s:Skin>
