@@ -72,7 +72,7 @@
   <s:HGroup>
     <s:Button label="Prev" click="pageIndicator.previous()"/>
     <components:PageIndicator id="pageIndicator" height="40" width="100%"
-                              pageCount="4" selectedIndex="3"/>
+                              pageCount="4" selectedIndex="2"/>
     <s:Button label="Next" click="pageIndicator.next()"/>
   </s:HGroup>
 
