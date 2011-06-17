@@ -69,12 +69,19 @@
 
   <s:HSlider stepSize="0.1" width="300"/>
 
-  <s:HGroup>
-    <s:Button label="Prev" click="pageIndicator.previous()"/>
-    <components:PageIndicator id="pageIndicator" height="40" width="100%"
-                              pageCount="4" selectedIndex="2"/>
-    <s:Button label="Next" click="pageIndicator.next()"/>
-  </s:HGroup>
+  <s:VGroup>
+    <s:HGroup>
+      <s:TextInput id="pIPageCount" prompt="page count"/>
+      <s:Button label="ok"
+                click="pageIndicator.pageCount = Number(pIPageCount.text)"/>
+    </s:HGroup>
+    <s:HGroup>
+      <s:Button label="Prev" click="pageIndicator.previous()"/>
+      <components:PageIndicator id="pageIndicator" height="40" pageCount="8"
+                                selectedIndex="2"/>
+      <s:Button label="Next" click="pageIndicator.next()"/>
+    </s:HGroup>
+  </s:VGroup>
 
   <s:HGroup id="myGroup" width="100%" height="150">
     <components:UniqueChoiceList id="list" width="100%" height="100%"
