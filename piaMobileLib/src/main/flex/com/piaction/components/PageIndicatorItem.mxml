@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Graphic xmlns:fx="http://ns.adobe.com/mxml/2009"
            xmlns:s="library://ns.adobe.com/flex/spark"
-           xmlns:mx="library://ns.adobe.com/flex/mx">
+           xmlns:mx="library://ns.adobe.com/flex/mx" alpha="0.5">
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
   </fx:Declarations>
@@ -19,7 +19,7 @@
 
   <s:Ellipse width="{ITEM_SIZE}" height="{ITEM_SIZE}">
     <s:fill>
-      <s:SolidColor id="fillColor" color="0xFFFFFF" alpha="0.5"/>
+      <s:SolidColor id="fillColor" color="0xFFFFFF"/>
     </s:fill>
   </s:Ellipse>
 </s:Graphic>

@@ -1,10 +1,11 @@
 package com.piaction.components
 {
   import mx.graphics.SolidColor;
+  import mx.graphics.SolidColorStroke;
   
   import spark.components.BorderContainer;
   import spark.components.HGroup;
-  import spark.primitives.Rect;
+  import spark.primitives.Ellipse;
   
   public class PageIndicator extends BorderContainer
   {
@@ -79,7 +80,7 @@ package com.piaction.components
     
     public function set selectedIndex(value:int):void
     {
-      if (_selectedIndex != value)
+      if (_selectedIndex != value && value >= 0 && value <= _pageCount)
       {
         _previousIndex = _selectedIndex;
         _selectedIndex = value;
@@ -100,11 +101,9 @@ package com.piaction.components
     // --------------------------------------------
     public function next():void
     {
-      if (_selectedIndex < _pageCount)
+      if (_selectedIndex < _pageCount - 1)
       {
-        _previousIndex = _selectedIndex;
-        _selectedIndex++;
-        _selectedIndexChanged = true;
+        selectedIndex = _selectedIndex + 1;
       }
     }
     
@@ -112,9 +111,7 @@ package com.piaction.components
     {
       if (_selectedIndex > 0)
       {
-        _previousIndex = _selectedIndex;
-        _selectedIndex--;
-        _selectedIndexChanged = true;
+        selectedIndex = _selectedIndex - 1;
       }
     }
     
@@ -148,12 +145,26 @@ package com.piaction.components
     
     private function updateSelectedItem():void
     {
-      var item:PageIndicatorItem = PageIndicatorItem(_itemContainer.getElementAt(_previousIndex));
-      item.opacity = 0.5;
+      var item:PageIndicatorItem = PageIndicatorItem(_itemContainer.getElementAt(_previousIndex))
+      item.alpha = 0.5;
+      
+      item.invalidateDisplayList();
       item = PageIndicatorItem(_itemContainer.getElementAt(_selectedIndex));
-      item.opacity = 1;
+      item.alpha = 1;
+    
     }
-  
+    
+    private function createEllipse():Ellipse
+    {
+      var result:Ellipse = new Ellipse();
+      var fill:SolidColor = new SolidColor(0XFFFFFF);
+      result.fill = fill;
+      
+      var stroke:SolidColorStroke = new SolidColorStroke(0x0);
+      result.stroke = stroke;
+      
+      return result;
+    }
   
   }
 }
