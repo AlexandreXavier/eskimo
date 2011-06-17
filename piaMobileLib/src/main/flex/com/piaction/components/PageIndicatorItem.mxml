@@ -7,19 +7,17 @@
   </fx:Declarations>
   <fx:Script>
     <![CDATA[
-      // Constants
-      public static var ITEM_SIZE:Number = 10;
+      [Bindable]
+      public var size:Number = 10;
       
-      public function set opacity(value:Number):void
-      {
-        fillColor.alpha = value;
-      }
+      [Bindable]
+      public var fillColor:uint = 0xFFFFFF;
     ]]>
   </fx:Script>
 
-  <s:Ellipse width="{ITEM_SIZE}" height="{ITEM_SIZE}">
+  <s:Ellipse width="{size}" height="{size}">
     <s:fill>
-      <s:SolidColor id="fillColor" color="0xFFFFFF"/>
+      <s:SolidColor color="{fillColor}"/>
     </s:fill>
   </s:Ellipse>
 </s:Graphic>

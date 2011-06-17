@@ -9,6 +9,9 @@ package com.piaction.components
   
   public class PageIndicator extends BorderContainer
   {
+    // constants
+    public static var ITEM_GAP:int = 18;
+    
     // properties 
     private var _selectedIndex:int = 0;
     private var _previousIndex:int = 0;
@@ -18,12 +21,16 @@ package com.piaction.components
     private var _previousPageCount:int = 0;
     private var _pageCountChanged:Boolean = true;
     
+    private var _itemSize:int = 14;
+    
     // component
     private var _itemContainer:HGroup;
+    private var _sizeChanged:Boolean = true;
     
     public function PageIndicator()
     {
       super();
+      this.percentWidth = 100;
       this.backgroundFill = new SolidColor(0);
       this.minHeight = 40;
     }
@@ -35,11 +42,15 @@ package com.piaction.components
       if (_itemContainer == null)
       {
         _itemContainer = new HGroup();
-        _itemContainer.percentWidth = 100;
-        _itemContainer.height = 30;
+        _itemContainer.percentHeight = 100;
+        _itemContainer.gap = ITEM_GAP;
+        _itemContainer.verticalAlign = "middle";
+        
+        _itemContainer.setStyle("paddingLeft", ITEM_GAP);
+        _itemContainer.setStyle("paddingRight", ITEM_GAP);
+        
         this.addElement(_itemContainer);
       }
-    
     }
     
     override protected function commitProperties():void
@@ -58,16 +69,31 @@ package com.piaction.components
       }
     }
     
+    override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+    {
+      super.updateDisplayList(unscaledWidth, unscaledHeight);
+      
+      if (_sizeChanged)
+      {
+        var itemsWidth:int = pageCount * _itemSize;
+        var intervalsWidth:int = (_pageCount - 1) * ITEM_GAP;
+        var bordersWidth:int = ITEM_GAP * 2;
+        _itemContainer.width = itemsWidth + intervalsWidth + bordersWidth;
+        _sizeChanged = false;
+      }
+    }
+    
     // --------------------------------------------
     // Accessors
     // --------------------------------------------
     public function set pageCount(value:int):void
     {
-      if (value != _pageCount)
+      if (value != _pageCount && value > _selectedIndex)
       {
         _previousPageCount = _pageCount;
         _pageCount = value;
         _pageCountChanged = true;
+        _sizeChanged = true;
         invalidateProperties();
         invalidateDisplayList();
       }
@@ -129,17 +155,21 @@ package com.piaction.components
         gap = _pageCount - _previousPageCount;
         for (index = 0; index <= gap; index++)
         {
-          _itemContainer.addElement(new PageIndicatorItem());
+          _itemContainer.addElement(createPageItem());
         }
       }
       else
       {
         // remove elements
-        gap = _pageCount - _previousPageCount;
+        while (_itemContainer.columnCount != _pageCount)
+        {
+          _itemContainer.removeElementAt(_pageCount);
+        }
+        /*gap = _pageCount - _previousPageCount;
         for (index = _pageCount; index > gap; index--)
         {
           _itemContainer.removeElementAt(index);
-        }
+        }*/
       }
     }
     
@@ -151,17 +181,14 @@ package com.piaction.components
       item.invalidateDisplayList();
       item = PageIndicatorItem(_itemContainer.getElementAt(_selectedIndex));
       item.alpha = 1;
-    
     }
     
-    private function createEllipse():Ellipse
+    private function createPageItem():PageIndicatorItem
     {
-      var result:Ellipse = new Ellipse();
-      var fill:SolidColor = new SolidColor(0XFFFFFF);
-      result.fill = fill;
-      
-      var stroke:SolidColorStroke = new SolidColorStroke(0x0);
-      result.stroke = stroke;
+      var result:PageIndicatorItem = new PageIndicatorItem();
+      // TODO : add accessible style for bullet
+      result.size = 14;
+      result.fillColor = 0xFFFFFF;
       
       return result;
     }
