@@ -94,7 +94,7 @@ package com.piaction.components
     // --------------------------------------------
     public function set pageCount(value:int):void
     {
-      if (value != _pageCount)
+      if (value != _pageCount && value > 0)
       {
         _previousPageCount = _pageCount;
         _pageCount = value;
