@@ -30,7 +30,6 @@ package com.piaction.components
     public function PageIndicator()
     {
       super();
-      this.percentWidth = 100;
       this.backgroundFill = new SolidColor(0);
       this.minHeight = 40;
     }
@@ -44,10 +43,9 @@ package com.piaction.components
         _itemContainer = new HGroup();
         _itemContainer.percentHeight = 100;
         _itemContainer.gap = ITEM_GAP;
+        _itemContainer.left = ITEM_GAP;
+        _itemContainer.right = ITEM_GAP;
         _itemContainer.verticalAlign = "middle";
-        
-        _itemContainer.setStyle("paddingLeft", ITEM_GAP);
-        _itemContainer.setStyle("paddingRight", ITEM_GAP);
         
         this.addElement(_itemContainer);
       }
@@ -79,6 +77,8 @@ package com.piaction.components
         var intervalsWidth:int = (_pageCount - 1) * ITEM_GAP;
         var bordersWidth:int = ITEM_GAP * 2;
         _itemContainer.width = itemsWidth + intervalsWidth + bordersWidth;
+        this.width = _itemContainer.width;
+        
         _sizeChanged = false;
       }
     }
@@ -161,15 +161,10 @@ package com.piaction.components
       else
       {
         // remove elements
-        while (_itemContainer.columnCount != _pageCount)
+        while (_itemContainer.numChildren != _pageCount)
         {
           _itemContainer.removeElementAt(_pageCount);
         }
-        /*gap = _pageCount - _previousPageCount;
-        for (index = _pageCount; index > gap; index--)
-        {
-          _itemContainer.removeElementAt(index);
-        }*/
       }
     }
     
