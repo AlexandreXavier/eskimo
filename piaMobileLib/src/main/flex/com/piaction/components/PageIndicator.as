@@ -1,18 +1,26 @@
 package com.piaction.components
 {
   import mx.graphics.SolidColor;
-  import mx.graphics.SolidColorStroke;
   
   import spark.components.BorderContainer;
   import spark.components.HGroup;
-  import spark.primitives.Ellipse;
+  
+  /**
+   * Define the color of the page items
+  */
+  [Style(name = "pageItemColor", type = "Number", format = "Color", inherit = "yes")]
+  
+  /**
+   * Define the size of the page items
+   */
+  [Style(name = "pageItemSize", type = "Number", inherit = "yes")]
   
   public class PageIndicator extends BorderContainer
   {
     // constants
-    public static var ITEM_GAP:int = 18;
-    public static var DEFAULT_INDEX:int = 0;
-    public static var DEFAULT_PAGE_COUNT:int = 1;
+    public static const ITEM_GAP:int = 18;
+    public static const DEFAULT_INDEX:int = 0;
+    public static const DEFAULT_PAGE_COUNT:int = 1;
     
     // properties 
     private var _selectedIndex:int = DEFAULT_INDEX;
@@ -23,7 +31,8 @@ package com.piaction.components
     private var _previousPageCount:int = 0;
     private var _pageCountChanged:Boolean = true;
     
-    private var _itemSize:int = 14;
+    private var _pageItemColorChanged:Boolean = false;
+    private var _pageItemSizeChanged:Boolean = false;
     
     // component
     private var _itemContainer:HGroup;
@@ -34,6 +43,23 @@ package com.piaction.components
       super();
       this.backgroundFill = new SolidColor(0);
       this.minHeight = 40;
+    }
+    
+    override public function styleChanged(styleProp:String):void
+    {
+      super.styleChanged(styleProp);
+      if (styleProp == "pageItemColor")
+      {
+        _pageItemColorChanged = true;
+        invalidateDisplayList();
+        return;
+      }
+      if (styleProp == "pageItemSize")
+      {
+        _pageItemSizeChanged = true;
+        invalidateDisplayList();
+        return;
+      }
     }
     
     override protected function createChildren():void
@@ -79,13 +105,33 @@ package com.piaction.components
       
       if (_sizeChanged)
       {
-        var itemsWidth:int = pageCount * _itemSize;
+        
+        var itemsWidth:int = pageCount * this.getStyle("pageItemSize");
         var intervalsWidth:int = (_pageCount - 1) * ITEM_GAP;
         var bordersWidth:int = ITEM_GAP * 2;
         _itemContainer.width = itemsWidth + intervalsWidth + bordersWidth;
         this.width = _itemContainer.width;
         
         _sizeChanged = false;
+      }
+      
+      if (_pageItemColorChanged || _pageItemSizeChanged)
+      {
+        for (var index:int = 0; index < _itemContainer.numChildren; index++)
+        {
+          var item:PageIndicatorItem = PageIndicatorItem(_itemContainer.getElementAt(index));
+          if (_pageItemColorChanged)
+          {
+            item.fillColor = this.getStyle("pageItemColor");
+          }
+          if (_pageItemSizeChanged)
+          {
+            item.size = this.getStyle("pageItemSize");
+          }
+          
+        }
+        _pageItemColorChanged = false;
+        _pageItemSizeChanged = false;
       }
     }
     
@@ -190,12 +236,10 @@ package com.piaction.components
     private function createPageItem():PageIndicatorItem
     {
       var result:PageIndicatorItem = new PageIndicatorItem();
-      // TODO : add accessible style for bullet
-      result.size = 14;
-      result.fillColor = 0xFFFFFF;
+      result.size = this.getStyle("pageItemSize");
+      result.fillColor = this.getStyle("pageItemColor");
       
       return result;
     }
-  
   }
 }

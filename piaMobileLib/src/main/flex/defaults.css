@@ -62,6 +62,12 @@
     {
         skinClass: ClassReference("com.piaction.skins.ios.PopOverSkin");
     }
+    
+    components|PageIndicator
+    {
+        pageItemColor: #FFFFFF;
+        pageItemSize: 30;
+    }
 }
 
 @media (os-platform:"ANDROID")
