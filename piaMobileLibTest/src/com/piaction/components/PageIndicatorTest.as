@@ -69,7 +69,7 @@ package com.piaction.components
     {
       // page count to 0
       _pageIndicator.pageCount = 0;
-      Assert.assertEquals(_pageIndicator.pageCount, 1);
+      Assert.assertEquals(1, _pageIndicator.pageCount);
     }
   }
 }
