@@ -11,13 +11,15 @@ package com.piaction.components
   {
     // constants
     public static var ITEM_GAP:int = 18;
+    public static var DEFAULT_INDEX:int = 0;
+    public static var DEFAULT_PAGE_COUNT:int = 1;
     
     // properties 
-    private var _selectedIndex:int = 0;
-    private var _previousIndex:int = 0;
+    private var _selectedIndex:int = DEFAULT_INDEX;
+    private var _previousIndex:int = DEFAULT_INDEX;
     private var _selectedIndexChanged:Boolean = true;
     
-    private var _pageCount:int = 1;
+    private var _pageCount:int = DEFAULT_PAGE_COUNT;
     private var _previousPageCount:int = 0;
     private var _pageCountChanged:Boolean = true;
     
@@ -58,6 +60,10 @@ package com.piaction.components
       if (_pageCountChanged)
       {
         updatePageItems();
+        if (_selectedIndex > _pageCount - 1)
+        {
+          selectedIndex = _pageCount - 1
+        }
         _pageCountChanged = false;
       }
       if (_selectedIndexChanged)
@@ -88,7 +94,7 @@ package com.piaction.components
     // --------------------------------------------
     public function set pageCount(value:int):void
     {
-      if (value != _pageCount && value > _selectedIndex)
+      if (value != _pageCount)
       {
         _previousPageCount = _pageCount;
         _pageCount = value;
@@ -113,7 +119,6 @@ package com.piaction.components
         _selectedIndexChanged = true;
         invalidateProperties();
         invalidateDisplayList();
-        
       }
     }
     
@@ -170,10 +175,14 @@ package com.piaction.components
     
     private function updateSelectedItem():void
     {
-      var item:PageIndicatorItem = PageIndicatorItem(_itemContainer.getElementAt(_previousIndex))
-      item.alpha = 0.5;
+      var item:PageIndicatorItem = null;
+      if (_previousIndex < _pageCount)
+      {
+        item = PageIndicatorItem(_itemContainer.getElementAt(_previousIndex))
+        item.alpha = 0.5;
+        item.invalidateDisplayList();
+      }
       
-      item.invalidateDisplayList();
       item = PageIndicatorItem(_itemContainer.getElementAt(_selectedIndex));
       item.alpha = 1;
     }
