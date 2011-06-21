@@ -5,168 +5,200 @@
         xmlns:components="com.piaction.components.*" backgroundColor="#CCCCCC"
         xmlns:views="com.piaction.piaMobileLibExamples.views.*">
 
-    <fx:Script>
-        <![CDATA[
-            import com.piaction.components.PopOver;
-            import com.piaction.controls.SkinnableAlert;
-            
-            import mx.events.FlexEvent;
-            
-            private var _myPopUp:PopOver;
-            
-            protected function view1_creationCompleteHandler(event:FlexEvent):void
-            {
-                _myPopUp = new PopOver();
-            }
-            
-            protected function onButtonBarClick(event:MouseEvent):void
-            {
-                
-                myPopOver.target = event.target as DisplayObject;
-                
-                
-                myPopOver.open(this, true);
-            }
-        ]]>
-    </fx:Script>
-    <fx:Declarations>
-        <!-- Place non-visual elements (e.g., services, value objects) here -->
-        <components:PopOver id="myPopOver" mouseDownOutside="myPopOver.close()"
-                            direction="vertical">
+  <fx:Script>
+    <![CDATA[
+      import com.piaction.components.PopOver;
+      import com.piaction.controls.SkinnableAlert;
+      
+      import mx.events.FlexEvent;
+      
+      private var _myPopUp:PopOver;
+      
+      protected function view1_creationCompleteHandler(event:FlexEvent):void
+      {
+        _myPopUp = new PopOver();
+      }
+      
+      protected function onButtonBarClick(event:MouseEvent):void
+      {
+        
+        myPopOver.target = event.target as DisplayObject;
+        
+        
+        myPopOver.open(this, true);
+      }
+    ]]>
+  </fx:Script>
+  <fx:Declarations>
+    <!-- Place non-visual elements (e.g., services, value objects) here -->
+    <components:PopOver id="myPopOver" mouseDownOutside="myPopOver.close()"
+                        direction="vertical">
 
-            <s:Button chromeColor="#EEEEEE" label="Bouton pop-over"
-                      color="#000000"
-                      click="SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK|SkinnableAlert.CANCEL);myPopOver.close();"/>
-            <s:Button chromeColor="#EEEEEE" label="Bouton pop-over 2"
-                      color="#000000"
-                      click="SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK|SkinnableAlert.CANCEL);myPopOver.close();"/>
-            <s:Button chromeColor="#EEEEEE" label="Bouton pop-over 3"
-                      color="#000000"
-                      click="SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK|SkinnableAlert.CANCEL);myPopOver.close();"/>
-        </components:PopOver>
-    </fx:Declarations>
+      <s:Button chromeColor="#EEEEEE" label="Bouton pop-over" color="#000000"
+                click="SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK|SkinnableAlert.CANCEL);myPopOver.close();"/>
+      <s:Button chromeColor="#EEEEEE" label="Bouton pop-over 2" color="#000000"
+                click="SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK|SkinnableAlert.CANCEL);myPopOver.close();"/>
+      <s:Button chromeColor="#EEEEEE" label="Bouton pop-over 3" color="#000000"
+                click="SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK|SkinnableAlert.CANCEL);myPopOver.close();"/>
+    </components:PopOver>
+  </fx:Declarations>
 
-    <s:layout>
-        <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
-                          paddingLeft="10"/>
-    </s:layout>
-    <s:ButtonBar click="onButtonBarClick(event)">
-        <s:dataProvider>
-            <s:ArrayCollection>
-                <fx:Object label="button 1"/>
-                <fx:Object label="button 2"/>
-                <fx:Object label="button 3"/>
-                <fx:Object label="button 4"/>
-            </s:ArrayCollection>
-        </s:dataProvider>
-    </s:ButtonBar>
+  <s:layout>
+    <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
+                      paddingLeft="10"/>
+  </s:layout>
+  <s:ButtonBar click="onButtonBarClick(event)">
+    <s:dataProvider>
+      <s:ArrayCollection>
+        <fx:Object label="button 1"/>
+        <fx:Object label="button 2"/>
+        <fx:Object label="button 3"/>
+        <fx:Object label="button 4"/>
+      </s:ArrayCollection>
+    </s:dataProvider>
+  </s:ButtonBar>
+  <s:Form>
+    <s:FormItem label="name" width="100">
+      <s:TextInput id="fName" maxChars="64" width="150" height="100%"/>
+    </s:FormItem>
+    <s:FormItem label="password">
+      <s:TextInput id="fPass" maxChars="64" displayAsPassword="true" width="150"
+                   height="100%"/>
+    </s:FormItem>
+  </s:Form>
+
+  <s:HSlider stepSize="0.1" width="300"/>
+
+
+  <s:VGroup>
+    <s:HGroup>
+      <s:Button label="Prev" click="pageIndicator.previous()"/>
+      <components:PageIndicator id="pageIndicator" height="40" pageCount="8"
+                                selectedIndex="2"/>
+      <s:Button label="Next" click="pageIndicator.next()"/>
+    </s:HGroup>
     <s:Form>
-        <s:FormItem label="name" width="100">
-            <s:TextInput id="fName" maxChars="64" width="150" height="100%"/>
-        </s:FormItem>
-        <s:FormItem label="password">
-            <s:TextInput id="fPass" maxChars="64" displayAsPassword="true"
-                         width="150" height="100%"/>
-        </s:FormItem>
+      <s:FormHeading label="Page Indicator parameters"/>
+      <!-- Page Count -->
+      <s:FormItem label="page count">
+        <s:HGroup>
+          <s:TextInput id="pageCount" prompt="enter the number of pages"/>
+          <s:Button label="Apply"
+                    click="pageIndicator.pageCount = Number(pageCount.text)"/>
+        </s:HGroup>
+      </s:FormItem>
+      <!-- Item Color -->
+      <s:FormItem label="Item color">
+        <s:HGroup>
+          <s:TextInput id="pageItemColor" prompt="enter hexa color ex:0xFFFFFF"/>
+          <s:Button label="Apply"
+                    click="pageIndicator.setStyle('pageItemColor', pageItemColor.text)"/>
+        </s:HGroup>
+      </s:FormItem>
+      <!-- Item Alpha -->
+      <s:FormItem label="item alpha">
+        <s:HSlider id="pageItemAlpha" minimum="0" maximum="1" value="0.5"
+                   stepSize="0.05"
+                   change="{pageIndicator.setStyle('pageItemAlpha', pageItemAlpha.value)}"/>
+      </s:FormItem>
+      <!-- Selected Item Color -->
+      <s:FormItem label="Selected item color">
+        <s:HGroup>
+          <s:TextInput id="selectedPageItemColor"
+                       prompt="enter hexa color ex:0xFFFFFF"/>
+          <s:Button label="Apply"
+                    click="pageIndicator.setStyle('selectedPageItemColor', selectedPageItemColor.text)"/>
+        </s:HGroup>
+      </s:FormItem>
+      <!-- Selected Item Alpha -->
+      <s:FormItem label="item alpha">
+        <s:HSlider id="selectedPageItemAlpha" minimum="0" maximum="1" value="1"
+                   stepSize="0.05"
+                   change="{pageIndicator.setStyle('selectedPageItemAlpha', selectedPageItemAlpha.value)}"/>
+      </s:FormItem>
     </s:Form>
+  </s:VGroup>
 
-    <s:HSlider stepSize="0.1" width="300"/>
+  <s:HGroup id="myGroup" width="100%" height="150">
+    <components:UniqueChoiceList id="list" width="100%" height="100%"
+                                 labelField="label">
+      <components:dataProvider>
+        <s:ArrayCollection>
+          <fx:Object label="Item 1"/>
+          <fx:Object label="Item 2"/>
+          <fx:Object label="Item 3"/>
+          <fx:Object label="Item 4"/>
+          <fx:Object label="Item 5"/>
+          <fx:Object label="Item 6"/>
+        </s:ArrayCollection>
+      </components:dataProvider>
+    </components:UniqueChoiceList>
 
+    <components:SlideDataGroup width="150" height="100%"
+                               orientation="{SlideDataGroup.HORIZONTAL}"
+                               direction="{SlideDataGroup.NORMAL}"
+                               itemRenderer="com.piaction.piaMobileLibExamples.renderers.ImageRenderer">
+      <components:dataProvider>
+        <s:ArrayCollection>
+          <fx:Object source="data/img/photo01.jpg"/>
+          <fx:Object source="data/img/photo02.jpg"/>
+          <fx:Object source="data/img/photo03.jpg"/>
+          <fx:Object source="data/img/photo04.jpg"/>
+          <fx:Object source="data/img/photo05.jpg"/>
+          <fx:Object source="data/img/photo06.jpg"/>
+          <fx:Object source="data/img/photo07.jpg"/>
+          <fx:Object source="data/img/photo08.jpg"/>
+          <fx:Object source="data/img/photo09.jpg"/>
+          <fx:Object source="data/img/photo10.jpg"/>
+        </s:ArrayCollection>
+      </components:dataProvider>
+    </components:SlideDataGroup>
 
-    <s:VGroup>
-        <s:HGroup>
-            <s:TextInput id="pIPageCount" prompt="page count"/>
-            <s:Button label="ok"
-                      click="pageIndicator.pageCount = Number(pIPageCount.text)"/>
-        </s:HGroup>
-        <s:HGroup>
-            <s:Button label="Prev" click="pageIndicator.previous()"/>
-            <components:PageIndicator id="pageIndicator" height="40"
-                                      pageCount="8" selectedIndex="2"/>
-            <s:Button label="Next" click="pageIndicator.next()"/>
-        </s:HGroup>
-    </s:VGroup>
+  </s:HGroup>
 
-    <s:HGroup id="myGroup" width="100%" height="150">
-        <components:UniqueChoiceList id="list" width="100%" height="100%"
-                                     labelField="label">
-            <components:dataProvider>
-                <s:ArrayCollection>
-                    <fx:Object label="Item 1"/>
-                    <fx:Object label="Item 2"/>
-                    <fx:Object label="Item 3"/>
-                    <fx:Object label="Item 4"/>
-                    <fx:Object label="Item 5"/>
-                    <fx:Object label="Item 6"/>
-                </s:ArrayCollection>
-            </components:dataProvider>
-        </components:UniqueChoiceList>
+  <components:ConfirmButton width="300" height="50" buttonPercentWidth="100"
+                            buttonLabel="Show Calendar"
+                            confirmLabel="Quit this view"
+                            confirmChromeColor="#FF3333"
+                            confirm="navigator.pushView(SecondView)"/>
 
-        <components:SlideDataGroup width="150" height="100%"
-                                   orientation="{SlideDataGroup.HORIZONTAL}"
-                                   direction="{SlideDataGroup.NORMAL}"
-                                   itemRenderer="com.piaction.piaMobileLibExamples.renderers.ImageRenderer">
-            <components:dataProvider>
-                <s:ArrayCollection>
-                    <fx:Object source="data/img/photo01.jpg"/>
-                    <fx:Object source="data/img/photo02.jpg"/>
-                    <fx:Object source="data/img/photo03.jpg"/>
-                    <fx:Object source="data/img/photo04.jpg"/>
-                    <fx:Object source="data/img/photo05.jpg"/>
-                    <fx:Object source="data/img/photo06.jpg"/>
-                    <fx:Object source="data/img/photo07.jpg"/>
-                    <fx:Object source="data/img/photo08.jpg"/>
-                    <fx:Object source="data/img/photo09.jpg"/>
-                    <fx:Object source="data/img/photo10.jpg"/>
-                </s:ArrayCollection>
-            </components:dataProvider>
-        </components:SlideDataGroup>
+  <s:HGroup width="100%">
+    <s:CheckBox id="checkbox"
+                change="deletableList.currentState = checkbox.selected ? 'edition' : 'normal'"
+                label="Edition mode" width="100%"/>
+  </s:HGroup>
+  <s:HGroup width="100%" height="100%">
+    <components:DeletableList id="deletableList" width="100%" height="100%"
+                              alternatingItemColors="[0xEDEDED, 0xFFFFFF]">
+      <components:dataProvider>
+        <s:ArrayCollection>
+          <fx:Object label="Item 1"/>
+          <fx:Object label="Item 2"/>
+          <fx:Object label="Item 3"/>
+          <fx:Object label="Item 4"/>
+          <fx:Object label="Item 5"/>
+          <fx:Object label="Item 6"/>
+        </s:ArrayCollection>
+      </components:dataProvider>
+    </components:DeletableList>
 
-    </s:HGroup>
-
-    <components:ConfirmButton width="300" height="50" buttonPercentWidth="100"
-                              buttonLabel="Show Calendar"
-                              confirmLabel="Quit this view"
-                              confirmChromeColor="#FF3333"
-                              confirm="navigator.pushView(SecondView)"/>
-
-    <s:HGroup width="100%">
-        <s:CheckBox id="checkbox"
-                    change="deletableList.currentState = checkbox.selected ? 'edition' : 'normal'"
-                    label="Edition mode" width="100%"/>
-    </s:HGroup>
-    <s:HGroup width="100%" height="100%">
-        <components:DeletableList id="deletableList" width="100%" height="100%"
-                                  alternatingItemColors="[0xEDEDED, 0xFFFFFF]">
-            <components:dataProvider>
-                <s:ArrayCollection>
-                    <fx:Object label="Item 1"/>
-                    <fx:Object label="Item 2"/>
-                    <fx:Object label="Item 3"/>
-                    <fx:Object label="Item 4"/>
-                    <fx:Object label="Item 5"/>
-                    <fx:Object label="Item 6"/>
-                </s:ArrayCollection>
-            </components:dataProvider>
-        </components:DeletableList>
-
-        <components:ContextableList width="100%" height="100%">
-            <components:dataProvider>
-                <s:ArrayCollection>
-                    <fx:Object label="Item 1"/>
-                    <fx:Object label="Item 2"/>
-                    <fx:Object label="Item 3"/>
-                    <fx:Object label="Item 4"/>
-                    <fx:Object label="Item 5"/>
-                    <fx:Object label="Item 6"/>
-                </s:ArrayCollection>
-            </components:dataProvider>
-            <components:contextMenuItems>
-                <fx:Object label="Delete"/>
-                <fx:Object label="Modify"/>
-                <!--<fx:Object label="Cancel"/>-->
-            </components:contextMenuItems>
-        </components:ContextableList>
-    </s:HGroup>
+    <components:ContextableList width="100%" height="100%">
+      <components:dataProvider>
+        <s:ArrayCollection>
+          <fx:Object label="Item 1"/>
+          <fx:Object label="Item 2"/>
+          <fx:Object label="Item 3"/>
+          <fx:Object label="Item 4"/>
+          <fx:Object label="Item 5"/>
+          <fx:Object label="Item 6"/>
+        </s:ArrayCollection>
+      </components:dataProvider>
+      <components:contextMenuItems>
+        <fx:Object label="Delete"/>
+        <fx:Object label="Modify"/>
+        <!--<fx:Object label="Cancel"/>-->
+      </components:contextMenuItems>
+    </components:ContextableList>
+  </s:HGroup>
 
 </s:View>
