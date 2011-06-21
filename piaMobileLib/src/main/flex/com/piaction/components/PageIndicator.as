@@ -11,6 +11,21 @@ package com.piaction.components
   [Style(name = "pageItemColor", type = "Number", format = "Color", inherit = "yes")]
   
   /**
+   * Define the alpha of the page items
+   */
+  [Style(name = "pageItemAlpha", type = "Number", inherit = "yes")]
+  
+  /**
+   * Define the color of the selected page item
+   */
+  [Style(name = "selectedPageItemColor", type = "Number", format = "Color", inherit = "yes")]
+  
+  /**
+   * Define the alpha of the selected page item
+   */
+  [Style(name = "selectedPageItemAlpha", type = "Number", inherit = "yes")]
+  
+  /**
    * Define the size of the page items
    */
   [Style(name = "pageItemSize", type = "Number", inherit = "yes")]
@@ -32,6 +47,9 @@ package com.piaction.components
     private var _pageCountChanged:Boolean = true;
     
     private var _pageItemColorChanged:Boolean = false;
+    private var _pageItemAlphaChanged:Boolean = false;
+    private var _selectedPageItemColorChanged:Boolean = false;
+    private var _selectedPageItemAlphaChanged:Boolean = false;
     private var _pageItemSizeChanged:Boolean = false;
     
     // component
@@ -41,7 +59,6 @@ package com.piaction.components
     public function PageIndicator()
     {
       super();
-      this.backgroundFill = new SolidColor(0);
       this.minHeight = 40;
     }
     
@@ -54,9 +71,27 @@ package com.piaction.components
         invalidateDisplayList();
         return;
       }
+      if (styleProp == "pageItemAlpha")
+      {
+        _pageItemAlphaChanged = true;
+        invalidateDisplayList();
+        return;
+      }
       if (styleProp == "pageItemSize")
       {
         _pageItemSizeChanged = true;
+        invalidateDisplayList();
+        return;
+      }
+      if (styleProp == "selectedPageItemColor")
+      {
+        _selectedPageItemColorChanged = true;
+        invalidateDisplayList();
+        return;
+      }
+      if (styleProp == "selectedPageItemAlpha")
+      {
+        _selectedPageItemAlphaChanged = true;
         invalidateDisplayList();
         return;
       }
@@ -115,24 +150,16 @@ package com.piaction.components
         _sizeChanged = false;
       }
       
-      if (_pageItemColorChanged || _pageItemSizeChanged)
+      if (_pageItemColorChanged || _pageItemAlphaChanged || _pageItemSizeChanged)
       {
-        for (var index:int = 0; index < _itemContainer.numChildren; index++)
-        {
-          var item:PageIndicatorItem = PageIndicatorItem(_itemContainer.getElementAt(index));
-          if (_pageItemColorChanged)
-          {
-            item.fillColor = this.getStyle("pageItemColor");
-          }
-          if (_pageItemSizeChanged)
-          {
-            item.size = this.getStyle("pageItemSize");
-          }
-          
-        }
-        _pageItemColorChanged = false;
-        _pageItemSizeChanged = false;
+        updatePageItemDisplay();
       }
+      if (_selectedPageItemAlphaChanged || _selectedPageItemColorChanged || _pageItemSizeChanged)
+      {
+        updateSelectedItemDisplay();
+      }
+      
+      _pageItemSizeChanged = false;
     }
     
     // --------------------------------------------
@@ -225,12 +252,13 @@ package com.piaction.components
       if (_previousIndex < _pageCount)
       {
         item = PageIndicatorItem(_itemContainer.getElementAt(_previousIndex))
-        item.alpha = 0.5;
-        item.invalidateDisplayList();
+        item.alpha = this.getStyle("pageItemAlpha");
+        item.fillColor = this.getStyle("pageItemColor");
       }
       
       item = PageIndicatorItem(_itemContainer.getElementAt(_selectedIndex));
-      item.alpha = 1;
+      item.alpha = this.getStyle("selectedPageItemAlpha");
+      item.fillColor = this.getStyle("selectedPageItemColor");
     }
     
     private function createPageItem():PageIndicatorItem
@@ -238,8 +266,57 @@ package com.piaction.components
       var result:PageIndicatorItem = new PageIndicatorItem();
       result.size = this.getStyle("pageItemSize");
       result.fillColor = this.getStyle("pageItemColor");
+      result.alpha = this.getStyle("pageItemAlpha");
       
       return result;
+    }
+    
+    private function updatePageItemDisplay():void
+    {
+      for (var index:int = 0; index < _itemContainer.numChildren; index++)
+      {
+        if (index != _selectedIndex)
+        {
+          var item:PageIndicatorItem = PageIndicatorItem(_itemContainer.getElementAt(index));
+          if (_pageItemColorChanged || _pageItemAlphaChanged || _pageItemSizeChanged)
+          {
+            if (_pageItemColorChanged)
+            {
+              item.fillColor = this.getStyle("pageItemColor");
+            }
+            if (_pageItemAlphaChanged)
+            {
+              item.alpha = this.getStyle("pageItemAlpha");
+            }
+            if (_pageItemSizeChanged)
+            {
+              item.size = this.getStyle("pageItemSize");
+            }
+          }
+        }
+      }
+      _pageItemColorChanged = false;
+      _pageItemAlphaChanged = false;
+    }
+    
+    private function updateSelectedItemDisplay():void
+    {
+      var item:PageIndicatorItem = PageIndicatorItem(_itemContainer.getElementAt(_selectedIndex));
+      
+      if (_selectedPageItemColorChanged)
+      {
+        item.fillColor = this.getStyle("selectedPageItemColor");
+        _selectedPageItemColorChanged = false;
+      }
+      if (_selectedPageItemAlphaChanged)
+      {
+        item.alpha = this.getStyle("selectedPageItemAlpha");
+        _selectedPageItemAlphaChanged = false;
+      }
+      if (_pageItemSizeChanged)
+      {
+        item.size = this.getStyle("pageItemSize");
+      }
     }
   }
 }

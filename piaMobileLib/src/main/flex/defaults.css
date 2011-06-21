@@ -66,7 +66,13 @@
     components|PageIndicator
     {
         pageItemColor: #FFFFFF;
+        pageItemAlpha: 0.5;
+        selectedPageItemColor: #FFFFFF;
+        selectedPageItemAlpha: 1;
         pageItemSize: 30;
+        backgroundColor: #000000;
+        backgroundAlpha: 0;
+        borderAlpha: 0;
     }
 }
 
