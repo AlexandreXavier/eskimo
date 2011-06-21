@@ -1,7 +1,5 @@
 package com.piaction.components
 {
-  import mx.graphics.SolidColor;
-  
   import spark.components.BorderContainer;
   import spark.components.HGroup;
   
@@ -140,7 +138,6 @@ package com.piaction.components
       
       if (_sizeChanged)
       {
-        
         var itemsWidth:int = pageCount * this.getStyle("pageItemSize");
         var intervalsWidth:int = (_pageCount - 1) * ITEM_GAP;
         var bordersWidth:int = ITEM_GAP * 2;

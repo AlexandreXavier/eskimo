@@ -79,6 +79,12 @@
     </s:HGroup>
     <s:Form>
       <s:FormHeading label="Page Indicator parameters"/>
+      <!-- Page Item Size -->
+      <s:FormItem label="page item size">
+        <s:HSlider id="pageItemSize" minimum="8" maximum="60" value="14"
+                   stepSize="0.5"
+                   change="{pageIndicator. setStyle('pageItemSize', pageItemSize.value)}"/>
+      </s:FormItem>
       <!-- Page Count -->
       <s:FormItem label="page count">
         <s:HGroup>
