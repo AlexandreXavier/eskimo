@@ -1,10 +1,5 @@
 package com.piaction.components
 {
-    import com.piaction.controls.SkinnableAlert;
-    import com.piaction.skins.android.ComboBoxSkin;
-    import com.piaction.skins.android.PopUpUniqueChoiceSkin;
-    
-    import flash.events.Event;
     import flash.events.MouseEvent;
     
     import mx.collections.IList;
@@ -13,18 +8,17 @@ package com.piaction.components
     import spark.components.Label;
     import spark.components.supportClasses.SkinnableComponent;
     import spark.events.IndexChangeEvent;
-
+    
     public class ComboBox extends SkinnableComponent
     {
         public function ComboBox()
         {
             super();
             this.labelField = "label";
-            setStyle("skinClass", ComboBoxSkin);
             this.addEventListener(MouseEvent.CLICK, popUpList);
         }
         
-        [SkinPart(required="true")]
+        [SkinPart(required = "true")]
         public var selectedLabel:Label;
         
         private var _dataProvider:IList;
@@ -48,9 +42,9 @@ package com.piaction.components
         
         public function set dataProvider(value:IList):void
         {
-            if(value != _dataProvider)
+            if (value != _dataProvider)
             {
-                _dataProvider = value ;
+                _dataProvider = value;
                 invalidateProperties();
             }
         }
@@ -62,28 +56,27 @@ package com.piaction.components
         
         public function popUpList(event:MouseEvent):void
         {
-          popUp.setStyle("skinClass", PopUpUniqueChoiceSkin);
-          popUp.dataProvider = dataProvider;
-          popUp.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
-          popUp.labelField = labelField;
-          popUp.width = stage.stageWidth * 0.9;
-          PopUpManager.centerPopUp(popUp);
-          PopUpManager.addPopUp(popUp, this);
+            popUp.dataProvider = dataProvider;
+            popUp.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
+            popUp.labelField = labelField;
+            popUp.width = stage.stageWidth * 0.9;
+            PopUpManager.centerPopUp(popUp);
+            PopUpManager.addPopUp(popUp, this);
         }
         
         protected function onIndexChange(event:IndexChangeEvent):void
         {
             var selecteditem:Object = popUp.selectedItem;
-            if(selecteditem != null && selecteditem.hasOwnProperty(labelField))
+            if (selecteditem != null && selecteditem.hasOwnProperty(labelField))
             {
-              selectedLabel.text = selecteditem[labelField];
+                selectedLabel.text = selecteditem[labelField];
             }
             PopUpManager.removePopUp(popUp);
         }
         
         public function get selectedItem():Object
         {
-          return popUp.selectedItem;
+            return popUp.selectedItem;
         }
     }
 }

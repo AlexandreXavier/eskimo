@@ -1,18 +1,13 @@
 package com.piaction.components
 {
     import com.piaction.events.ConfirmEvent;
-    import com.piaction.skins.ios.ConfirmButtonSkin;
     
     import flash.events.Event;
     import flash.events.MouseEvent;
-    import flash.system.Capabilities;
     
-    import mx.core.FlexGlobals;
-    import mx.core.IButton;
     import mx.events.FlexEvent;
     import mx.events.StateChangeEvent;
     import mx.states.State;
-    import mx.styles.CSSStyleDeclaration;
     
     import spark.components.Button;
     import spark.components.supportClasses.SkinnableComponent;

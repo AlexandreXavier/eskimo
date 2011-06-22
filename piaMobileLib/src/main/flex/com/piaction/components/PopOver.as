@@ -1,14 +1,11 @@
 package com.piaction.components
 {
-    import com.piaction.skins.ios.PopOverSkin;
-    
     import flash.display.DisplayObject;
     import flash.display.DisplayObjectContainer;
     import flash.geom.Point;
     import flash.geom.Rectangle;
     
     import spark.components.SkinnablePopUpContainer;
-    import spark.primitives.Rect;
     
     /**
      * Skin states

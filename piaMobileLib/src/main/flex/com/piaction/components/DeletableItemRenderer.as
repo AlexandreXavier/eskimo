@@ -1,6 +1,5 @@
-package com.piaction.skins.ios
+package com.piaction.components
 {
-    import com.piaction.components.DeletableList;
     import com.piaction.events.DeletableListEvent;
     
     import flash.display.FrameLabel;

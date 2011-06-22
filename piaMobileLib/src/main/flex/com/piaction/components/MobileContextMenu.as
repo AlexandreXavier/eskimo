@@ -1,7 +1,6 @@
 package com.piaction.components
 {
     import com.piaction.events.MobileContextMenuEvent;
-    import com.piaction.skins.android.MobileContextMenuSkin;
     
     import flash.display.DisplayObject;
     import flash.events.Event;
@@ -9,10 +8,7 @@ package com.piaction.components
     import flash.ui.Keyboard;
     
     import mx.collections.ArrayCollection;
-    import mx.core.FlexGlobals;
     import mx.managers.PopUpManager;
-    import mx.managers.PopUpManagerChildList;
-    import mx.styles.CSSStyleDeclaration;
     
     import spark.components.Label;
     import spark.components.List;
@@ -70,41 +66,7 @@ package com.piaction.components
          */
         private var _headerLabel:String;
         
-        /**
-         * @private
-         */
-        [Embed(source = 'com/piaction/assets/img/contextMenuIcon.png')]
-        private static var defaultIcon:Class;
         
-        /**
-         * @private
-         */
-        private static var classConstructed:Boolean = classConstruct();
-        
-        /**
-         * @private
-         */
-        protected static function classConstruct():Boolean
-        {
-            var styles:CSSStyleDeclaration = FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration("com.piaction.components.MobileContextMenu");
-            if (!styles)
-            {
-                styles = new CSSStyleDeclaration();
-            }
-            
-            styles.defaultFactory = function():void
-            {
-                this.skinClass = MobileContextMenuSkin;
-                this.headerHeight = 50;
-                this.contextMenuIcon = defaultIcon;
-                this.headerVisible = true;
-            }
-            
-            FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("com.piaction.components.MobileContextMenu", styles, false);
-            
-            
-            return true;
-        }
         
         /**
          * @constructor

@@ -1,54 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="true" version="3">
   <includeClasses>
-    <classEntry path="com.piaction.components.Calendar"/>
-    <classEntry path="com.piaction.components.CalendarItem"/>
     <classEntry path="com.piaction.components.ConfirmButton"/>
     <classEntry path="com.piaction.components.ContextableList"/>
-    <classEntry path="com.piaction.components.DateChooserHearder"/>
     <classEntry path="com.piaction.components.DeletableList"/>
     <classEntry path="com.piaction.components.ListWheel"/>
     <classEntry path="com.piaction.components.MobileContextMenu"/>
-    <classEntry path="com.piaction.components.MobileDateChooser"/>
     <classEntry path="com.piaction.components.SlideDataGroup"/>
     <classEntry path="com.piaction.components.TimeItem"/>
     <classEntry path="com.piaction.components.UniqueChoiceList"/>
     <classEntry path="com.piaction.controls.SkinnableAlert"/>
-    <classEntry path="com.piaction.events.CalendarEvent"/>
     <classEntry path="com.piaction.events.ConfirmEvent"/>
     <classEntry path="com.piaction.events.ContextableListEvent"/>
     <classEntry path="com.piaction.events.DeletableListEvent"/>
     <classEntry path="com.piaction.events.MobileCalendarEvent"/>
     <classEntry path="com.piaction.events.MobileContextMenuEvent"/>
     <classEntry path="com.piaction.layouts.SlideLayout"/>
-    <classEntry path="com.piaction.skins.CalendarHearderRenderer"/>
-    <classEntry path="com.piaction.skins.CalendarItemSkin"/>
-    <classEntry path="com.piaction.skins.CalendarSkin"/>
-    <classEntry path="com.piaction.skins.DateChooserHeaderSkin"/>
-    <classEntry path="com.piaction.skins.ListWheelItemRenderer"/>
-    <classEntry path="com.piaction.skins.ListWheelSkin"/>
-    <classEntry path="com.piaction.skins.android.AlertSkin"/>
-    <classEntry path="com.piaction.skins.android.MobileContextMenuSkin"/>
-    <classEntry path="com.piaction.skins.android.UniqueChoiceItemRenderer"/>
-    <classEntry path="com.piaction.skins.ios.ActionBarButtonSkin"/>
-    <classEntry path="com.piaction.skins.ios.AlertSkin"/>
-    <classEntry path="com.piaction.skins.ios.ButtonBarFirstButtonSkin"/>
-    <classEntry path="com.piaction.skins.ios.ButtonBarLastButtonSkin"/>
-    <classEntry path="com.piaction.skins.ios.ButtonBarMiddleButtonSkin"/>
-    <classEntry path="com.piaction.skins.ios.ButtonBarSkin"/>
-    <classEntry path="com.piaction.skins.ios.ButtonSkin"/>
-    <classEntry path="com.piaction.skins.ios.ConfirmButtonSkin"/>
-    <classEntry path="com.piaction.skins.ios.FormSkin"/>
-    <classEntry path="com.piaction.skins.ios.MobileCheckBoxSkin"/>
-    <classEntry path="com.piaction.skins.android.UniqueChoiceListSkin"/>
-    <classEntry path="com.piaction.skins.ios.UniqueChoiceListSkin"/>
     <classEntry path="com.piaction.components.PopOver"/>
     <classEntry path="com.piaction.components.PageIndicatorItem"/>
-    <classEntry path="com.piaction.skins.ios.DeletableItemRenderer"/>
-    <classEntry path="com.piaction.skins.ios.DeletableItemRendererOverlay"/>
   </includeClasses>
-  <includeResources>
-    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
-  </includeResources>
+  <includeResources/>
   <namespaceManifests/>
 </flexLibProperties>

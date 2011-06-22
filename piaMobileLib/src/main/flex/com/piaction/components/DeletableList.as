@@ -1,7 +1,6 @@
 package com.piaction.components
 {
     import com.piaction.events.DeletableListEvent;
-    import com.piaction.skins.ios.DeletableItemRenderer;
     
     import flash.events.Event;
     

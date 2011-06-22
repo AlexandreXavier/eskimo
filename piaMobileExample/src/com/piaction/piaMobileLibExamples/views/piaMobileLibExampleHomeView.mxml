@@ -83,6 +83,45 @@
         </components:dataProvider>
     </components:ComboBox>
 
+
+
+    <s:HGroup id="myGroup" width="100%" height="150">
+        <components:UniqueChoiceList id="list" width="100%" height="100%"
+                                     labelField="label"
+                                     click="trace(event.target)">
+            <components:dataProvider>
+                <s:ArrayCollection>
+                    <fx:Object label="Item 1"/>
+                    <fx:Object label="Item 2"/>
+                    <fx:Object label="Item 3"/>
+                    <fx:Object label="Item 4"/>
+                    <fx:Object label="Item 5"/>
+                    <fx:Object label="Item 6"/>
+                </s:ArrayCollection>
+            </components:dataProvider>
+        </components:UniqueChoiceList>
+
+        <components:SlideDataGroup width="150" height="100%"
+                                   orientation="{SlideDataGroup.HORIZONTAL}"
+                                   direction="{SlideDataGroup.NORMAL}"
+                                   itemRenderer="com.piaction.piaMobileLibExamples.renderers.ImageRenderer">
+            <components:dataProvider>
+                <s:ArrayCollection>
+                    <fx:Object source="data/img/photo01.jpg"/>
+                    <fx:Object source="data/img/photo02.jpg"/>
+                    <fx:Object source="data/img/photo03.jpg"/>
+                    <fx:Object source="data/img/photo04.jpg"/>
+                    <fx:Object source="data/img/photo05.jpg"/>
+                    <fx:Object source="data/img/photo06.jpg"/>
+                    <fx:Object source="data/img/photo07.jpg"/>
+                    <fx:Object source="data/img/photo08.jpg"/>
+                    <fx:Object source="data/img/photo09.jpg"/>
+                    <fx:Object source="data/img/photo10.jpg"/>
+                </s:ArrayCollection>
+            </components:dataProvider>
+        </components:SlideDataGroup>
+
+    </s:HGroup>
     <s:VGroup>
         <s:HGroup>
             <s:Button label="Prev" click="pageIndicator.previous()"/>
@@ -139,49 +178,11 @@
             </s:FormItem>
         </s:Form>
     </s:VGroup>
-
-    <s:HGroup id="myGroup" width="100%" height="150">
-        <components:UniqueChoiceList id="list" width="100%" height="100%"
-                                     labelField="label">
-            <components:dataProvider>
-                <s:ArrayCollection>
-                    <fx:Object label="Item 1"/>
-                    <fx:Object label="Item 2"/>
-                    <fx:Object label="Item 3"/>
-                    <fx:Object label="Item 4"/>
-                    <fx:Object label="Item 5"/>
-                    <fx:Object label="Item 6"/>
-                </s:ArrayCollection>
-            </components:dataProvider>
-        </components:UniqueChoiceList>
-
-        <components:SlideDataGroup width="150" height="100%"
-                                   orientation="{SlideDataGroup.HORIZONTAL}"
-                                   direction="{SlideDataGroup.NORMAL}"
-                                   itemRenderer="com.piaction.piaMobileLibExamples.renderers.ImageRenderer">
-            <components:dataProvider>
-                <s:ArrayCollection>
-                    <fx:Object source="data/img/photo01.jpg"/>
-                    <fx:Object source="data/img/photo02.jpg"/>
-                    <fx:Object source="data/img/photo03.jpg"/>
-                    <fx:Object source="data/img/photo04.jpg"/>
-                    <fx:Object source="data/img/photo05.jpg"/>
-                    <fx:Object source="data/img/photo06.jpg"/>
-                    <fx:Object source="data/img/photo07.jpg"/>
-                    <fx:Object source="data/img/photo08.jpg"/>
-                    <fx:Object source="data/img/photo09.jpg"/>
-                    <fx:Object source="data/img/photo10.jpg"/>
-                </s:ArrayCollection>
-            </components:dataProvider>
-        </components:SlideDataGroup>
-
-    </s:HGroup>
-
     <components:ConfirmButton width="300" height="50" buttonPercentWidth="100"
                               buttonLabel="Show Calendar"
                               confirmLabel="Quit this view"
                               confirmChromeColor="#FF3333"
-                              confirm="navigator.pushView(SecondView)"/>
+                              confirm="SkinnableAlert.show('ok')"/>
 
     <s:HGroup width="100%">
         <s:CheckBox id="checkbox"

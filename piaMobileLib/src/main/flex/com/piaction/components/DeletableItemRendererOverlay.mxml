@@ -15,7 +15,6 @@
     </fx:Metadata>
     <fx:Script>
         <![CDATA[
-            import com.piaction.components.DeletableList;
             import com.piaction.events.DeletableListEvent;
             
             import mx.controls.List;
