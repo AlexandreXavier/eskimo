@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="com.piaction.skins.mobile.ios.MobileCheckBoxSkin"/>
+    <classEntry path="com.piaction.skins.mobile.ios.HSliderSkin"/>
+    <classEntry path="com.piaction.skins.mobile.ios.ActionBarButtonSkin"/>
+    <classEntry path="com.piaction.skins.mobile.ios.HSliderThumbSkin"/>
+    <classEntry path="com.piaction.skins.mobile.ios.ListWheelSkin"/>
+    <classEntry path="com.piaction.skins.mobile.android.AlertSkin"/>
+    <classEntry path="com.piaction.skins.mobile.ios.FormSkin"/>
+    <classEntry path="com.piaction.skins.mobile.android.PopUpUniqueChoiceSkin"/>
+    <classEntry path="com.piaction.skins.mobile.ios.PopOverSkin"/>
+    <classEntry path="com.piaction.skins.mobile.android.MobileContextMenuSkin"/>
+    <classEntry path="com.piaction.skins.mobile.ios.ButtonBarFirstButtonSkin"/>
+    <classEntry path="com.piaction.skins.mobile.android.UniqueChoiceListSkin"/>
+    <classEntry path="com.piaction.skins.DateChooserHeaderSkin"/>
+    <classEntry path="com.piaction.skins.mobile.ios.ButtonBarSkin"/>
+    <classEntry path="com.piaction.skins.mobile.ios.ButtonBarMiddleButtonSkin"/>
+    <classEntry path="com.piaction.skins.mobile.ios.AlertSkin"/>
+    <classEntry path="com.piaction.skins.mobile.ios.UniqueChoiceListSkin"/>
+    <classEntry path="com.piaction.skins.mobile.ios.HSliderTrackSkin"/>
+    <classEntry path="com.piaction.skins.mobile.ios.ButtonBarLastButtonSkin"/>
+    <classEntry path="com.piaction.skins.mobile.android.ComboBoxSkin"/>
+    <classEntry path="com.piaction.skins.android.UniqueChoiceItemRenderer"/>
+    <classEntry path="com.piaction.skins.ios.DeletableItemRendererOverlay"/>
+    <classEntry path="com.piaction.skins.mobile.ios.ConfirmButtonSkin"/>
+    <classEntry path="com.piaction.skins.mobile.ios.ButtonSkin"/>
+  </includeClasses>
+  <includeResources>
+    <resourceEntry destPath="com/piaction/skins/mobile/android/assets/contextMenuIcon.png" sourcePath="com/piaction/skins/mobile/android/assets/contextMenuIcon.png"/>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+  </includeResources>
+  <namespaceManifests/>
+</flexLibProperties>
