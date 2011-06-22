@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx">
+    <!-- host component -->
+    <fx:Metadata>
+    [HostComponent("com.piaction.components.UniqueChoiceList")]
+  </fx:Metadata>
+
+    <!-- SkinParts
+    name=listDisplay, type=spark.components.List, required=true
+    -->
+    <fx:Script>
+        <![CDATA[
+            override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+            {
+                super.updateDisplayList(unscaledWidth, unscaledHeight);
+                listDisplay.setStyle("contentBackgroundAlpha", getStyle("contentBackgroundAlpha"));
+            }
+        ]]>
+    </fx:Script>
+
+    <s:Rect top="0" left="0" bottom="0" right="0" radiusX="10">
+        <s:stroke>
+            <s:SolidColorStroke color="#000000" weight="2"/>
+        </s:stroke>
+        <s:fill>
+            <s:SolidColor color="#FFFFFF"/>
+        </s:fill>
+    </s:Rect>
+    <s:List id="listDisplay" width="100%" height="100%"
+            itemRenderer="com.piaction.components.PopupUniqueChoiceItemRenderer">
+        <s:layout>
+            <s:VerticalLayout horizontalAlign="justify" gap="10"
+                              paddingBottom="10" paddingTop="10"/>
+        </s:layout>
+    </s:List>
+
+</s:Skin>

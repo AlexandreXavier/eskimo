@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+ADOBE SYSTEMS INCORPORATED
+Copyright 2008 Adobe Systems Incorporated
+All Rights Reserved.
+
+NOTICE: Adobe permits you to use, modify, and distribute this file
+in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+<!--- The default skin class for a Spark SkinnableContainer container.
+
+@see spark.components.SkinnableContainer
+
+@langversion 3.0
+@playerversion Flash 10
+@playerversion AIR 1.5
+@productversion Flex 4
+-->
+
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5"
+        initialize="onInitialize(event)">
+
+    <fx:Metadata>
+        <![CDATA[ 
+    /** 
+    * @copy spark.skins.spark.ApplicationSkin#hostComponent
+    */
+    [HostComponent("com.piaction.components.PopOver")]
+    ]]>
+    </fx:Metadata>
+
+    <fx:Declarations>
+    </fx:Declarations>
+
+    <fx:Script fb:purpose="styling">
+        <![CDATA[
+            import com.piaction.components.PopOver;
+            
+            import mx.core.DPIClassification;
+            import mx.core.FlexGlobals;
+            import mx.events.FlexEvent;
+            
+            
+            [Bindable]
+            private var arrowHeight:int;
+            [Bindable]
+            private var topArrowPathData:String;
+            [Bindable]
+            private var downArrowPathData:String;
+            [Bindable]
+            private var leftArrowPathData:String;
+            [Bindable]
+            private var rightArrowPathData:String;
+            
+            /**
+             *  @private
+             */
+            override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+            {
+                // Push backgroundColor and backgroundAlpha directly.
+                
+                var radius:int = 5;
+                
+                super.updateDisplayList(unscaledWidth, unscaledHeight);
+                
+                if (topArrow)
+                {
+                    topArrow.x = (unscaledWidth - topArrow.width) / 2 + hostComponent.targetCenterOffset;
+                    topArrow.x = Math.max(topArrow.x, borderGroup.x + radius);
+                    topArrow.x = Math.min(topArrow.x, borderGroup.x + borderGroup.width - topArrow.width - radius);
+                }
+                if (downArrow)
+                {
+                    downArrow.x = (unscaledWidth - downArrow.width) / 2 + hostComponent.targetCenterOffset;
+                    downArrow.x = Math.max(downArrow.x, borderGroup.x + radius);
+                    downArrow.x = Math.min(downArrow.x, borderGroup.x + borderGroup.width - downArrow.width - radius);
+                }
+                if (leftArrow)
+                {
+                    leftArrow.y = (unscaledHeight - leftArrow.height) / 2 + hostComponent.targetCenterOffset;
+                    leftArrow.y = Math.max(leftArrow.y, borderGroup.x + radius);
+                    leftArrow.y = Math.min(leftArrow.y, borderGroup.y + borderGroup.height - leftArrow.height - radius);
+                }
+                if (rightArrow)
+                {
+                    rightArrow.y = (unscaledHeight - rightArrow.height) / 2 + hostComponent.targetCenterOffset;
+                    rightArrow.y = Math.max(rightArrow.y, borderGroup.x + radius);
+                    rightArrow.y = Math.min(rightArrow.y, borderGroup.y + borderGroup.height - rightArrow.height - radius);
+                }
+            }
+            
+            
+            protected function onInitialize(event:FlexEvent):void
+            {
+                switch (applicationDPI)
+                {
+                    case DPIClassification.DPI_160:
+                    {
+                        arrowHeight = 10;
+                        
+                        
+                        topArrowPathData = "M 0 10 L 11 0 L 22 10";
+                        downArrowPathData = "M 0 -10 L 11 0 L 22 -10";
+                        leftArrowPathData = "M 10 0 L 0 11 L 10 22";
+                        rightArrowPathData = "M 0 0 L 16 11 L 0 22";
+                        break;
+                    }
+                    case DPIClassification.DPI_240:
+                    {
+                        arrowHeight = 16;
+                        
+                        
+                        topArrowPathData = "M 0 16 L 17 0 L 34 16";
+                        downArrowPathData = "M 0 -16 L 17 0 L 34 -16";
+                        leftArrowPathData = "M 16 0 L 0 17 L 16 34";
+                        rightArrowPathData = "M 0 0 L 16 17 L 0 34";
+                        break;
+                    }
+                    case DPIClassification.DPI_320:
+                    {
+                        arrowHeight = 22;
+                        
+                        
+                        topArrowPathData = "M 0 22 L 23 0 L 46 22";
+                        downArrowPathData = "M 0 -22 L 23 0 L 46 -22";
+                        leftArrowPathData = "M 22 0 L 0 23 L 22 46";
+                        rightArrowPathData = "M 0 0 L 16 23 L 0 46";
+                        break;
+                    }
+                    
+                }
+            }
+            
+            protected function get applicationDPI():Number
+            {
+                return FlexGlobals.topLevelApplication.applicationDPI;
+            }
+        ]]>
+    </fx:Script>
+
+    <s:states>
+        <s:State name="normal"/>
+        <s:State name="disabled"/>
+        <s:State name="closed" stateGroups="closeGroup"/>
+        <s:State name="topPosition" stateGroups="topGroup"
+                 enterState="invalidateDisplayList()"/>
+        <s:State name="bottomPosition" stateGroups="bottomGroup"
+                 enterState="invalidateDisplayList()"/>
+        <s:State name="rightPosition" stateGroups="rightGroup"
+                 enterState="invalidateDisplayList()"/>
+        <s:State name="leftPosition" stateGroups="leftGroup"
+                 enterState="invalidateDisplayList()"/>
+        <s:State name="topPositionAndClosed" stateGroups="topGroup, closeGroup"
+                 enterState="invalidateDisplayList()"/>
+        <s:State name="bottomPositionAndClosed"
+                 stateGroups="bottomGroup, closeGroup"
+                 enterState="invalidateDisplayList()"/>
+        <s:State name="rightPositionAndClosed"
+                 stateGroups="rightGroup, closeGroup"
+                 enterState="invalidateDisplayList()"/>
+        <s:State name="leftPositionAndClosed"
+                 stateGroups="leftGroup, closeGroup"
+                 enterState="invalidateDisplayList()"/>
+    </s:states>
+
+
+    <!-- Transitions for open and close -->
+    <s:transitions>
+        <s:Transition fromState="*" toState="topPosition" autoReverse="true">
+            <s:Fade duration="150" targets="{[graphicGroup, borderGroup]}"/>
+        </s:Transition>
+        <s:Transition fromState="*" toState="bottomPosition" autoReverse="true">
+            <s:Fade duration="150" targets="{[graphicGroup, borderGroup]}"/>
+        </s:Transition>
+        <s:Transition fromState="*" toState="rightPosition" autoReverse="true">
+            <s:Fade duration="150" targets="{[graphicGroup, borderGroup]}"/>
+        </s:Transition>
+        <s:Transition fromState="*" toState="leftPosition" autoReverse="true">
+            <s:Fade duration="150" targets="{[graphicGroup, borderGroup]}"/>
+        </s:Transition>
+        <s:Transition fromState="*" toState="topPositionAndClosed"
+                      autoReverse="true">
+            <s:Fade duration="150" targets="{[graphicGroup, borderGroup]}"/>
+        </s:Transition>
+        <s:Transition fromState="*" toState="bottomPositionAndClosed"
+                      autoReverse="true">
+            <s:Fade duration="150" targets="{[graphicGroup, borderGroup]}"/>
+        </s:Transition>
+        <s:Transition fromState="*" toState="rightPositionAndClosed"
+                      autoReverse="true">
+            <s:Fade duration="150" targets="{[graphicGroup, borderGroup]}"/>
+        </s:Transition>
+        <s:Transition fromState="*" toState="leftPositionAndClosed"
+                      autoReverse="true">
+            <s:Fade duration="150" targets="{[graphicGroup, borderGroup]}"/>
+        </s:Transition>
+        <s:Transition fromState="*" toState="normal" autoReverse="true">
+            <s:Fade duration="150" targets="{[graphicGroup, borderGroup]}"/>
+        </s:Transition>
+    </s:transitions>
+
+    <!--- Defines the appearance of the SkinnableContainer class's background. -->
+
+    <s:Group id="graphicGroup" top="0" right="0" bottom="0" left="0"
+             visible.closeGroup="false">
+
+        <s:Rect id="background" radiusX="5" top="0" right="0" left="0"
+                bottom="0" left.rightGroup="{arrowHeight}"
+                right.leftGroup="{arrowHeight}"
+                top.bottomGroup="{arrowHeight-1}"
+                bottom.topGroup="{arrowHeight}">
+            <s:stroke>
+                <s:SolidColorStroke color="0x000000"/>
+            </s:stroke>
+            <s:fill>
+                <!--- @private -->
+                <s:SolidColor id="bgFill" color="#10142E"/>
+            </s:fill>
+        </s:Rect>
+
+        <s:Rect id="whiteHalo" top="1" right="1" left="1"
+                left.rightGroup="{arrowHeight}" right.leftGroup="{arrowHeight}"
+                top.bottomGroup="{arrowHeight}" height="12" topRightRadiusX="5"
+                topLeftRadiusX="5">
+            <s:fill>
+                <s:LinearGradient rotation="90">
+                    <s:GradientEntry color="#FFFFFF" ratio="0" alpha="0.5"/>
+                    <s:GradientEntry color="#FFFFFF" ratio="1" alpha="0"/>
+                </s:LinearGradient>
+            </s:fill>
+        </s:Rect>
+
+        <s:Group id="topArrow" top="0" includeIn="bottomGroup"
+                 mask="{topArrowMask}">
+
+            <s:Path id="topArrowPath" data="{topArrowPathData}">
+                <s:stroke>
+                    <s:SolidColorStroke color="0x000000"/>
+                </s:stroke>
+                <s:fill>
+                    <s:SolidColor color="#10142E" alpha="0.95"/>
+                </s:fill>
+            </s:Path>
+            <s:Path id="topArrowGlowPath" data="{topArrowPathData}" top="0.5">
+                <s:fill>
+                    <s:SolidColor color="#FFFFFF" alpha="0.5"/>
+                </s:fill>
+            </s:Path>
+        </s:Group>
+
+        <s:Group id="topArrowMask" left="0" right="0">
+
+            <s:Rect id="topArrowMaskPath" right="0" left="0"
+                    height="{topArrow.height - 1}">
+                <s:fill>
+                    <s:SolidColor/>
+                </s:fill>
+            </s:Rect>
+        </s:Group>
+
+        <s:Path id="downArrow" data="{downArrowPathData}" bottom="0"
+                includeIn="topGroup">
+            <s:stroke>
+                <s:SolidColorStroke color="0x000000"/>
+            </s:stroke>
+            <s:fill>
+                <s:SolidColor color="#10142E"/>
+            </s:fill>
+        </s:Path>
+
+        <s:Path id="leftArrow" data="{leftArrowPathData}" left="0"
+                includeIn="rightGroup">
+            <s:stroke>
+                <s:SolidColorStroke color="0x000000"/>
+            </s:stroke>
+            <s:fill>
+                <s:SolidColor color="#10142E"/>
+            </s:fill>
+        </s:Path>
+
+        <s:Path id="rightArrow" data="{rightArrowPathData}" right="0"
+                includeIn="leftGroup">
+            <s:stroke>
+                <s:SolidColorStroke color="0x000000"/>
+            </s:stroke>
+            <s:fill>
+                <s:SolidColor color="#10142E"/>
+            </s:fill>
+        </s:Path>
+
+        <s:filters>
+            <s:DropShadowFilter angle="90" color="#FFFFFF" alpha="0.5"
+                                inner="true" blurY="2" blurX="2" distance="1"/>
+        </s:filters>
+    </s:Group>
+
+
+
+
+    <!--
+    Note: setting the minimum size to 0 here so that changes to the host component's
+    size will not be thwarted by this skin part's minimum size.   This is a compromise,
+    more about it here: http://bugs.adobe.com/jira/browse/SDK-21143
+    -->
+    <!--- @copy spark.components.SkinnableContainer#contentGroup -->
+    <s:Group id="borderGroup" visible.closeGroup="false" top="0" right="0"
+             left="0" bottom="0" left.rightGroup="{arrowHeight-1}"
+             right.leftGroup="{arrowHeight-1}" top.bottomGroup="{arrowHeight-1}"
+             bottom.topGroup="{arrowHeight-1}" minWidth="0" minHeight="0">
+        <s:layout>
+            <s:VerticalLayout paddingTop="5" paddingRight="5" paddingBottom="5"
+                              paddingLeft="5"/>
+        </s:layout>
+        <s:Group id="contentGroup" minWidth="0" minHeight="0">
+            <s:layout>
+                <s:VerticalLayout horizontalAlign="justify" gap="5"/>
+            </s:layout>
+        </s:Group>
+    </s:Group>
+
+</s:Skin>

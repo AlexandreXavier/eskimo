@@ -1,0 +1,140 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace components "com.piaction.components.*";
+@namespace controls "com.piaction.controls.*";
+@namespace ios "com.piaction.skins.ios.*";
+
+@media (os-platform:"IOS")
+{
+    global
+    {
+        color: #000000;
+    }
+    
+    
+    s|Button
+    {
+        skinClass:ClassReference("com.piaction.skins.mobile.ios.ButtonSkin");
+        cornerRadius: 5;
+        fontWeight: normal;
+        chromeColor: #5A7FAA;
+        color: #FFFFFF;
+    }
+    
+    s|Form
+    {
+        skinClass:ClassReference("com.piaction.skins.mobile.ios.FormSkin");
+    } 
+    
+    s|ButtonBar
+    {
+        skinClass: ClassReference("com.piaction.skins.mobile.ios.ButtonBarSkin");
+    }
+    
+    s|ButtonBarButton
+    {
+        cornerRadius: 5;
+        chromeColor: #5A7FAA;
+    }
+    
+    s|CheckBox
+    {
+        skinClass: ClassReference("com.piaction.skins.mobile.ios.MobileCheckBoxSkin");
+        symbolColor: #0073F5;
+    }
+    
+    s|HSlider
+    {
+        skinClass: ClassReference("com.piaction.skins.mobile.ios.HSliderSkin");
+    }
+    
+    controls|SkinnableAlert
+    {
+        skinClass: ClassReference("com.piaction.skins.mobile.ios.AlertSkin");
+    }
+    
+    components|UniqueChoiceList
+    {
+        skinClass: ClassReference("com.piaction.skins.mobile.ios.UniqueChoiceListSkin");
+        contentBackgroundAlpha: 0;
+    }
+    
+    
+    components|PageIndicator
+    {
+        pageItemColor: #FFFFFF;
+        pageItemAlpha: 0.5;
+        selectedPageItemColor: #FFFFFF;
+        selectedPageItemAlpha: 1;
+        pageItemSize: 30;
+        backgroundColor: #000000;
+        backgroundAlpha: 0;
+        borderAlpha: 0;
+    }
+}
+
+@media (os-platform:"ANDROID")
+{
+    controls|SkinnableAlert
+    {
+        skinClass: ClassReference("com.piaction.skins.mobile.android.AlertSkin");
+    }
+    
+    
+    components|UniqueChoiceList
+    {
+        skinClass: ClassReference("com.piaction.skins.mobile.android.UniqueChoiceListSkin");
+        contentBackgroundAlpha: 0;
+    }
+
+}
+
+components|MobileContextMenu
+{
+    skinClass: ClassReference("com.piaction.skins.mobile.android.MobileContextMenuSkin");
+    headerHeight: 50;
+    contextMenuIcon: Embed(source="com/piaction/skins/mobile/android/assets/contextMenuIcon.png");
+    headerVisible: true;
+}
+
+components|ConfirmButton
+{
+    skinClass: ClassReference("com.piaction.skins.mobile.ios.ConfirmButtonSkin");   
+    confirmChromeColor: #FF3333;
+    buttonColor: #FFFFFF;
+}
+
+components|PopOver
+{
+    skinClass: ClassReference("com.piaction.skins.mobile.ios.PopOverSkin");
+}
+
+components|ComboBox
+{
+    skinClass: ClassReference("com.piaction.skins.mobile.android.ComboBoxSkin");
+}
+
+components|PopOver s|Button
+{
+    chromeColor: #EEEEEE;
+    color: #000000;
+}
+  
+components|ListWheel
+{
+    skinClass: ClassReference("com.piaction.skins.mobile.ios.ListWheelSkin"); 
+}
+
+components|PageIndicator
+{
+  pageItemColor: #FFFFFF;
+  pageItemAlpha: 0.5;
+  selectedPageItemColor: #FFFFFF;
+  selectedPageItemAlpha: 1;
+  pageItemSize: 30;
+  backgroundColor: #000000;
+  backgroundAlpha: 0;
+  borderAlpha: 0;
+}
+

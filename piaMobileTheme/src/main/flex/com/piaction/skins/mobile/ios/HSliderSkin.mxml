@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+    ADOBE SYSTEMS INCORPORATED
+    Copyright 2008 Adobe Systems Incorporated
+    All Rights Reserved.
+
+    NOTICE: Adobe permits you to use, modify, and distribute this file
+    in accordance with the terms of the license agreement accompanying it.
+-->
+
+<!--- The default skin class for the Spark HSlider component. The thumb and track skins are defined by the
+HSliderThumbSkin and HSliderTrackSkin classes, respectively.  
+
+       @see spark.components.HSlider
+       @see spark.skins.spark.HSliderThumbSkin
+       @see spark.skins.spark.HSliderTrackSkin
+                
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:fb="http://ns.adobe.com/flashbuilder/2009" minHeight="44" alpha.disabled="0.5">
+
+    <fx:Metadata>
+    <![CDATA[ 
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.HSlider")]
+    ]]>
+    </fx:Metadata> 
+    
+    <fx:Script fb:purpose="styling">
+        
+      <![CDATA[
+        import mx.core.DPIClassification;
+        import mx.core.FlexGlobals;
+      
+        /* Define the skin elements that should not be colorized. 
+           For slider, the skin itself is colorized but the individual parts are not. */
+        static private const exclusions:Array = ["track", "trackGrey", "thumb"];
+
+        /**
+         * @private
+         */  
+        override public function get colorizeExclusions():Array {return exclusions;}
+        
+        /**
+         * @private
+         */
+        override protected function initializationComplete():void
+        {
+            useChromeColor = true;
+            super.initializationComplete();
+            
+            
+            switch(applicationDPI)
+            {
+              case DPIClassification.DPI_320:
+              {
+                this.minHeight = 58;
+                thumb.width = thumb.height = 58;
+                track.top = track.bottom = trackBlue.top = trackBlue.bottom = 16;
+                break;
+              }
+              case DPIClassification.DPI_240:
+              {
+                this.minHeight = 44;
+                thumb.width = thumb.height = 44;
+                track.top = track.bottom = trackBlue.top = trackBlue.bottom = 12.5;
+                break;
+              }
+              case DPIClassification.DPI_160:
+              {
+                this.minHeight = 29;
+                thumb.width = thumb.height = 29;
+                track.top = track.bottom = trackBlue.top = trackBlue.bottom = 8;
+                break;
+              }
+                
+            }
+        }
+      
+      protected function get applicationDPI():Number
+      {
+        return FlexGlobals.topLevelApplication.applicationDPI;
+      }
+      
+      override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+      {
+        super.updateDisplayList(unscaledWidth, unscaledHeight);
+      }
+      ]]>
+    </fx:Script>
+    
+    <fx:Script>
+        /**
+         *  @private
+         */  
+        override protected function measure() : void
+        {
+            // Temporarily move the thumb to the left of the Slider so measurement
+            // doesn't factor in its x position. This allows resizing the
+            // HSlider to less than 100px in width. 
+            var thumbPos:Number = thumb.getLayoutBoundsX();
+            thumb.setLayoutBoundsPosition(0, thumb.getLayoutBoundsY());
+            super.measure();
+            thumb.setLayoutBoundsPosition(thumbPos, thumb.getLayoutBoundsY());
+        }
+    </fx:Script>
+    
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+    </s:states>
+    
+    <fx:Declarations>
+        
+    </fx:Declarations>
+    
+    <!--- The default skin class is HSliderTrackSkin. 
+            @copy spark.components.supportClasses.TrackBase#track
+            @see spark.skins.spark.HSliderTrackSkin -->
+    <s:Button id="track" left="0" right="0" top="10" bottom="10" minWidth="33" width="100" 
+              tabEnabled="false"
+              skinClass="com.piaction.skins.mobile.ios.HSliderTrackSkin" chromeColor="#f8f8f8" />
+  
+    <s:Button id="trackBlue" left="0" top="10" bottom="10" minWidth="33"
+              tabEnabled="false" width="{thumb.x + thumb.width/2}"
+              skinClass="com.piaction.skins.mobile.ios.HSliderTrackSkin" chromeColor="#71a7f1" />
+              
+    <!--- The default skin class is HSliderThumbSkin.
+            @copy spark.components.supportClasses.TrackBase#thumb 
+            @see spark.skins.spark.HSliderThumbSkin -->
+    <s:Button id="thumb" top="0" bottom="0" width="44" height="44" 
+              tabEnabled="false"
+              skinClass="com.piaction.skins.mobile.ios.HSliderThumbSkin"/>
+</s:SparkSkin>
