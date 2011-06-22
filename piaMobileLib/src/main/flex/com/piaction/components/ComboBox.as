@@ -31,8 +31,6 @@ package com.piaction.components
         
         private var _labelField:String;
         
-        public var change:Function;
-        
         private var popUp:UniqueChoiceList = new UniqueChoiceList();
         
         /**
@@ -81,10 +79,6 @@ package com.piaction.components
               selectedLabel.text = selecteditem[labelField];
             }
             PopUpManager.removePopUp(popUp);
-            if(change != null)
-            {
-              change();
-            }
         }
         
         public function get selectedItem():Object
