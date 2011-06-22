@@ -69,7 +69,17 @@
 
   <s:HSlider stepSize="0.1" width="300"/>
 
-
+    <components:ComboBox width="80%">
+        <components:dataProvider>
+            <s:ArrayCollection>
+                <fx:Object label="15 minutes"/>
+                <fx:Object label="30 minutes"/>
+                <fx:Object label="45 minutes"/>
+                <fx:Object label="1 hour"/>
+            </s:ArrayCollection>
+        </components:dataProvider>
+    </components:ComboBox>
+    
   <s:VGroup>
     <s:HGroup>
       <s:Button label="Prev" click="pageIndicator.previous()"/>
