@@ -3,6 +3,7 @@
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace components "com.piaction.components.*";
 @namespace controls "com.piaction.controls.*";
+@namespace ios "com.piaction.skins.ios.*";
 
 @media (os-platform:"IOS")
 {
@@ -59,10 +60,6 @@
         contentBackgroundAlpha: 0;
     }
     
-    components|PopOver
-    {
-        skinClass: ClassReference("com.piaction.skins.ios.PopOverSkin");
-    }
     
     components|PageIndicator
     {
@@ -91,15 +88,36 @@
         contentBackgroundAlpha: 0;
     }
 
-    components|PageIndicator
-    {
-      pageItemColor: #FFFFFF;
-      pageItemAlpha: 0.5;
-      selectedPageItemColor: #FFFFFF;
-      selectedPageItemAlpha: 1;
-      pageItemSize: 30;
-      backgroundColor: #000000;
-      backgroundAlpha: 0;
-      borderAlpha: 0;
-    }
 }
+
+components|ConfirmButton
+{
+    skinClass: ClassReference("com.piaction.skins.ios.ConfirmButtonSkin");   
+    confirmChromeColor: #FF3333;
+    buttonColor: #FFFFFF;
+}
+
+components|PopOver
+{
+    skinClass: ClassReference("com.piaction.skins.ios.PopOverSkin");
+}
+
+components|PopOver s|Button
+{
+    chromeColor: #EEEEEE;
+    color: #000000;
+}
+  
+
+components|PageIndicator
+{
+  pageItemColor: #FFFFFF;
+  pageItemAlpha: 0.5;
+  selectedPageItemColor: #FFFFFF;
+  selectedPageItemAlpha: 1;
+  pageItemSize: 30;
+  backgroundColor: #000000;
+  backgroundAlpha: 0;
+  borderAlpha: 0;
+}
+
