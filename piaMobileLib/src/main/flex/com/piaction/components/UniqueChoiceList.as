@@ -1,12 +1,8 @@
 package com.piaction.components
 {
-  import com.piaction.skins.android.UniqueChoiceListSkin;
-  
   import flash.events.Event;
   
   import mx.collections.IList;
-  import mx.core.FlexGlobals;
-  import mx.styles.CSSStyleDeclaration;
   
   import spark.components.List;
   import spark.components.supportClasses.SkinnableComponent;
@@ -17,6 +13,8 @@ package com.piaction.components
    */
   [Event(name="change", type="spark.events.IndexChangeEvent")]
   
+  [Style(name="contentBackgroundAlpha", type="Number", inherit="yes", minValue="0.0", maxValue="1.0")]
+
   /**
    * Component that switch between ListWheel and list of radioButton item
    */
@@ -142,7 +140,7 @@ package com.piaction.components
     /**
      * @private
      */
-    public function get selecteditem():Object
+    public function get selectedItem():Object
     {
       return listDisplay.selectedItem;
     }

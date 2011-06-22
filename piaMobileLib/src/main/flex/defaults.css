@@ -56,6 +56,7 @@
     components|UniqueChoiceList
     {
         skinClass: ClassReference("com.piaction.skins.ios.UniqueChoiceListSkin");
+        contentBackgroundAlpha: 0;
     }
     
     components|PopOver
@@ -87,8 +88,9 @@
     components|UniqueChoiceList
     {
         skinClass: ClassReference("com.piaction.skins.android.UniqueChoiceListSkin");
+        contentBackgroundAlpha: 0;
     }
-    
+
     components|PageIndicator
     {
       pageItemColor: #FFFFFF;
