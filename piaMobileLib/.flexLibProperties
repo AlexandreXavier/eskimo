@@ -40,6 +40,12 @@
     <classEntry path="com.piaction.skins.ios.ConfirmButtonSkin"/>
     <classEntry path="com.piaction.skins.ios.FormSkin"/>
     <classEntry path="com.piaction.skins.ios.MobileCheckBoxSkin"/>
+    <classEntry path="com.piaction.skins.android.UniqueChoiceListSkin"/>
+    <classEntry path="com.piaction.skins.ios.UniqueChoiceListSkin"/>
+    <classEntry path="com.piaction.components.PopOver"/>
+    <classEntry path="com.piaction.components.PageIndicatorItem"/>
+    <classEntry path="com.piaction.skins.ios.DeletableItemRenderer"/>
+    <classEntry path="com.piaction.skins.ios.DeletableItemRendererOverlay"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
