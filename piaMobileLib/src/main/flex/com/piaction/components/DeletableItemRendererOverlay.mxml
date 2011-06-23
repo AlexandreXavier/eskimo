@@ -30,7 +30,7 @@
             
             private static var classConstructed:Boolean = classConstruct();
             
-            [Embed(source = 'com/piaction/assets/img/delete.png')]
+            [Embed(source = '/com/piaction/assets/img/delete.png')]
             private static var defaultEditIcon:Class;
             
             protected var _longPressTimer:Timer = new Timer(1500, 1);
