@@ -22,7 +22,8 @@
 
         <s:HGroup paddingLeft="8" width="100%" verticalAlign="middle">
             <s:Label id="selectedLabel" text="Select" width="100%"/>
-            <!--<s:Image source="@Embed(source='com/piaction/assets/img/combo-icon.png')"/>-->
+            <s:Image 
+                     source="@Embed(source='com/piaction/skins/mobile/android/assets/combo-icon.png')"/>
         </s:HGroup>
     </s:Group>
 </s:Skin>
