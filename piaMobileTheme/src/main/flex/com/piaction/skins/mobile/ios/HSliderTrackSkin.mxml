@@ -3,6 +3,9 @@
         xmlns:s="library://ns.adobe.com/flex/spark">
   <!-- host component -->
   <fx:Metadata>
+    /** 
+    * A strongly typed property that references the component to which this skin is applied.
+    */
     [HostComponent("spark.components.Button")]
   </fx:Metadata>
   
@@ -28,6 +31,7 @@
     <s:State name="up" />
   </s:states>
   
+  <!--- The track braground -->
   <s:Rect id="background" top="0" right="0" bottom="0" left="0" radiusX="12">
     <s:stroke>
       <s:SolidColorStroke color="#818181"/>
@@ -37,6 +41,7 @@
     </s:fill>
   </s:Rect>
   
+  <!--- The inner shadow -->
   <s:Rect id="innerShadow" top="1" right="1" left="1" bottom="1" radiusX="12">
     <s:fill>
       <s:LinearGradient rotation="90">

@@ -1,26 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--
-
-    ADOBE SYSTEMS INCORPORATED
-    Copyright 2008 Adobe Systems Incorporated
-    All Rights Reserved.
-
-    NOTICE: Adobe permits you to use, modify, and distribute this file
-    in accordance with the terms of the license agreement accompanying it.
--->
-
-<!--- The default skin class for the Spark HSlider component. The thumb and track skins are defined by the
+<!--- The IOS skin class for the Spark HSlider component. The thumb and track skins are defined by the
 HSliderThumbSkin and HSliderTrackSkin classes, respectively.  
 
        @see spark.components.HSlider
-       @see spark.skins.spark.HSliderThumbSkin
-       @see spark.skins.spark.HSliderTrackSkin
-                
-      @langversion 3.0
-      @playerversion Flash 10
-      @playerversion AIR 1.5
-      @productversion Flex 4
+       @see com.piaction.skins.ios.HSliderThumbSkin
+       @see com.piaction.skins.ios.HSliderTrackSkin
 -->
 <s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
     xmlns:fb="http://ns.adobe.com/flashbuilder/2009" minHeight="44" alpha.disabled="0.5">
@@ -28,7 +13,7 @@ HSliderThumbSkin and HSliderTrackSkin classes, respectively.
     <fx:Metadata>
     <![CDATA[ 
         /** 
-         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         * A strongly typed property that references the component to which this skin is applied.
          */
         [HostComponent("spark.components.HSlider")]
     ]]>
@@ -42,7 +27,7 @@ HSliderThumbSkin and HSliderTrackSkin classes, respectively.
       
         /* Define the skin elements that should not be colorized. 
            For slider, the skin itself is colorized but the individual parts are not. */
-        static private const exclusions:Array = ["track", "trackGrey", "thumb"];
+        static private const exclusions:Array = ["track", "trackBlue", "thumb"];
 
         /**
          * @private
@@ -122,20 +107,23 @@ HSliderThumbSkin and HSliderTrackSkin classes, respectively.
         
     </fx:Declarations>
     
-    <!--- The default skin class is HSliderTrackSkin. 
-            @copy spark.components.supportClasses.TrackBase#track
-            @see spark.skins.spark.HSliderTrackSkin -->
+    <!--- A skin part that defines a track where the thumb progress.
+          The IOS skin class is HSliderTrackSkin. 
+            @see com.piaction.skins.ios.HSliderTrackSkin -->
     <s:Button id="track" left="0" right="0" top="10" bottom="10" minWidth="33" width="100" 
               tabEnabled="false"
               skinClass="com.piaction.skins.mobile.ios.HSliderTrackSkin" chromeColor="#f8f8f8" />
   
+  <!--- A skin part that defines the track where the thumb has already progress. 
+        The IOS skin class is HSliderTrackSkin. 
+            @see com.piaction.skins.ios.HSliderTrackSkin -->
     <s:Button id="trackBlue" left="0" top="10" bottom="10" minWidth="33"
               tabEnabled="false" width="{thumb.x + thumb.width/2}"
               skinClass="com.piaction.skins.mobile.ios.HSliderTrackSkin" chromeColor="#71a7f1" />
               
-    <!--- The default skin class is HSliderThumbSkin.
-            @copy spark.components.supportClasses.TrackBase#thumb 
-            @see spark.skins.spark.HSliderThumbSkin -->
+    <!--- A skin part that defines a button that can be dragged along the track to increase or decrease the value property. 
+          The IOS skin class is HSliderThumbSkin. 
+            @see com.piaction.skins.ios.HSliderThumbSkin -->
     <s:Button id="thumb" top="0" bottom="0" width="44" height="44" 
               tabEnabled="false"
               skinClass="com.piaction.skins.mobile.ios.HSliderThumbSkin"/>

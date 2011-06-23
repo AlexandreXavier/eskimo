@@ -3,6 +3,9 @@
         xmlns:s="library://ns.adobe.com/flex/spark" alpha.disabled="1">
   <!-- host component -->
   <fx:Metadata>
+    /** 
+    * A strongly typed property that references the component to which this skin is applied.
+    */
     [HostComponent("spark.components.Button")]
   </fx:Metadata>
   
@@ -18,9 +21,9 @@
   name=iconDisplay, type=spark.primitives.BitmapImage, required=false
   name=labelDisplay, type=spark.core.IDisplayText, required=false
   -->
-  
-  <!-- border -->
-  <s:Ellipse top="0" right="0" bottom="0" left="0">
+  <!-- Border -->
+  <!--- The thumb border -->
+  <s:Ellipse id="border" top="0" right="0" bottom="0" left="0">
     <s:stroke>
       <s:SolidColorStroke color="#a8a8a8"/>
     </s:stroke>
@@ -28,9 +31,10 @@
       <s:SolidColor color="#fafafa"/>
     </s:fill>
   </s:Ellipse>
-  
-  <!-- fill -->
-  <s:Ellipse top="2" right="2" bottom="2" left="2">
+
+  <!-- Fill -->
+  <!--- The thumb fill -->
+  <s:Ellipse id="fill" top="2" right="2" bottom="2" left="2">
     <s:fill>
       <s:LinearGradient rotation="90">
         <s:GradientEntry ratio="0" color="#000000" alpha="0.15" alpha.down="0.4"/>
@@ -38,8 +42,8 @@
       </s:LinearGradient>
     </s:fill>
   </s:Ellipse>
-  
-  <s:Ellipse id="whiteHalo" left="0" right="0" top="0" bottom="0">
+  <!--- The external ellipse -->
+  <s:Ellipse id="externalEllipse" left="0" right="0" top="0" bottom="0">
     <s:fill>
       <s:LinearGradient rotation="90">
         <s:GradientEntry color="#FFFFFF" ratio="0" alpha=".3"/>
@@ -49,7 +53,8 @@
   </s:Ellipse>
   
   <!-- drop shadow -->
-  <s:Ellipse left="-2" top="-2" right="-2" bottom="-2">
+  <!--- The external drop shadow -->
+  <s:Ellipse id="externalShadow" left="-2" top="-2" right="-2" bottom="-2">
     <s:stroke>
       <s:LinearGradientStroke rotation="90" weight="1">
         <s:GradientEntry color="0x000000" alpha="0" />
@@ -58,7 +63,8 @@
       </s:LinearGradientStroke>
     </s:stroke>
   </s:Ellipse>
-  <s:Ellipse left="-1" top="-1" right="-1" bottom="-1">
+  <!--- The drop shadow near the border -->
+  <s:Ellipse id="dropShadow" left="-1" top="-1" right="-1" bottom="-1">
     <s:stroke>
       <s:LinearGradientStroke rotation="90" weight="1">
         <s:GradientEntry color="0x000000" alpha="0.011" />
@@ -66,9 +72,4 @@
       </s:LinearGradientStroke>
     </s:stroke>
   </s:Ellipse>
-  
-  <!-- shadow -->
-  <!--<s:filters>
-    <s:DropShadowFilter angle="90" alpha="0.75" distance="2" alpha.disabled="1"/>
-  </s:filters>--> 
 </s:Skin>
