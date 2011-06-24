@@ -2,30 +2,56 @@ package com.piaction.components
 {
   import flexunit.framework.Assert;
   
+  import mx.events.FlexEvent;
+  
+  import org.flexunit.async.Async;
+  import org.fluint.sequence.SequenceCaller;
+  import org.fluint.sequence.SequenceRunner;
+  import org.fluint.sequence.SequenceSetter;
+  import org.fluint.sequence.SequenceWaiter;
+  import org.fluint.uiImpersonation.UIImpersonator;
+  
   public class PageIndicatorTest
   {
     
     private var _pageIndicator:PageIndicator;
     
-    [Before]
+    [Before(ui)]
     public function setUp():void
     {
       _pageIndicator = new PageIndicator();
+      UIImpersonator.addChild(_pageIndicator);
     }
     
-    [After]
+    [After(ui)]
     public function tearDown():void
     {
+      UIImpersonator.removeChild(_pageIndicator);
+      _pageIndicator = null;
     }
     
-    [BeforeClass]
-    public static function setUpBeforeClass():void
+    
+    [Test(async)]
+    public function testSetPageCountLesserThanSelectedIndex():void
     {
+      var passThroughData:Object = new Object();
+      
+      passThroughData.propertyName = 'selectedIndex';
+      passThroughData.propertyValue = 2;
+      _pageIndicator.selectedIndex
+      var sequence:SequenceRunner = new SequenceRunner(this);
+      sequence.addStep(new SequenceSetter(_pageIndicator, {pageCount: 4}));
+      sequence.addStep(new SequenceSetter(_pageIndicator, {selectedIndex: 3}));
+      sequence.addStep(new SequenceWaiter(_pageIndicator, FlexEvent.UPDATE_COMPLETE, 1500));
+      sequence.addStep(new SequenceSetter(_pageIndicator, {pageCount: 3}));
+      sequence.addStep(new SequenceWaiter(_pageIndicator, FlexEvent.UPDATE_COMPLETE, 1500));
+      sequence.addStep(new SequenceCaller(_pageIndicator, handleVerifyProperty, [passThroughData]));
+      sequence.run();
     }
     
-    [AfterClass]
-    public static function tearDownAfterClass():void
+    protected function handleVerifyProperty(passThroughData:Object):void
     {
+      Assert.assertEquals(passThroughData.propertyValue, _pageIndicator[passThroughData.propertyName]);
     }
     
     [Test]
