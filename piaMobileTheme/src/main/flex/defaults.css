@@ -4,6 +4,7 @@
 @namespace components "com.piaction.components.*";
 @namespace controls "com.piaction.controls.*";
 @namespace ios "com.piaction.skins.ios.*";
+@namespace ios1 "com.piaction.skins.mobile.ios.*";
 
 @media (os-platform:"IOS")
 {
@@ -16,11 +17,14 @@
     s|Button
     {
         skinClass:ClassReference("com.piaction.skins.mobile.ios.ButtonSkin");
-        cornerRadius: 5;
         fontWeight: normal;
-        chromeColor: #5A7FAA;
+        chromeColor: #4A6A9B;
         color: #FFFFFF;
+        textShadowColor: #000000;
+        textShadowAlpha: 0.5;
+        
     }
+    
     
     s|Form
     {
@@ -30,12 +34,16 @@
     s|ButtonBar
     {
         skinClass: ClassReference("com.piaction.skins.mobile.ios.ButtonBarSkin");
+        color: #FFFFFF;
     }
     
     s|ButtonBarButton
     {
+        fontWeight: normal;
         cornerRadius: 5;
-        chromeColor: #5A7FAA;
+        chromeColor: #4A6A9B;
+        textShadowColor: #000000;
+        textShadowAlpha: 0.5;
     }
     
     s|CheckBox
@@ -72,6 +80,7 @@
         backgroundAlpha: 0;
         borderAlpha: 0;
     }
+    
 }
 
 @media (os-platform:"ANDROID")

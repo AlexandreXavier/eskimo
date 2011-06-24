@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Graphic  version="2.0" xmlns="http://ns.adobe.com/fxg/2008"
+           viewWidth="58" viewHeight="28" scaleGridLeft="5" scaleGridTop="5" scaleGridRight="48" scaleGridBottom="18">
+
+
+    <Rect width="58" height="28">
+        <fill>
+            <LinearGradient rotation="90">
+                <GradientEntry color="#FFFFFF" ratio="0" alpha=".3"/>
+                <GradientEntry color="#FFFFFF" ratio=".49" alpha="0"/>
+                <GradientEntry color="#FFFFFF" ratio="1" alpha="0"/>
+            </LinearGradient>
+        </fill>
+    </Rect>
+
+    <Rect y="1" width="58" height="26" topLeftRadiusX="5" bottomLeftRadiusX="5">
+        <stroke>
+            <LinearGradientStroke rotation="90" weight="2">
+                <GradientEntry color="#000000" alpha=".3" ratio="0"/>
+                <GradientEntry color="#000000" alpha="0" ratio=".2"/>
+            </LinearGradientStroke>
+        </stroke>
+    </Rect>
+
+    <Rect   width="58" height="27" topLeftRadiusX="5" bottomLeftRadiusX="5">
+        <stroke>
+            <SolidColorStroke weight="1" color="#222222"/>
+        </stroke>
+    </Rect>
+
+    <Rect y="1" width="58" height="28"  topLeftRadiusX="5" bottomLeftRadiusX="5">
+        <stroke>
+            <LinearGradientStroke rotation="90" weight="1">
+                <GradientEntry color="#FFFFFF" alpha="0" ratio="0.8"/>
+                <GradientEntry color="#FFFFFF" alpha="0.3" ratio="1"/>
+            </LinearGradientStroke>
+        </stroke>
+    </Rect>
+    
+    <Rect width="58" height="28" topLeftRadiusX="5" bottomLeftRadiusX="5">
+        <fill>
+            <SolidColor color="#000000" alpha="0.2"/>
+        </fill>
+    </Rect>
+</Graphic>

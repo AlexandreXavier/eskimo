@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Graphic  version="2.0" xmlns="http://ns.adobe.com/fxg/2008"
+           viewWidth="58" viewHeight="28" scaleGridLeft="5" scaleGridTop="5" scaleGridRight="48" scaleGridBottom="18">
+
+
+    <Rect  width="58" height="28">
+        <fill>
+            <LinearGradient rotation="90">
+                <GradientEntry color="#F5F5F5" ratio="0"/>
+                <GradientEntry color="#DBDBDB" ratio=".49"/>
+                <GradientEntry color="#CCCCCC" ratio=".5"/>
+                <GradientEntry color="#CCCCCC" ratio="1"/>
+            </LinearGradient>
+        </fill>
+    </Rect>
+</Graphic>
