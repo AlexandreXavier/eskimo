@@ -16,7 +16,11 @@ package com.piaction.skins.mobile.ios
     
     import spark.skins.mobile.supportClasses.MobileSkin;
     
-    
+    /**
+     * The IOS skin class for the last Button of ButtonBar component.
+     *
+     *  @see spark.components.ButtonBar
+     */
     public class ButtonBarLastButtonSkin extends ButtonSkin
     {
         public function ButtonBarLastButtonSkin()
@@ -26,41 +30,7 @@ package com.piaction.skins.mobile.ios
             switch (applicationDPI)
             {
                 case DPIClassification.DPI_320:
-                {
-                    // 320
-                    layoutBorderSize = 0;
-                    layoutPaddingTop = 0;
-                    layoutPaddingBottom = 0;
-                    layoutPaddingLeft = 20;
-                    layoutPaddingRight = 20;
-                    measuredDefaultWidth = 116;
-                    measuredDefaultHeight = 54;
-                    
-                    upBorderSkin = ButtonBarLast_up;
-                    downBorderSkin = ButtonBarLast_down;
-                    selectedBorderSkin = ButtonBarLast_selected;
-                    fillClass = ButtonBarLast_fill;
-                    
-                    break;
-                }
                 case DPIClassification.DPI_240:
-                {
-                    // 240
-                    layoutBorderSize = 0;
-                    layoutPaddingTop = 0;
-                    layoutPaddingBottom = 0;
-                    layoutPaddingLeft = 15;
-                    layoutPaddingRight = 15;
-                    measuredDefaultWidth = 87;
-                    measuredDefaultHeight = 42;
-                    
-                    upBorderSkin = ButtonBarLast_up;
-                    downBorderSkin = ButtonBarLast_down;
-                    selectedBorderSkin = ButtonBarLast_selected;
-                    fillClass = ButtonBarLast_fill;
-                    
-                    break;
-                }
                 default:
                 {
                     // 160
@@ -85,7 +55,9 @@ package com.piaction.skins.mobile.ios
             minHeight = measuredDefaultHeight;
         }
         
-        
+        /**
+         *  @private
+         */
         protected var selectedBorderSkin:Class;
         
         /**

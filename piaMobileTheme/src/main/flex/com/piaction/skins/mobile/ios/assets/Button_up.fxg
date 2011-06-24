@@ -3,7 +3,7 @@
            viewWidth="58" viewHeight="28" scaleGridLeft="5" scaleGridTop="5" scaleGridRight="48" scaleGridBottom="18">
 
 
-    <Rect width="58" height="28">
+    <Rect width="58" height="28" radiusX="5">
         <fill>
             <LinearGradient rotation="90">
                 <GradientEntry color="#FFFFFF" ratio="0" alpha=".3"/>
@@ -21,9 +21,9 @@
         </stroke>
     </Rect>
 
-    <Rect width="58" height="27" radiusX="5">
+    <Rect width="58" height="28" radiusX="5">
         <stroke>
-            <SolidColorStroke weight="1" color="#222222"/>
+            <SolidColorStroke weight="1" color="#222222" alpha="0.7"/>
         </stroke>
     </Rect>
     

@@ -22,9 +22,9 @@
         </stroke>
     </Rect>
 
-    <Rect   width="58" height="27">
+    <Rect   width="58" height="28">
         <stroke>
-            <SolidColorStroke weight="1" color="#222222"/>
+            <SolidColorStroke weight="1" color="#222222" alpha="0.7"/>
         </stroke>
     </Rect>
 
