@@ -8,7 +8,7 @@ HSliderThumbSkin and HSliderTrackSkin classes, respectively.
        @see com.piaction.skins.ios.HSliderTrackSkin
 -->
 <s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
-    xmlns:fb="http://ns.adobe.com/flashbuilder/2009" minHeight="44" alpha.disabled="0.5">
+    xmlns:fb="http://ns.adobe.com/flashbuilder/2009" minHeight="29" alpha.disabled="0.5">
 
     <fx:Metadata>
     <![CDATA[ 
@@ -27,7 +27,7 @@ HSliderThumbSkin and HSliderTrackSkin classes, respectively.
       
         /* Define the skin elements that should not be colorized. 
            For slider, the skin itself is colorized but the individual parts are not. */
-        static private const exclusions:Array = ["track", "trackBlue", "thumb"];
+        static private const exclusions:Array = ["track", "thumb"];
 
         /**
          * @private
@@ -41,39 +41,7 @@ HSliderThumbSkin and HSliderTrackSkin classes, respectively.
         {
             useChromeColor = true;
             super.initializationComplete();
-            
-            
-            switch(applicationDPI)
-            {
-              case DPIClassification.DPI_320:
-              {
-                this.minHeight = 58;
-                thumb.width = thumb.height = 58;
-                track.top = track.bottom = trackBlue.top = trackBlue.bottom = 16;
-                break;
-              }
-              case DPIClassification.DPI_240:
-              {
-                this.minHeight = 44;
-                thumb.width = thumb.height = 44;
-                track.top = track.bottom = trackBlue.top = trackBlue.bottom = 12.5;
-                break;
-              }
-              case DPIClassification.DPI_160:
-              {
-                this.minHeight = 29;
-                thumb.width = thumb.height = 29;
-                track.top = track.bottom = trackBlue.top = trackBlue.bottom = 8;
-                break;
-              }
-                
-            }
         }
-      
-      protected function get applicationDPI():Number
-      {
-        return FlexGlobals.topLevelApplication.applicationDPI;
-      }
       
       override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
       {
@@ -110,21 +78,21 @@ HSliderThumbSkin and HSliderTrackSkin classes, respectively.
     <!--- A skin part that defines a track where the thumb progress.
           The IOS skin class is HSliderTrackSkin. 
             @see com.piaction.skins.ios.HSliderTrackSkin -->
-    <s:Button id="track" left="0" right="0" top="10" bottom="10" minWidth="33" width="100" 
+    <s:Button id="track" left="0" right="0" height="13" verticalCenter="0"
               tabEnabled="false"
               skinClass="com.piaction.skins.mobile.ios.HSliderTrackSkin" chromeColor="#f8f8f8" />
   
   <!--- A skin part that defines the track where the thumb has already progress. 
         The IOS skin class is HSliderTrackSkin. 
             @see com.piaction.skins.ios.HSliderTrackSkin -->
-    <s:Button id="trackBlue" left="0" top="10" bottom="10" minWidth="33"
+    <s:Button id="trackBlue" left="0" height="13" verticalCenter="0"
               tabEnabled="false" width="{thumb.x + thumb.width/2}"
-              skinClass="com.piaction.skins.mobile.ios.HSliderTrackSkin" chromeColor="#71a7f1" />
-              
-    <!--- A skin part that defines a button that can be dragged along the track to increase or decrease the value property. 
+              skinClass="com.piaction.skins.mobile.ios.HSliderTrackSkin" chromeColor="#71a7f1"/>
+
+  <!--- A skin part that defines a button that can be dragged along the track to increase or decrease the value property. 
           The IOS skin class is HSliderThumbSkin. 
             @see com.piaction.skins.ios.HSliderThumbSkin -->
-    <s:Button id="thumb" top="0" bottom="0" width="44" height="44" 
+    <s:Button id="thumb" top="0" bottom="0" width="29" height="29" 
               tabEnabled="false"
               skinClass="com.piaction.skins.mobile.ios.HSliderThumbSkin"/>
 </s:SparkSkin>
