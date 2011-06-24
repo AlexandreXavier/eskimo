@@ -24,7 +24,7 @@
 
     <Rect width="58" height="28" topLeftRadiusX="5" bottomLeftRadiusX="5">
         <stroke>
-            <SolidColorStroke weight="1" color="#222222" alpha="0.7"/>
+            <SolidColorStroke weight="1.2" color="#222222" alpha="0.7"/>
         </stroke>
     </Rect>
 

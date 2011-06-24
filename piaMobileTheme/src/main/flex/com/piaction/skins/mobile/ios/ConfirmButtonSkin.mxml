@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark"
-        clipAndEnableScrolling="true">
+        clipAndEnableScrolling="true" height="28">
     <!--- The default skin class for a Confirm button -->
     <!-- host component -->
     <fx:Metadata>
@@ -16,7 +16,28 @@
     name=cancelButton, type=spark.components.Button, required=true
     name=confirmButton, type=spark.components.Button, required=true
     -->
-
+    <fx:Script>
+        <![CDATA[
+            override protected function measure():void
+            {
+                super.measure();
+                
+                measuredHeight = 28;
+            }
+            
+            override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+            {
+                super.updateDisplayList(unscaledWidth, unscaledHeight);
+                
+                if (confirmationGroup)
+                {
+                    confirmationGroup.width = unscaledWidth;
+                    confirmationGroup.height = unscaledHeight;
+                }
+            
+            }
+        ]]>
+    </fx:Script>
 
     <s:states>
         <s:State name="normal"/>
@@ -25,14 +46,15 @@
 
     <s:Group width="100%" height="100%">
         <s:layout>
-            <s:VerticalLayout horizontalAlign="right" paddingBottom="2"/>
+            <s:VerticalLayout horizontalAlign="right" paddingBottom="2"
+                              paddingRight="1" paddingLeft="1"/>
         </s:layout>
         <s:Button id="button" includeIn="normal" height="100%"/>
     </s:Group>
 
     <!--- confirmation group -->
-    <s:HGroup id="confirmationGroup" includeIn="confirmation"
-              width="{this.width}" height="{this.height}" paddingBottom="2">
+    <s:HGroup id="confirmationGroup" includeIn="confirmation" paddingBottom="2"
+              paddingRight="1" paddingLeft="1">
         <!--- validation button -->
         <s:Button id="confirmButton" width="100%" height="100%"/>
         <!--- cancel button -->
