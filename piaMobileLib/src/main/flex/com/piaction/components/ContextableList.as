@@ -3,31 +3,16 @@ package com.piaction.components
     import com.piaction.events.ContextableListEvent;
     import com.piaction.events.MobileContextMenuEvent;
     
-    import flash.display.DisplayObject;
-    import flash.events.ContextMenuEvent;
     import flash.events.Event;
-    import flash.events.KeyboardEvent;
     import flash.events.MouseEvent;
     import flash.events.TimerEvent;
     import flash.geom.Point;
-    import flash.ui.Keyboard;
     import flash.utils.Timer;
     
-    import mx.collections.ArrayCollection;
-    import mx.core.FlexGlobals;
     import mx.core.mx_internal;
-    import mx.managers.PopUpManager;
-    import mx.managers.PopUpManagerChildList;
-    import mx.styles.CSSStyleDeclaration;
     
     import spark.components.IItemRenderer;
     import spark.components.List;
-    import spark.components.supportClasses.ItemRenderer;
-    import spark.events.IndexChangeEvent;
-    import spark.filters.DropShadowFilter;
-    import spark.filters.GlowFilter;
-    import spark.layouts.VerticalLayout;
-    import spark.layouts.supportClasses.LayoutBase;
     
     use namespace mx_internal;
     

@@ -129,6 +129,7 @@ components|PopOver
 components|ComboBox
 {
     skinClass: ClassReference("com.piaction.skins.mobile.android.ComboBoxSkin");
+    popupSkinClass: ClassReference("com.piaction.skins.mobile.android.PopUpUniqueChoiceSkin");
 }
 
 components|PopOver s|Button

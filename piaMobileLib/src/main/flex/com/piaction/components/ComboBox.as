@@ -3,18 +3,28 @@ package com.piaction.components
     import flash.events.MouseEvent;
     
     import mx.collections.IList;
+    import mx.controls.listClasses.ListBase;
+    import mx.events.FlexEvent;
     import mx.managers.PopUpManager;
     
     import spark.components.Label;
+    import spark.components.supportClasses.Skin;
     import spark.components.supportClasses.SkinnableComponent;
     import spark.events.IndexChangeEvent;
     
+    /**
+     * Skinclass of popup
+     */
+    [Style(name = "popupSkinClass", inherit = "no", type = "Class")]
+    
+    /**
+     * The ComboBox control lets the user make a single choice within a set of mutually exclusive choices.
+     */
     public class ComboBox extends SkinnableComponent
     {
         public function ComboBox()
         {
-            super();
-            this.labelField = "label";
+            super();ListBase
             this.addEventListener(MouseEvent.CLICK, popUpList);
         }
         
@@ -23,12 +33,18 @@ package com.piaction.components
         
         private var _dataProvider:IList;
         
-        private var _labelField:String;
+        private var _labelField:String = "label";
         
-        private var popUp:UniqueChoiceList = new UniqueChoiceList();
+        public var popUp:UniqueChoiceList = new UniqueChoiceList();
         
         /**
-         * LabelField of the list
+         *  The name of the field in the data provider items to display 
+         *  as the label. 
+         * 
+         *  If labelField is set to an empty string (""), no field will 
+         *  be considered on the data provider to represent label.
+         *
+         *  @default "label" 
          */
         public function get labelField():String
         {
@@ -56,11 +72,17 @@ package com.piaction.components
         
         public function popUpList(event:MouseEvent):void
         {
+            var popupSkinClass:Object = getStyle("popupSkinClass");
+            if(popupSkinClass != null)
+            {
+              popUp.setStyle("skinClass", popupSkinClass);
+            }
             popUp.dataProvider = dataProvider;
             popUp.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
             popUp.labelField = labelField;
-            popUp.width = stage.stageWidth * 0.9;
-            PopUpManager.centerPopUp(popUp);
+            popUp.width = stage.stageWidth * 0.92;
+            // center popup
+            popUp.x = stage.stageWidth * 0.04;
             PopUpManager.addPopUp(popUp, this);
         }
         
@@ -71,6 +93,7 @@ package com.piaction.components
             {
                 selectedLabel.text = selecteditem[labelField];
             }
+            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
             PopUpManager.removePopUp(popUp);
         }
         

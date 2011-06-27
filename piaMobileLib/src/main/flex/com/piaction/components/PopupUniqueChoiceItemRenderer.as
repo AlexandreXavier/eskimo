@@ -33,6 +33,7 @@ package com.piaction.components
             if (radioButton == null)
             {
                 radioButton = new RadioButton();
+                radioButton.x = stage.stageWidth * 0.04;
                 radioButton.percentWidth = 100;
                 radioButton.percentHeight = 100;
                 

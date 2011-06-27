@@ -4,6 +4,9 @@ package com.piaction.components
     
     import spark.components.Button;
     
+    /**
+     * Back Button, invisible on Android 
+     */
     public class BackButton extends Button
     {
         public function BackButton()
