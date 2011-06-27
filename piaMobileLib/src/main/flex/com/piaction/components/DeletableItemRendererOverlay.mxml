@@ -5,14 +5,6 @@
          click="event.stopImmediatePropagation()"
          initialize="onInitialize(event)" removedFromStage="onRemoveEdit(event)">
 
-    <fx:Metadata>
-        [Style(name="deleteButtonChromeColor", inherit="no", type="uint")]
-        [Style(name="deleteButtonColor", inherit="no", type="uint")]
-        [Style(name="deleteButtonWidth", inherit="no", type="Number")]
-        [Style(name="editIcon", inherit="no", type="Class")]
-        [Style(name="editIconWidth", inherit="no", type="Number")]
-        [Style(name="editIconHeight", inherit="no", type="Number")]
-    </fx:Metadata>
     <fx:Script>
         <![CDATA[
             import com.piaction.events.DeletableListEvent;
@@ -28,48 +20,35 @@
             import spark.layouts.BasicLayout;
             import spark.layouts.supportClasses.LayoutBase;
             
-            private static var classConstructed:Boolean = classConstruct();
+            /**
+             * @private
+             */
+            protected var _deleteLabel:String = "Delete";
             
-            [Embed(source = '/com/piaction/assets/img/delete.png')]
-            private static var defaultEditIcon:Class;
-            
-            protected var _longPressTimer:Timer = new Timer(1500, 1);
-            
-            private static function classConstruct():Boolean
-            {
-                var styles:CSSStyleDeclaration = FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration("com.piaction.skins.ios.DeletableItemRendererOverlay");
-                if (!styles)
-                {
-                    styles = new CSSStyleDeclaration();
-                }
-                
-                styles.defaultFactory = function():void
-                {
-                    this.deleteButtonChromeColor = 0xCC2A27;
-                    this.deleteButtonColor = 0xFFFFFF;
-                    this.editIcon = defaultEditIcon;
-                    this.editIconWidth = 27;
-                    this.editIconHeight = 27;
-                }
-                
-                FlexGlobals.topLevelApplication.styleManager.setStyleDeclaration("com.piaction.skins.ios.DeletableItemRendererOverlay", styles, false);
-                
-                return true;
-            }
-            
-            
+            /**
+             * @private
+             */
             protected function onInitialize(event:FlexEvent):void
             {
                 super.layout = new BasicLayout();
             }
             
+            /**
+             * @private
+             */
             override protected function commitProperties():void
             {
                 super.commitProperties();
-            
-            
+                
+                if (deleteButton)
+                {
+                    deleteButton.label = _deleteLabel;
+                }
             }
             
+            /**
+             * @private
+             */
             override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
             {
                 super.updateDisplayList(unscaledWidth, unscaledHeight);
@@ -83,6 +62,10 @@
                     {
                         deleteButton.width = getStyle("deleteButtonWidth");
                     }
+                    if (!isNaN(getStyle("deleteButtonHeight")))
+                    {
+                        deleteButton.height = getStyle("deleteButtonHeight");
+                    }
                 }
                 if (editionButton != null)
                 {
@@ -94,19 +77,26 @@
             
             }
             
+            /**
+             * @private
+             */
             public function onDeleteClick(event:MouseEvent):void
             {
-                
-                
                 dispatchEvent(new Event("delete"));
             }
             
+            /**
+             * @private
+             */
             protected function onEditClick(event:MouseEvent):void
             {
                 currentState = "confirmation";
                 stage.addEventListener(MouseEvent.MOUSE_DOWN, onRemoveEdit, false, 0, true);
             }
             
+            /**
+             * @private
+             */
             protected function onRemoveEdit(event:Event):void
             {
                 if (currentState == "confirmation" && event.target != deleteButton)
@@ -114,6 +104,15 @@
                     stage.removeEventListener(MouseEvent.MOUSE_DOWN, onRemoveEdit);
                     currentState = "edition";
                 }
+            }
+            
+            /**
+             * @private
+             */
+            public function set deleteLabel(value:String):void
+            {
+                _deleteLabel = value;
+                invalidateProperties();
             }
         ]]>
     </fx:Script>
@@ -145,8 +144,6 @@
                           duration="200"/>
                 <s:Resize target="{buttonMask}" widthFrom="0"
                           widthTo="{deleteButton.width}" duration="200"/>
-                <!--<s:Wipe target="{deleteButton}" direction="left" duration="200"/>-->
-                <!--<s:Resize target="{deleteButton}" duration="200"/>-->
             </s:Parallel>
         </s:Transition>
         <s:Transition fromState="confirmation" toState="edition">
@@ -178,7 +175,7 @@
     </s:HGroup>
 
     <s:Button id="deleteButton" label="Delete" includeIn="confirmation"
-              mask="{buttonMask}" verticalCenter="0" right="10" height="40"
+              mask="{buttonMask}" verticalCenter="0" right="10"
               click="onDeleteClick(event)"/>
     <s:SkinnableContainer id="buttonMask"
                           width.confirmation="{deleteButton.width}" width="0"

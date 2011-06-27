@@ -101,6 +101,14 @@ package com.piaction.components
         {
             invalidateItemRendererState();
         }
+        
+        /**
+         * Modify the delete button label
+         */
+        public static function set deleteLabel(value:String):void
+        {
+            DeletableItemRenderer.deleteLabel = value;
+        }
     }
 
 

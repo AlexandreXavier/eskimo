@@ -11,12 +11,61 @@ package com.piaction.components
     
     import spark.components.IconItemRenderer;
     
+    /**
+     * ChromeColor of the delete button
+     * @default 0xCC2A27
+     */
+    [Style(name = "deleteButtonChromeColor", inherit = "yes", type = "uint")]
+    /**
+     * ChromeColor of the delete button
+     * @default 0xCC2A27
+     */
+    [Style(name = "deleteButtonColor", inherit = "yes", type = "uint")]
+    /**
+     * Text color of the delete button
+     * @default 0xFFFFFF
+     */
+    [Style(name = "deleteButtonWidth", inherit = "yes", type = "Number")]
+    /**
+     * width of the delete button
+     * @default NaN
+     */
+    [Style(name = "deleteButtonHeight", inherit = "yes", type = "Number")]
+    /**
+     * height of the delete button
+     * @default 0xCC2A27
+     */
+    [Style(name = "editIcon", inherit = "yes", type = "Class")]
+    /**
+     * ChromeColor of the delete button
+     * @default 27
+     */
+    [Style(name = "editIconWidth", inherit = "yes", type = "Number")]
+    /**
+     * Width of the edit icon
+     * @default 27
+     */
+    [Style(name = "editIconHeight", inherit = "yes", type = "Number")]
     
-    
+    /**
+     * Default itemRenderer of the DeletableList
+     * @see com.piaction.components.DeletableList
+     */
     public class DeletableItemRenderer extends IconItemRenderer
     {
+        /**
+         * @private
+         */
         private var _deleteOverlay:DeletableItemRendererOverlay;
         
+        /**
+         * Label of the delete buttons
+         */
+        protected static var _deleteLabel:String = "Delete";
+        
+        /**
+         * @Constructor
+         */
         public function DeletableItemRenderer()
         {
             super();
@@ -24,12 +73,18 @@ package com.piaction.components
             states = [new State({name: "normal"}), new State({name: "edition"}), new State({name: "confirmation"})]
         }
         
+        /**
+         * @private
+         */
         override protected function createChildren():void
         {
             super.createChildren();
         
         }
         
+        /**
+         * @private
+         */
         protected function onDelete(event:Event):void
         {
             var parentList:DeletableList = owner as DeletableList;
@@ -40,6 +95,9 @@ package com.piaction.components
             parentList.dataProvider.removeItemAt(parentList.dataProvider.getItemIndex(data));
         }
         
+        /**
+         * @private
+         */
         override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
         {
             maxWidth = unscaledWidth;
@@ -54,6 +112,22 @@ package com.piaction.components
         
         }
         
+        /**
+         * @private
+         */
+        override protected function commitProperties():void
+        {
+            super.commitProperties();
+            
+            if (_deleteOverlay)
+            {
+                _deleteOverlay.deleteLabel = _deleteLabel;
+            }
+        }
+        
+        /**
+         * @private
+         */
         override protected function stateChanged(oldState:String, newState:String, recursive:Boolean):void
         {
             super.stateChanged(oldState, newState, recursive);
@@ -66,6 +140,8 @@ package com.piaction.components
                     _deleteOverlay.addEventListener("delete", onDelete, false, 0, true);
                     _deleteOverlay.addEventListener(FlexEvent.CREATION_COMPLETE, onOverlayAdded);
                     addChild(_deleteOverlay);
+                    
+                    _deleteOverlay.deleteLabel = _deleteLabel;
                 }
                 return;
             }
@@ -82,6 +158,9 @@ package com.piaction.components
             }
         }
         
+        /**
+         * @private
+         */
         private function stateChangeComplete_handler(event:Event):void
         {
             // We get called directly with null if there's no skin to listen to.
@@ -97,9 +176,20 @@ package com.piaction.components
             _deleteOverlay = null
         }
         
+        /**
+         * @private
+         */
         private function onOverlayAdded(event:Event):void
         {
             _deleteOverlay.currentState = currentState;
+        }
+        
+        /**
+         * Label of the delete buttons
+         */
+        public static function set deleteLabel(value:String):void
+        {
+            _deleteLabel = value;
         }
     
     }

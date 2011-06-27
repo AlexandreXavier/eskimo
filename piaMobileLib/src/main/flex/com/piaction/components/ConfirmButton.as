@@ -99,7 +99,7 @@ package com.piaction.components
         /**
          * Cancel button
          */
-        [SkinPart(required = "true")]
+        [SkinPart(required = "false")]
         public var cancelButton:Button;
         
         /**
