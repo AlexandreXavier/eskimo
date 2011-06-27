@@ -19,6 +19,11 @@ package com.piaction.components
     [SkinState("bottomPositionAndClosed")]
     [SkinState("leftPositionAndClosed")]
     
+    /**
+     * Color of popup's background
+     */
+    [Style(name = "popupBackgroundColor", inherit = "no", type = "uint")]
+    
     public class PopOver extends SkinnablePopUpContainer
     {
         /**
