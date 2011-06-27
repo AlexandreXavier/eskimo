@@ -66,7 +66,7 @@ package com.piaction.components
         {
             super.updateRenderer(renderer, itemIndex, data);
             
-            if (currentState)
+            if (currentState && renderer is DeletableItemRenderer)
             {
                 (renderer as DeletableItemRenderer).currentState = currentState;
             }

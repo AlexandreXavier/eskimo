@@ -55,6 +55,7 @@
     s|HSlider
     {
         skinClass: ClassReference("com.piaction.skins.mobile.ios.HSliderSkin");
+        chromeColor: #71a7f1;
     }
     
     controls|SkinnableAlert
@@ -117,6 +118,9 @@ components|ConfirmButton
 components|PopOver
 {
     skinClass: ClassReference("com.piaction.skins.mobile.ios.PopOverSkin");
+    backgroundColor: red;
+    color: red;
+    contentBackgroundColor: red;
 }
 
 components|ComboBox
@@ -132,7 +136,9 @@ components|PopOver s|Button
   
 components|ListWheel
 {
-    skinClass: ClassReference("com.piaction.skins.mobile.ios.ListWheelSkin"); 
+    skinClass: ClassReference("com.piaction.skins.mobile.ios.ListWheelSkin");
+    gradientColorBegin: #5555AA;
+    gradientColorEnd: #3333AA;
 }
 
 components|PageIndicator

@@ -46,10 +46,12 @@ package com.piaction.components
      */
     public class ContextableList extends List
     {
+        public static const TIME_CLICK:Number = 700;
+
         /**
          * @private
          */
-        private var _timer:Timer = new Timer(700, 1);
+        private var _timer:Timer = new Timer(TIME_CLICK, 1);
         /**
          * @private
          */

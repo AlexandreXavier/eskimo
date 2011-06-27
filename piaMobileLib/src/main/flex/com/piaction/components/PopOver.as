@@ -98,125 +98,19 @@ package com.piaction.components
             var targetRect:Rectangle = target.getRect(this.owner);
             var contentRect:Rectangle = owner.getRect(this.owner);
             
-            //Position of the owner within the parent coordinates
-            var contentOffset:Rectangle = owner.getRect(parent);
-            
-            //Compute the différente available spaces (top, right, bottom and left)
-            var leftRect:Rectangle = new Rectangle(0, 0, Math.max(targetRect.x, 0), contentRect.height);
-            
-            var rightRect:Rectangle = new Rectangle(Math.max(targetRect.x + targetRect.width, 0), 0, Math.min(contentRect.width - targetRect.x - targetRect.width, contentRect.width), contentRect.height);
-            
-            var topRect:Rectangle = new Rectangle(0, 0, contentRect.width, Math.max(targetRect.y, 0));
-            
-            var bottomRect:Rectangle = new Rectangle(0, Math.max(targetRect.y + targetRect.height, 0), contentRect.width, Math.min(contentRect.height - targetRect.y - targetRect.height, contentRect.height));
-            
             var globalPosition:Point;
             var parrentPosition:Point;
-            
-            //new pop-over position in the owner coordinates
-            var newXPosition:int;
-            var newYPosition:int;
-            
-            var xOffset:int = 0;
-            var yOffset:int = 0;
             
             //if the direction is vertical
             if (_direction == VERTICAL_DIRECTION)
             {
-                //If there is more place in the top space
-                if (topRect.height > bottomRect.height)
-                {
-                    // we put the bottom side of the pop-over in front of the target's top side
-                    newYPosition = topRect.height - unscaledHeight;
-                    
-                    // If the pop-over is out of the ower rect we can start overlapping of the target
-                    if (newYPosition < 0)
-                    {
-                        newYPosition = Math.min(0, targetRect.y + targetRect.height - unscaledHeight - LIMIT_TARGET_OVERLAPING);
-                    }
-                    
-                    _currentPosition = TOP_POSITION;
-                }
-                //If there is more place in the bottom space
-                else
-                {
-                    // we put the top side of the pop-over in front of the target's bottom side
-                    newYPosition = bottomRect.y;
-                    
-                    // If the pop-over is out of the ower rect we can start overlapping of the target
-                    if (newYPosition > contentRect.height - unscaledHeight)
-                    {
-                        newYPosition = Math.max(contentRect.height - unscaledHeight, targetRect.y + LIMIT_TARGET_OVERLAPING);
-                    }
-                    
-                    _currentPosition = BOTTOM_POSITION;
-                }
-                
-                // compute X position
-                newXPosition = targetRect.x + targetRect.width / 2 - this.width / 2;
-                
-                if (newXPosition + unscaledWidth > contentRect.width)
-                {
-                    xOffset = (contentRect.width - unscaledWidth) - newXPosition;
-                }
-                if (newXPosition < 0)
-                {
-                    xOffset = -newXPosition;
-                }
-                
-                
+                updateVerticalPosition(contentRect, targetRect);
             }
             //else if the dirrection is horizontal
             else if (_direction == HORIZONTAL_DIRECTION)
             {
-                //If there is more place in the left space
-                if (leftRect.width > rightRect.width)
-                {
-                    // we put the right side of the pop-over in front of the target's left side
-                    newXPosition = leftRect.width - unscaledWidth;
-                    
-                    // If the pop-over is out of the ower rect we can start overlapping of the target
-                    if (newXPosition < 0)
-                    {
-                        newXPosition = Math.min(0, targetRect.x + targetRect.width - unscaledWidth - LIMIT_TARGET_OVERLAPING);
-                    }
-                    
-                    _currentPosition = LEFT_POSITION;
-                }
-                //If there is more place in the right space
-                else
-                {
-                    // we put the left side of the pop-over in front of the target's right side
-                    newXPosition = rightRect.x;
-                    
-                    // If the pop-over is out of the ower rect we can start overlapping of the target
-                    if (newXPosition > contentRect.width - unscaledWidth)
-                    {
-                        newXPosition = Math.max(contentRect.width - unscaledWidth, targetRect.x + LIMIT_TARGET_OVERLAPING);
-                    }
-                    
-                    _currentPosition = RIGHT_POSITION;
-                }
-                
-                // compute Y position
-                newYPosition = targetRect.y + targetRect.height / 2 - unscaledHeight / 2;
-                
-                if (newYPosition + unscaledHeight > contentRect.height)
-                {
-                    yOffset = (contentRect.height - unscaledHeight) - newYPosition;
-                }
-                if (newYPosition < 0)
-                {
-                    yOffset = -newYPosition;
-                }
+              updateHorizontalPosition(contentRect, targetRect);
             }
-            
-            newXPosition += contentOffset.x + xOffset;
-            newYPosition += contentOffset.y + yOffset;
-            
-            //We positionnate the pop-over
-            this.x = newXPosition;
-            this.y = newYPosition;
             
             //Then wee loop if the pop-over is front of his target
             var targetParentRect:Rectangle = target.getBounds(this.parent);
@@ -230,6 +124,131 @@ package com.piaction.components
             }
             
             invalidateSkinState();
+        }
+        
+        private function updateVerticalPosition(contentRect:Rectangle, targetRect:Rectangle):void
+        {
+            var topRect:Rectangle = new Rectangle(0, 0, contentRect.width, Math.max(targetRect.y, 0));
+            
+            var bottomRect:Rectangle = new Rectangle(0, Math.max(targetRect.y + targetRect.height, 0), contentRect.width, Math.min(contentRect.height - targetRect.y - targetRect.height, contentRect.height));
+
+            var newXPosition:int;
+            var newYPosition:int;
+            
+            var xOffset:int = 0;
+            var yOffset:int = 0;
+            
+            //If there is more place in the top space
+            if (topRect.height > bottomRect.height)
+            {
+                // we put the bottom side of the pop-over in front of the target's top side
+                newYPosition = topRect.height - unscaledHeight;
+                
+                // If the pop-over is out of the ower rect we can start overlapping of the target
+                if (newYPosition < 0)
+                {
+                    newYPosition = Math.min(0, targetRect.y + targetRect.height - unscaledHeight - LIMIT_TARGET_OVERLAPING);
+                }
+                
+                _currentPosition = TOP_POSITION;
+            }
+                //If there is more place in the bottom space
+            else
+            {
+                // we put the top side of the pop-over in front of the target's bottom side
+                newYPosition = bottomRect.y;
+                
+                // If the pop-over is out of the ower rect we can start overlapping of the target
+                if (newYPosition > contentRect.height - unscaledHeight)
+                {
+                    newYPosition = Math.max(contentRect.height - unscaledHeight, targetRect.y + LIMIT_TARGET_OVERLAPING);
+                }
+                
+                _currentPosition = BOTTOM_POSITION;
+            }
+            
+            // compute X position
+            newXPosition = targetRect.x + targetRect.width / 2 - this.width / 2;
+            
+            if (newXPosition + unscaledWidth > contentRect.width)
+            {
+                xOffset = (contentRect.width - unscaledWidth) - newXPosition;
+            }
+            if (newXPosition < 0)
+            {
+                xOffset = -newXPosition;
+            }
+            
+            var contentOffset:Rectangle = owner.getRect(parent);
+            newXPosition += contentOffset.x + xOffset;
+            newYPosition += contentOffset.y + yOffset;
+            
+            //We positionnate the pop-over
+            this.x = newXPosition;
+            this.y = newYPosition;
+        }
+        
+        private function updateHorizontalPosition(contentRect:Rectangle, targetRect:Rectangle):void
+        {
+            //Compute the différente available spaces (top, right, bottom and left)
+            var leftRect:Rectangle = new Rectangle(0, 0, Math.max(targetRect.x, 0), contentRect.height);
+            
+            var rightRect:Rectangle = new Rectangle(Math.max(targetRect.x + targetRect.width, 0), 0, Math.min(contentRect.width - targetRect.x - targetRect.width, contentRect.width), contentRect.height);
+
+            var newXPosition:int;
+            var newYPosition:int;
+            
+            var xOffset:int = 0;
+            var yOffset:int = 0;
+            
+            //If there is more place in the left space
+            if (leftRect.width > rightRect.width)
+            {
+                // we put the right side of the pop-over in front of the target's left side
+                newXPosition = leftRect.width - unscaledWidth;
+                
+                // If the pop-over is out of the ower rect we can start overlapping of the target
+                if (newXPosition < 0)
+                {
+                    newXPosition = Math.min(0, targetRect.x + targetRect.width - unscaledWidth - LIMIT_TARGET_OVERLAPING);
+                }
+                
+                _currentPosition = LEFT_POSITION;
+            }
+                //If there is more place in the right space
+            else
+            {
+                // we put the left side of the pop-over in front of the target's right side
+                newXPosition = rightRect.x;
+                
+                // If the pop-over is out of the ower rect we can start overlapping of the target
+                if (newXPosition > contentRect.width - unscaledWidth)
+                {
+                    newXPosition = Math.max(contentRect.width - unscaledWidth, targetRect.x + LIMIT_TARGET_OVERLAPING);
+                }
+                
+                _currentPosition = RIGHT_POSITION;
+            }
+            
+            // compute Y position
+            newYPosition = targetRect.y + targetRect.height / 2 - unscaledHeight / 2;
+            
+            if (newYPosition + unscaledHeight > contentRect.height)
+            {
+                yOffset = (contentRect.height - unscaledHeight) - newYPosition;
+            }
+            if (newYPosition < 0)
+            {
+                yOffset = -newYPosition;
+            }
+            
+            var contentOffset:Rectangle = owner.getRect(parent);
+            newXPosition += contentOffset.x + xOffset;
+            newYPosition += contentOffset.y + yOffset;
+            
+            //We positionnate the pop-over
+            this.x = newXPosition;
+            this.y = newYPosition;
         }
         
         /**
@@ -309,7 +328,5 @@ package com.piaction.components
             return _targetCenterOffset;
         }
     
-    
     }
-
 }

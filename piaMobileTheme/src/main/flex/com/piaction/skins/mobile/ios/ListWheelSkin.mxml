@@ -220,10 +220,10 @@
             verticalCenter="0">
         <s:fill>
             <s:LinearGradient rotation="90">
-                <s:GradientEntry color="#5555AA" alpha="0.3" ratio="0"/>
-                <s:GradientEntry color="#5555AA" alpha="0.3" ratio="0.5"/>
-                <s:GradientEntry color="#3333AA" alpha="0.3" ratio="0.5"/>
-                <s:GradientEntry color="#3333AA" alpha="0.3" ratio="1"/>
+                <s:GradientEntry color="{getStyle('gradientColorBegin')}" alpha="0.3" ratio="0"/>
+                <s:GradientEntry color="{getStyle('gradientColorBegin')}" alpha="0.3" ratio="0.5"/>
+                <s:GradientEntry color="{getStyle('gradientColorEnd')}" alpha="0.3" ratio="0.5"/>
+                <s:GradientEntry color="{getStyle('gradientColorEnd')}" alpha="0.3" ratio="1"/>
             </s:LinearGradient>
         </s:fill>
     </s:Rect>

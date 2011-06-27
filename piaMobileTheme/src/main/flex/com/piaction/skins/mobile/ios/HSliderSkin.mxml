@@ -87,7 +87,7 @@ HSliderThumbSkin and HSliderTrackSkin classes, respectively.
             @see com.piaction.skins.ios.HSliderTrackSkin -->
     <s:Button id="trackBlue" left="0" height="13" verticalCenter="0"
               tabEnabled="false" width="{thumb.x + thumb.width/2}"
-              skinClass="com.piaction.skins.mobile.ios.HSliderTrackSkin" chromeColor="#71a7f1"/>
+              skinClass="com.piaction.skins.mobile.ios.HSliderTrackSkin" chromeColor="{this.getStyle('chromeColor')}"/>
 
   <!--- A skin part that defines a button that can be dragged along the track to increase or decrease the value property. 
           The IOS skin class is HSliderThumbSkin. 

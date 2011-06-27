@@ -5,19 +5,10 @@
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
   </fx:Declarations>
-  <fx:Script>
-    <![CDATA[
-      [Bindable]
-      public var size:Number = 10;
-      
-      [Bindable]
-      public var fillColor:uint = 0xFFFFFF;
-    ]]>
-  </fx:Script>
 
-  <s:Ellipse width="{size}" height="{size}">
+  <s:Ellipse id="ellipse">
     <s:fill>
-      <s:SolidColor color="{fillColor}"/>
+      <s:SolidColor id="ellipseBackground"/>
     </s:fill>
   </s:Ellipse>
 </s:Graphic>

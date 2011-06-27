@@ -25,6 +25,10 @@ package com.piaction.components
     
     use namespace mx_internal;
     
+    [Style(name="gradientColorBegin", inherit="no", type="uint")]
+    
+    [Style(name="gradientColorEnd", inherit="no", type="uint")]
+    
     /**
     * ListWheel class is a lopped list
     * Only vertical layout is supported

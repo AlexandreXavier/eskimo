@@ -57,7 +57,12 @@ package com.piaction.components
     public function PageIndicator()
     {
       super();
-      this.minHeight = 40;
+    }
+    
+    override protected function measure():void {
+        super.measure();
+        
+        measuredMinHeight=40;
     }
     
     override public function styleChanged(styleProp:String):void
@@ -250,22 +255,29 @@ package com.piaction.components
       {
         item = PageIndicatorItem(_itemContainer.getElementAt(_previousIndex))
         item.alpha = this.getStyle("pageItemAlpha");
-        item.fillColor = this.getStyle("pageItemColor");
+        item.ellipseBackground.color = this.getStyle("pageItemColor");
       }
       
       item = PageIndicatorItem(_itemContainer.getElementAt(_selectedIndex));
       item.alpha = this.getStyle("selectedPageItemAlpha");
-      item.fillColor = this.getStyle("selectedPageItemColor");
+      item.ellipseBackground.color = this.getStyle("selectedPageItemColor");
     }
     
     private function createPageItem():PageIndicatorItem
     {
       var result:PageIndicatorItem = new PageIndicatorItem();
-      result.size = this.getStyle("pageItemSize");
-      result.fillColor = this.getStyle("pageItemColor");
+      updatePageItemSize(result);
+      result.ellipseBackground.color = this.getStyle("pageItemColor");
       result.alpha = this.getStyle("pageItemAlpha");
       
       return result;
+    }
+    
+    private function updatePageItemSize(pageItem:PageIndicatorItem):void
+    {
+        var size:Number = this.getStyle("pageItemSize");
+        pageItem.ellipse.width = size
+        pageItem.ellipse.height = size;
     }
     
     private function updatePageItemDisplay():void
@@ -279,7 +291,7 @@ package com.piaction.components
           {
             if (_pageItemColorChanged)
             {
-              item.fillColor = this.getStyle("pageItemColor");
+              item.ellipseBackground.color = this.getStyle("pageItemColor");
             }
             if (_pageItemAlphaChanged)
             {
@@ -287,7 +299,7 @@ package com.piaction.components
             }
             if (_pageItemSizeChanged)
             {
-              item.size = this.getStyle("pageItemSize");
+              updatePageItemSize(item);
             }
           }
         }
@@ -302,7 +314,7 @@ package com.piaction.components
       
       if (_selectedPageItemColorChanged)
       {
-        item.fillColor = this.getStyle("selectedPageItemColor");
+        item.ellipseBackground.color = this.getStyle("selectedPageItemColor");
         _selectedPageItemColorChanged = false;
       }
       if (_selectedPageItemAlphaChanged)
@@ -312,7 +324,7 @@ package com.piaction.components
       }
       if (_pageItemSizeChanged)
       {
-        item.size = this.getStyle("pageItemSize");
+        updatePageItemSize(item);
       }
     }
   }
