@@ -207,10 +207,6 @@ package com.piaction.components
         override protected function partAdded(partName:String, instance:Object):void
         {
             super.partAdded(partName, instance)
-            if (instance == scroller)
-            {
-                
-            }
             if (instance == dataGroup)
             {
                 this.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
@@ -243,7 +239,6 @@ package com.piaction.components
             
             _oldY = this.mouseY;
             var sbRoot:DisplayObject = this.systemManager.getSandboxRoot();
-            sbRoot.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
             
             sbRoot.addEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, onMouseUp);
             sbRoot.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
@@ -262,21 +257,12 @@ package com.piaction.components
         private function onMouseUp(event:Event):void
         {
             var sbRoot:DisplayObject = this.systemManager.getSandboxRoot();
-            sbRoot.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
             
             sbRoot.removeEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, onMouseUp);
             sbRoot.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
             
             removeEventListener(Event.ENTER_FRAME, onEnterFrame);
             throwScroll();
-        }
-        
-        /**
-         * @private
-         * MouseMove handler
-         */
-        private function onMouseMove(event:MouseEvent):void
-        {
         }
         
         /**
@@ -453,7 +439,6 @@ package com.piaction.components
             
             var scrollIndex:int = verticalScrollCenterPosition / rowHeight;
             
-            //setSelectedIndex(scrollIndex, false, true);
             ensureIndexIsVisible(scrollIndex);
         }
         

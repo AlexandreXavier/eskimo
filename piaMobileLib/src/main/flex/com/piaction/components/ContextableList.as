@@ -216,13 +216,5 @@ package com.piaction.components
         {
             _contextMenuItems = value;
         }
-        
-        /**
-         * @private
-         */
-        override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
-        {
-            super.updateDisplayList(unscaledWidth, unscaledHeight);
-        }
     }
 }
