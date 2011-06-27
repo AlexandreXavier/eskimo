@@ -48,11 +48,6 @@ package com.piaction.components
       sequence.run();
     }
     
-    protected function handleVerifyProperty(passThroughData:Object):void
-    {
-      Assert.assertEquals(passThroughData.propertyValue, _pageIndicator[passThroughData.propertyName]);
-    }
-    
     [Test]
     public function testNext():void
     {
@@ -67,10 +62,6 @@ package com.piaction.components
       // when the max is already selected
       _pageIndicator.next();
       Assert.assertEquals(1, _pageIndicator.selectedIndex);
-      
-      // test on multiple pages
-      _pageIndicator.selectedIndex = 0;
-      _pageIndicator.pageCount = 6;
     }
     
     [Test]
@@ -118,6 +109,11 @@ package com.piaction.components
       sequence.addStep(new SequenceWaiter(_pageIndicator, FlexEvent.UPDATE_COMPLETE, 1500));
       sequence.addStep(new SequenceCaller(_pageIndicator, handleVerifyProperty, [passThroughData]));
       sequence.run();
+    }
+    
+    protected function handleVerifyProperty(passThroughData:Object):void
+    {
+      Assert.assertEquals(passThroughData.propertyValue, _pageIndicator[passThroughData.propertyName]);
     }
   
   }
