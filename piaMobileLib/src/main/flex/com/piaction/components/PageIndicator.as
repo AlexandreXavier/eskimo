@@ -5,34 +5,61 @@ package com.piaction.components
   
   /**
    * Define the color of the page items
-  */
+   *
+   * @default 0xFFFFFF
+   */
   [Style(name = "pageItemColor", type = "Number", format = "Color", inherit = "yes")]
   
   /**
    * Define the alpha of the page items
+   *
+   * @default 0.5
    */
   [Style(name = "pageItemAlpha", type = "Number", inherit = "yes")]
   
   /**
    * Define the color of the selected page item
+   * @default 0xFFFFFF
    */
   [Style(name = "selectedPageItemColor", type = "Number", format = "Color", inherit = "yes")]
   
   /**
    * Define the alpha of the selected page item
+   * @default 1
    */
   [Style(name = "selectedPageItemAlpha", type = "Number", inherit = "yes")]
   
   /**
    * Define the size of the page items
+   * @default 30
    */
   [Style(name = "pageItemSize", type = "Number", inherit = "yes")]
   
+  /**
+   * Define the size of the page items
+   * @default 30
+   */
+  [Style(name = "selectedPageItemSize", type = "Number", inherit = "yes")]
+  
+  /**
+   * This component displays the number of available pages and indicates the current page.
+   * The color, the size and the alpha of items are customizable
+   *
+   */
   public class PageIndicator extends BorderContainer
   {
     // constants
+    /**
+    * The gap between the page items
+    */
     public static const ITEM_GAP:int = 18;
+    /**
+    * The default selected page index
+    */
     public static const DEFAULT_INDEX:int = 0;
+    /**
+    * The default number of pages
+    */
     public static const DEFAULT_PAGE_COUNT:int = 1;
     
     // properties 
@@ -49,6 +76,7 @@ package com.piaction.components
     private var _selectedPageItemColorChanged:Boolean = false;
     private var _selectedPageItemAlphaChanged:Boolean = false;
     private var _pageItemSizeChanged:Boolean = false;
+    private var _selectedPageItemSizeChanged:Boolean = false;
     
     // component
     private var _itemContainer:HGroup;
@@ -59,12 +87,19 @@ package com.piaction.components
       super();
     }
     
-    override protected function measure():void {
-        super.measure();
-        
-        measuredMinHeight=40;
+    /**
+     * @private
+     */
+    override protected function measure():void
+    {
+      super.measure();
+      
+      measuredMinHeight = 40;
     }
     
+    /**
+     * @private
+     */
     override public function styleChanged(styleProp:String):void
     {
       super.styleChanged(styleProp);
@@ -86,6 +121,12 @@ package com.piaction.components
         invalidateDisplayList();
         return;
       }
+      if (styleProp == "selectedPageItemSize")
+      {
+        _selectedPageItemSizeChanged = true;
+        invalidateDisplayList();
+        return;
+      }
       if (styleProp == "selectedPageItemColor")
       {
         _selectedPageItemColorChanged = true;
@@ -100,6 +141,9 @@ package com.piaction.components
       }
     }
     
+    /**
+     * @private
+     */
     override protected function createChildren():void
     {
       super.createChildren();
@@ -117,6 +161,9 @@ package com.piaction.components
       }
     }
     
+    /**
+     * @private
+     */
     override protected function commitProperties():void
     {
       super.commitProperties();
@@ -137,6 +184,9 @@ package com.piaction.components
       }
     }
     
+    /**
+     * @private
+     */
     override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
     {
       super.updateDisplayList(unscaledWidth, unscaledHeight);
@@ -156,17 +206,18 @@ package com.piaction.components
       {
         updatePageItemDisplay();
       }
-      if (_selectedPageItemAlphaChanged || _selectedPageItemColorChanged || _pageItemSizeChanged)
+      if (_selectedPageItemAlphaChanged || _selectedPageItemColorChanged || _selectedPageItemSizeChanged)
       {
         updateSelectedItemDisplay();
       }
-      
-      _pageItemSizeChanged = false;
     }
     
     // --------------------------------------------
     // Accessors
     // --------------------------------------------
+    /**
+     * @private
+     */
     public function set pageCount(value:int):void
     {
       if (value != _pageCount && value > 0)
@@ -180,11 +231,20 @@ package com.piaction.components
       }
     }
     
+    /**
+    * The number of the available pages.
+    * If the selected page index is greater than the new page count, the index is the new last page index available.
+    *
+    * @default 1
+    */
     public function get pageCount():int
     {
       return _pageCount;
     }
     
+    /**
+     * @private
+     */
     public function set selectedIndex(value:int):void
     {
       if (_selectedIndex != value && value >= 0 && value <= _pageCount)
@@ -197,6 +257,12 @@ package com.piaction.components
       }
     }
     
+    /**
+     * The index of the selected page.
+     * The index cannot be lesser than 0 or greater than the last available page index.
+     *
+     * @default 0
+     */
     public function get selectedIndex():int
     {
       return _selectedIndex;
@@ -205,6 +271,11 @@ package com.piaction.components
     // --------------------------------------------
     // Methods
     // --------------------------------------------
+    
+    /**
+     *  Select the next page if it exists.
+     *  If there is no page avaible, it does nothing.
+     */
     public function next():void
     {
       if (_selectedIndex < _pageCount - 1)
@@ -213,6 +284,10 @@ package com.piaction.components
       }
     }
     
+    /**
+     *  Select the previous page if it exists.
+     *  If there is no page avaible, it does nothing.
+     */
     public function previous():void
     {
       if (_selectedIndex > 0)
@@ -275,9 +350,16 @@ package com.piaction.components
     
     private function updatePageItemSize(pageItem:PageIndicatorItem):void
     {
-        var size:Number = this.getStyle("pageItemSize");
-        pageItem.ellipse.width = size
-        pageItem.ellipse.height = size;
+      var size:Number = this.getStyle("pageItemSize");
+      pageItem.ellipse.width = size;
+      pageItem.ellipse.height = size;
+    }
+    
+    private function updateSelectedPageItemSize(pageItem:PageIndicatorItem):void
+    {
+      var size:Number = this.getStyle("selectedPageItemSize");
+      pageItem.ellipse.width = size;
+      pageItem.ellipse.height = size;
     }
     
     private function updatePageItemDisplay():void
@@ -306,6 +388,7 @@ package com.piaction.components
       }
       _pageItemColorChanged = false;
       _pageItemAlphaChanged = false;
+      _pageItemSizeChanged = false;
     }
     
     private function updateSelectedItemDisplay():void
@@ -322,9 +405,10 @@ package com.piaction.components
         item.alpha = this.getStyle("selectedPageItemAlpha");
         _selectedPageItemAlphaChanged = false;
       }
-      if (_pageItemSizeChanged)
+      if (_selectedPageItemSizeChanged)
       {
-        updatePageItemSize(item);
+        updateSelectedPageItemSize(item);
+        _selectedPageItemSizeChanged = false;
       }
     }
   }
