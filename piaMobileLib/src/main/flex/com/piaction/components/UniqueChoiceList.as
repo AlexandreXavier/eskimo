@@ -115,8 +115,10 @@ package com.piaction.components
         _dataProviderChange = false;
       }
       
-      if(listDisplay != null)  listDisplay.labelField = labelField;
-      
+      if(listDisplay != null)
+      {
+        listDisplay.labelField = labelField;
+      }
     }
     
     /**

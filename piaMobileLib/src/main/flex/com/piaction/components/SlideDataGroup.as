@@ -89,14 +89,15 @@ package com.piaction.components
      */
     private function onSwipe(event:TransformGestureEvent):void
     {
+      var lt:SlideLayout = layout as SlideLayout;
       if (event.offsetX != 0)
       {
-        (layout as SlideLayout).index -= (layout as SlideLayout).direction * event.offsetX;
+          lt.index -= (layout as SlideLayout).direction * event.offsetX;
       }
       
       if (event.offsetY != 0)
       {
-        (layout as SlideLayout).index -= (layout as SlideLayout).direction* event.offsetY;
+          lt.index -= (layout as SlideLayout).direction* event.offsetY;
       }
     }
   }
