@@ -156,3 +156,12 @@ components|PageIndicator
   borderAlpha: 0;
 }
 
+components|DeletableItemRenderer
+{
+    deleteButtonChromeColor: #CC2A27;
+    deleteButtonColor: #FFFFFF;
+    editIcon: Embed(source="com/piaction/skins/mobile/ios/assets/delete.png");
+    editIconWidth: 27;
+    editIconHeight: 27;
+    paddingLeft: 35;
+}

@@ -44,7 +44,7 @@ package com.piaction.skins.mobile.ios
             
             // Create our skin parts: track and thumb
             coloredTrack = new Button();
-            track.setStyle("skinClass", coloredTrackSkinClass);
+            coloredTrack.setStyle("skinClass", coloredTrackSkinClass);
             addChildAt(coloredTrack, 1);
             
             hostComponent.addEventListener(Event.CHANGE, onChange, false, 0, true);

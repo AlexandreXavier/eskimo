@@ -178,7 +178,7 @@
             </s:FormItem>
         </s:Form>
     </s:VGroup>
-    <components:ConfirmButton width="300" height="50" buttonPercentWidth="100"
+    <components:ConfirmButton width="300" buttonPercentWidth="100"
                               buttonLabel="Show Calendar"
                               confirmLabel="Quit this view"
                               confirmChromeColor="#FF3333"
