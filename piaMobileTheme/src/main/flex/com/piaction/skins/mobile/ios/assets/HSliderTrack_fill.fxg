@@ -3,10 +3,10 @@
 				 xmlns="http://ns.adobe.com/fxg/2008" 
 				 xmlns:d="http://ns.adobe.com/fxg/2008/dt" 
 				 xmlns:fc="http://ns.adobe.com/flashcatalyst/2009"  
-				 viewWidth="33" viewHeight="13" scaleGridLeft="13" scaleGridTop="2" scaleGridRight="20" scaleGridBottom="11">
+				 viewWidth="33" viewHeight="14" scaleGridLeft="7" scaleGridTop="6" scaleGridRight="26" scaleGridBottom="8">
 	
 	<!--- The track braground -->
-  <Rect id="background" x="0" y="0" height="13" width="33" radiusX="6.5">
+  <Rect id="background" x="0" y="0" height="14" width="33" radiusX="7">
     <fill>
       <SolidColor id="backgroundFill" color="#cccccc"/>
     </fill>

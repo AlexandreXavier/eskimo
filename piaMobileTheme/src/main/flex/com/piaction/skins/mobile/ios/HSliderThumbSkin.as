@@ -1,18 +1,31 @@
 package com.piaction.skins.mobile.ios
 {
-  
-  import com.piaction.skins.mobile.ios.assets.HSliderThumb_up;
-  
-  import spark.skins.mobile.ButtonSkin;
-  
-  public class HSliderThumbSkin extends ButtonSkin
-  {
-    public function HSliderThumbSkin()
+    
+    import com.piaction.skins.mobile.ios.assets.HSliderThumb_up;
+    
+    /**
+     * Skin for the HSlider thumb
+     * @see spark.components.HSlider
+     */
+    public class HSliderThumbSkin extends ButtonSkin
     {
-      super();
-      
-      upBorderSkin = com.piaction.skins.mobile.ios.assets.HSliderThumb_up;
-      downBorderSkin = com.piaction.skins.mobile.ios.assets.HSliderThumb_down;
+        
+        /**
+         * Constructor
+         */
+        public function HSliderThumbSkin()
+        {
+            super();
+            
+            upBorderSkin = com.piaction.skins.mobile.ios.assets.HSliderThumb_up;
+            downBorderSkin = com.piaction.skins.mobile.ios.assets.HSliderThumb_down;
+            fillClass = null;
+            
+            measuredDefaultWidth = 29;
+            measuredDefaultHeight = 29;
+            
+            measuredMinWidth = 29;
+            measuredMinHeight = 29;
+        }
     }
-  }
 }

@@ -25,6 +25,11 @@
         
     }
     
+    s|ActionBar
+    {
+       skinClass: ClassReference("com.piaction.skins.mobile.ios.ActionBarSkin");
+       chromeColor: #6D84A2;   
+    }
     
     s|Form
     {

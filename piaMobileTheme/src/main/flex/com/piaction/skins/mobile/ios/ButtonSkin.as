@@ -48,7 +48,7 @@ package com.piaction.skins.mobile.ios
             }
             
             // beveled buttons do not scale down
-            minHeight = measuredDefaultHeight;
+            measuredMinHeight = measuredDefaultHeight;
         }
         
         //--------------------------------------------------------------------------
@@ -112,6 +112,11 @@ package com.piaction.skins.mobile.ios
          */
         override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void
         {
+            if (!_fill)
+            {
+                return;
+            }
+            
             // omit call to super.drawBackground(), apply tint instead and don't draw fill
             var chromeColor:uint = getStyle("chromeColor");
             
