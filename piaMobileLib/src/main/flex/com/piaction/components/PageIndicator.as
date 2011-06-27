@@ -274,7 +274,7 @@ package com.piaction.components
     
     /**
      *  Select the next page if it exists.
-     *  If there is no page avaible, it does nothing.
+     *  If there is no page available, it does nothing.
      */
     public function next():void
     {
@@ -286,7 +286,7 @@ package com.piaction.components
     
     /**
      *  Select the previous page if it exists.
-     *  If there is no page avaible, it does nothing.
+     *  If there is no page available, it does nothing.
      */
     public function previous():void
     {
