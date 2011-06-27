@@ -123,9 +123,7 @@ components|ConfirmButton
 components|PopOver
 {
     skinClass: ClassReference("com.piaction.skins.mobile.ios.PopOverSkin");
-    backgroundColor: red;
-    color: red;
-    contentBackgroundColor: red;
+    popupBackgroundColor: #4A6A9B;
 }
 
 components|ComboBox
