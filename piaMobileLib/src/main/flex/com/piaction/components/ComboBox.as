@@ -35,7 +35,7 @@ package com.piaction.components
         
         private var _labelField:String = "label";
         
-        public var popUp:UniqueChoiceList = new UniqueChoiceList();
+        private var popUp:UniqueChoiceList = new UniqueChoiceList();
         
         /**
          *  The name of the field in the data provider items to display 
@@ -80,10 +80,11 @@ package com.piaction.components
             popUp.dataProvider = dataProvider;
             popUp.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
             popUp.labelField = labelField;
-            popUp.width = stage.stageWidth * 0.92;
+            popUp.width = stage.stageWidth * 0.6;
             // center popup
             popUp.x = stage.stageWidth * 0.04;
             PopUpManager.addPopUp(popUp, this);
+            popUp.y = stage.stageHeight / 2 - popUp.height;
         }
         
         protected function onIndexChange(event:IndexChangeEvent):void

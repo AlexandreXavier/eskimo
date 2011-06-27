@@ -2,6 +2,8 @@ package com.piaction.components
 {
     
     import mx.core.FlexGlobals;
+    import mx.graphics.GradientEntry;
+    import mx.graphics.LinearGradient;
     import mx.graphics.SolidColorStroke;
     import mx.styles.CSSStyleDeclaration;
     
@@ -10,6 +12,7 @@ package com.piaction.components
     import spark.components.RadioButtonGroup;
     import spark.components.supportClasses.ItemRenderer;
     import spark.primitives.Line;
+    import spark.primitives.Rect;
     
     public class PopupUniqueChoiceItemRenderer extends ItemRenderer
     {
@@ -17,7 +20,7 @@ package com.piaction.components
         
         private var _radioGroup:RadioButtonGroup;
         
-        private var bottomLine:Line;
+        private var rect:Rect;
         
         public function PopupUniqueChoiceItemRenderer()
         {
@@ -33,18 +36,34 @@ package com.piaction.components
             if (radioButton == null)
             {
                 radioButton = new RadioButton();
-                radioButton.x = stage.stageWidth * 0.04;
-                radioButton.percentWidth = 100;
+                //radioButton.setStyle("iconPlacement" , "right");
+                radioButton.x = this.parent.width * 0.04;
+                radioButton.percentWidth = 92;
                 radioButton.percentHeight = 100;
-                
-                bottomLine = new Line();
-                bottomLine.height = 1;
-                bottomLine.stroke = new SolidColorStroke(0x000000);
-                bottomLine.bottom = -8;
-                
+            
                 addElement(radioButton);
-                addElement(bottomLine);
+                
+                createGradientLine();
             }
+        }
+        
+        private function createGradientLine():void
+        {
+            rect = new Rect();
+            rect.height = 1;
+            rect.bottom = -8;
+            rect.left = 2;
+            
+            var linearGradient:LinearGradient = new LinearGradient();
+            rect.fill = linearGradient;
+            var colorFrom:GradientEntry = new GradientEntry();
+            colorFrom.color = 0xFFFFFF;
+            var colorTo:GradientEntry = new GradientEntry();
+            colorTo.color = 0x000000;
+            
+            linearGradient.entries = [colorFrom, colorTo, colorFrom];
+            
+            addElement(rect);
         }
         
         override protected function commitProperties():void
@@ -65,7 +84,7 @@ package com.piaction.components
         override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
         {
             super.updateDisplayList(unscaledWidth, unscaledHeight);
-            bottomLine.width = unscaledWidth;
+            rect.width = unscaledWidth - 4;
         }
     }
 }

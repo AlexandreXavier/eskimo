@@ -20,9 +20,9 @@
             </s:fill>
         </s:Rect>
 
-        <s:HGroup paddingLeft="8" width="100%" verticalAlign="middle">
+        <s:HGroup paddingLeft="8" width="100%" verticalAlign="middle" paddingTop="2" paddingBottom="2" paddingRight="2">
             <s:Label id="selectedLabel" text="Select" width="100%"/>
-            <s:BitmapImage 
+            <s:BitmapImage
                      source="@Embed(source='/com/piaction/skins/mobile/android/assets/combo-icon.png')"/>
         </s:HGroup>
     </s:Group>
