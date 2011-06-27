@@ -45,7 +45,6 @@
     s|ButtonBarButton
     {
         fontWeight: normal;
-        cornerRadius: 5;
         chromeColor: #4A6A9B;
         textShadowColor: #000000;
         textShadowAlpha: 0.5;

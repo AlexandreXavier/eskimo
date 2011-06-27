@@ -25,11 +25,16 @@ package com.piaction.components
         /**
          * Normal State const
          */
-        public static const NORMAL_STATE:String = "normal";
+        protected static const NORMAL_STATE:String = "normal";
         /**
          * Edition State const
          */
-        public static const EDITION_STATE:String = "edition";
+        protected static const EDITION_STATE:String = "edition";
+        
+        /**
+         * @private
+         */
+        protected var _editionMode:Boolean;
         
         /**
          * @private
@@ -42,8 +47,6 @@ package com.piaction.components
         public function DeletableList()
         {
             super();
-            
-            states = [new State({name: "normal"}), new State({name: "edition"})];
             
             itemRenderer = new ClassFactory(DeletableItemRenderer);
             
@@ -79,14 +82,21 @@ package com.piaction.components
         {
             super.commitProperties();
             
-            if (_invalidateItemRendererState)
+            if (_invalidateItemRendererState && dataGroup)
             {
                 for (var i:int = 0; i < dataGroup.numElements; i++)
                 {
                     var itemRenderer:IVisualElement = useVirtualLayout ? dataGroup.getVirtualElementAt(i) : dataGroup.getElementAt(i);
                     if (itemRenderer != null)
                     {
-                        (itemRenderer as UIComponent).currentState = currentState;
+                        if (_editionMode)
+                        {
+                            (itemRenderer as UIComponent).currentState = EDITION_STATE;
+                        }
+                        else
+                        {
+                            (itemRenderer as UIComponent).currentState = NORMAL_STATE;
+                        }
                     }
                 }
                 _invalidateItemRendererState = false;
@@ -108,6 +118,25 @@ package com.piaction.components
         public static function set deleteLabel(value:String):void
         {
             DeletableItemRenderer.deleteLabel = value;
+        }
+        
+        /**
+         * Switch into edition mode
+         */
+        public function set editionMode(value:Boolean):void
+        {
+            _editionMode = value;
+            _invalidateItemRendererState = true;
+            
+            invalidateProperties();
+        }
+        
+        /**
+         * @private
+         */
+        public function get editionMode():Boolean
+        {
+            return _editionMode;
         }
     }
 
