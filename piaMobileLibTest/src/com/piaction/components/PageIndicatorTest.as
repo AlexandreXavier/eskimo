@@ -35,10 +35,9 @@ package com.piaction.components
     public function testSetPageCountLesserThanSelectedIndex():void
     {
       var passThroughData:Object = new Object();
-      
       passThroughData.propertyName = 'selectedIndex';
       passThroughData.propertyValue = 2;
-      _pageIndicator.selectedIndex
+      
       var sequence:SequenceRunner = new SequenceRunner(this);
       sequence.addStep(new SequenceSetter(_pageIndicator, {pageCount: 4}));
       sequence.addStep(new SequenceSetter(_pageIndicator, {selectedIndex: 3}));
@@ -97,5 +96,29 @@ package com.piaction.components
       _pageIndicator.pageCount = 0;
       Assert.assertEquals(1, _pageIndicator.pageCount);
     }
+    
+    [Test]
+    public function testSelectedIndexIsNegatif():void
+    {
+      _pageIndicator.selectedIndex = -1;
+      Assert.assertEquals(0, _pageIndicator.selectedIndex);
+    
+    }
+    
+    [Test(async)]
+    public function testSelectedIndexIsGreaterThanPageCount():void
+    {
+      var passThroughData:Object = new Object();
+      passThroughData.propertyName = 'selectedIndex';
+      passThroughData.propertyValue = 0;
+      
+      var sequence:SequenceRunner = new SequenceRunner(this);
+      sequence.addStep(new SequenceSetter(_pageIndicator, {pageCount: 4}));
+      sequence.addStep(new SequenceSetter(_pageIndicator, {selectedIndex: 5}));
+      sequence.addStep(new SequenceWaiter(_pageIndicator, FlexEvent.UPDATE_COMPLETE, 1500));
+      sequence.addStep(new SequenceCaller(_pageIndicator, handleVerifyProperty, [passThroughData]));
+      sequence.run();
+    }
+  
   }
 }
