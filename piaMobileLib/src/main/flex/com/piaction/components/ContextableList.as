@@ -44,9 +44,6 @@ package com.piaction.components
          * @private
          */
         private var _contextMenuItems:Array;
-        /**
-         * @private
-         */
         protected var _contextList:MobileContextMenu;
         /**
          * @private
@@ -190,6 +187,8 @@ package com.piaction.components
             selectedIndex = -1;
             
             dispatchEvent(evt);
+            
+            _contextList = null;
         }
         
         /**
@@ -198,6 +197,8 @@ package com.piaction.components
         protected function onMobileContextMenuCanceled(event:Event):void
         {
             selectedIndex = -1;
+            
+            _contextList = null;
         }
         
         
@@ -208,5 +209,15 @@ package com.piaction.components
         {
             _contextMenuItems = value;
         }
+        
+        /**
+         * The current context menu opened
+         * @see com.piaction.components.MobileContextMenu
+         */
+        public function get currentContextMenu():MobileContextMenu
+        {
+            return _contextList;
+        }
+    
     }
 }
