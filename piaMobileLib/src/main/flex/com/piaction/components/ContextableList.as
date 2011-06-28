@@ -192,6 +192,9 @@ package com.piaction.components
             dispatchEvent(evt);
         }
         
+        /**
+         * @private
+         */
         protected function onMobileContextMenuCanceled(event:Event):void
         {
             selectedIndex = -1;
@@ -199,7 +202,7 @@ package com.piaction.components
         
         
         /**
-         * @private
+         * Items of the context menu
          */
         public function set contextMenuItems(value:Array):void
         {

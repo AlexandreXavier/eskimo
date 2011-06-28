@@ -7,18 +7,9 @@
 
     <fx:Script>
         <![CDATA[
-            import com.piaction.events.DeletableListEvent;
-            
-            import mx.controls.List;
-            import mx.core.FlexGlobals;
-            import mx.core.IVisualElement;
             import mx.events.FlexEvent;
-            import mx.events.ItemClickEvent;
-            import mx.managers.PopUpManager;
             
-            import spark.components.IItemRenderer;
             import spark.layouts.BasicLayout;
-            import spark.layouts.supportClasses.LayoutBase;
             
             /**
              * @private

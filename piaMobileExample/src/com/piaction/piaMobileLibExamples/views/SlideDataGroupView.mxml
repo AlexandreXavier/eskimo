@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark" title="SlideDataGroupView"
+        xmlns:components="com.piaction.components.*">
+    <fx:Declarations>
+        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+    </fx:Declarations>
+
+    <s:navigationContent>
+        <s:Button label="Retour" click="navigator.popView()"/>
+    </s:navigationContent>
+
+    <s:HGroup id="myGroup" width="100%" height="150">
+
+
+        <components:SlideDataGroup width="150" height="100%"
+                                   orientation="{SlideDataGroup.HORIZONTAL}"
+                                   direction="{SlideDataGroup.NORMAL}"
+                                   itemRenderer="com.piaction.piaMobileLibExamples.renderers.ImageRenderer">
+            <components:dataProvider>
+                <s:ArrayCollection>
+                    <fx:Object source="data/img/photo01.jpg"/>
+                    <fx:Object source="data/img/photo02.jpg"/>
+                    <fx:Object source="data/img/photo03.jpg"/>
+                    <fx:Object source="data/img/photo04.jpg"/>
+                    <fx:Object source="data/img/photo05.jpg"/>
+                    <fx:Object source="data/img/photo06.jpg"/>
+                    <fx:Object source="data/img/photo07.jpg"/>
+                    <fx:Object source="data/img/photo08.jpg"/>
+                    <fx:Object source="data/img/photo09.jpg"/>
+                    <fx:Object source="data/img/photo10.jpg"/>
+                </s:ArrayCollection>
+            </components:dataProvider>
+        </components:SlideDataGroup>
+
+    </s:HGroup>
+</s:View>

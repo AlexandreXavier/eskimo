@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark" title="ContextableListView"
+        xmlns:s="library://ns.adobe.com/flex/spark" title="UniqueChoiceListView"
         xmlns:components="com.piaction.components.*">
     <fx:Declarations>
         <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
     </fx:Declarations>
 
-
     <s:navigationContent>
         <s:Button label="Retour" click="navigator.popView()"/>
     </s:navigationContent>
 
-    <components:ContextableList id="list" width="100%" height="100%"
-                                contextMenuItemClick="list.dataProvider.removeItemAt(event.itemIndex)">
+    <components:UniqueChoiceList id="list" width="100%" height="100%"
+                                 labelField="label" click="trace(event.target)">
         <components:dataProvider>
             <s:ArrayCollection>
                 <fx:Object label="Item 1"/>
@@ -21,17 +20,7 @@
                 <fx:Object label="Item 4"/>
                 <fx:Object label="Item 5"/>
                 <fx:Object label="Item 6"/>
-                <fx:Object label="Item 7"/>
-                <fx:Object label="Item 8"/>
-                <fx:Object label="Item 9"/>
-                <fx:Object label="Item 10"/>
-                <fx:Object label="Item 11"/>
-                <fx:Object label="Item 12"/>
             </s:ArrayCollection>
         </components:dataProvider>
-        <components:contextMenuItems>
-            <fx:Object label="Delete"/>
-            <fx:Object label="Cancel"/>
-        </components:contextMenuItems>
-    </components:ContextableList>
+    </components:UniqueChoiceList>
 </s:View>
