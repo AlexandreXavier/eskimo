@@ -31,13 +31,13 @@ package com.piaction.components
   
   /**
    * Define the size of the page items.
-   * @default 30px
+   * @default 15px
    */
   [Style(name = "pageItemSize", type = "Number", inherit = "yes")]
   
   /**
    * Define the size of the page items.
-   * @default 30px
+   * @default 15px
    */
   [Style(name = "selectedPageItemSize", type = "Number", inherit = "yes")]
   
