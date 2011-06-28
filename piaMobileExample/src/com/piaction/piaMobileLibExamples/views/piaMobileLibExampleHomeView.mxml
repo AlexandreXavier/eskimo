@@ -50,7 +50,7 @@
         <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
                           paddingLeft="10"/>
     </s:layout>
-    <s:ButtonBar click="onButtonBarClick(event)">
+    <s:ButtonBar click="onButtonBarClick(event)" width="100%">
         <s:dataProvider>
             <s:ArrayCollection>
                 <fx:Object label="button 1"/>
@@ -60,15 +60,6 @@
             </s:ArrayCollection>
         </s:dataProvider>
     </s:ButtonBar>
-    <s:Form>
-        <s:FormItem label="name" width="100">
-            <s:TextInput id="fName" maxChars="64" width="150" height="100%"/>
-        </s:FormItem>
-        <s:FormItem label="password">
-            <s:TextInput id="fPass" maxChars="64" displayAsPassword="true"
-                         width="150" height="100%"/>
-        </s:FormItem>
-    </s:Form>
 
     <s:HSlider stepSize="0.1" width="300"/>
 
@@ -130,6 +121,7 @@
     <!-- DeletableList -->
     <s:Button label="DeletableList View >>"
               click="navigator.pushView(DeletableListView)"/>
+    
     <!-- ContextableList -->
     <s:Button label="ContextableList View >>"
               click="navigator.pushView(ContextableListView)"/>
@@ -137,6 +129,10 @@
     <!-- Confirm Button-->
     <s:Button label="Confirm ButtonView View >>"
               click="navigator.pushView(ConfirmButtonView)"/>
+
+    <!-- Form -->
+    <s:Button label="Form View >>"
+              click="navigator.pushView(FormView)"/>
 
 
 
