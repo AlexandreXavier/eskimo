@@ -331,11 +331,13 @@ package com.piaction.components
         item = PageIndicatorItem(_itemContainer.getElementAt(_previousIndex))
         item.alpha = this.getStyle("pageItemAlpha");
         item.ellipseBackground.color = this.getStyle("pageItemColor");
+        updatePageItemSize(item);
       }
       
       item = PageIndicatorItem(_itemContainer.getElementAt(_selectedIndex));
       item.alpha = this.getStyle("selectedPageItemAlpha");
       item.ellipseBackground.color = this.getStyle("selectedPageItemColor");
+      updateSelectedPageItemSize(item);
     }
     
     private function createPageItem():PageIndicatorItem
