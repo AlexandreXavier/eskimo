@@ -135,11 +135,8 @@
               click="navigator.pushView(ContextableListView)"/>
 
     <!-- Confirm Button-->
-    <components:ConfirmButton width="300" buttonPercentWidth="100"
-                              buttonLabel="Confirm Button"
-                              confirmLabel="Confirm"
-                              confirmChromeColor="#FF3333"
-                              confirm="SkinnableAlert.show('ok')"/>
+    <s:Button label="Confirm ButtonView View >>"
+              click="navigator.pushView(ConfirmButtonView)"/>
 
 
 
