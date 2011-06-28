@@ -24,13 +24,13 @@
     <s:FormHeading label="Page Indicator parameters"/>
     <!-- Page Item Size -->
     <s:FormItem label="Page item size">
-      <s:HSlider id="pageItemSize" minimum="8" maximum="60" value="30"
+      <s:HSlider id="pageItemSize" minimum="8" maximum="60" value="15"
                  stepSize="0.5" width="100%"
                  change="{pageIndicator. setStyle('pageItemSize', pageItemSize.value)}"/>
     </s:FormItem>
     <!-- Selected Page Item Size -->
     <s:FormItem label="Selected page item size">
-      <s:HSlider id="selectedPageItemSize" minimum="8" maximum="60" value="30"
+      <s:HSlider id="selectedPageItemSize" minimum="8" maximum="60" value="15"
                  stepSize="0.5" width="100%"
                  change="{pageIndicator. setStyle('selectedPageItemSize', selectedPageItemSize.value)}"/>
     </s:FormItem>
