@@ -28,7 +28,8 @@
     s|ActionBar
     {
        skinClass: ClassReference("com.piaction.skins.mobile.ios.ActionBarSkin");
-       chromeColor: #6D84A2;   
+       chromeColor: #6D84A2;  
+       defaultButtonAppearance: beveled;
     }
     
     s|Form

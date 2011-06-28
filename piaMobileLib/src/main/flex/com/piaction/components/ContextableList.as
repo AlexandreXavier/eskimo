@@ -31,12 +31,15 @@ package com.piaction.components
      */
     public class ContextableList extends List
     {
-        public static const TIME_CLICK:Number = 700;
-
+        /**
+         * Time to wait before dispatching contextMenuItemClick Event
+         */
+        public static var TIME_CLICK:Number = 700;
+        
         /**
          * @private
          */
-        private var _timer:Timer = new Timer(TIME_CLICK, 1);
+        private var _timer:Timer;
         /**
          * @private
          */
@@ -81,6 +84,7 @@ package com.piaction.components
         {
             super.item_mouseDownHandler(event);
             
+            _timer = new Timer(TIME_CLICK, 1);
             _timer.addEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete, false, 0, true);
             _timer.start();
             
