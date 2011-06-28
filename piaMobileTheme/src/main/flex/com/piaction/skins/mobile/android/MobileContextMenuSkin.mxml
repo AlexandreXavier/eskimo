@@ -114,7 +114,8 @@
                          color="#FFFFFF" verticalAlign="middle"/>
             </s:HGroup>
 
-            <s:List id="listDisplay" width="100%" height="100%">
+            <s:List id="listDisplay" width="100%" height="100%"
+                    verticalScrollPolicy="auto">
                 <s:layout>
                     <s:VerticalLayout gap="0" verticalAlign="top"
                                       horizontalAlign="contentJustify"/>

@@ -107,10 +107,11 @@
     
     components|ContextableList
     {
-        alternatingItemColors: #000000, #000000;
+        alternatingItemColors: #000000;
         color: #FFFFFF;
         contentBackgroundColor: #000000;
     }
+    
     
 }
 
@@ -120,6 +121,13 @@ components|MobileContextMenu
     headerHeight: 50;
     contextMenuIcon: Embed(source="com/piaction/skins/mobile/android/assets/contextMenuIcon.png");
     headerVisible: true;
+}
+
+components|MobileContextMenu s|List
+{
+    alternatingItemColors: #FFFFFF;
+    color: #000000;
+    contentBackgroundColor: #FFFFFF;
 }
 
 components|ConfirmButton
