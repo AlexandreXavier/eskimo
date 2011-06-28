@@ -119,14 +119,23 @@
 
   </s:HGroup>
   <!-- Page Indicator-->
-  <s:Button label="Page Indicator View >>"
-            click="navigator.pushView(PageIndicatorView)"/>
+  <s:HGroup>
+    <s:Button label="Prev" click="pageIndicator.previous()"/>
+    <components:PageIndicator id="pageIndicator" height="40" pageCount="8"
+                              selectedIndex="2"/>
+    <s:Button label="Next" click="pageIndicator.next()"/>
+    <s:Button label="Advanced >>" click="navigator.pushView(PageIndicatorView)"/>
+  </s:HGroup>
+
   <!-- Confirm Button-->
-  <components:ConfirmButton width="300" buttonPercentWidth="100"
-                            buttonLabel="Show Calendar"
-                            confirmLabel="Quit this view"
-                            confirmChromeColor="#FF3333"
-                            confirm="SkinnableAlert.show('ok')"/>
+  <s:HGroup>
+    <components:ConfirmButton width="300" buttonPercentWidth="100"
+                              buttonLabel="Confirm Button"
+                              confirmLabel="Quit this view"
+                              confirmChromeColor="#FF3333"
+                              confirm="SkinnableAlert.show('ok')"/>
+    <s:Button label="Advanced >>" click="navigator.pushView(ConfirmButtonView)"/>
+  </s:HGroup>
 
 
   <s:HGroup width="100%">
