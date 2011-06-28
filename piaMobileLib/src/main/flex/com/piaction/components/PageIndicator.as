@@ -4,61 +4,61 @@ package com.piaction.components
   import spark.components.HGroup;
   
   /**
-   * Define the color of the page items
+   * Define the color of the page items.
    *
    * @default 0xFFFFFF
    */
   [Style(name = "pageItemColor", type = "Number", format = "Color", inherit = "yes")]
   
   /**
-   * Define the alpha of the page items
+   * Define the alpha of the page items.
    *
    * @default 0.5
    */
   [Style(name = "pageItemAlpha", type = "Number", inherit = "yes")]
   
   /**
-   * Define the color of the selected page item
+   * Define the color of the selected page item.
    * @default 0xFFFFFF
    */
   [Style(name = "selectedPageItemColor", type = "Number", format = "Color", inherit = "yes")]
   
   /**
-   * Define the alpha of the selected page item
+   * Define the alpha of the selected page item.
    * @default 1
    */
   [Style(name = "selectedPageItemAlpha", type = "Number", inherit = "yes")]
   
   /**
-   * Define the size of the page items
-   * @default 30
+   * Define the size of the page items.
+   * @default 30px
    */
   [Style(name = "pageItemSize", type = "Number", inherit = "yes")]
   
   /**
-   * Define the size of the page items
-   * @default 30
+   * Define the size of the page items.
+   * @default 30px
    */
   [Style(name = "selectedPageItemSize", type = "Number", inherit = "yes")]
   
   /**
    * This component displays the number of available pages and indicates the current page.
-   * The color, the size and the alpha of items are customizable
+   * The color, the size and the alpha of items are customizable.
    *
    */
   public class PageIndicator extends BorderContainer
   {
     // constants
     /**
-    * The gap between the page items
+    * The gap between the page items.
     */
     public static const ITEM_GAP:int = 18;
     /**
-    * The default selected page index
+    * The default selected page index.
     */
     public static const DEFAULT_INDEX:int = 0;
     /**
-    * The default number of pages
+    * The default number of pages.
     */
     public static const DEFAULT_PAGE_COUNT:int = 1;
     
@@ -232,8 +232,8 @@ package com.piaction.components
     }
     
     /**
-    * The number of the available pages.
-    * If the selected page index is greater than the new page count, the index is the new last page index available.
+    * Total number of pages.
+    * If the selected page index is greater than the new page count, the selectedIndex is set to the last index available.
     *
     * @default 1
     */
@@ -259,7 +259,7 @@ package com.piaction.components
     
     /**
      * The index of the selected page.
-     * The index cannot be lesser than 0 or greater than the last available page index.
+     * The index cannot be lower than 0 or greater than the last available page index.
      *
      * @default 0
      */
