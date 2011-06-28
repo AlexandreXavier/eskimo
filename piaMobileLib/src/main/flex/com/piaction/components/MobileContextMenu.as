@@ -3,6 +3,7 @@ package com.piaction.components
     import com.piaction.events.MobileContextMenuEvent;
     
     import flash.display.DisplayObject;
+    import flash.display.DisplayObjectContainer;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
     import flash.ui.Keyboard;
@@ -12,6 +13,7 @@ package com.piaction.components
     
     import spark.components.Label;
     import spark.components.List;
+    import spark.components.SkinnablePopUpContainer;
     import spark.components.supportClasses.SkinnableComponent;
     import spark.events.IndexChangeEvent;
     
@@ -27,6 +29,7 @@ package com.piaction.components
     
     /**
      * header height
+     * @default 50
      */
     [Style(name = "headerHeight", inherit = "no", type = "Number")]
     
@@ -37,13 +40,27 @@ package com.piaction.components
     
     /**
      * Header visible
+     * @default true
      */
     [Style(name = "headerVisible", inherit = "no", type = "Boolean")]
     
     /**
+     *  The normal state without header.
+     */
+    [SkinState("normalWithoutHeader")]
+    /**
+     *  The closed state without header.
+     */
+    [SkinState("closedWithoutHeader")]
+    /**
+     *  The disabled state without header.
+     */
+    [SkinState("disabledWithoutHeader")]
+    
+    /**
      * Android like mobile context menu
      */
-    public class MobileContextMenu extends SkinnableComponent
+    public class MobileContextMenu extends SkinnablePopUpContainer
     {
         /**
          * @private
@@ -121,21 +138,39 @@ package com.piaction.components
         /**
          * @private
          */
+        override protected function getCurrentSkinState():String
+        {
+            var skinState:String = super.getCurrentSkinState();
+            
+            if (getStyle("headerVisible") == false)
+            {
+                skinState += "WithoutHeader";
+            }
+            
+            return skinState;
+        }
+        
+        /**
+         * @private
+         */
         protected function onIndexChange(event:IndexChangeEvent):void
         {
             var evt:MobileContextMenuEvent = new MobileContextMenuEvent(MobileContextMenuEvent.MENU_ITEM_CLICKED, _menuItems[event.newIndex]);
             
             dispatchEvent(evt);
             
-            PopUpManager.removePopUp(this);
+            close(true);
         }
         
         /**
          * Show an android like mobile context menu
          */
-        public static function show(menuItems:Array, headerLabel:String = "", parent:DisplayObject = null, modal:Boolean = true, childList:String = null):MobileContextMenu
+        public static function show(menuItems:Array, headerLabel:String = "", parent:DisplayObjectContainer = null, modal:Boolean = true):MobileContextMenu
         {
-            var menu:MobileContextMenu = PopUpManager.createPopUp(parent, MobileContextMenu, true, childList) as MobileContextMenu;
+            var menu:MobileContextMenu = new MobileContextMenu();
+            
+            menu.open(parent, true);
+            //PopUpManager.createPopUp(parent, MobileContextMenu, true, childList) as MobileContextMenu;
             
             
             menu.menuItems = menuItems;
@@ -151,7 +186,7 @@ package com.piaction.components
         {
             if (event.keyCode == Keyboard.BACK)
             {
-                PopUpManager.removePopUp(this);
+                close(true);
                 event.preventDefault();
                 dispatchEvent(new Event(Event.CANCEL));
             }

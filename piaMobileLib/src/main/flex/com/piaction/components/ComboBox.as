@@ -3,12 +3,10 @@ package com.piaction.components
     import flash.events.MouseEvent;
     
     import mx.collections.IList;
-    import mx.controls.listClasses.ListBase;
     import mx.events.FlexEvent;
     import mx.managers.PopUpManager;
     
     import spark.components.Label;
-    import spark.components.supportClasses.Skin;
     import spark.components.supportClasses.SkinnableComponent;
     import spark.events.IndexChangeEvent;
     
@@ -24,7 +22,7 @@ package com.piaction.components
     {
         public function ComboBox()
         {
-            super();ListBase
+            super();
             this.addEventListener(MouseEvent.CLICK, popUpList);
         }
         

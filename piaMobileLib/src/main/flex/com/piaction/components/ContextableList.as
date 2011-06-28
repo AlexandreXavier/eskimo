@@ -168,7 +168,7 @@ package com.piaction.components
         {
             selectedIndex = _contextIndex;
             
-            _contextList = MobileContextMenu.show(_contextMenuItems, _contextRenderer.label, this, true, "parent");
+            _contextList = MobileContextMenu.show(_contextMenuItems, _contextRenderer.label, this, true);
             
             _contextList.addEventListener(MobileContextMenuEvent.MENU_ITEM_CLICKED, onMobileContextMenuClicked, false, 0, true);
             _contextList.addEventListener(Event.CANCEL, onMobileContextMenuCanceled, false, 0, true);

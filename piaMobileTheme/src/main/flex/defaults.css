@@ -104,6 +104,14 @@
         contentBackgroundAlpha: 0;
     }
 
+    
+    components|ContextableList
+    {
+        alternatingItemColors: #000000, #000000;
+        color: #FFFFFF;
+        contentBackgroundColor: #000000;
+    }
+    
 }
 
 components|MobileContextMenu
