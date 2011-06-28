@@ -6,7 +6,7 @@ package com.piaction.components
   /**
    * Define the color of the page items.
    *
-   * @default 0xFFFFFF
+   * @default #FFFFFF
    */
   [Style(name = "pageItemColor", type = "Number", format = "Color", inherit = "yes")]
   
@@ -19,7 +19,7 @@ package com.piaction.components
   
   /**
    * Define the color of the selected page item.
-   * @default 0xFFFFFF
+   * @default #FFFFFF
    */
   [Style(name = "selectedPageItemColor", type = "Number", format = "Color", inherit = "yes")]
   
@@ -71,12 +71,12 @@ package com.piaction.components
     private var _previousPageCount:int = 0;
     private var _pageCountChanged:Boolean = true;
     
-    private var _pageItemColorChanged:Boolean = false;
-    private var _pageItemAlphaChanged:Boolean = false;
-    private var _selectedPageItemColorChanged:Boolean = false;
-    private var _selectedPageItemAlphaChanged:Boolean = false;
-    private var _pageItemSizeChanged:Boolean = false;
-    private var _selectedPageItemSizeChanged:Boolean = false;
+    private var _pageItemColorChanged:Boolean = true;
+    private var _pageItemAlphaChanged:Boolean = true;
+    private var _selectedPageItemColorChanged:Boolean = true;
+    private var _selectedPageItemAlphaChanged:Boolean = true;
+    private var _pageItemSizeChanged:Boolean = true;
+    private var _selectedPageItemSizeChanged:Boolean = true;
     
     // component
     private var _itemContainer:HGroup;
