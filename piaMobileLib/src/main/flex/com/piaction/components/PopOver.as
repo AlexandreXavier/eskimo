@@ -41,21 +41,21 @@ package com.piaction.components
     [SkinState("leftPositionAndClosed")]
     
     /**
-     * Display a pop over in the owner coordinate beside a target component
+     * A popOver is a mix between a popUp and a tooltip. It displays a kind of popUp close to a display object.
      */
     public class PopOver extends SkinnablePopUpContainer
     {
         /**
-         * Vertical direction
+         * Vertical direction.
          */
         public static const VERTICAL_DIRECTION:String = "vertical";
         /**
-         * Horizontal direction
+         * Horizontal direction.
          */
         public static const HORIZONTAL_DIRECTION:String = "horizontal";
         
         /**
-         * Positions of the pop over per head of the target
+         * Positions of the pop over relative to the target.
          */
         public static const UNKNOW_POSITION:String = "unknowPosition";
         public static const TOP_POSITION:String = "topPosition";
@@ -77,7 +77,8 @@ package com.piaction.components
         private var _authorizeSkinInvalidation:Boolean = true;
         
         /**
-         * Overlappig limit of the target by the pop over
+         * Overlappig limit of the target by the pop over.
+         * 
          * @defaults 10 px
          */
         public static var LIMIT_TARGET_OVERLAPING:int = 10;
@@ -91,7 +92,7 @@ package com.piaction.components
         }
         
         /**
-         *  Opens the container as a pop-over, and set is position autaumaticaly.
+         *  Display the PopOver, and set is position autaumaticaly.
          */
         override public function open(owner:DisplayObjectContainer, modal:Boolean = false):void
         {
@@ -115,7 +116,7 @@ package com.piaction.components
         }
         
         /**
-         * Set the position on the pop over in the ower coordinates
+         * Set the position of the popOver relative to the coordinates of the targetted display object.
          */
         protected function layoutComponent(unscaledWidth:Number, unscaledHeight:Number):void
         {
@@ -314,7 +315,7 @@ package com.piaction.components
         }
         
         /**
-         * Display object target by the PopOver
+         * Display object targeted by the PopOver.
          */
         public function get target():DisplayObject
         {
@@ -331,10 +332,10 @@ package com.piaction.components
         
         [Inspectable(category = "General", enumeration = "vertical,horizontal", defaultValue = "vertical")]
         /**
-         * the direction of the pop-up
+         * The direction of the popOver.
          *
-         * If the direction is setted to vertical, the pop-over can take the position top or bottom
-         * And if the direction is setted to horizontal, the pop-over can take the position left or right
+         * If the direction is set to vertical, the pop-over can take the position top or bottom.
+         * And if the direction is set to horizontal, the pop-over can take the position left or right.
          *
          */
         public function set direction(value:String):void
@@ -351,7 +352,13 @@ package com.piaction.components
         }
         
         /**
-         * Position of the pop-over regards of the target
+         * Position of the popOver regards of the target. This position is defined automatically by the popOver regarding the requested direction and the available space on the screen.
+         * 
+         * Possible values are :
+         *   - TOP_POSITION
+         *   - BOTTOM_POSITION
+         *   - RIGHT_POSITION
+         *   - LEFT_POSITION
          */
         public function get currentPosition():String
         {
@@ -359,7 +366,7 @@ package com.piaction.components
         }
         
         /**
-         * Différence in pixel between the center of target center and the pop-over center (horizontaly or verticaly)
+         * Difference in pixel between the center of target center and the pop-over center (horizontaly or verticaly).
          */
         public function get targetCenterOffset():int
         {
