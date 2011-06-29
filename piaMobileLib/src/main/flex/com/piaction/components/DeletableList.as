@@ -19,6 +19,8 @@ package com.piaction.components
     
     /**
      * List that can contain deletable itemrenderers. Use can swith to edition mode then remove item from the list.
+     * @see com.piaction.components.DeletableItemRenderer
+     * @see com.piaction.components.DeletableItemRendererOverlay
      */
     public class DeletableList extends List
     {

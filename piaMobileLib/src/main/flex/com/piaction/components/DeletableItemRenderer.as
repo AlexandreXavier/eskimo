@@ -22,12 +22,12 @@ package com.piaction.components
      */
     [Style(name = "deleteButtonColor", inherit = "yes", type = "uint")]
     /**
-     * Text color of the delete button.
-     * @default 0xFFFFFF
+     * Width of the delete button.
+     * @default NaN
      */
     [Style(name = "deleteButtonWidth", inherit = "yes", type = "Number")]
     /**
-     * width of the delete button.
+     * Height of the delete button.
      * @default NaN
      */
     [Style(name = "deleteButtonHeight", inherit = "yes", type = "Number")]

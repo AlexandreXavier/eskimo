@@ -17,22 +17,23 @@ package com.piaction.components
     use namespace mx_internal;
     
     /**
-     * Item long press event
+     * Dispatched when a long click was executed.
      */
     [Event(name = "itemLongPress", type = "com.piaction.events.ContextableListEvent")]
     
     /**
-     * Context menu item click event
+     * Dispatched when an item of the context menu was clicked.
      */
     [Event(name = "contextMenuItemClick", type = "com.piaction.events.ContextableListEvent")]
     
     /**
-     * List that enable long click and a menu on Item
+     * List that displays a contextMenu on item long click. The context menu will allow you to execute differents actions on an item.
+     * @see com.piaction.components.MobileContextMenu
      */
     public class ContextableList extends List
     {
         /**
-         * Time to wait before dispatching contextMenuItemClick Event
+         * Time to wait (in millisecond) before displaying the context menu.
          */
         public static var TIME_CLICK:Number = 700;
         
@@ -154,7 +155,7 @@ package com.piaction.components
         }
         
         /**
-         * Context menu items
+         * Context menu items.
          */
         public function get contextMenuItems():Array
         {
@@ -203,7 +204,7 @@ package com.piaction.components
         
         
         /**
-         * Items of the context menu
+         * Items of the context menu.
          */
         public function set contextMenuItems(value:Array):void
         {
@@ -211,8 +212,8 @@ package com.piaction.components
         }
         
         /**
-         * The current context menu opened
-         * @see com.piaction.components.MobileContextMenu
+         * The current context menu opened.
+         * @see com.piaction.components.MobileContextMenu.
          */
         public function get currentContextMenu():MobileContextMenu
         {
