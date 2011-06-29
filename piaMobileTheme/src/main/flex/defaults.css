@@ -13,6 +13,10 @@
         color: #000000;
     }
     
+    s|View
+    {
+        backgroundColor: #C4CBD3;   
+    }
     
     s|Button
     {
@@ -36,6 +40,22 @@
     {
         skinClass:ClassReference("com.piaction.skins.mobile.ios.FormSkin");
     } 
+    s|FormItem
+    {
+        skinClass:ClassReference("com.piaction.skins.mobile.ios.FormItemSkin");
+        backgroundAlpha: 0;
+        color: #395A8F;
+    } 
+    s|FormItem #labelDisplay
+    {
+        color: #000000;
+    }
+    s|FormItem s|TextInput
+    {
+        borderVisible: false;
+        contentBackgroundAlpha: 0;
+        focusAlpha: 0;
+    }
     
     s|ButtonBar
     {

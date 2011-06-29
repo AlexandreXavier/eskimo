@@ -1,78 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark" title="HomeView"
-        xmlns:components="com.piaction.components.*" backgroundColor="#CCCCCC"
+        xmlns:components="com.piaction.components.*"
         xmlns:views="com.piaction.piaMobileLibExamples.views.*">
 
     <fx:Declarations>
         <!-- Place non-visual elements (e.g., services, value objects) here -->
     </fx:Declarations>
 
-    <s:layout>
-        <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
-                          paddingLeft="10"/>
-    </s:layout>
-    <s:ButtonBar width="100%">
-        <s:dataProvider>
-            <s:ArrayCollection>
-                <fx:Object label="button 1"/>
-                <fx:Object label="button 2"/>
-                <fx:Object label="button 3"/>
-                <fx:Object label="button 4"/>
-            </s:ArrayCollection>
-        </s:dataProvider>
-    </s:ButtonBar>
+    <s:Scroller width="100%" height="100%">
 
-    <s:HSlider stepSize="0.1" width="300"/>
+        <s:Group width="100%" height="100%">
 
-    <components:ComboBox width="80%">
-        <components:dataProvider>
-            <s:ArrayCollection>
-                <fx:Object label="15 minutes"/>
-                <fx:Object label="30 minutes"/>
-                <fx:Object label="45 minutes"/>
-                <fx:Object label="1 hour"/>
-            </s:ArrayCollection>
-        </components:dataProvider>
-    </components:ComboBox>
+            <s:layout>
+                <s:VerticalLayout paddingTop="10" paddingRight="10"
+                                  paddingBottom="10" paddingLeft="10"/>
+            </s:layout>
+            <s:ButtonBar width="100%">
+                <s:dataProvider>
+                    <s:ArrayCollection>
+                        <fx:Object label="button 1"/>
+                        <fx:Object label="button 2"/>
+                        <fx:Object label="button 3"/>
+                        <fx:Object label="button 4"/>
+                    </s:ArrayCollection>
+                </s:dataProvider>
+            </s:ButtonBar>
 
+            <s:HSlider stepSize="0.1" width="300"/>
 
-
-
-    <!-- Page Indicator-->
-    <s:Button label="Page Indicator View >>"
-              click="navigator.pushView(PageIndicatorView)"/>
-
-    <!-- DeletableList -->
-    <s:Button label="DeletableList View >>"
-              click="navigator.pushView(DeletableListView)"/>
-
-    <!-- ContextableList -->
-    <s:Button label="ContextableList View >>"
-              click="navigator.pushView(ContextableListView)"/>
-
-    <!-- Confirm Button-->
-    <s:Button label="Confirm Button View >>"
-              click="navigator.pushView(ConfirmButtonView)"/>
-
-    <!-- Form -->
-    <s:Button label="Form View >>" click="navigator.pushView(FormView)"/>
-
-    <!-- UniqueChoiceList -->
-    <s:Button label="Unique Choice List >>"
-              click="navigator.pushView(UniqueChoiceListView)"/>
-
-    <!-- SlideDataGroup -->
-    <s:Button label="Slide DataGroup View >>"
-              click="navigator.pushView(SlideDataGroupView)"/>
-
-    <!-- ListWheel -->
-    <!--<s:Button label="List Wheel View >>"
-              click="navigator.pushView(ListWheelView)"/>-->
-
-    <!-- PopOver -->
-    <s:Button label="Pop over View >>" click="navigator.pushView(PopOverView)"/>
+            <components:ComboBox width="80%">
+                <components:dataProvider>
+                    <s:ArrayCollection>
+                        <fx:Object label="15 minutes"/>
+                        <fx:Object label="30 minutes"/>
+                        <fx:Object label="45 minutes"/>
+                        <fx:Object label="1 hour"/>
+                    </s:ArrayCollection>
+                </components:dataProvider>
+            </components:ComboBox>
 
 
+
+
+            <!-- Page Indicator-->
+            <s:Button label="Page Indicator View >>"
+                      click="navigator.pushView(PageIndicatorView)"/>
+
+            <!-- DeletableList -->
+            <s:Button label="DeletableList View >>"
+                      click="navigator.pushView(DeletableListView)"/>
+
+            <!-- ContextableList -->
+            <s:Button label="ContextableList View >>"
+                      click="navigator.pushView(ContextableListView)"/>
+
+            <!-- Confirm Button-->
+            <s:Button label="Confirm Button View >>"
+                      click="navigator.pushView(ConfirmButtonView)"/>
+
+            <!-- Form -->
+            <s:Button label="Form View >>" click="navigator.pushView(FormView)"/>
+
+            <!-- UniqueChoiceList -->
+            <s:Button label="Unique Choice List >>"
+                      click="navigator.pushView(UniqueChoiceListView)"/>
+
+            <!-- SlideDataGroup -->
+            <s:Button label="Slide DataGroup View >>"
+                      click="navigator.pushView(SlideDataGroupView)"/>
+
+            <!-- ListWheel -->
+            <s:Button label="List Wheel View >>"
+                      click="navigator.pushView(ListWheelView)"/>
+
+            <!-- PopOver -->
+            <s:Button label="Pop over View >>"
+                      click="navigator.pushView(PopOverView)"/>
+
+
+        </s:Group>
+    </s:Scroller>
 
 </s:View>

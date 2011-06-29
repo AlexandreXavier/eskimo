@@ -1,4 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--- The default skin class for a Spark Form container.
+
+This skin defines a contentGroup for the Form container with a
+FormLayout as its layout object. The FormLayout is a VerticalLayout
+that has additional logic to align the columns of FormItems.
+
+@see spark.components.Form
+@see spark.layouts.FormLayout
+
+-->
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark"
         xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5"
@@ -15,35 +25,40 @@
 
     <fx:Script>
         <![CDATA[
-            import mx.core.FlexGlobals;
-            import mx.events.FlexEvent;
+            import mx.containers.FormItem;
+            import mx.core.IVisualElement;
             
             import spark.components.FormItem;
-            import spark.components.TextInput;
             
-            
-            protected function onChildAdded(event:Event):void
+            /**
+            * @private
+            */
+            override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
             {
-                if (event.target is FormItem)
+                super.updateDisplayList(unscaledWidth, unscaledHeight);
+                
+                bgFill.color = getStyle("backgroundColor");
+                
+                var formItem:IVisualElement;
+                var gap:int;
+                if (contentGroup.layout.hasOwnProperty("gap"))
                 {
-                    event.target.setStyle("backgroundAlpha", 0);
-                    event.target.setStyle("paddingRight", 0);
-                    event.target.setStyle("paddingTop", 0);
-                    event.target.setStyle("paddingBottom", 0);
+                    gap = contentGroup.layout["gap"];
+                }
+                
+                lineOverlay.graphics.clear();
+                lineOverlay.graphics.beginFill(0xb4b7bb, 1);
+                for (var i:int = 0; i < contentGroup.numElements - 1; i++)
+                {
+                    formItem = contentGroup.getElementAt(i);
                     
+                    if (formItem is spark.components.FormItem)
+                    {
+                        var lineY:int = formItem.getLayoutBoundsY() + formItem.getLayoutBoundsHeight() + gap / 2;
+                        lineOverlay.graphics.drawRect(0, lineY, unscaledWidth, 1);
+                    }
                 }
-                if (event.target is TextInput)
-                {
-                    event.target.setStyle("textAlign", "right");
-                    event.target.setStyle("borderVisible", false);
-                    event.target.setStyle("contentBackgroundAlpha", 0);
-                    event.target.setStyle("focusAlpha", 0);
-                    event.target.setStyle("paddingRight", 0);
-                    event.target.setStyle("paddingTop", 0);
-                    event.target.setStyle("paddingBottom", 0);
-                }
-            
-            
+                lineOverlay.graphics.endFill();
             }
         ]]>
     </fx:Script>
@@ -59,21 +74,25 @@
             <s:SolidColorStroke color="#b4b7bb" weight="1"/>
         </s:stroke>
         <s:fill>
-            <s:SolidColor id="bgFill" color="#f7f7f7"/>
+            <s:SolidColor id="bgFill" color="#ffffff"/>
         </s:fill>
         <s:filters>
             <s:DropShadowFilter distance="1" angle="90" color="#FFFFFF"
                                 blurY="0" blurX="0" alpha="0.7"/>
         </s:filters>
     </s:Rect>
-    <!--- Defines the appearance of the SkinnableContainer class's contentGroup. -->
-    <s:Group id="contentGroup" showErrorSkin="true" showErrorTip="true"
-             added="onChildAdded(event)" left="0" right="0" top="0" bottom="0">
+    <!--- @copy spark.components.SkinnableContainer#contentGroup -->
+    <s:Group id="contentGroup" showErrorSkin="true" showErrorTip="true" left="0"
+             right="0" top="0" bottom="0" added="invalidateDisplayList()">
         <s:layout>
-            <s:FormLayout paddingTop="0" paddingBottom="0" paddingLeft="0"
-                          paddingRight="0"/>
+            <s:FormLayout paddingTop="-7" paddingBottom="-7" paddingLeft="0"
+                          paddingRight="-25" gap="-14"/>
         </s:layout>
     </s:Group>
+
+    <!--- Overlay where line separators are drew -->
+    <s:Group id="lineOverlay" top="0" right="0" bottom="0" left="0"
+             mouseEnabled="false"/>
 
 
 </s:Skin>

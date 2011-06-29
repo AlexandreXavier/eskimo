@@ -2,58 +2,59 @@
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark" title="ListWheelView"
         xmlns:components="com.piaction.components.*">
-  <fx:Declarations>
-    <!-- Place non-visual elements (e.g., services, value objects) here -->
-    <s:ArrayCollection id="timeDP">
-      <fx:Object label="15 minutes"/>
-      <fx:Object label="30 minutes"/>
-      <fx:Object label="45 minutes"/>
-      <fx:Object label="1 hour"/>
-    </s:ArrayCollection>
-  </fx:Declarations>
-  <s:layout>
-    <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
-                      paddingLeft="10"/>
-  </s:layout>
+    <fx:Declarations>
+        <!-- Place non-visual elements (e.g., services, value objects) here -->
+        <s:ArrayCollection id="timeDP">
+            <fx:Object label="15 minutes"/>
+            <fx:Object label="30 minutes"/>
+            <fx:Object label="45 minutes"/>
+            <fx:Object label="1 hour"/>
+        </s:ArrayCollection>
+    </fx:Declarations>
+    <s:layout>
+        <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
+                          paddingLeft="10"/>
+    </s:layout>
 
-  <s:navigationContent>
-    <s:Button label="Retour" click="navigator.popView()"/>
-  </s:navigationContent>
+    <s:navigationContent>
+        <s:Button label="Retour" click="navigator.popView()"/>
+    </s:navigationContent>
 
-  <s:HGroup width="100%">
-    <components:ListWheel id="listWheel" height="150" dataProvider="{timeDP}"
-                          selectedItem="{simpleList.selectedItem}"/>
-    <s:List id="simpleList" height="150" dataProvider="{timeDP}"/>
-  </s:HGroup>
+    <s:HGroup width="100%">
+        <components:ListWheel id="listWheel" height="150"
+                              dataProvider="{timeDP}"
+                              selectedItem="{simpleList.selectedItem}"/>
+        <s:List id="simpleList" height="150" dataProvider="{timeDP}"/>
+    </s:HGroup>
 
-  <s:Form>
-    <s:FormHeading label="Parameters"/>
-    <!-- Selected element -->
-    <s:FormItem label="Selected element">
-      <s:HGroup>
-        <s:TextInput id="selectedIndexTextInput"
-                     prompt="Enter the index (current: {listWheel.selectedIndex})"/>
-        <s:Button label="Apply"
-                  click="listWheel.selectedIndex = Number(selectedIndexTextInput.text)"/>
-      </s:HGroup>
-    </s:FormItem>
-    <!-- Selection color -->
-    <s:FormItem label="Selection color gradient begin">
-      <s:HGroup>
-        <s:TextInput id="selectionColorBegin"
-                     prompt="{'0x' + listWheel.getStyle('gradientColorBegin').toString(16)}"/>
-        <s:Button label="Apply"
-                  click="listWheel.setStyle('gradientColorBegin', Number(selectionColorBegin.text))"/>
-      </s:HGroup>
-    </s:FormItem>
-    <s:FormItem label="Selection color gradient end">
-      <s:HGroup>
-        <s:TextInput id="selectionColorEnd"
-                     prompt="{'0x' + listWheel.getStyle('gradientColorEnd').toString(16)}"/>
-        <s:Button label="Apply"
-                  click="listWheel.setStyle('gradientColorEnd', Number(selectionColorEnd.text))"/>
-      </s:HGroup>
-    </s:FormItem>
-  </s:Form>
+    <s:Form>
+        <s:FormHeading label="Parameters"/>
+        <!-- Selected element -->
+        <s:FormItem label="Selected element">
+            <s:HGroup>
+                <s:TextInput id="selectedIndexTextInput"
+                             prompt="Enter the index (current: {listWheel.selectedIndex})"/>
+                <s:Button label="Apply"
+                          click="listWheel.selectedIndex = Number(selectedIndexTextInput.text)"/>
+            </s:HGroup>
+        </s:FormItem>
+        <!-- Selection color -->
+        <s:FormItem label="Selection color gradient begin">
+            <s:HGroup>
+                <s:TextInput id="selectionColorBegin"
+                             prompt="{'0x' + listWheel.getStyle('gradientColorBegin').toString(16)}"/>
+                <s:Button label="Apply"
+                          click="listWheel.setStyle('gradientColorBegin', Number(selectionColorBegin.text))"/>
+            </s:HGroup>
+        </s:FormItem>
+        <s:FormItem label="Selection color gradient end">
+            <s:HGroup>
+                <s:TextInput id="selectionColorEnd"
+                             prompt="{'0x' + listWheel.getStyle('gradientColorEnd').toString(16)}"/>
+                <s:Button label="Apply"
+                          click="listWheel.setStyle('gradientColorEnd', Number(selectionColorEnd.text))"/>
+            </s:HGroup>
+        </s:FormItem>
+    </s:Form>
 
 </s:View>
