@@ -66,7 +66,7 @@ package com.piaction.components
         /**
          * @private
          */
-        protected var _contextMenuLabelField:String;
+        protected var _contextMenuLabelField:String = "label";
         
         
         

@@ -85,7 +85,7 @@ package com.piaction.components
         /**
          * @private
          */
-        private var _labelField:String;
+        private var _labelField:String = "label";
         
         
         
