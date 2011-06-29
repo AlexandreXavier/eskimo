@@ -464,6 +464,7 @@ package com.piaction.components
     
     /**
      * Label of the request button.
+     *
      */
     public function get buttonLabel():String
     {
@@ -481,6 +482,8 @@ package com.piaction.components
     
     /**
      * Label of the cancel button.
+     *
+     * @default Cancel
      */
     public function get cancelLabel():String
     {
@@ -498,6 +501,8 @@ package com.piaction.components
     
     /**
      * Label of the validation button.
+     *
+     * @default Confirm
      */
     public function get confirmLabel():String
     {
