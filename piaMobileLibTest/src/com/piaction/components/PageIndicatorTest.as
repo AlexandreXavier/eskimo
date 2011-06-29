@@ -1,5 +1,8 @@
 package com.piaction.components
 {
+  import com.piaction.tool.PropertyData;
+  import com.piaction.tool.TestHelper;
+  
   import flexunit.framework.Assert;
   
   import mx.events.FlexEvent;
@@ -34,9 +37,7 @@ package com.piaction.components
     [Test(async)]
     public function testSetPageCountLesserThanSelectedIndex():void
     {
-      var passThroughData:Object = new Object();
-      passThroughData.propertyName = 'selectedIndex';
-      passThroughData.propertyValue = 2;
+      var selectedIndexProperty:PropertyData = new PropertyData('selectedIndex', 2);
       
       var sequence:SequenceRunner = new SequenceRunner(this);
       sequence.addStep(new SequenceSetter(_pageIndicator, {pageCount: 4}));
@@ -44,7 +45,8 @@ package com.piaction.components
       sequence.addStep(new SequenceWaiter(_pageIndicator, FlexEvent.UPDATE_COMPLETE, 1500));
       sequence.addStep(new SequenceSetter(_pageIndicator, {pageCount: 3}));
       sequence.addStep(new SequenceWaiter(_pageIndicator, FlexEvent.UPDATE_COMPLETE, 1500));
-      sequence.addStep(new SequenceCaller(_pageIndicator, handleVerifyProperty, [passThroughData]));
+      sequence.addStep(new SequenceCaller(_pageIndicator, TestHelper.handleVerifyProperty, [selectedIndexProperty
+                                                                                            , _pageIndicator]));
       sequence.run();
     }
     
@@ -99,21 +101,15 @@ package com.piaction.components
     [Test(async)]
     public function testSelectedIndexIsGreaterThanPageCount():void
     {
-      var passThroughData:Object = new Object();
-      passThroughData.propertyName = 'selectedIndex';
-      passThroughData.propertyValue = 0;
+      var selectedIndexProperty:PropertyData = new PropertyData('selectedIndex', 0);
       
       var sequence:SequenceRunner = new SequenceRunner(this);
       sequence.addStep(new SequenceSetter(_pageIndicator, {pageCount: 4}));
       sequence.addStep(new SequenceSetter(_pageIndicator, {selectedIndex: 5}));
       sequence.addStep(new SequenceWaiter(_pageIndicator, FlexEvent.UPDATE_COMPLETE, 1500));
-      sequence.addStep(new SequenceCaller(_pageIndicator, handleVerifyProperty, [passThroughData]));
+      sequence.addStep(new SequenceCaller(_pageIndicator, TestHelper.handleVerifyProperty, [selectedIndexProperty
+                                                                                            , _pageIndicator]));
       sequence.run();
-    }
-    
-    protected function handleVerifyProperty(passThroughData:Object):void
-    {
-      Assert.assertEquals(passThroughData.propertyValue, _pageIndicator[passThroughData.propertyName]);
     }
   
   }
