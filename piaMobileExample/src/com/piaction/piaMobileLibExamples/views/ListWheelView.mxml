@@ -20,7 +20,11 @@
     <s:Button label="Retour" click="navigator.popView()"/>
   </s:navigationContent>
 
-  <components:ListWheel id="listWheel" height="150" dataProvider="{timeDP}"/>
+  <s:HGroup width="100%">
+    <components:ListWheel id="listWheel" height="150" dataProvider="{timeDP}"
+                          selectedItem="{simpleList.selectedItem}"/>
+    <s:List id="simpleList" height="150" dataProvider="{timeDP}"/>
+  </s:HGroup>
 
   <s:Form>
     <s:FormHeading label="Parameters"/>
