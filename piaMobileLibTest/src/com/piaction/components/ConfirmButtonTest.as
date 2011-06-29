@@ -47,20 +47,27 @@ package com.piaction.components
       // confirmation state
       var confirmationState:PropertyData = new PropertyData('currentState', ConfirmButton.CONFIRMATION_STATE);
       
-      sequence.addStep(new SequenceCaller(_confirmButton, dispatchMouseClickOnButton, [normalState]));
-      sequence.addStep(new SequenceWaiter(_confirmButton, ConfirmEvent.ENTER_CONFIRMATION, 2000));
+      sequence.addStep(new SequenceCaller(_confirmButton, dispatchMouseClickOnButton));
+      sequence.addStep(new SequenceWaiter(_confirmButton, ConfirmEvent.ENTER_CONFIRMATION, 1500));
       sequence.addStep(new SequenceCaller(_confirmButton, TestHelper.handleVerifyProperty, [confirmationState
                                                                                             , _confirmButton]));
       
-      // return to the initial state
-      sequence.addStep(new SequenceCaller(_confirmButton, dispatchMouseClickOnButton, [normalState]));
-      
+      // Cancel
+      sequence.addStep(new SequenceWaiter(_confirmButton, FlexEvent.UPDATE_COMPLETE, 1500));
+      sequence.addStep(new SequenceCaller(_confirmButton, dispatchMouseClickOnCancelButton));
+      sequence.addStep(new SequenceWaiter(_confirmButton, ConfirmEvent.CANCEL, 1500));
+      sequence.addStep(new SequenceCaller(_confirmButton, TestHelper.handleVerifyProperty, [normalState, _confirmButton]));
       sequence.run();
     }
     
-    protected function dispatchMouseClickOnButton(value:Object):void
+    protected function dispatchMouseClickOnButton():void
     {
       _confirmButton.button.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+    }
+    
+    protected function dispatchMouseClickOnCancelButton():void
+    {
+      _confirmButton.cancelButton.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
     }
   
   }
