@@ -210,7 +210,7 @@ package com.piaction.components
         
         
         /**
-         * Items of the context menu.
+         * Items displayed in the context menu.
          */
         public function set contextMenuItems(value:Array):void
         {
@@ -227,7 +227,7 @@ package com.piaction.components
         }
         
         /**
-         * LabelField of the context menu instance
+         * LabelField used to display items label in the context menu.
          */
         public function get contextMenuLabelField():String
         {
