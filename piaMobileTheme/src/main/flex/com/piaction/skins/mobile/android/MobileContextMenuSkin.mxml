@@ -5,9 +5,12 @@
         currentState="normal">
     <!-- host component -->
     <fx:Metadata>
-    [HostComponent("com.piaction.components.MobileContextMenu")]
-    
-  </fx:Metadata>
+        /** 
+        * A strongly typed property that references the component to which this skin is applied.
+        */
+        [HostComponent("com.piaction.components.MobileContextMenu")]
+        
+    </fx:Metadata>
 
     <!-- SkinParts
     name=headerDisplay, type=spark.components.Label, required=false
@@ -48,6 +51,7 @@
         ]]>
     </fx:Script>
 
+    <!--- states -->
     <s:states>
         <s:State name="normal" stateGroups="openedGroup"/>
         <s:State name="closed" stateGroups="closedGroup"/>
@@ -61,6 +65,7 @@
     </s:states>
 
     <!-- Transitions for open and close -->
+    <!--- @private -->
     <s:transitions>
         <s:Transition fromState="*" toState="normal" autoReverse="true">
             <s:Fade duration="150" target="{content}"/>
@@ -85,21 +90,25 @@
         </s:Transition>
     </s:transitions>
 
+    <!--- @private -->
     <s:Group id="content" top="0" right="0" bottom="0" left="0"
              visible.closed="false">
 
+        <!--- define the background fill of th skin -->
         <s:Rect id="background" top="0" left="0" bottom="0" right="0">
             <s:fill>
                 <s:SolidColor color="#FFFFFF"/>
             </s:fill>
         </s:Rect>
 
+        <!--- define the header fill of th skin -->
         <s:Rect id="header" width="100%" height="10"
                 excludeFrom="withoutHeaderGroup">
             <s:fill>
                 <s:SolidColor color="#424242"/>
             </s:fill>
         </s:Rect>
+        <!--- @private -->
         <s:Group width="100%" height="100%">
 
             <s:layout>
@@ -110,10 +119,11 @@
                       paddingRight="10" gap="10"
                       excludeFrom="withoutHeaderGroup">
                 <s:BitmapImage id="icon"/>
+                <!--- define the headerDisplay Label of the component-->
                 <s:Label id="headerDisplay" width="100%" height="100%"
                          color="#FFFFFF" verticalAlign="middle"/>
             </s:HGroup>
-
+            <!--- define the listDisplay Label of the component-->
             <s:List id="listDisplay" width="100%" height="100%"
                     verticalScrollPolicy="auto">
                 <s:layout>
@@ -123,14 +133,14 @@
             </s:List>
         </s:Group>
 
+        <!--- define the border of the skin -->
         <s:Rect top="0" left="0" bottom="0" right="0">
             <s:stroke>
                 <s:SolidColorStroke color="#FFFFFF" weight="2"/>
             </s:stroke>
         </s:Rect>
 
-        <s:filters>
-            <s:GlowFilter color="0" blurX="15" blurY="15"/>
-        </s:filters>
+        <s:RectangularDropShadow top="0" left="0" bottom="0" right="0"
+                                 distance="0" color="0" blurX="15" blurY="15"/>
     </s:Group>
 </s:Skin>

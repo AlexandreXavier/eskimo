@@ -12,10 +12,12 @@
             import com.piaction.components.PageIndicatorTest;
             import com.piaction.components.DeletableListTest;
             import com.piaction.components.ContextableListTest;
+            import com.piaction.components.ConfirmButtonTest;
             
             public function currentRunTestSuite():Array
             {
                 var testsToRun:Array = new Array();
+                testsToRun.push(com.piaction.components.ConfirmButtonTest);
                 testsToRun.push(com.piaction.components.ContextableListTest);
                 testsToRun.push(com.piaction.components.DeletableListTest);
                 testsToRun.push(com.piaction.components.PageIndicatorTest);

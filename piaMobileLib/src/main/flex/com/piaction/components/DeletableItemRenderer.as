@@ -38,18 +38,22 @@ package com.piaction.components
     [Style(name = "editIcon", inherit = "yes", type = "Class")]
     /**
      * ChromeColor of the delete button
-     * @default 27
+     * @default 27 px
      */
     [Style(name = "editIconWidth", inherit = "yes", type = "Number")]
     /**
      * Width of the edit icon
-     * @default 27
+     * @default 27 px
      */
     [Style(name = "editIconHeight", inherit = "yes", type = "Number")]
     
     /**
      * Default itemRenderer of the DeletableList
+     * the component has two states : "normal" and "edition"
+     *
+     * In "edition" state, DeletableItemrenderer use DeletableItemRendererOverlay component to show the edit and delete button
      * @see com.piaction.components.DeletableList
+     * @see com.piacton.components.DeletableListOverlay
      */
     public class DeletableItemRenderer extends IconItemRenderer
     {
@@ -59,6 +63,7 @@ package com.piaction.components
         private var _deleteOverlay:DeletableItemRendererOverlay;
         
         /**
+         * @private
          * Label of the delete buttons
          */
         protected static var _deleteLabel:String = "Delete";

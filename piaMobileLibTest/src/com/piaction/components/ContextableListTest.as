@@ -50,9 +50,6 @@ package com.piaction.components
             
             sequence.addStep(new SequenceWaiter(_list, ContextableListEvent.ITEM_LONG_PRESS, 1500));
             
-            var passThroughData:Object = new Object();
-            passThroughData.propertyName = 'currentContextMenu';
-            
             sequence.run();
             
             var firstElement:IVisualElement = _list.dataGroup.getElementAt(0);
