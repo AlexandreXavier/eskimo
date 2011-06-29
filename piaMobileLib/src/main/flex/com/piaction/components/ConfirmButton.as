@@ -43,6 +43,8 @@ package com.piaction.components
   [Style(name = "buttonSkinClass", inherit = "no", type = "Class")]
   /**
    * Color of request button
+   *
+   * @default 0xFFFFFF
    */
   [Style(name = "buttonColor", inherit = "no", type = "uint")]
   /**
@@ -77,6 +79,8 @@ package com.piaction.components
   [Style(name = "confirmColor", inherit = "no", type = "uint")]
   /**
    * chromeColor of confirm button
+   *
+   * @default 0xFF3333
    */
   [Style(name = "confirmChromeColor", inherit = "no", type = "uint")]
   
@@ -124,6 +128,18 @@ package com.piaction.components
      */
     public static var CONFIRMATION_STATE:String = "confirmation";
     
+    private var _buttonColorChanged:Boolean = false;
+    private var _buttonChromeColorChanged:Boolean = false;
+    private var _buttonSkinClassChanged:Boolean = false;
+    private var _buttonIconChanged:Boolean = false;
+    private var _buttonPercentWidthChanged:Boolean = false;
+    private var _cancelColorChanged:Boolean = false;
+    private var _cancelChromeColorChanged:Boolean = false;
+    private var _cancelButtonSkinClassChanged:Boolean = false;
+    private var _confirmColorChanged:Boolean = false;
+    private var _confirmChromeColorChanged:Boolean = false;
+    private var _confirmButtonSkinClassChanged:Boolean = false;
+    
     /**
      * Constructor
      */
@@ -150,6 +166,27 @@ package com.piaction.components
     private function onStateChange(event:StateChangeEvent):void
     {
       invalidateSkinState();
+    }
+    
+    /**
+     * @private
+     */
+    override public function styleChanged(styleProp:String):void
+    {
+      super.styleChanged(styleProp);
+      
+      // button style changed
+      if (isButtonUpdatedStyle(styleProp))
+      {
+        return;
+      }
+      // cancel button style changed
+      if (isCancelButtonUpdatedStyle(styleProp))
+      {
+        return;
+      }
+      // confirm button style changed
+      isConfirmButtonUpdatedStyle(styleProp);
     }
     
     /**
@@ -206,26 +243,180 @@ package com.piaction.components
       
       if (button)
       {
-        button.setStyle("color", getStyle("buttonColor"));
-        button.setStyle("chromeColor", getStyle("buttonChromeColor"));
-        button.setStyle("skinClass", getStyle("buttonSkinClass"));
-        button.setStyle("icon", getStyle("buttonIcon"));
-        button.percentWidth = getStyle("buttonPercentWidth");
+        updateButtonDisplayList();
       }
-      
       if (cancelButton)
       {
-        cancelButton.setStyle("color", getStyle("cancelColor"));
-        cancelButton.setStyle("chromeColor", getStyle("cancelChromeColor"));
-        cancelButton.setStyle("skinClass", getStyle("cancelButtonSkinClass"));
+        updateCancelButtonDisplayList();
       }
-      
       if (confirmButton)
       {
-        confirmButton.setStyle("color", getStyle("confirmColor"));
-        confirmButton.setStyle("chromeColor", getStyle("confirmChromeColor"));
-        confirmButton.setStyle("skinClass", getStyle("confirmButtonSkinClass"));
+        updateConfirmButtonDisplayList();
       }
+    }
+    
+    
+    /**
+     * @private
+     */
+    private function updateConfirmButtonDisplayList():void
+    {
+      if (_confirmColorChanged)
+      {
+        confirmButton.setStyle("color", getStyle("confirmColor"));
+        _confirmColorChanged = false;
+      }
+      if (_confirmChromeColorChanged)
+      {
+        confirmButton.setStyle("chromeColor", getStyle("confirmChromeColor"));
+        _confirmChromeColorChanged = false;
+      }
+      if (_confirmButtonSkinClassChanged)
+      {
+        confirmButton.setStyle("skinClass", getStyle("confirmButtonSkinClass"));
+        _confirmButtonSkinClassChanged = false;
+      }
+    }
+    
+    /**
+     * @private
+     */
+    private function updateCancelButtonDisplayList():void
+    {
+      if (_cancelColorChanged)
+      {
+        cancelButton.setStyle("color", getStyle("cancelColor"));
+        _cancelColorChanged = false;
+      }
+      if (_cancelChromeColorChanged)
+      {
+        cancelButton.setStyle("chromeColor", getStyle("cancelChromeColor"));
+        _cancelChromeColorChanged = false;
+      }
+      if (_cancelButtonSkinClassChanged)
+      {
+        cancelButton.setStyle("skinClass", getStyle("cancelButtonSkinClass"));
+        _cancelButtonSkinClassChanged = false;
+      }
+    }
+    
+    /**
+     * @private
+     */
+    private function updateButtonDisplayList():void
+    {
+      if (_buttonColorChanged)
+      {
+        button.setStyle("color", getStyle("buttonColor"));
+        _buttonColorChanged = false;
+      }
+      if (_buttonChromeColorChanged)
+      {
+        button.setStyle("chromeColor", getStyle("buttonChromeColor"));
+        _buttonChromeColorChanged = false;
+      }
+      if (_buttonSkinClassChanged)
+      {
+        button.setStyle("skinClass", getStyle("buttonSkinClass"));
+        _buttonSkinClassChanged = false;
+      }
+      if (_buttonIconChanged)
+      {
+        button.setStyle("icon", getStyle("buttonIcon"));
+        _buttonIconChanged = false;
+      }
+      if (_buttonPercentWidthChanged)
+      {
+        button.percentWidth = getStyle("buttonPercentWidth");
+        _buttonPercentWidthChanged = false;
+      }
+    }
+    
+    /**
+     * @private
+     */
+    private function isConfirmButtonUpdatedStyle(styleProp:String):Boolean
+    {
+      if (styleProp == "confirmColor")
+      {
+        _confirmColorChanged = true;
+        invalidateDisplayList();
+        return true;
+      }
+      if (styleProp == "confirmChromeColor")
+      {
+        _confirmChromeColorChanged = true;
+        invalidateDisplayList();
+        return true;
+      }
+      if (styleProp == "confirmButtonSkinClass")
+      {
+        _confirmButtonSkinClassChanged = true;
+        invalidateDisplayList();
+        return true;
+      }
+      return false;
+    }
+    
+    /**
+     * @private
+     */
+    private function isCancelButtonUpdatedStyle(styleProp:String):Boolean
+    {
+      if (styleProp == "cancelColor")
+      {
+        _cancelColorChanged = true;
+        invalidateDisplayList();
+        return true;
+      }
+      if (styleProp == "cancelChromeColor")
+      {
+        _cancelChromeColorChanged = true;
+        invalidateDisplayList();
+        return true;
+      }
+      if (styleProp == "cancelButtonSkinClass")
+      {
+        _cancelButtonSkinClassChanged = true;
+        invalidateDisplayList();
+        return true;
+      }
+      return false;
+    }
+    
+    private function isButtonUpdatedStyle(styleProp:String):Boolean
+    {
+      if (styleProp == "buttonColor")
+      {
+        _buttonColorChanged = true;
+        invalidateDisplayList();
+        return true;
+      }
+      if (styleProp == "buttonChromeColor")
+      {
+        _buttonChromeColorChanged = true;
+        invalidateDisplayList();
+        return true;
+      }
+      if (styleProp == "buttonSkinClass")
+      {
+        _buttonSkinClassChanged = true;
+        invalidateDisplayList();
+        return true;
+      }
+      if (styleProp == "buttonIcon")
+      {
+        _buttonIconChanged = true;
+        invalidateDisplayList();
+        return true;
+      }
+      if (styleProp == "buttonPercentWidth")
+      {
+        _buttonPercentWidthChanged = true;
+        invalidateDisplayList();
+        return true;
+      }
+      return false;
     }
     
     /**
