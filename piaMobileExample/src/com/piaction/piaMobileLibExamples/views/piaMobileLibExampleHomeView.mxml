@@ -5,106 +5,105 @@
         xmlns:components="com.piaction.components.*" backgroundColor="#CCCCCC"
         xmlns:views="com.piaction.piaMobileLibExamples.views.*">
 
-    <fx:Script>
-        <![CDATA[
-            import com.piaction.components.PopOver;
-            import com.piaction.components.UniqueChoiceList;
-            import com.piaction.controls.SkinnableAlert;
-            
-            import mx.events.FlexEvent;
-            
-            private var _myPopUp:PopOver;
-            
-            protected function view1_creationCompleteHandler(event:FlexEvent):void
-            {
-                _myPopUp = new PopOver();
-            }
-            
-            protected function onButtonBarClick(event:MouseEvent):void
-            {
-                
-                myPopOver.target = event.target as DisplayObject;
-                
-                
-                myPopOver.open(this, true);
-            }
-        ]]>
-    </fx:Script>
-    <fx:Declarations>
-        <!-- Place non-visual elements (e.g., services, value objects) here -->
-        <components:PopOver id="myPopOver" mouseDownOutside="myPopOver.close()"
-                            direction="vertical">
+  <fx:Script>
+    <![CDATA[
+      import com.piaction.components.PopOver;
+      import com.piaction.components.UniqueChoiceList;
+      import com.piaction.controls.SkinnableAlert;
+      
+      import mx.events.FlexEvent;
+      
+      private var _myPopUp:PopOver;
+      
+      protected function view1_creationCompleteHandler(event:FlexEvent):void
+      {
+        _myPopUp = new PopOver();
+      }
+      
+      protected function onButtonBarClick(event:MouseEvent):void
+      {
+        
+        myPopOver.target = event.target as DisplayObject;
+        
+        
+        myPopOver.open(this, true);
+      }
+    ]]>
+  </fx:Script>
+  <fx:Declarations>
+    <!-- Place non-visual elements (e.g., services, value objects) here -->
+    <components:PopOver id="myPopOver" mouseDownOutside="myPopOver.close()"
+                        direction="vertical">
 
-            <s:Button chromeColor="#EEEEEE" label="Bouton pop-over"
-                      color="#000000"
-                      click="SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK|SkinnableAlert.CANCEL);myPopOver.close();"/>
-            <s:Button chromeColor="#EEEEEE" label="Bouton pop-over 2"
-                      color="#000000"
-                      click="SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK|SkinnableAlert.CANCEL);myPopOver.close();"/>
-            <s:Button chromeColor="#EEEEEE" label="Bouton pop-over 3"
-                      color="#000000"
-                      click="SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK|SkinnableAlert.CANCEL);myPopOver.close();"/>
-        </components:PopOver>
-    </fx:Declarations>
+      <s:Button chromeColor="#EEEEEE" label="Bouton pop-over" color="#000000"
+                click="SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK|SkinnableAlert.CANCEL);myPopOver.close();"/>
+      <s:Button chromeColor="#EEEEEE" label="Bouton pop-over 2" color="#000000"
+                click="SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK|SkinnableAlert.CANCEL);myPopOver.close();"/>
+      <s:Button chromeColor="#EEEEEE" label="Bouton pop-over 3" color="#000000"
+                click="SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK|SkinnableAlert.CANCEL);myPopOver.close();"/>
+    </components:PopOver>
+  </fx:Declarations>
 
-    <s:layout>
-        <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
-                          paddingLeft="10"/>
-    </s:layout>
-    <s:ButtonBar click="onButtonBarClick(event)" width="100%">
-        <s:dataProvider>
-            <s:ArrayCollection>
-                <fx:Object label="button 1"/>
-                <fx:Object label="button 2"/>
-                <fx:Object label="button 3"/>
-                <fx:Object label="button 4"/>
-            </s:ArrayCollection>
-        </s:dataProvider>
-    </s:ButtonBar>
+  <s:layout>
+    <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
+                      paddingLeft="10"/>
+  </s:layout>
+  <s:ButtonBar click="onButtonBarClick(event)" width="100%">
+    <s:dataProvider>
+      <s:ArrayCollection>
+        <fx:Object label="button 1"/>
+        <fx:Object label="button 2"/>
+        <fx:Object label="button 3"/>
+        <fx:Object label="button 4"/>
+      </s:ArrayCollection>
+    </s:dataProvider>
+  </s:ButtonBar>
 
-    <s:HSlider stepSize="0.1" width="300"/>
+  <s:HSlider stepSize="0.1" width="300"/>
 
-    <components:ComboBox width="80%">
-        <components:dataProvider>
-            <s:ArrayCollection>
-                <fx:Object label="15 minutes"/>
-                <fx:Object label="30 minutes"/>
-                <fx:Object label="45 minutes"/>
-                <fx:Object label="1 hour"/>
-            </s:ArrayCollection>
-        </components:dataProvider>
-    </components:ComboBox>
+  <components:ComboBox width="80%">
+    <components:dataProvider>
+      <s:ArrayCollection>
+        <fx:Object label="15 minutes"/>
+        <fx:Object label="30 minutes"/>
+        <fx:Object label="45 minutes"/>
+        <fx:Object label="1 hour"/>
+      </s:ArrayCollection>
+    </components:dataProvider>
+  </components:ComboBox>
 
 
 
 
-    <!-- Page Indicator-->
-    <s:Button label="Page Indicator View >>"
-              click="navigator.pushView(PageIndicatorView)"/>
+  <!-- Page Indicator-->
+  <s:Button label="Page Indicator View >>"
+            click="navigator.pushView(PageIndicatorView)"/>
 
+  <!-- DeletableList -->
+  <s:Button label="DeletableList View >>"
+            click="navigator.pushView(DeletableListView)"/>
 
-    <!-- DeletableList -->
-    <s:Button label="DeletableList View >>"
-              click="navigator.pushView(DeletableListView)"/>
+  <!-- ContextableList -->
+  <s:Button label="ContextableList View >>"
+            click="navigator.pushView(ContextableListView)"/>
 
-    <!-- ContextableList -->
-    <s:Button label="ContextableList View >>"
-              click="navigator.pushView(ContextableListView)"/>
+  <!-- Confirm Button-->
+  <s:Button label="Confirm Button View >>"
+            click="navigator.pushView(ConfirmButtonView)"/>
 
-    <!-- Confirm Button-->
-    <s:Button label="Confirm Button View >>"
-              click="navigator.pushView(ConfirmButtonView)"/>
+  <!-- Form -->
+  <s:Button label="Form View >>" click="navigator.pushView(FormView)"/>
 
-    <!-- Form -->
-    <s:Button label="Form View >>" click="navigator.pushView(FormView)"/>
+  <!-- UniqueChoiceList -->
+  <s:Button label="Unique Choice List >>"
+            click="navigator.pushView(UniqueChoiceListView)"/>
 
-    <!-- UniqueChoiceList -->
-    <s:Button label="Unique Choice List >>"
-              click="navigator.pushView(UniqueChoiceListView)"/>
+  <!-- SlideDataGroup -->
+  <s:Button label="Slide DataGroup View >>"
+            click="navigator.pushView(SlideDataGroupView)"/>
 
-    <!-- SlideDataGroup -->
-    <s:Button label="Slide DataGroup View >>"
-              click="navigator.pushView(SlideDataGroupView)"/>
+  <!-- ListWheel -->
+  <s:Button label="List Wheel View >>" click="navigator.pushView(ListWheelView)"/>
 
 
 
