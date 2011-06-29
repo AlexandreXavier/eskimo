@@ -63,6 +63,10 @@ package com.piaction.components
          * @private
          */
         protected var _contextData:Object;
+        /**
+         * @private
+         */
+        protected var _contextMenuLabelField:String;
         
         
         
@@ -171,6 +175,8 @@ package com.piaction.components
             
             _contextList = MobileContextMenu.show(_contextMenuItems, _contextRenderer.label, this, true);
             
+            _contextList.labelField = _contextMenuLabelField;
+            
             _contextList.addEventListener(MobileContextMenuEvent.MENU_ITEM_CLICKED, onMobileContextMenuClicked, false, 0, true);
             _contextList.addEventListener(Event.CANCEL, onMobileContextMenuCanceled, false, 0, true);
             
@@ -219,6 +225,23 @@ package com.piaction.components
         {
             return _contextList;
         }
+        
+        /**
+         * LabelField of the context menu instance
+         */
+        public function get contextMenuLabelField():String
+        {
+            return _contextMenuLabelField;
+        }
+        
+        /**
+         * @private
+         */
+        public function set contextMenuLabelField(value:String):void
+        {
+            _contextMenuLabelField = value;
+        }
+    
     
     }
 }

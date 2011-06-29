@@ -82,6 +82,10 @@ package com.piaction.components
          * @private
          */
         private var _headerLabel:String;
+        /**
+         * @private
+         */
+        private var _labelField:String;
         
         
         
@@ -118,6 +122,7 @@ package com.piaction.components
             {
                 listDisplay.dataProvider = new ArrayCollection(_menuItems);
                 listDisplay.addEventListener(IndexChangeEvent.CHANGE, onIndexChange, false, 0, true);
+                listDisplay.labelField = _labelField;
             }
             else if (instance == headerDisplay)
             {
@@ -233,6 +238,27 @@ package com.piaction.components
             
             invalidateDisplayList();
         }
+        
+        /**
+         * List's label field
+         */
+        public function get labelField():String
+        {
+            return _labelField;
+        }
+        
+        /**
+         * @private
+         */
+        public function set labelField(value:String):void
+        {
+            _labelField = value;
+            if (listDisplay)
+            {
+                listDisplay.labelField = _labelField;
+            }
+        }
+    
     
     }
 }
