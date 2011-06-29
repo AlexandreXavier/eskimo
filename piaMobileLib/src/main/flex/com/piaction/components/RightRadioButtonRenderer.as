@@ -1,23 +1,24 @@
 package com.piaction.components
 {
     import flash.display.GradientType;
-    import flash.display.SpreadMethod;
     import flash.events.MouseEvent;
     import flash.geom.Matrix;
     
-    import mx.events.FlexEvent;
-    import mx.graphics.GradientEntry;
-    import mx.graphics.LinearGradient;
+    import mx.events.ItemClickEvent;
     
     import spark.components.LabelItemRenderer;
     import spark.components.RadioButton;
-    import spark.primitives.Rect;
 
+    /**
+     *  the RightRadioButtonRenderer class defines the radio item renderer
+     *  this contains a text component and a right-align radio button.
+     */
     public class RightRadioButtonRenderer extends LabelItemRenderer
     {
         public function RightRadioButtonRenderer()
         {
             super();
+            addEventListener(MouseEvent.CLICK, clickHandler);
         }
         
         protected var radioButton : RadioButton;
@@ -26,6 +27,13 @@ package com.piaction.components
             super.createChildren();
             this.radioButton = new RadioButton();
             this.addChild(this.radioButton);
+        }
+        
+        protected function clickHandler(evt:MouseEvent):void {
+            var e:ItemClickEvent = new ItemClickEvent(ItemClickEvent.ITEM_CLICK, true);
+            e.item = data;
+            e.index = itemIndex;
+            dispatchEvent(e);
         }
         
         override protected function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void{

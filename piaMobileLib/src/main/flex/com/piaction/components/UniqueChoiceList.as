@@ -1,10 +1,8 @@
 package com.piaction.components
 {
   import flash.events.Event;
-  import flash.events.MouseEvent;
   
   import mx.collections.IList;
-  import mx.events.FlexEvent;
   
   import spark.components.List;
   import spark.components.supportClasses.SkinnableComponent;
@@ -14,11 +12,6 @@ package com.piaction.components
    * Selected index changed
    */
   [Event(name="change", type="spark.events.IndexChangeEvent")]
-  
-  /**
-   * Selected index changed
-   */
-  [Event(name="itemClick", type="flash.events.MouseEvent")]
   
   [Style(name="contentBackgroundAlpha", type="Number", inherit="yes", minValue="0.0", maxValue="1.0")]
 
@@ -105,7 +98,6 @@ package com.piaction.components
       if(instance == listDisplay)
       {
         listDisplay.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
-        listDisplay.addEventListener(MouseEvent.CLICK, onClick);
         listDisplay.labelField = labelField;
       }
     }
@@ -140,14 +132,6 @@ package com.piaction.components
     }
     
     /**
-     * @private
-     */
-    protected function onClick(event:MouseEvent):void
-    {
-        dispatchEvent(new MouseEvent("itemClick"));
-    }
-    
-    /**
      * The current selected item
      */
     public function set selectedItem(value:Object):void
@@ -160,7 +144,6 @@ package com.piaction.components
      */
     public function get selectedItem():Object
     {
-        trace("hasFocusableChildren " + listDisplay.hasFocusableChildren);
       return listDisplay.selectedItem;
     }
   }

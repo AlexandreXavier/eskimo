@@ -4,11 +4,11 @@ package com.piaction.components
     
     import mx.collections.IList;
     import mx.events.FlexEvent;
+    import mx.events.ItemClickEvent;
     import mx.managers.PopUpManager;
     
     import spark.components.Label;
     import spark.components.supportClasses.SkinnableComponent;
-    import spark.events.IndexChangeEvent;
     
     /**
      * Skinclass of popup
@@ -78,7 +78,7 @@ package com.piaction.components
               popUp.setStyle("skinClass", popupSkinClass);
             }
             popUp.dataProvider = dataProvider;
-            popUp.addEventListener("change", onChange);
+            popUp.addEventListener(ItemClickEvent.ITEM_CLICK, onItemClick);
             popUp.labelField = labelField;
 
             // center popup
@@ -88,7 +88,7 @@ package com.piaction.components
             popUp.y = stage.stageHeight / 2 - popUp.height;
         }
         
-        protected function onChange(event:IndexChangeEvent):void
+        protected function onItemClick(event:ItemClickEvent):void
         {
             var selecteditem:Object = popUp.selectedItem;
             if (selecteditem != null && selecteditem.hasOwnProperty(labelField))
