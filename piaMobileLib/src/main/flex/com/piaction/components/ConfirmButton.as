@@ -13,23 +13,23 @@ package com.piaction.components
   import spark.components.supportClasses.SkinnableComponent;
   
   /**
-   *  Dispatched after the focus has changed.
+   *  Dispatched when the button is clicked.
    *
-   *  @eventType spark.events.ConfirmEvent.ENTER_CONFIRMATION
+   *  @eventType com.piaction.events.ConfirmEvent.ENTER_CONFIRMATION
    */
   [Event(name = "enterConfirmation", type = "com.piaction.events.ConfirmEvent")]
   
   /**
-   *  Dispatched after the focus has changed.
+   *  Dispatched when the cancel button is clicked.
    *
-   *  @eventType spark.events.ConfirmEvent.CANCEL
+   *  @eventType com.piaction.events.ConfirmEvent.CANCEL
    */
   [Event(name = "cancel", type = "com.piaction.events.ConfirmEvent")]
   
   /**
-   *  Dispatched after the focus has changed.
+   *  Dispatched when the confirm button is clicked.
    *
-   *  @eventType spark.events.ConfirmEvent.CONFIRM
+   *  @eventType com.piaction.events.ConfirmEvent.CONFIRM
    */
   [Event(name = "confirm", type = "com.piaction.events.ConfirmEvent")]
   
@@ -38,76 +38,78 @@ package com.piaction.components
   [SkinState("confirmation")]
   
   /**
-   * Skinclass of request button
+   * Skinclass of the request button.
    */
   [Style(name = "buttonSkinClass", inherit = "no", type = "Class")]
   /**
-   * Color of request button
+   * Color of the request button.
    *
    * @default 0xFFFFFF
    */
   [Style(name = "buttonColor", inherit = "no", type = "uint")]
   /**
-   * chromeColor of request button
+   * chromeColor of the request button.
    */
   [Style(name = "buttonChromeColor", inherit = "no", type = "uint")]
   /**
-   * icon of request button
+   * icon of the request button.
    */
   [Style(name = "buttonIcon", inherit = "no", type = "Object")]
   
   /**
-   * Skinclass of cancel button
+   * Skinclass of the cancel button.
    */
   [Style(name = "cancelButtonSkinClass", inherit = "no", type = "Class")]
   /**
-   * Color of cancel button
+   * Color of the cancel button.
    */
   [Style(name = "cancelColor", inherit = "no", type = "uint")]
   /**
-   * chromeColor of cancel button
+   * chromeColor of the cancel button.
    */
   [Style(name = "cancelChromeColor", inherit = "no", type = "uint")]
   
   /**
-   * Skinclass of confirm button
+   * Skinclass of the confirm button.
    */
   [Style(name = "confirmButtonSkinClass", inherit = "no", type = "Class")]
   /**
-   * Color of confirm button
+   * Color of the confirm button.
    */
   [Style(name = "confirmColor", inherit = "no", type = "uint")]
   /**
-   * chromeColor of confirm button
+   * chromeColor of the confirm button.
    *
    * @default 0xFF3333
    */
   [Style(name = "confirmChromeColor", inherit = "no", type = "uint")]
   
   /**
-   * percentWidth of request button
+   * percentWidth of the request button.
    */
   [Style(name = "buttonPercentWidth", inherit = "no", type = "Number")]
   
   /**
-   * Confirmation Button
+   * This component is a button with a confirmation state to validate or cancel the action.
+   * The first button, the cancel button and the confirm button are customizable.
+   *
    */
   public class ConfirmButton extends SkinnableComponent
   {
     /**
-     * Request button
+     * Request button.
      */
     [SkinPart(required = "true")]
     public var button:Button;
     
     /**
-     * Cancel button
+     * Cancel button.
      */
     [SkinPart(required = "false")]
     public var cancelButton:Button;
     
     /**
-     * Validation button
+     * Validation button.
      */
     [SkinPart(required = "true")]
     public var confirmButton:Button;
@@ -120,13 +122,13 @@ package com.piaction.components
     private var _confirmLabel:String = "Confirm";
     
     /**
-     * Normal state
+     * Normal state.
      */
-    public static var NORMAL_STATE:String = "normal";
+    public static const NORMAL_STATE:String = "normal";
     /**
-     * Confirmation state
+     * Confirmation state.
      */
-    public static var CONFIRMATION_STATE:String = "confirmation";
+    public static const CONFIRMATION_STATE:String = "confirmation";
     
     private var _buttonColorChanged:Boolean = true;
     private var _buttonChromeColorChanged:Boolean = true;
@@ -141,7 +143,7 @@ package com.piaction.components
     private var _confirmButtonSkinClassChanged:Boolean = true;
     
     /**
-     * Constructor
+     * Constructor.
      */
     public function ConfirmButton()
     {
@@ -151,7 +153,7 @@ package com.piaction.components
     
     /**
      * @private
-     * Creation complete handler
+     * Creation complete handler.
      */
     private function onCreationComplete(event:Event):void
     {
@@ -161,7 +163,7 @@ package com.piaction.components
     
     /**
      * @private
-     * State change handler
+     * State change handler.
      */
     private function onStateChange(event:StateChangeEvent):void
     {
@@ -384,6 +386,9 @@ package com.piaction.components
       return false;
     }
     
+    /**
+    * @private
+    */
     private function isButtonUpdatedStyle(styleProp:String):Boolean
     {
       if (styleProp == "buttonColor")
@@ -421,7 +426,7 @@ package com.piaction.components
     
     /**
      * @private
-     * Request button click handler
+     * Request button click handler.
      */
     protected function onButtonClick(event:MouseEvent):void
     {
@@ -431,7 +436,7 @@ package com.piaction.components
     
     /**
      * @private
-     * Cancel button click handler
+     * Cancel button click handler.
      */
     protected function onCancelClick(event:MouseEvent):void
     {
@@ -441,7 +446,7 @@ package com.piaction.components
     
     /**
      * @private
-     * Validation button click handler
+     * Validation button click handler.
      */
     protected function onConfirmClick(event:MouseEvent):void
     {
@@ -458,7 +463,7 @@ package com.piaction.components
     }
     
     /**
-     * Label of request button
+     * Label of the request button.
      */
     public function get buttonLabel():String
     {
@@ -475,7 +480,7 @@ package com.piaction.components
     }
     
     /**
-     * Label of cancel button
+     * Label of the cancel button.
      */
     public function get cancelLabel():String
     {
@@ -492,7 +497,7 @@ package com.piaction.components
     }
     
     /**
-     * Label of validation button
+     * Label of the validation button.
      */
     public function get confirmLabel():String
     {
@@ -509,7 +514,7 @@ package com.piaction.components
     }
     
     /**
-     * Cancel the confirmation
+     * Cancel the confirmation.
      */
     public function cancel():void
     {
