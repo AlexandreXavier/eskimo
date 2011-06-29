@@ -128,17 +128,17 @@ package com.piaction.components
      */
     public static var CONFIRMATION_STATE:String = "confirmation";
     
-    private var _buttonColorChanged:Boolean = false;
-    private var _buttonChromeColorChanged:Boolean = false;
-    private var _buttonSkinClassChanged:Boolean = false;
-    private var _buttonIconChanged:Boolean = false;
-    private var _buttonPercentWidthChanged:Boolean = false;
-    private var _cancelColorChanged:Boolean = false;
-    private var _cancelChromeColorChanged:Boolean = false;
-    private var _cancelButtonSkinClassChanged:Boolean = false;
-    private var _confirmColorChanged:Boolean = false;
-    private var _confirmChromeColorChanged:Boolean = false;
-    private var _confirmButtonSkinClassChanged:Boolean = false;
+    private var _buttonColorChanged:Boolean = true;
+    private var _buttonChromeColorChanged:Boolean = true;
+    private var _buttonSkinClassChanged:Boolean = true;
+    private var _buttonIconChanged:Boolean = true;
+    private var _buttonPercentWidthChanged:Boolean = true;
+    private var _cancelColorChanged:Boolean = true;
+    private var _cancelChromeColorChanged:Boolean = true;
+    private var _cancelButtonSkinClassChanged:Boolean = true;
+    private var _confirmColorChanged:Boolean = true;
+    private var _confirmChromeColorChanged:Boolean = true;
+    private var _confirmButtonSkinClassChanged:Boolean = true;
     
     /**
      * Constructor
