@@ -12,27 +12,27 @@ package com.piaction.components
     import spark.components.IconItemRenderer;
     
     /**
-     * ChromeColor of the delete button
+     * ChromeColor of the delete button.
      * @default 0xCC2A27
      */
     [Style(name = "deleteButtonChromeColor", inherit = "yes", type = "uint")]
     /**
-     * ChromeColor of the delete button
+     * ChromeColor of the delete button.
      * @default 0xCC2A27
      */
     [Style(name = "deleteButtonColor", inherit = "yes", type = "uint")]
     /**
-     * Text color of the delete button
+     * Text color of the delete button.
      * @default 0xFFFFFF
      */
     [Style(name = "deleteButtonWidth", inherit = "yes", type = "Number")]
     /**
-     * width of the delete button
+     * width of the delete button.
      * @default NaN
      */
     [Style(name = "deleteButtonHeight", inherit = "yes", type = "Number")]
     /**
-     * height of the delete button
+     * height of the delete button.
      * @default 0xCC2A27
      */
     [Style(name = "editIcon", inherit = "yes", type = "Class")]
@@ -42,18 +42,18 @@ package com.piaction.components
      */
     [Style(name = "editIconWidth", inherit = "yes", type = "Number")]
     /**
-     * Width of the edit icon
+     * Width of the edit icon.
      * @default 27 px
      */
     [Style(name = "editIconHeight", inherit = "yes", type = "Number")]
     
     /**
-     * Default itemRenderer of the DeletableList
+     * Default itemRenderer of the DeletableList.
      * the component has two states : "normal" and "edition"
      *
-     * In "edition" state, DeletableItemrenderer use DeletableItemRendererOverlay component to show the edit and delete button
+     * In "edition" state, DeletableItemrenderer use DeletableItemRendererOverlay component to show the edit and delete button.
      * @see com.piaction.components.DeletableList
-     * @see com.piacton.components.DeletableListOverlay
+     * @see com.piaction.components.DeletableItemRendererOverlay
      */
     public class DeletableItemRenderer extends IconItemRenderer
     {
@@ -64,7 +64,7 @@ package com.piaction.components
         
         /**
          * @private
-         * Label of the delete buttons
+         * Label of the delete buttons.
          */
         protected static var _deleteLabel:String = "Delete";
         
@@ -190,7 +190,7 @@ package com.piaction.components
         }
         
         /**
-         * Label of the delete buttons
+         * Label of the delete buttons.
          */
         public static function set deleteLabel(value:String):void
         {

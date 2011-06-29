@@ -18,16 +18,16 @@ package com.piaction.components
     [Event(name = "itemDeleted", type = "com.piaction.events.DeletableListEvent")]
     
     /**
-     * List that can contain deletable itemrenderers
+     * List that can contain deletable itemrenderers. Use can swith to edition mode then remove item from the list.
      */
     public class DeletableList extends List
     {
         /**
-         * Normal State const
+         * Normal State const.
          */
         protected static const NORMAL_STATE:String = "normal";
         /**
-         * Edition State const
+         * Edition State const. The user is able to remove item from the list.
          */
         protected static const EDITION_STATE:String = "edition";
         
