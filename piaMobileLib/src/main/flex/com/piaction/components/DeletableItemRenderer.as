@@ -17,8 +17,8 @@ package com.piaction.components
      */
     [Style(name = "deleteButtonChromeColor", inherit = "yes", type = "uint")]
     /**
-     * ChromeColor of the delete button.
-     * @default 0xCC2A27
+     * Text color of the delete button
+     * @default 0xFFFFFF
      */
     [Style(name = "deleteButtonColor", inherit = "yes", type = "uint")]
     /**
@@ -37,7 +37,7 @@ package com.piaction.components
      */
     [Style(name = "editIcon", inherit = "yes", type = "Class")]
     /**
-     * ChromeColor of the delete button
+     * Edit button icon width
      * @default 27 px
      */
     [Style(name = "editIconWidth", inherit = "yes", type = "Number")]

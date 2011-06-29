@@ -140,7 +140,7 @@ components|ConfirmButton
 components|PopOver
 {
     skinClass: ClassReference("com.piaction.skins.mobile.ios.PopOverSkin");
-    popupBackgroundColor: #4A6A9B;
+    chromeColor: #10142E;
 }
 
 components|ComboBox
@@ -149,12 +149,6 @@ components|ComboBox
     popupSkinClass: ClassReference("com.piaction.skins.mobile.android.PopUpUniqueChoiceSkin");
 }
 
-components|PopOver s|Button
-{
-    chromeColor: #EEEEEE;
-    color: #000000;
-}
-  
 components|ListWheel
 {
     skinClass: ClassReference("com.piaction.skins.mobile.ios.ListWheelSkin");

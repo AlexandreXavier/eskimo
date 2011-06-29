@@ -140,7 +140,8 @@
             </s:stroke>
         </s:Rect>
 
-        <s:RectangularDropShadow top="0" left="0" bottom="0" right="0"
-                                 distance="0" color="0" blurX="15" blurY="15"/>
+        <s:filters>
+            <s:DropShadowFilter color="0" blurX="15" blurY="15" distance="0"/>
+        </s:filters>
     </s:Group>
 </s:Skin>

@@ -8,22 +8,41 @@ package com.piaction.components
     import spark.components.SkinnablePopUpContainer;
     
     /**
-     * Skin states
+     * Top position skin state
      */
     [SkinState("topPosition")]
+    /**
+     * Right position skin state
+     */
     [SkinState("rightPosition")]
+    /**
+     * Bottom position skin state
+     */
     [SkinState("bottomPosition")]
+    /**
+     * Left position skin state
+     */
     [SkinState("leftPosition")]
+    /**
+     * Top position and closed skin state
+     */
     [SkinState("topPositionAndClosed")]
+    /**
+     * Right position and closed skin state
+     */
     [SkinState("rightPositionAndClosed")]
+    /**
+     * Bottom position and closed skin state
+     */
     [SkinState("bottomPositionAndClosed")]
+    /**
+     * Left position and closed skin state
+     */
     [SkinState("leftPositionAndClosed")]
     
     /**
-     * Color of popup's background
+     * Display a pop over in the owner coordinate beside a target component
      */
-    [Style(name = "popupBackgroundColor", inherit = "no", type = "uint")]
-    
     public class PopOver extends SkinnablePopUpContainer
     {
         /**
@@ -50,7 +69,6 @@ package com.piaction.components
         protected var _target:DisplayObject;
         protected var _direction:String = VERTICAL_DIRECTION;
         protected var _currentPosition:String = UNKNOW_POSITION;
-        
         protected var _targetCenterOffset:int;
         
         /**
@@ -60,6 +78,7 @@ package com.piaction.components
         
         /**
          * Overlappig limit of the target by the pop over
+         * @defaults 10 px
          */
         public static var LIMIT_TARGET_OVERLAPING:int = 10;
         
@@ -92,6 +111,14 @@ package com.piaction.components
         {
             super.updateDisplayList(unscaledWidth, unscaledHeight);
             
+            layoutComponent(unscaledWidth, unscaledHeight);
+        }
+        
+        /**
+         * Set the position on the pop over in the ower coordinates
+         */
+        protected function layoutComponent(unscaledWidth:Number, unscaledHeight:Number):void
+        {
             if (target == null)
             {
                 _currentPosition = UNKNOW_POSITION;
@@ -104,7 +131,7 @@ package com.piaction.components
             var contentRect:Rectangle = owner.getRect(this.owner);
             
             var globalPosition:Point;
-            var parrentPosition:Point;
+            var parentPosition:Point;
             
             //if the direction is vertical
             if (_direction == VERTICAL_DIRECTION)
@@ -114,7 +141,7 @@ package com.piaction.components
             //else if the dirrection is horizontal
             else if (_direction == HORIZONTAL_DIRECTION)
             {
-              updateHorizontalPosition(contentRect, targetRect);
+                updateHorizontalPosition(contentRect, targetRect);
             }
             
             //Then wee loop if the pop-over is front of his target
@@ -131,12 +158,15 @@ package com.piaction.components
             invalidateSkinState();
         }
         
-        private function updateVerticalPosition(contentRect:Rectangle, targetRect:Rectangle):void
+        /**
+         * @private
+         */
+        protected function updateVerticalPosition(contentRect:Rectangle, targetRect:Rectangle):void
         {
             var topRect:Rectangle = new Rectangle(0, 0, contentRect.width, Math.max(targetRect.y, 0));
             
             var bottomRect:Rectangle = new Rectangle(0, Math.max(targetRect.y + targetRect.height, 0), contentRect.width, Math.min(contentRect.height - targetRect.y - targetRect.height, contentRect.height));
-
+            
             var newXPosition:int;
             var newYPosition:int;
             
@@ -157,7 +187,7 @@ package com.piaction.components
                 
                 _currentPosition = TOP_POSITION;
             }
-                //If there is more place in the bottom space
+            //If there is more place in the bottom space
             else
             {
                 // we put the top side of the pop-over in front of the target's bottom side
@@ -184,22 +214,25 @@ package com.piaction.components
                 xOffset = -newXPosition;
             }
             
-            var contentOffset:Rectangle = owner.getRect(parent);
-            newXPosition += contentOffset.x + xOffset;
-            newYPosition += contentOffset.y + yOffset;
+            var contentOffset:Rectangle = parent.getRect(owner);
+            newXPosition += -contentOffset.x + xOffset;
+            newYPosition += -contentOffset.y + yOffset;
             
             //We positionnate the pop-over
             this.x = newXPosition;
             this.y = newYPosition;
         }
         
-        private function updateHorizontalPosition(contentRect:Rectangle, targetRect:Rectangle):void
+        /**
+         * @private
+         */
+        protected function updateHorizontalPosition(contentRect:Rectangle, targetRect:Rectangle):void
         {
             //Compute the différente available spaces (top, right, bottom and left)
             var leftRect:Rectangle = new Rectangle(0, 0, Math.max(targetRect.x, 0), contentRect.height);
             
             var rightRect:Rectangle = new Rectangle(Math.max(targetRect.x + targetRect.width, 0), 0, Math.min(contentRect.width - targetRect.x - targetRect.width, contentRect.width), contentRect.height);
-
+            
             var newXPosition:int;
             var newYPosition:int;
             
@@ -220,7 +253,7 @@ package com.piaction.components
                 
                 _currentPosition = LEFT_POSITION;
             }
-                //If there is more place in the right space
+            //If there is more place in the right space
             else
             {
                 // we put the left side of the pop-over in front of the target's right side
@@ -247,9 +280,9 @@ package com.piaction.components
                 yOffset = -newYPosition;
             }
             
-            var contentOffset:Rectangle = owner.getRect(parent);
-            newXPosition += contentOffset.x + xOffset;
-            newYPosition += contentOffset.y + yOffset;
+            var contentOffset:Rectangle = parent.getBounds(owner);
+            newXPosition += -contentOffset.x + xOffset;
+            newYPosition += -contentOffset.y + yOffset;
             
             //We positionnate the pop-over
             this.x = newXPosition;
@@ -281,7 +314,7 @@ package com.piaction.components
         }
         
         /**
-         * Set the target og the pop over
+         * Display object target by the PopOver
          */
         public function get target():DisplayObject
         {
@@ -326,7 +359,7 @@ package com.piaction.components
         }
         
         /**
-         * @private
+         * Différence in pixel between the center of target center and the pop-over center (horizontaly or verticaly)
          */
         public function get targetCenterOffset():int
         {

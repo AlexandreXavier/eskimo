@@ -170,8 +170,6 @@ package com.piaction.components
             var menu:MobileContextMenu = new MobileContextMenu();
             
             menu.open(parent, true);
-            //PopUpManager.createPopUp(parent, MobileContextMenu, true, childList) as MobileContextMenu;
-            
             
             menu.menuItems = menuItems;
             menu.headerLabel = headerLabel;
