@@ -1,8 +1,10 @@
 package com.piaction.components
 {
+    import flash.events.Event;
     import flash.events.MouseEvent;
     
     import mx.collections.IList;
+    import mx.controls.List;
     import mx.events.FlexEvent;
     import mx.events.ItemClickEvent;
     import mx.managers.PopUpManager;
@@ -14,6 +16,13 @@ package com.piaction.components
      * Skinclass of popup
      */
     [Style(name = "popupSkinClass", inherit = "no", type = "Class")]
+    
+    /**
+     *  Dispatched when the user clicks on an item in the control.
+     *
+     *  @eventType mx.events.ItemClickEvent.ITEM_CLICK
+     */
+    [Event(name="itemClick", type="mx.events.ItemClickEvent")]
     
     /**
      * The ComboBox control lets the user make a single choice within a set of mutually exclusive choices.
@@ -32,6 +41,16 @@ package com.piaction.components
         public var selectedLabel:Label;
         
         private var _dataProvider:IList;
+        
+        /**
+         * @private
+         */
+        private var _selectedItem:Object;
+        
+        /**
+         * @private
+         */
+        private var _selectedItemChange:Boolean;
         
         private var _labelField:String = "label";
         
@@ -65,12 +84,15 @@ package com.piaction.components
             }
         }
         
+        /**
+         *  Set of data to be viewed.
+         */
         public function get dataProvider():IList
         {
             return _dataProvider;
         }
         
-        public function popUpList(event:MouseEvent):void
+        private function popUpList(event:MouseEvent):void
         {
             var popupSkinClass:Object = getStyle("popupSkinClass");
             if(popupSkinClass != null)
@@ -95,13 +117,53 @@ package com.piaction.components
             {
                 selectedLabel.text = selecteditem[labelField];
             }
-            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+            var evt:Event = event.clone();
+            dispatchEvent(evt);List
+            
             PopUpManager.removePopUp(popUp);
         }
-        
+
+        /**
+         *  The item that is currently selected. 
+         */
         public function get selectedItem():Object
         {
             return popUp.selectedItem;
+        }
+        
+        /**  
+        * Setting this property deselects the currently selected 
+        *  item and selects the newly specified item.
+        *
+        *  <p>Setting <code>selectedItem</code> to an item that is not 
+        *  in this component results in no selection, 
+        *  and <code>selectedItem</code> being set to <code>undefined</code>.</p>
+        */
+        public function set selectedItem(value:Object):void
+        {
+            popUp.selectedItem = value;
+            if(value != _selectedItem)
+            {
+                _selectedItem = value;
+                
+                _selectedItemChange = true;
+                
+                invalidateProperties();
+            }
+        }
+        
+        /**
+         * @private
+         */
+        override protected function commitProperties():void
+        {
+            super.commitProperties();
+            
+            if(_selectedItemChange && _selectedItem && _selectedItem.hasOwnProperty(labelField))
+            {
+                selectedLabel.text = _selectedItem[labelField];
+                _selectedItemChange = false;
+            }
         }
     }
 }

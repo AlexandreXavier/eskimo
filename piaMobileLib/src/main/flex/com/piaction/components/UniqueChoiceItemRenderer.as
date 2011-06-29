@@ -9,13 +9,13 @@ package com.piaction.components
     import spark.components.RadioButtonGroup;
     import spark.components.supportClasses.ItemRenderer;
     
+    /**
+     *  The UniqueChoiceItemRenderer class defines the radio item renderer
+     *  This is a simple item renderer with a single radio button component.
+     */
     public class UniqueChoiceItemRenderer extends ItemRenderer
     {
         private var radioButton:RadioButton;
-        
-        private var _radioGroup:RadioButtonGroup;
-        
-        
         
         public function UniqueChoiceItemRenderer()
         {

@@ -2,8 +2,14 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark"
         xmlns:mx="library://ns.adobe.com/flex/mx" width="100%">
-    <!-- host component -->
+    <!--- The default skin class for the android ComboBox component.  
+    
+    @see com.piaction.components.ComboBox
+    -->
     <fx:Metadata>
+        /** 
+        * A strongly typed property that references the component to which this skin is applied.
+        */
         [HostComponent("com.piaction.components.ComboBox")]
     </fx:Metadata>
 

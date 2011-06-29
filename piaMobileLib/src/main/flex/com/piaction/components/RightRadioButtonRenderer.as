@@ -10,8 +10,8 @@ package com.piaction.components
     import spark.components.RadioButton;
 
     /**
-     *  the RightRadioButtonRenderer class defines the radio item renderer
-     *  this contains a text component and a right-align radio button.
+     *  The RightRadioButtonRenderer class defines the radio item renderer
+     *  This contains a text component and a right-align radio button.
      */
     public class RightRadioButtonRenderer extends LabelItemRenderer
     {
@@ -67,10 +67,10 @@ package com.piaction.components
         override protected function drawBackground(unscaledWidth:Number, 
                                           unscaledHeight:Number):void
         {
-            //Colors of our gradient in the form of an array
             var colors:Array = [ 0xFFFFFF, 0x000000, 0xFFFFFF];
-            //Store the Alpha Values in the form of an array
+
             var alphas:Array = [ 1, 1, 1];
+            
             //Array of color distribution ratios.
             //The value defines percentage of the width where the color is sampled at 100%
             var ratios:Array = [ 0, 128, 255 ];
@@ -84,8 +84,7 @@ package com.piaction.components
             graphics.drawRect(linePadding, unscaledHeight, unscaledWidth - 2 * linePadding, 1);
             graphics.endFill();
             
-            // Selected and down states have a gradient overlay as well
-            // as different separators colors/alphas
+            // Down state have a gradient overlay
             if (down)
             {
                 var colors_down:Array = [0x000000, 0x000000 ];

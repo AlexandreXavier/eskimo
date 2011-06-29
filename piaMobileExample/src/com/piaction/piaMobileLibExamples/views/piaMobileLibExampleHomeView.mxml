@@ -29,9 +29,9 @@
 
             <s:HSlider stepSize="0.1" width="300"/>
 
-            <components:ComboBox width="80%">
+            <components:ComboBox width="80%" selectedItem="{comboData.getItemAt(1)}">
                 <components:dataProvider>
-                    <s:ArrayCollection>
+                    <s:ArrayCollection id="comboData">
                         <fx:Object label="15 minutes"/>
                         <fx:Object label="30 minutes"/>
                         <fx:Object label="45 minutes"/>
@@ -39,8 +39,6 @@
                     </s:ArrayCollection>
                 </components:dataProvider>
             </components:ComboBox>
-
-
 
 
             <!-- Page Indicator-->

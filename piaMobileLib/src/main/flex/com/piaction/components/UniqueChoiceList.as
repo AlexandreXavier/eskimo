@@ -9,19 +9,18 @@ package com.piaction.components
   import spark.events.IndexChangeEvent;
   
   /**
-   * Selected index changed
+   *  Dispatched after the selection has changed. 
+   *  This event is dispatched when the user interacts with the control.
    */
   [Event(name="change", type="spark.events.IndexChangeEvent")]
   
-  [Style(name="contentBackgroundAlpha", type="Number", inherit="yes", minValue="0.0", maxValue="1.0")]
-
   /**
    * Component that switch between ListWheel and list of radioButton item
    */
   public class UniqueChoiceList extends SkinnableComponent
   {
     /**
-     * List Display Skin Part
+     * list Display Skin Part
      */
     [SkinPart(required="true")]
     public var listDisplay:List;
@@ -39,7 +38,17 @@ package com.piaction.components
     /**
      * @private
      */
-    protected var _labelField:String;
+    private var _selectedItem:Object;
+    
+    /**
+     * @private
+     */
+    private var _selectedItemChange:Boolean;
+    
+    /**
+     * @private
+     */
+    protected var _labelField:String = "label";
     
     /**
      * Constructor
@@ -50,7 +59,10 @@ package com.piaction.components
     }
     
     /**
-     * LabelField of the list
+     *  The name of the field in the data provider items to display 
+     *  as the label. 
+     *
+     *  @default "label" 
      */
     public function get labelField():String
     {
@@ -81,7 +93,7 @@ package com.piaction.components
     }
     
     /**
-     * @private
+     *  Set of data to be viewed.
      */
     public function get dataProvider():IList
     {
@@ -115,6 +127,12 @@ package com.piaction.components
         _dataProviderChange = false;
       }
       
+      if(_selectedItemChange)
+      {
+          listDisplay.selectedItem = _selectedItem;
+          _selectedItemChange = false;
+      }
+      
       if(listDisplay != null)
       {
         listDisplay.labelField = labelField;
@@ -131,16 +149,28 @@ package com.piaction.components
       dispatchEvent(evt);
     }
     
-    /**
-     * The current selected item
+    /**  
+     * Setting this property deselects the currently selected 
+     *  item and selects the newly specified item.
+     *
+     *  <p>Setting <code>selectedItem</code> to an item that is not 
+     *  in this component results in no selection, 
+     *  and <code>selectedItem</code> being set to <code>undefined</code>.</p>
      */
     public function set selectedItem(value:Object):void
     {
-      listDisplay.selectedItem = value;  
+        if(value != _selectedItem)
+        {
+            _selectedItem = value;
+            
+            _selectedItemChange = true;
+            
+            invalidateProperties();
+        }
     }
     
     /**
-     * @private
+     *  The item that is currently selected. 
      */
     public function get selectedItem():Object
     {
