@@ -2,6 +2,8 @@ package com.piaction.components
 {
     
     import mx.core.FlexGlobals;
+    import mx.core.IFlexDisplayObject;
+    import mx.core.ILayoutElement;
     import mx.graphics.GradientEntry;
     import mx.graphics.LinearGradient;
     import mx.graphics.SolidColorStroke;
@@ -11,14 +13,13 @@ package com.piaction.components
     import spark.components.RadioButton;
     import spark.components.RadioButtonGroup;
     import spark.components.supportClasses.ItemRenderer;
+    import spark.primitives.BitmapImage;
     import spark.primitives.Line;
     import spark.primitives.Rect;
     
     public class PopupUniqueChoiceItemRenderer extends ItemRenderer
     {
         private var radioButton:RadioButton;
-        
-        private var _radioGroup:RadioButtonGroup;
         
         private var rect:Rect;
         
@@ -36,7 +37,7 @@ package com.piaction.components
             if (radioButton == null)
             {
                 radioButton = new RadioButton();
-                //radioButton.setStyle("iconPlacement" , "right");
+                radioButton.setStyle("iconPlacement" , "right");
                 radioButton.x = this.parent.width * 0.04;
                 radioButton.percentWidth = 92;
                 radioButton.percentHeight = 100;

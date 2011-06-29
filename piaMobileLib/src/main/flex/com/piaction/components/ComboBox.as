@@ -20,6 +20,8 @@ package com.piaction.components
      */
     public class ComboBox extends SkinnableComponent
     {
+        private static const POPUP_PADDING_PERCENT:Number = 4;
+        
         public function ComboBox()
         {
             super();
@@ -76,16 +78,17 @@ package com.piaction.components
               popUp.setStyle("skinClass", popupSkinClass);
             }
             popUp.dataProvider = dataProvider;
-            popUp.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
+            popUp.addEventListener("change", onChange);
             popUp.labelField = labelField;
-            popUp.width = stage.stageWidth * 0.6;
+
             // center popup
-            popUp.x = stage.stageWidth * 0.04;
+            popUp.width = stage.stageWidth * (100 - 2 * POPUP_PADDING_PERCENT) / 100;
+            popUp.x = stage.stageWidth * POPUP_PADDING_PERCENT / 100;
             PopUpManager.addPopUp(popUp, this);
             popUp.y = stage.stageHeight / 2 - popUp.height;
         }
         
-        protected function onIndexChange(event:IndexChangeEvent):void
+        protected function onChange(event:IndexChangeEvent):void
         {
             var selecteditem:Object = popUp.selectedItem;
             if (selecteditem != null && selecteditem.hasOwnProperty(labelField))
