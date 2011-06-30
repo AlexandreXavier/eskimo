@@ -15,7 +15,9 @@ package com.piaction.components
   [Event(name="change", type="spark.events.IndexChangeEvent")]
   
   /**
-   * Component that switch between ListWheel and list of radioButton item
+   * Component that represented by a ListWheel on iOs and a list of radioButton item on android.
+   * 
+   * @see com.piaction.components.UniqueChoiceItemRenderer
    */
   public class UniqueChoiceList extends SkinnableComponent
   {
@@ -93,7 +95,7 @@ package com.piaction.components
     }
     
     /**
-     *  Set of data to be viewed.
+     *  List of choice
      */
     public function get dataProvider():IList
     {
@@ -170,7 +172,7 @@ package com.piaction.components
     }
     
     /**
-     *  The item that is currently selected. 
+     *  The item currently selected. 
      */
     public function get selectedItem():Object
     {

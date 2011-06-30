@@ -12,6 +12,8 @@ package com.piaction.components
     /**
      *  The UniqueChoiceItemRenderer class defines the radio item renderer
      *  This is a simple item renderer with a single radio button component.
+     * 
+     *  @see com.piaction.components.UniqueChoiceList
      */
     public class UniqueChoiceItemRenderer extends ItemRenderer
     {

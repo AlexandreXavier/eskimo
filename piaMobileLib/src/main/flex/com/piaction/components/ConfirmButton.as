@@ -118,8 +118,8 @@ package com.piaction.components
      * @private
      */
     private var _buttonLabel:String = "";
-    private var _cancelLabel:String = "Cancel";
-    private var _confirmLabel:String = "Confirm";
+    private var _cancelLabel:String = "";
+    private var _confirmLabel:String = "";
     
     /**
      * Normal state.
@@ -483,7 +483,6 @@ package com.piaction.components
     /**
      * Label of the cancel button.
      *
-     * @default Cancel
      */
     public function get cancelLabel():String
     {
@@ -502,7 +501,6 @@ package com.piaction.components
     /**
      * Label of the validation button.
      *
-     * @default Confirm
      */
     public function get confirmLabel():String
     {
