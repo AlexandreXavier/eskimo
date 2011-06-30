@@ -2,36 +2,83 @@
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark" title="SlideDataGroupView"
         xmlns:components="com.piaction.components.*">
-    <fx:Declarations>
-        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
-    </fx:Declarations>
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+  </fx:Declarations>
+  <fx:Script>
+    <![CDATA[
+      private function changeOrientationSelection(event:Event):void
+      {
+        var value:String = ButtonBar(event.target).selectedItem.value;
+        if (value != null)
+        {
+          slideDataGroup.orientation = value;
+        }
+      }
+      
+      private function changeDirectionSelection(event:Event):void
+      {
+        var value:int = ButtonBar(event.target).selectedItem.value;
+        slideDataGroup.direction = value;
+      }
+    ]]>
+  </fx:Script>
+  <s:layout>
+    <s:VerticalLayout paddingTop="20" paddingRight="20" paddingBottom="20"
+                      paddingLeft="20"/>
+  </s:layout>
+  <s:navigationContent>
+    <s:Button label="Retour" click="navigator.popView()"/>
+  </s:navigationContent>
 
-    <s:navigationContent>
-        <s:Button label="Retour" click="navigator.popView()"/>
-    </s:navigationContent>
-
-    <s:HGroup id="myGroup" width="100%" height="150">
+  <s:HGroup id="myGroup" width="100%" height="150">
 
 
-        <components:SlideDataGroup width="150" height="100%"
-                                   orientation="{SlideDataGroup.HORIZONTAL}"
-                                   direction="{SlideDataGroup.NORMAL}"
-                                   itemRenderer="com.piaction.piaMobileLibExamples.renderers.ImageRenderer">
-            <components:dataProvider>
-                <s:ArrayCollection>
-                    <fx:Object source="data/img/photo01.jpg"/>
-                    <fx:Object source="data/img/photo02.jpg"/>
-                    <fx:Object source="data/img/photo03.jpg"/>
-                    <fx:Object source="data/img/photo04.jpg"/>
-                    <fx:Object source="data/img/photo05.jpg"/>
-                    <fx:Object source="data/img/photo06.jpg"/>
-                    <fx:Object source="data/img/photo07.jpg"/>
-                    <fx:Object source="data/img/photo08.jpg"/>
-                    <fx:Object source="data/img/photo09.jpg"/>
-                    <fx:Object source="data/img/photo10.jpg"/>
-                </s:ArrayCollection>
-            </components:dataProvider>
-        </components:SlideDataGroup>
-
-    </s:HGroup>
+    <components:SlideDataGroup id="slideDataGroup" width="300" height="100%"
+                               orientation="{SlideDataGroup.HORIZONTAL}"
+                               direction="{SlideDataGroup.NORMAL}"
+                               itemRenderer="com.piaction.piaMobileLibExamples.renderers.ImageRenderer">
+      <components:dataProvider>
+        <s:ArrayCollection>
+          <fx:Object source="data/img/photo01.jpg"/>
+          <fx:Object source="data/img/photo02.jpg"/>
+          <fx:Object source="data/img/photo03.jpg"/>
+          <fx:Object source="data/img/photo04.jpg"/>
+          <fx:Object source="data/img/photo05.jpg"/>
+          <fx:Object source="data/img/photo06.jpg"/>
+          <fx:Object source="data/img/photo07.jpg"/>
+          <fx:Object source="data/img/photo08.jpg"/>
+          <fx:Object source="data/img/photo09.jpg"/>
+          <fx:Object source="data/img/photo10.jpg"/>
+        </s:ArrayCollection>
+      </components:dataProvider>
+    </components:SlideDataGroup>
+    <s:Form>
+      <s:FormHeading label="Parameters"/>
+      <!-- Orientation -->
+      <s:FormItem label="Orientation">
+        <s:ButtonBar id="orientationMenu" requireSelection="true" x="10" y="40"
+                     width="320" change="changeOrientationSelection(event)">
+          <s:dataProvider>
+            <s:ArrayCollection>
+              <fx:Object label="Horizontal" value="{SlideDataGroup.HORIZONTAL}"/>
+              <fx:Object label="Vertical" value="{SlideDataGroup.VERTICAL}"/>
+            </s:ArrayCollection>
+          </s:dataProvider>
+        </s:ButtonBar>
+      </s:FormItem>
+      <!-- Direction -->
+      <s:FormItem label="Direction">
+        <s:ButtonBar id="directionMenu" requireSelection="true" x="10" y="40"
+                     width="320" change="changeDirectionSelection(event)">
+          <s:dataProvider>
+            <s:ArrayCollection>
+              <fx:Object label="Normal" value="{SlideDataGroup.NORMAL}"/>
+              <fx:Object label="Reverse" value="{SlideDataGroup.REVERSE}"/>
+            </s:ArrayCollection>
+          </s:dataProvider>
+        </s:ButtonBar>
+      </s:FormItem>
+    </s:Form>
+  </s:HGroup>
 </s:View>
