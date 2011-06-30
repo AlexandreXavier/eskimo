@@ -39,6 +39,8 @@
     s|Form
     {
         skinClass:ClassReference("com.piaction.skins.mobile.ios.FormSkin");
+        borderColor: #b4b7bb;
+        borderAlpha: 1;
     } 
     s|FormItem
     {

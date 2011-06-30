@@ -16,11 +16,22 @@ that has additional logic to align the columns of FormItems.
 
     <fx:Metadata>
         <![CDATA[ 
-    /** 
-    * @copy spark.skins.spark.ApplicationSkin#hostComponent
-    */
-    [HostComponent("spark.components.SkinnableContainer")]
-    ]]>
+        /** 
+        * @copy spark.skins.spark.ApplicationSkin#hostComponent
+        */
+        [HostComponent("spark.components.SkinnableContainer")]
+        
+        /**
+        * Define the border color
+        * @defaults 0xb4b7bb
+        */
+        [Style(name="borderColor", inherit="no", type="uint")]
+        /**
+        * Define the border alpha
+        * @defaults 1
+        */
+        [Style(name="borderAlpha", inherit="no", type="Number")]
+        ]]>
     </fx:Metadata>
 
     <fx:Script>
@@ -29,15 +40,18 @@ that has additional logic to align the columns of FormItems.
             import mx.core.IVisualElement;
             
             import spark.components.FormItem;
+            import spark.layouts.VerticalLayout;
             
             /**
-            * @private
-            */
+             * @private
+             */
             override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
             {
                 super.updateDisplayList(unscaledWidth, unscaledHeight);
                 
                 bgFill.color = getStyle("backgroundColor");
+                strokeFill.color = getStyle("borderColor");
+                strokeFill.alpha = getStyle("borderAlpha");
                 
                 var formItem:IVisualElement;
                 var gap:int;
@@ -46,19 +60,23 @@ that has additional logic to align the columns of FormItems.
                     gap = contentGroup.layout["gap"];
                 }
                 
-                lineOverlay.graphics.clear();
-                lineOverlay.graphics.beginFill(0xb4b7bb, 1);
-                for (var i:int = 0; i < contentGroup.numElements - 1; i++)
+                if (contentGroup.layout is VerticalLayout || contentGroup.layout is FormLayout)
                 {
-                    formItem = contentGroup.getElementAt(i);
-                    
-                    if (formItem is spark.components.FormItem)
+                    lineOverlay.graphics.clear();
+                    lineOverlay.graphics.beginFill(strokeFill.color, strokeFill.alpha);
+                    for (var i:int = 0; i < contentGroup.numElements - 1; i++)
                     {
-                        var lineY:int = formItem.getLayoutBoundsY() + formItem.getLayoutBoundsHeight() + gap / 2;
-                        lineOverlay.graphics.drawRect(0, lineY, unscaledWidth, 1);
+                        formItem = contentGroup.getElementAt(i);
+                        
+                        if (formItem is spark.components.FormItem)
+                        {
+                            var lineY:int = formItem.getLayoutBoundsY() + formItem.getLayoutBoundsHeight() + gap / 2;
+                            lineOverlay.graphics.drawRect(0, lineY, unscaledWidth, 1);
+                        }
                     }
+                    lineOverlay.graphics.endFill();
                 }
-                lineOverlay.graphics.endFill();
+            
             }
         ]]>
     </fx:Script>
@@ -71,14 +89,14 @@ that has additional logic to align the columns of FormItems.
     <s:Rect id="background" left="0" right="0" top="0" bottom="0" radiusX="10"
             radiusY="10">
         <s:stroke>
-            <s:SolidColorStroke color="#b4b7bb" weight="1"/>
+            <s:SolidColorStroke id="strokeFill" color="#b4b7bb" weight="1"/>
         </s:stroke>
         <s:fill>
-            <s:SolidColor id="bgFill" color="#ffffff"/>
+            <s:SolidColor id="bgFill"/>
         </s:fill>
         <s:filters>
             <s:DropShadowFilter distance="1" angle="90" color="#FFFFFF"
-                                blurY="0" blurX="0" alpha="0.7"/>
+                                blurY="0" blurX="0" alpha="0.5"/>
         </s:filters>
     </s:Rect>
     <!--- @copy spark.components.SkinnableContainer#contentGroup -->
