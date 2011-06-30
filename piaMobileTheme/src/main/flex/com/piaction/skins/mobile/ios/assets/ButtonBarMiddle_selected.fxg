@@ -37,4 +37,10 @@
             </LinearGradientStroke>
         </stroke>
     </Rect>
+    
+    <Rect width="58" height="28" topRightRadiusX="5" bottomRightRadiusX="5">
+        <fill>
+            <SolidColor color="#FFFFFF" alpha="0.2"/>
+        </fill>
+    </Rect>
 </Graphic>

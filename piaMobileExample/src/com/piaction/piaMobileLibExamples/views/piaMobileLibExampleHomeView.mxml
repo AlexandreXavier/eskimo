@@ -16,31 +16,18 @@
                 <s:VerticalLayout paddingTop="10" paddingRight="10"
                                   paddingBottom="10" paddingLeft="10"/>
             </s:layout>
-            <s:ButtonBar width="100%">
-                <s:dataProvider>
-                    <s:ArrayCollection>
-                        <fx:Object label="button 1"/>
-                        <fx:Object label="button 2"/>
-                        <fx:Object label="button 3"/>
-                        <fx:Object label="button 4"/>
-                    </s:ArrayCollection>
-                </s:dataProvider>
-            </s:ButtonBar>
-
-            <s:HSlider stepSize="0.1" width="300"/>
-
-            <components:ComboBox width="80%"
-                                 selectedItem="{comboData.getItemAt(1)}">
-                <components:dataProvider>
-                    <s:ArrayCollection id="comboData">
-                        <fx:Object label="15 minutes"/>
-                        <fx:Object label="30 minutes"/>
-                        <fx:Object label="45 minutes"/>
-                        <fx:Object label="1 hour"/>
-                    </s:ArrayCollection>
-                </components:dataProvider>
-            </components:ComboBox>
-
+            
+            <!-- ButtonBar -->
+            <s:Button label="Button bar View >>"
+                      click="navigator.pushView(ButtonBarView)"/>
+            
+            <!-- HSlider -->
+            <s:Button label="HSlider View >>"
+                      click="navigator.pushView(HSliderView)"/>
+            
+            <!-- ComboBox -->
+            <s:Button label="Combo box View >>"
+                      click="navigator.pushView(ComboBoxView)"/>
 
             <!-- Alert -->
             <s:Button label="Alert View >>"

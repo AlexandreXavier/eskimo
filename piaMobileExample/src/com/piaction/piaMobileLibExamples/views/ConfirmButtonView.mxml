@@ -23,7 +23,8 @@
   <components:ConfirmButton id="confirmButton" width="300"
                             buttonPercentWidth="100"
                             buttonLabel="Confirm Button"
-                            confirmLabel="Quit this view"
+                            cancelLabel="Cancel"
+                            confirmLabel="Confirm"
                             confirmChromeColor="#FF3333"
                             confirm="SkinnableAlert.show('ok', 'Skinnable Alert')"/>
   <s:Form>
