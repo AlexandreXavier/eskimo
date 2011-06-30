@@ -9,16 +9,18 @@ package com.piaction.components
   import spark.layouts.supportClasses.LayoutBase;
   
   /**
-   * SlideDataGroup is a DataGroup which enable Swipe bitween elements
+   * SlideDataGroup is a DataGroup which enable Swipe between the elements.
+   * Slide Container can only have a SlideLayout layout.
+   *
    */
   public class SlideDataGroup extends DataGroup
   {
     /**
-     * Oriantation vertival
+     * Specifies a vertical direction for elements.
      */
     public static const VERTICAL:String = "vertical";
     /**
-     * Oriantation horizontal
+     * Specifies left-to-right direction for elements.
      */
     public static const HORIZONTAL:String = "horizontal";
     /**
@@ -42,7 +44,7 @@ package com.piaction.components
      */
     override public function set layout(value:LayoutBase):void
     {
-      if( value is SlideLayout )
+      if (value is SlideLayout)
       {
         super.layout = value;
       }
@@ -57,7 +59,7 @@ package com.piaction.components
      */
     public function get orientation():String
     {
-      return (layout as SlideLayout).orientation;
+      return slideLayout.orientation;
     }
     
     /**
@@ -65,7 +67,7 @@ package com.piaction.components
      */
     public function set orientation(value:String):void
     {
-      (layout as SlideLayout).orientation = value;
+      slideLayout.orientation = value;
     }
     
     /**
@@ -73,7 +75,7 @@ package com.piaction.components
      */
     public function get direction():int
     {
-      return (layout as SlideLayout).direction;
+      return slideLayout.direction;
     }
     
     /**
@@ -81,7 +83,41 @@ package com.piaction.components
      */
     public function set direction(value:int):void
     {
-      (layout as SlideLayout).direction = value;
+      slideLayout.direction = value;
+    }
+    
+    /**
+    * The index of the selected item.
+    */
+    public function get selectedIndex():int
+    {
+      return slideLayout.index;
+    }
+    
+    /**
+    * The selected item.
+    */
+    public function get selectedItem():*
+    {
+      return dataProvider.getItemAt(selectedIndex);
+    }
+    
+    /**
+    * Number of the items to display.
+    */
+    public function get count():int
+    {
+      return dataProvider.length;
+    }
+    
+    public function next():void
+    {
+      slideLayout.index += slideLayout.direction;
+    }
+    
+    public function previous():void
+    {
+      slideLayout.index -= slideLayout.direction;
     }
     
     /**
@@ -92,13 +128,18 @@ package com.piaction.components
       var lt:SlideLayout = layout as SlideLayout;
       if (event.offsetX != 0)
       {
-          lt.index -= (layout as SlideLayout).direction * event.offsetX;
+        lt.index -= slideLayout.direction * event.offsetX;
       }
       
       if (event.offsetY != 0)
       {
-          lt.index -= (layout as SlideLayout).direction* event.offsetY;
+        lt.index -= slideLayout.direction * event.offsetY;
       }
+    }
+    
+    private function get slideLayout():SlideLayout
+    {
+      return (layout as SlideLayout);
     }
   }
 }

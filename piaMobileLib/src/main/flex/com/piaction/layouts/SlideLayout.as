@@ -1,20 +1,21 @@
 package com.piaction.layouts
 {
   import flash.display.Sprite;
+  import flash.events.Event;
   import flash.geom.Point;
   
-  import mx.core.ILayoutElement;
   import mx.core.IVisualElement;
-  import mx.core.UIComponent;
   import mx.effects.Tween;
   
+  import spark.events.IndexChangeEvent;
   import spark.layouts.supportClasses.LayoutBase;
-  import spark.primitives.Rect;
+  
+  [Event(name = "indexChange", type = "spark.events.IndexChangeEvent")]
   
   /**
    * Layout that enable slide bitween visual element
    */
-  public class SlideLayout  extends LayoutBase
+  public class SlideLayout extends LayoutBase
   {
     /**
      * Oriantation vertival
@@ -66,7 +67,8 @@ package com.piaction.layouts
     /**
      * currentitem index visible in the layout
      */
-    public function get index() : Number
+    [Bindable("indexChanged")]
+    public function get index():Number
     {
       return _index;
     }
@@ -78,15 +80,16 @@ package com.piaction.layouts
     {
       if (_index != value && target != null && value >= 0 && value < target.numElements)
       {
-        if (_tween != null && _oldIndex>=0)
+        if (_tween != null && _oldIndex >= 0)
         {
           _tween.endTween();
         }
-        _oldIndex = _index
+        _oldIndex = _index;
         _index = value;
+        dispatchEvent(new Event("indexChanged"));
         target.invalidateDisplayList();
       }
-      
+    
     }
     
     /**
@@ -97,20 +100,20 @@ package com.piaction.layouts
       super.updateDisplayList(width, height);
       var numElements:int = target.numElements;
       
-      if(_oldIndex == -1 )
+      if (_oldIndex == -1)
       {
         for (var i:uint = 0; i < numElements; i++)
         {
           var element:IVisualElement = getVisualElement(i);
-          if (i == index)
+          if (i == _index)
           {
-            showVisualElement(element,true);
+            showVisualElement(element, true);
             element.setLayoutBoundsSize(width, height);
-            element.setLayoutBoundsPosition(0,0);
+            element.setLayoutBoundsPosition(0, 0);
           }
           else
           {
-            showVisualElement(element,false);
+            showVisualElement(element, false);
           }
         }
       }
@@ -122,7 +125,7 @@ package com.piaction.layouts
         showVisualElement(_newElement, true);
         _newElement.setLayoutBoundsSize(width, height);
         
-        _direction = direction * (_oldIndex - index);
+        _direction = direction * (_oldIndex - _index);
         if (orientation == HORIZONTAL)
         {
           _newElement.setLayoutBoundsPosition(-_direction * width, 0);
@@ -133,7 +136,7 @@ package com.piaction.layouts
         }
         _oldElement = getVisualElement(_oldIndex);
         
-        _tween=new Tween(this, 0, width, 300, 30, tweenUpdateHandler, tweenEndHandler);
+        _tween = new Tween(this, 0, width, 300, 30, tweenUpdateHandler, tweenEndHandler);
       }
     }
     
@@ -149,6 +152,7 @@ package com.piaction.layouts
       _mask.graphics.endFill();
       target.mask = _mask
     }
+    
     /**
      * @private
      */
@@ -169,6 +173,7 @@ package com.piaction.layouts
         _oldElement.setLayoutBoundsPosition(0, _direction * position);
       }
     }
+    
     /**
      * @private
      */
@@ -182,6 +187,7 @@ package com.piaction.layouts
       
       target.mask = null;
     }
+    
     /**
      * @private
      */
@@ -190,22 +196,23 @@ package com.piaction.layouts
       element.visible = show;
       element.includeInLayout = show;
     }
+    
     /**
      * @private
      */
     protected function getVisualElement(index:int):IVisualElement
     {
       var element:IVisualElement;
-      if(useVirtualLayout)
+      if (useVirtualLayout)
       {
-        element= target.getVirtualElementAt(index);
+        element = target.getVirtualElementAt(index);
       }
       else
       {
-        element=target.getElementAt(index);
+        element = target.getElementAt(index);
       }
       return element;
     }
-    
+  
   }
-} 
+}
