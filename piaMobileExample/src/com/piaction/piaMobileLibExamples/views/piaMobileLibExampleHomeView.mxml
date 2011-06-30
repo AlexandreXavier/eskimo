@@ -29,7 +29,8 @@
 
             <s:HSlider stepSize="0.1" width="300"/>
 
-            <components:ComboBox width="80%" selectedItem="{comboData.getItemAt(1)}">
+            <components:ComboBox width="80%"
+                                 selectedItem="{comboData.getItemAt(1)}">
                 <components:dataProvider>
                     <s:ArrayCollection id="comboData">
                         <fx:Object label="15 minutes"/>
@@ -40,6 +41,10 @@
                 </components:dataProvider>
             </components:ComboBox>
 
+
+            <!-- Alert -->
+            <s:Button label="Alert View >>"
+                      click="navigator.pushView(AlertView)"/>
 
             <!-- Page Indicator-->
             <s:Button label="Page Indicator View >>"

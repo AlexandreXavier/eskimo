@@ -4,8 +4,6 @@ package com.piaction.components
     import flash.events.MouseEvent;
     
     import mx.collections.IList;
-    import mx.controls.List;
-    import mx.events.FlexEvent;
     import mx.events.ItemClickEvent;
     import mx.managers.PopUpManager;
     
@@ -118,7 +116,7 @@ package com.piaction.components
                 selectedLabel.text = selecteditem[labelField];
             }
             var evt:Event = event.clone();
-            dispatchEvent(evt);List
+            dispatchEvent(evt);
             
             PopUpManager.removePopUp(popUp);
         }

@@ -11,6 +11,10 @@
     global
     {
         color: #000000;
+        modalTransparencyBlur: 0;
+        modalTransparency: 0.5;
+        modalTransparencyColor: black;
+        modalTransparencyDuration: 250;
     }
     
     s|View
@@ -88,6 +92,29 @@
     controls|SkinnableAlert
     {
         skinClass: ClassReference("com.piaction.skins.mobile.ios.AlertSkin");
+        backgroundColor: #031037;
+        backgroundAlpha: 0.8;
+        okButtonStyleName: "okButtonStyle";
+        cancelButtonStyleName: "cancelButtonStyle";
+        yesButtonStyleName: "yesButtonStyle";
+        noButtonStyleName: "noButtonStyle";
+    }
+    
+    .okButtonStyle
+    {
+       chromeColor: #3C4766;   
+    }
+    .cancelButtonStyle
+    {
+       chromeColor: #08163D;   
+    }
+    .yesButtonStyle
+    {
+       chromeColor: #3C4766;   
+    }
+    .noButtonStyle
+    {
+       chromeColor: #08163D;   
     }
     
     components|UniqueChoiceList
@@ -114,9 +141,19 @@
 
 @media (os-platform:"ANDROID")
 {
+    global
+    {
+        modalTransparencyBlur: 0;
+        modalTransparency: 0.5;
+        modalTransparencyColor: black;
+        modalTransparencyDuration: 250;   
+    }
+    
     controls|SkinnableAlert
     {
         skinClass: ClassReference("com.piaction.skins.mobile.android.AlertSkin");
+        backgroundColor: #424242;
+        backgroundAlpha: 0.9;
     }
     
     

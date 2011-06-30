@@ -1,7 +1,10 @@
 package com.piaction.controls
 {
     import flash.display.Sprite;
+    import flash.events.Event;
+    import flash.events.KeyboardEvent;
     import flash.events.MouseEvent;
+    import flash.ui.Keyboard;
     
     import mx.core.FlexGlobals;
     import mx.core.IFlexDisplayObject;
@@ -15,7 +18,48 @@ package com.piaction.controls
     import spark.components.Label;
     import spark.components.supportClasses.SkinnableComponent;
     
+    /**
+     * Evant dispatched when the Alert is closed
+     * @eventType mx.events.CloseEvent.CLOSE
+     */
     [Event(name = "close", type = "mx.events.CloseEvent")]
+    
+    /**
+     * Define the chrome background color the Alert comtrol
+     * @defaults ios: 0x031037, android: 0x424242
+     */
+    [Style(name = "backgroundColor", inherit = "no", type = "uint")]
+    
+    /**
+     * Define the chrome background alpha the Alert comtrol
+     * @defaults 0.9
+     */
+    [Style(name = "backgroundAlpha", inherit = "no", type = "uint")]
+    
+    /**
+     * Style of the OK button
+     * @defaults "okButtonStyle"
+     */
+    [Style(name = "okButtonStyleName", inherit = "no", type = "String")]
+    /**
+     * Style of the CANCEL button
+     * @defaults "cancelButtonStyle"
+     */
+    [Style(name = "cancelButtonStyleName", inherit = "no", type = "String")]
+    /**
+     * Style of the YES button
+     * @defaults "yesButtonStyle"
+     */
+    [Style(name = "yesButtonStyleName", inherit = "no", type = "String")]
+    /**
+     * Style of the NO button
+     * @defaults "noButtonStyle"
+     */
+    [Style(name = "noButtonStyleName", inherit = "no", type = "String")]
+    
+    /**
+     * This component allow the user to display a pop-up Alert with buttons thanks to the static method show
+     */
     public class SkinnableAlert extends SkinnableComponent
     {
         /**
@@ -40,9 +84,9 @@ package com.piaction.controls
         public static const NONMODAL:uint = 0x8000;
         
         /**
-         *  A bitmask that contains <code>Alert.OK</code>, <code>Alert.CANCEL</code>,
-         *  <code>Alert.YES</code>, and/or <code>Alert.NO</code> indicating
-         *  the buttons available in the Alert control.
+         *  A bitmask that contains <code>SkinnableAlert.OK</code>, <code>SkinnableAlert.CANCEL</code>,
+         *  <code>SkinnableAlert.YES</code>, and/or <code>SkinnableAlert.NO</code> indicating
+         *  the buttons available in the SkinnableAlert control.
          */
         public var buttonFlags:uint = OK;
         
@@ -51,15 +95,30 @@ package com.piaction.controls
          */
         public var buttonFlagsChanged:Boolean = true;
         
+        /**
+         * @private
+         */
         private var _text:String;
+        /**
+         * @private
+         */
         private var _title:String;
         
+        /**
+         * Title skin part
+         */
         [SkinPart(required = "false")]
         public var titleDisplay:Label;
         
+        /**
+         * Text skin part
+         */
         [SkinPart(required = "false")]
         public var textDisplay:Label;
         
+        /**
+         * Control bar group skin part
+         */
         [SkinPart(required = "false")]
         public var controlBarGroup:Group;
         
@@ -67,15 +126,39 @@ package com.piaction.controls
          * @private
          */
         protected var buttonOK:Button = new Button();
+        /**
+         * @private
+         */
         protected var buttonCANCEL:Button = new Button();
+        /**
+         * @private
+         */
         protected var buttonYES:Button = new Button();
+        /**
+         * @private
+         */
         protected var buttonNO:Button = new Button();
         
         
+        /**
+         * @private
+         */
         protected static var _okLabel:String = "OK";
+        /**
+         * @private
+         */
         protected static var _cancelLabel:String = "Cancel";
+        /**
+         * @private
+         */
         protected static var _yesLabel:String = "Yes";
+        /**
+         * @private
+         */
         protected static var _noLabel:String = "No";
+        /**
+         * @private
+         */
         protected static var _buttonHeight:Number = 50;
         
         
@@ -108,7 +191,22 @@ package com.piaction.controls
             buttonCANCEL.label = _cancelLabel;
             buttonYES.label = _yesLabel;
             buttonNO.label = _noLabel;
+            
+            addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
+            addEventListener(Event.REMOVED_FROM_STAGE, removeFromStage, false, 0, true);
+        }
         
+        private function onAddedToStage(event:Event):void
+        {
+            systemManager.getSandboxRoot().addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown, false, 0, true);
+        }
+        
+        /**
+         * @private
+         */
+        private function removeFromStage(event:Event):void
+        {
+            systemManager.getSandboxRoot().removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
         }
         
         /**
@@ -178,13 +276,38 @@ package com.piaction.controls
                 }
                 
                 buttonFlagsChanged = false;
+                
+                buttonOK.styleName = getStyle("okButtonStyleName");
+                buttonCANCEL.styleName = getStyle("cancelButtonStyleName");
+                buttonYES.styleName = getStyle("yesButtonStyleName");
+                buttonNO.styleName = getStyle("noButtonStyleName");
             }
         }
         
         /**
-         * Show na Alert control
+        * @private
+        */
+        override protected function commitProperties():void
+        {
+            super.commitProperties();
+            
+            if (textDisplay)
+            {
+                textDisplay.text = _text;
+            }
+        }
+        
+        /**
+         * Create and show an Alert control
+         * @param text     Text showed in the Alert control
+         * @param title    Title of the Alert control
+         * @param flags    A bitmask that contains <code>SkinnableAlert.OK</code>, <code>SkinnableAlert.CANCEL</code>,
+         *                 <code>SkinnableAlert.YES</code>, and/or <code>SkinnableAlert.NO</code> indicating
+         *                 the buttons available in the SkinnableAlert control.
+         * @param closeHandler  Close function callback
+         *
          */
-        public static function show(text:String = "", title:String = "", flags:uint = 0x4, parent:Sprite = null, closeHandler:Function = null):void
+        public static function show(text:String = "", title:String = "", flags:uint = 0x4, parent:Sprite = null, closeHandler:Function = null):SkinnableAlert
         {
             var modal:Boolean = (flags & SkinnableAlert.NONMODAL) ? false : true;
             
@@ -223,6 +346,8 @@ package com.piaction.controls
             
             
             PopUpManager.addPopUp(alert, parent, modal);
+            
+            return alert;
         }
         
         /**
@@ -234,7 +359,7 @@ package com.piaction.controls
         }
         
         /**
-         * Text of the Alert control
+         * Text of the SkinnableAlert control
          */
         public function get text():String
         {
@@ -250,7 +375,7 @@ package com.piaction.controls
         }
         
         /**
-         * Text of the title control
+         * Title of the SkinnableAlert control
          */
         public function get title():String
         {
@@ -266,7 +391,7 @@ package com.piaction.controls
         }
         
         /**
-         * Text of the o lLabel control
+         * Label of the OK button
          */
         public static function get okLabel():String
         {
@@ -282,7 +407,7 @@ package com.piaction.controls
         }
         
         /**
-         * Text of the cancel label of Alert control
+         * Label of the CANCEL button
          */
         public static function get cancelLabel():String
         {
@@ -298,7 +423,7 @@ package com.piaction.controls
         }
         
         /**
-         * Text of the yes Label of Alert control
+         * Label of the YES button
          */
         public static function get yesLabel():String
         {
@@ -314,7 +439,7 @@ package com.piaction.controls
         }
         
         /**
-         * Text of the no Label of Alert control
+         * Label of the NO button
          */
         public static function get noLabel():String
         {
@@ -330,7 +455,7 @@ package com.piaction.controls
         }
         
         /**
-         * Text of the button height of Alert control
+         * Buttons height
          */
         public static function get buttonHeight():Number
         {
@@ -379,6 +504,30 @@ package com.piaction.controls
         {
             dispatchEvent(new CloseEvent(CloseEvent.CLOSE, false, false, SkinnableAlert.NO));
             PopUpManager.removePopUp(this);
+        }
+        
+        /**
+         * @private
+         */
+        protected override function measure():void
+        {
+            super.measure();
+            
+            measuredMinWidth = 300;
+            measuredMinHeight = 150;
+            
+            measuredWidth = 300;
+        }
+        
+        /**
+         * @private
+         */
+        protected function onKeyDown(event:KeyboardEvent):void
+        {
+            if (event.keyCode == Keyboard.BACK)
+            {
+                event.preventDefault();
+            }
         }
     
     }

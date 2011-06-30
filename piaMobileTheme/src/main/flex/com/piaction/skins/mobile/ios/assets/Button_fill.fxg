@@ -5,12 +5,7 @@
 
     <Rect x="0" y="0"  width="58" height="28" radiusX="5">
         <fill>
-            <LinearGradient rotation="90">
-                <GradientEntry color="#F5F5F5" ratio="0"/>
-                <GradientEntry color="#DBDBDB" ratio=".49"/>
-                <GradientEntry color="#CCCCCC" ratio=".5"/>
-                <GradientEntry color="#CCCCCC" ratio="1"/>
-            </LinearGradient>
+             <SolidColor color="#CCCCCC"/>
         </fill>
     </Rect>
 </Graphic>
