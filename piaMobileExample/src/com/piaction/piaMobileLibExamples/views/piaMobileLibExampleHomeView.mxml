@@ -56,6 +56,10 @@
             <s:Button label="Unique Choice List >>"
                       click="navigator.pushView(UniqueChoiceListView)"/>
 
+            <!-- MultipleChoiceList -->
+            <s:Button label="Multiple Choice List >>"
+                      click="navigator.pushView(MultipleChoiceListView)"/>
+            
             <!-- SlideDataGroup -->
             <s:Button label="Slide DataGroup View >>"
                       click="navigator.pushView(SlideDataGroupView)"/>

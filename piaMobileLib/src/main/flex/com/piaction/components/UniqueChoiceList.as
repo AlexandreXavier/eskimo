@@ -1,56 +1,17 @@
 package com.piaction.components
 {
-  import flash.events.Event;
-  
-  import mx.collections.IList;
-  
-  import spark.components.List;
-  import spark.components.supportClasses.SkinnableComponent;
-  import spark.events.IndexChangeEvent;
-  
-  /**
-   *  Dispatched after the selection has changed. 
-   *  This event is dispatched when the user interacts with the control.
-   */
-  [Event(name="change", type="spark.events.IndexChangeEvent")]
-  
-  /**
-   * Component that represented by a ListWheel on iOs and a list of radioButton item on android.
-   * 
-   * @see com.piaction.components.UniqueChoiceItemRenderer
-   */
-  public class UniqueChoiceList extends SkinnableComponent
+
+    /**
+     * Component that represented by a ListWheel on iOs and a list of radioButton item on android.
+     * 
+     * @see com.piaction.components.CheckBoxItemRenderer
+     */
+  public class UniqueChoiceList extends ChoiceList
   {
-    /**
-     * list Display Skin Part
-     */
-    [SkinPart(required="true")]
-    public var listDisplay:List;
-    
-    /**
-     * @private
-     */
-    protected var _dataProvider:IList;
-    
-    /**
-     * @private
-     */
-    private var _dataProviderChange:Boolean;
-    
     /**
      * @private
      */
     private var _selectedItem:Object;
-    
-    /**
-     * @private
-     */
-    private var _selectedItemChange:Boolean;
-    
-    /**
-     * @private
-     */
-    protected var _labelField:String = "label";
     
     /**
      * Constructor
@@ -61,94 +22,17 @@ package com.piaction.components
     }
     
     /**
-     *  The name of the field in the data provider items to display 
-     *  as the label. 
-     *
-     *  @default "label" 
-     */
-    public function get labelField():String
-    {
-      return _labelField;
-    }
-    
-    /**
-     * @private
-     */
-    public function set labelField(value:String):void
-    {
-      _labelField = value;
-    }
-    
-    /**
-     * @private
-     */
-    public function set dataProvider( value:IList ):void
-    {
-      if(value != _dataProvider)
-      {
-        _dataProvider = value ;
-        
-        _dataProviderChange = true;
-        
-        invalidateProperties();
-      }
-    }
-    
-    /**
-     *  List of choice
-     */
-    public function get dataProvider():IList
-    {
-      return _dataProvider;
-    }
-    
-    /**
-     * @private
-     */
-    override protected function partAdded(partName:String, instance:Object):void
-    {
-      super.partAdded(partName, instance);
-      
-      if(instance == listDisplay)
-      {
-        listDisplay.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
-        listDisplay.labelField = labelField;
-      }
-    }
-    
-    /**
      * @private
      */
     override protected function commitProperties():void
     {
       super.commitProperties();
-      
-      if(_dataProviderChange)
-      {
-        listDisplay.dataProvider = dataProvider;
-        _dataProviderChange = false;
-      }
-      
-      if(_selectedItemChange)
+        
+      if(_selectedChange)
       {
           listDisplay.selectedItem = _selectedItem;
-          _selectedItemChange = false;
+          _selectedChange = false;
       }
-      
-      if(listDisplay != null)
-      {
-        listDisplay.labelField = labelField;
-      }
-    }
-    
-    /**
-     * @private
-     */
-    protected function onIndexChange(event:IndexChangeEvent):void
-    {
-      var evt:Event = event.clone();
-      
-      dispatchEvent(evt);
     }
     
     /**  
@@ -165,7 +49,7 @@ package com.piaction.components
         {
             _selectedItem = value;
             
-            _selectedItemChange = true;
+            _selectedChange = true;
             
             invalidateProperties();
         }

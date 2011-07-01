@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark" title="UniqueChoiceListView"
+        xmlns:s="library://ns.adobe.com/flex/spark" title="MultipleChoiceListView"
         xmlns:components="com.piaction.components.*">
     <fx:Declarations>
         <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
     </fx:Declarations>
+    <fx:Script>
+        <![CDATA[
+            
+            private function defaultSelectedItems():Vector.<Object>
+            {
+              var selItems:Vector.<Object> = new Vector.<Object>();
+              selItems.push(checkboxData.getItemAt(1));
+              selItems.push(checkboxData.getItemAt(3));
 
+              return selItems;
+            }
+        ]]>
+    </fx:Script>
     <s:navigationContent>
         <s:Button label="Retour" click="navigator.popView()"/>
     </s:navigationContent>
 
-    <s:layout>
-        <s:VerticalLayout paddingLeft="20" paddingTop="20"/>
-    </s:layout>
-    
-    <components:UniqueChoiceList id="list" width="100%" height="100%"
-                                 click="trace(event.target)">
+    <components:MultipleChoiceList width="100%" height="100%" selectedItems="{defaultSelectedItems()}">
         <components:dataProvider>
-            <s:ArrayCollection>
+            <s:ArrayCollection id="checkboxData">
                 <fx:Object label="Item 1"/>
                 <fx:Object label="Item 2"/>
                 <fx:Object label="Item 3"/>
@@ -26,6 +33,8 @@
                 <fx:Object label="Item 6"/>
             </s:ArrayCollection>
         </components:dataProvider>
-    </components:UniqueChoiceList>
-    
+    </components:MultipleChoiceList>
+    <s:layout>
+        <s:VerticalLayout paddingLeft="20" paddingTop="20"/>
+    </s:layout>
 </s:View>
