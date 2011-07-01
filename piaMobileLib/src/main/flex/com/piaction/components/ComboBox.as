@@ -102,10 +102,10 @@ package com.piaction.components
             popUp.labelField = labelField;
 
             // center popup
-            popUp.width = stage.stageWidth * (100 - 2 * POPUP_PADDING_PERCENT) / 100;
-            popUp.x = stage.stageWidth * POPUP_PADDING_PERCENT / 100;
+            popUp.width = systemManager.getSandboxRoot().width * (100 - 2 * POPUP_PADDING_PERCENT) / 100;
+            popUp.x = systemManager.getSandboxRoot().width * POPUP_PADDING_PERCENT / 100;
             PopUpManager.addPopUp(popUp, this);
-            popUp.y = stage.stageHeight / 2 - popUp.height;
+            popUp.y = systemManager.getSandboxRoot().height / 2 - popUp.height/2;
         }
         
         protected function onItemClick(event:ItemClickEvent):void
