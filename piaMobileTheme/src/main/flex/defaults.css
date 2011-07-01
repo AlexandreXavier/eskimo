@@ -244,3 +244,8 @@ components|DeletableItemRenderer
     editIconHeight: 27;
     paddingLeft: 35;
 }
+
+components|MultipleChoiceList
+{
+    skinClass: ClassReference("com.piaction.skins.mobile.MultipleChoiceListSkin");
+}
