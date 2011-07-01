@@ -52,7 +52,8 @@
                                orientation="{SlideDataGroup.HORIZONTAL}"
                                direction="{SlideDataGroup.NORMAL}"
                                itemRenderer="com.piaction.piaMobileLibExamples.renderers.ImageRenderer"
-                               dataProvider="{photoList}">
+                               dataProvider="{photoList}"
+                               selectedItem="{simpleList.selectedItem}">
     </components:SlideDataGroup>
     <s:Button label="Next" click="slideDataGroup.next()"/>
     <s:VGroup>
@@ -97,7 +98,7 @@
     </s:Form>
     <s:VGroup width="100%">
       <s:Label text="Click the list to select an item."/>
-      <s:List dataProvider="{photoList}" labelField="source"/>
+      <s:List id="simpleList" dataProvider="{photoList}" labelField="source"/>
     </s:VGroup>
   </s:HGroup>
 </s:View>

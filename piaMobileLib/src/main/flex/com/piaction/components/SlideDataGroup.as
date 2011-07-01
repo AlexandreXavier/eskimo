@@ -125,6 +125,11 @@ package com.piaction.components
       return dataProvider.getItemAt(selectedIndex);
     }
     
+    public function set selectedItem(value:*):void
+    {
+      slideLayout.index = dataProvider.getItemIndex(value);
+    }
+    
     /**
     * Number of the items to display.
     */
