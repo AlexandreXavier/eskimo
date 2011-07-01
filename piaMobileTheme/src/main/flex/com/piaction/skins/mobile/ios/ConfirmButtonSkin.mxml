@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark"
-        clipAndEnableScrolling="true" height="28">
+        clipAndEnableScrolling="true">
   <!--- The default skin class for a Confirm button -->
   <!-- host component -->
   <fx:Metadata>
@@ -25,7 +25,7 @@
       {
         super.measure();
         
-        measuredHeight = 28;
+        measuredHeight = button.getPreferredBoundsHeight();
       }
       
       /**

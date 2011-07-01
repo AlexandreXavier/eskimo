@@ -19,7 +19,6 @@
     <s:Button label="Retour" click="navigator.popView()"/>
   </s:navigationContent>
 
-  <!-- TODO: add form to parametrize the component -->
   <components:ConfirmButton id="confirmButton" width="300"
                             buttonPercentWidth="100"
                             buttonLabel="Confirm Button"

@@ -130,6 +130,9 @@ package com.piaction.components
      */
     public static const CONFIRMATION_STATE:String = "confirmation";
     
+    /**
+     * @private
+     */
     private var _buttonColorChanged:Boolean = true;
     private var _buttonChromeColorChanged:Boolean = true;
     private var _buttonSkinClassChanged:Boolean = true;

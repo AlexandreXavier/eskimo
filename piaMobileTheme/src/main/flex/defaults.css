@@ -137,6 +137,13 @@
         borderAlpha: 0;
     }
     
+    components|ConfirmButton
+    {
+        skinClass: ClassReference("com.piaction.skins.mobile.ios.ConfirmButtonSkin");   
+        confirmChromeColor: #FF3333;
+        buttonColor: #FFFFFF;
+    }
+    
 }
 
 @media (os-platform:"ANDROID")
@@ -171,6 +178,12 @@
         contentBackgroundColor: #000000;
     }
     
+    components|ConfirmButton
+    {
+        skinClass: ClassReference("com.piaction.skins.mobile.ios.ConfirmButtonSkin");   
+        confirmChromeColor: #FF3333;
+        buttonColor: #000000;
+    }
     
 }
 
@@ -189,12 +202,6 @@ components|MobileContextMenu s|List
     contentBackgroundColor: #FFFFFF;
 }
 
-components|ConfirmButton
-{
-    skinClass: ClassReference("com.piaction.skins.mobile.ios.ConfirmButtonSkin");   
-    confirmChromeColor: #FF3333;
-    buttonColor: #FFFFFF;
-}
 
 components|PopOver
 {
