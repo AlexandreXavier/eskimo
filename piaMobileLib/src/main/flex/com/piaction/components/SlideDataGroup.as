@@ -5,48 +5,50 @@ package com.piaction.components
   import flash.events.Event;
   import flash.events.TransformGestureEvent;
   
-  import mx.binding.utils.BindingUtils;
-  import mx.events.IndexChangedEvent;
-  
   import spark.components.DataGroup;
-  import spark.components.SkinnableContainer;
-  import spark.events.IndexChangeEvent;
   import spark.layouts.supportClasses.LayoutBase;
+  
+  /**
+   *  Dispatched when the index of the selected item changed.
+   *
+   * @eventType flash.events.Event
+   */
+  [Event(name = "selectedIndexChanged", type = "flash.events.Event")]
   
   /**
    * SlideDataGroup is a DataGroup which enable Swipe between the elements.
    * Slide Container can only have a SlideLayout layout.
+   * It provides acces to the selected item and method to go to the next or previous item.
    *
    */
   public class SlideDataGroup extends DataGroup
   {
     /**
-     * Specifies a vertical direction for elements.
+     * Specifies the vertical direction for elements.
      */
     public static const VERTICAL:String = "vertical";
     /**
-     * Specifies left-to-right direction for elements.
+     * Specifies the horizontal direction for elements.
      */
     public static const HORIZONTAL:String = "horizontal";
     /**
-     * Direction normal
+     * Direction normal (left to right or top to bottom)
      */
     public static const NORMAL:int = 1;
     /**
-     * Direction reverse
+     * Direction reverse (right to left or bottom to top)
      */
     public static const REVERSE:int = -1;
     
-    private var _selectedIndex:int = 0;
-    
-    
+    /**
+    * Constructor
+    */
     public function SlideDataGroup()
     {
       super();
       super.layout = new SlideLayout();
       addEventListener(TransformGestureEvent.GESTURE_SWIPE, onSwipe);
       slideLayout.addEventListener("indexChanged", onIndexChanged);
-    
     }
     
     /**
@@ -65,8 +67,9 @@ package com.piaction.components
       }
     }
     
+    [Inspectable(type = "String", defaultValue = "horizontal", verbose = 1, enumeration = "horizontal, vertical")]
     /**
-     * Oriantation of the slide SlideContainer.VERTICAL or SlideContainer.HORIZONTAL
+     * Orientation of the slide. It take only the values: SlideContainer.VERTICAL or SlideContainer.HORIZONTAL.
      */
     public function get orientation():String
     {
@@ -78,9 +81,13 @@ package com.piaction.components
      */
     public function set orientation(value:String):void
     {
-      slideLayout.orientation = value;
+      if (value != slideLayout.orientation && (value == SlideDataGroup.VERTICAL || value == SlideDataGroup.HORIZONTAL))
+      {
+        slideLayout.orientation = value;
+      }
     }
     
+    [Inspectable(type = "int", defaultValue = "1", verbose = 1, enumeration = "1, -1")]
     /**
      * Direction of the slide SlideContainer.NORMAL or SlideContainer.REVERSE
      */
@@ -100,7 +107,7 @@ package com.piaction.components
     /**
     * The index of the selected item.
     */
-    [Bindable('indexChanged')]
+    [Bindable('selectedIndexChanged')]
     public function get selectedIndex():int
     {
       return slideLayout.index;
@@ -125,6 +132,9 @@ package com.piaction.components
       return dataProvider.getItemAt(selectedIndex);
     }
     
+    /**
+    * @private
+    */
     public function set selectedItem(value:*):void
     {
       slideLayout.index = dataProvider.getItemIndex(value);
@@ -138,11 +148,17 @@ package com.piaction.components
       return dataProvider.length;
     }
     
+    /**
+    * Display the next item.
+    */
     public function next():void
     {
       slideLayout.index += slideLayout.direction;
     }
     
+    /**
+     * display the previous item.
+     */
     public function previous():void
     {
       slideLayout.index -= slideLayout.direction;
@@ -165,14 +181,20 @@ package com.piaction.components
       }
     }
     
+    /**
+    * @private
+    */
     private function get slideLayout():SlideLayout
     {
       return (layout as SlideLayout);
     }
     
-    protected function onIndexChanged(event:Event):void
+    /**
+    * @private
+    */
+    private function onIndexChanged(event:Event):void
     {
-      dispatchEvent(new Event("indexChanged"));
+      dispatchEvent(new Event("selectedIndexChanged"));
     }
   }
 }
