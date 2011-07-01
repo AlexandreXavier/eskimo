@@ -103,7 +103,7 @@ package com.piaction.components
     [Bindable('indexChanged')]
     public function get selectedIndex():int
     {
-      return _selectedIndex;
+      return slideLayout.index;
     }
     
     /**
@@ -111,10 +111,9 @@ package com.piaction.components
     */
     public function set selectedIndex(value:int):void
     {
-      if (value != _selectedIndex)
+      if (value != slideLayout.index)
       {
-        _selectedIndex = value;
-        slideLayout.index = _selectedIndex;
+        slideLayout.index = value;
       }
     }
     
@@ -168,7 +167,6 @@ package com.piaction.components
     
     protected function onIndexChanged(event:Event):void
     {
-      _selectedIndex = slideLayout.index;
       dispatchEvent(new Event("indexChanged"));
     }
   }
