@@ -179,9 +179,6 @@ package com.piaction.components
             
             _contextList.addEventListener(MobileContextMenuEvent.MENU_ITEM_CLICKED, onMobileContextMenuClicked, false, 0, true);
             _contextList.addEventListener(Event.CANCEL, onMobileContextMenuCanceled, false, 0, true);
-            
-            _contextList.width = unscaledWidth * 0.90;
-            _contextList.maxHeight = unscaledHeight * 0.90;
         }
         
         /**

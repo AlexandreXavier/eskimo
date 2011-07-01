@@ -114,6 +114,18 @@ package com.piaction.components
         /**
          * @private
          */
+        override protected function measure():void
+        {
+            super.measure();
+            
+            measuredWidth = systemManager.getSandboxRoot().width * 0.9;
+            maxHeight = systemManager.getSandboxRoot().height * 0.9;
+            
+        }
+        
+        /**
+         * @private
+         */
         override protected function partAdded(partName:String, instance:Object):void
         {
             super.partAdded(partName, instance);
@@ -258,6 +270,7 @@ package com.piaction.components
                 listDisplay.labelField = _labelField;
             }
         }
+        
     
     
     }
