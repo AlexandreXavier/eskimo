@@ -2,10 +2,15 @@ package com.piaction.components
 {
   import com.piaction.layouts.SlideLayout;
   
+  import flash.events.Event;
   import flash.events.TransformGestureEvent;
+  
+  import mx.binding.utils.BindingUtils;
+  import mx.events.IndexChangedEvent;
   
   import spark.components.DataGroup;
   import spark.components.SkinnableContainer;
+  import spark.events.IndexChangeEvent;
   import spark.layouts.supportClasses.LayoutBase;
   
   /**
@@ -32,11 +37,16 @@ package com.piaction.components
      */
     public static const REVERSE:int = -1;
     
+    private var _selectedIndex:int = 0;
+    
+    
     public function SlideDataGroup()
     {
       super();
       super.layout = new SlideLayout();
-      addEventListener(TransformGestureEvent.GESTURE_SWIPE, onSwipe)
+      addEventListener(TransformGestureEvent.GESTURE_SWIPE, onSwipe);
+      slideLayout.addEventListener("indexChanged", onIndexChanged);
+    
     }
     
     /**
@@ -47,6 +57,7 @@ package com.piaction.components
       if (value is SlideLayout)
       {
         super.layout = value;
+        layout.addEventListener("indexChanged", onIndexChanged);
       }
       else
       {
@@ -89,9 +100,22 @@ package com.piaction.components
     /**
     * The index of the selected item.
     */
+    [Bindable('indexChanged')]
     public function get selectedIndex():int
     {
-      return slideLayout.index;
+      return _selectedIndex;
+    }
+    
+    /**
+    * @private
+    */
+    public function set selectedIndex(value:int):void
+    {
+      if (value != _selectedIndex)
+      {
+        _selectedIndex = value;
+        slideLayout.index = _selectedIndex;
+      }
     }
     
     /**
@@ -140,6 +164,12 @@ package com.piaction.components
     private function get slideLayout():SlideLayout
     {
       return (layout as SlideLayout);
+    }
+    
+    protected function onIndexChanged(event:Event):void
+    {
+      _selectedIndex = slideLayout.index;
+      dispatchEvent(new Event("indexChanged"));
     }
   }
 }

@@ -19,6 +19,8 @@
   </fx:Declarations>
   <fx:Script>
     <![CDATA[
+      import com.piaction.layouts.SlideLayout;
+      
       private function changeOrientationSelection(event:Event):void
       {
         var value:String = ButtonBar(event.target).selectedItem.value;
@@ -87,11 +89,10 @@
         </s:ButtonBar>
       </s:FormItem>
       <!-- Selection -->
-      <s:FormItem label="Selected Item">
-        <s:VGroup>
-
-
-        </s:VGroup>
+      <s:FormItem label="Selected Index">
+        <s:NumericStepper id="selectedIndexNS" stepSize="1" minimum="0"
+                          maximum="{photoList.length - 1}" width="100%"
+                          change="slideDataGroup.selectedIndex = selectedIndexNS.value"/>
       </s:FormItem>
     </s:Form>
     <s:VGroup width="100%">
