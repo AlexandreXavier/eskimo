@@ -1,6 +1,7 @@
 package com.piaction.skins.mobile.ios
 {
     import com.piaction.skins.mobile.ios.assets.Button_down;
+    import com.piaction.skins.mobile.ios.assets.Button_down_yoan;
     import com.piaction.skins.mobile.ios.assets.Button_fill;
     import com.piaction.skins.mobile.ios.assets.Button_up;
     
@@ -9,6 +10,11 @@ package com.piaction.skins.mobile.ios
     import mx.core.DPIClassification;
     
     import spark.skins.mobile.ButtonSkin;
+    
+    /**
+    * Alpha property for the fill background
+    */
+    [Style(name = "fillAlpha", inherit = "no", type = "Number")]
     
     /**
      * The IOS skin class for the Spark Button component.
@@ -128,6 +134,13 @@ package com.piaction.skins.mobile.ios
                 // if we restore to original color, unset colorized
                 colorized = (chromeColor != 0xCCCCCC);
             }
+            
+            var fillAlpha:Number = getStyle("fillAlpha");
+            if (!isNaN(fillAlpha))
+            {
+                _fill.alpha = fillAlpha;
+            }
         }
+    
     }
 }

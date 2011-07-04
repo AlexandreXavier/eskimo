@@ -49,9 +49,9 @@
     <s:Group left="0" right="0" top="0" bottom="0">
         <!--- Background fill -->
         <s:Rect id="background" left="1" top="1" right="1" bottom="1"
-                radiusX="20">
+                radiusX="10">
             <s:fill>
-                <s:SolidColor id="backgroundFill" color="#031037" alpha="0.9"/>
+                <s:SolidColor id="backgroundFill" color="#031037" alpha="0.8"/>
             </s:fill>
         </s:Rect>
 
@@ -69,17 +69,16 @@
         </s:Rect>
 
         <!--- Border fill -->
-        <s:Rect id="border" left="0" right="0" top="0" bottom="0" radiusX="20">
+        <s:Rect id="border" left="0" right="0" top="0" bottom="0" radiusX="10">
             <s:stroke>
                 <!--- @private -->
-                <s:SolidColorStroke id="borderStroke" weight="2" color="#FFFFFF"
-                                    alpha=".9"/>
+                <s:SolidColorStroke id="borderStroke" weight="3" color="#FFFFFF"
+                                    alpha=".8"/>
             </s:stroke>
         </s:Rect>
 
-        <s:Rect id="top" left="2" top="2" right="2" height="20"
-                topLeftRadiusX="20" topLeftRadiusY="20" topRightRadiusX="20"
-                topRightRadiusY="20">
+        <s:Rect id="top" left="2" top="2" right="2" height="18"
+                topLeftRadiusX="10" topRightRadiusX="10">
             <s:fill>
                 <s:LinearGradient rotation="90">
                     <s:GradientEntry color="#FFFFFF" ratio="0" alpha=".5"/>
@@ -89,7 +88,7 @@
             </s:fill>
         </s:Rect>
 
-        <s:Path left="2" top="22" right="2"
+        <s:Path left="2" top="20" right="2"
                 data="
             M 0 0 
             C 40 15 80 15 131 0">
@@ -102,17 +101,18 @@
         </s:Path>
 
         <!--- Contains the vertical stack of titlebar content and controlbar. -->
-        <s:Group left="1" right="1" top="1" bottom="1" id="contents">
+        <s:Group left="3" right="3" top="3" bottom="3" id="contents">
             <s:layout>
-                <s:VerticalLayout gap="0" paddingTop="15"
+                <s:VerticalLayout gap="17" paddingTop="17" paddingLeft="6"
+                                  paddingRight="6" paddingBottom="6"
                                   horizontalAlign="justify"/>
             </s:layout>
             <!--- Title display skin part.
                   @see com.piaction.controls.SkinnableAlert#titleDisplay
             -->
             <s:Label id="titleDisplay" maxDisplayedLines="1" color="#FFFFFF"
-                     left="10" right="10" minHeight="30" fontSize="18"
-                     verticalAlign="middle" textAlign="center" fontWeight="bold">
+                     left="0" right="0" fontSize="18" verticalAlign="middle"
+                     textAlign="center" fontWeight="bold">
                 <s:filters>
                     <s:DropShadowFilter distance="1" angle="-90" color="#000000"
                                         blurY="1" blurX="0" alpha="0.7"/>
@@ -122,19 +122,21 @@
             @see com.piaction.controls.SkinnableAlert#textDisplay
             -->
             <s:Label id="textDisplay" width="100%" color="#FFFFFF"
-                     paddingLeft="10" paddingRight="10" fontSize="18"
+                     paddingLeft="0" paddingRight="0" fontSize="16"
                      textAlign="center"/>
             <!--- controlBarGroup skin part.
             @see com.piaction.controls.SkinnableAlert#controlBarGroup
             -->
-            <s:Group id="controlBarGroup" width="100%">
+            <s:Group id="controlBarGroup" width="100%" height="42">
                 <s:layout>
-                    <s:HorizontalLayout paddingLeft="15" paddingRight="15"
-                                        paddingTop="7" paddingBottom="7"
-                                        gap="10" horizontalAlign="center"/>
+                    <s:HorizontalLayout gap="6" horizontalAlign="center"
+                                        verticalAlign="justify"/>
                 </s:layout>
 
             </s:Group>
         </s:Group>
+        <s:RectangularDropShadow top="0" right="0" bottom="0" left="0"
+                                 tlRadius="10" trRadius="10" blRadius="10"
+                                 brRadius="10"/>
     </s:Group>
 </s:SparkSkin>

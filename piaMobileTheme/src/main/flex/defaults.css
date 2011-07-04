@@ -15,6 +15,7 @@
         modalTransparency: 0.5;
         modalTransparencyColor: black;
         modalTransparencyDuration: 250;
+        fontSize: 16;
     }
     
     s|View
@@ -30,7 +31,6 @@
         color: #FFFFFF;
         textShadowColor: #000000;
         textShadowAlpha: 0.5;
-        
     }
     
     s|ActionBar
@@ -103,6 +103,7 @@
     .okButtonStyle
     {
        chromeColor: #3C4766;   
+       fillAlpha: 0.8;
     }
     .cancelButtonStyle
     {
@@ -110,7 +111,8 @@
     }
     .yesButtonStyle
     {
-       chromeColor: #3C4766;   
+       chromeColor: #3C4766;
+       fillAlpha: 0.8;
     }
     .noButtonStyle
     {
