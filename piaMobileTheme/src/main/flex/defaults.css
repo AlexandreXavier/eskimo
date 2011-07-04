@@ -187,6 +187,12 @@
         buttonColor: #000000;
     }
     
+    s|NumericStepper
+    {
+        skinClass: ClassReference("com.piaction.skins.mobile.android.NumericStepperSkin");
+        fontSize: 30;
+    }
+    
 }
 
 components|MobileContextMenu

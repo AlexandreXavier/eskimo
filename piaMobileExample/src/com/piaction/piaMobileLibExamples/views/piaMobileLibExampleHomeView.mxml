@@ -16,15 +16,19 @@
                 <s:VerticalLayout paddingTop="10" paddingRight="10"
                                   paddingBottom="10" paddingLeft="10"/>
             </s:layout>
-            
+
             <!-- ButtonBar -->
             <s:Button label="Button bar View >>"
                       click="navigator.pushView(ButtonBarView)"/>
-            
+
+            <!-- NumericStepper -->
+            <s:Button label="Numeric stepper View >>"
+                      click="navigator.pushView(NumericStepperView)"/>
+
             <!-- HSlider -->
             <s:Button label="HSlider View >>"
                       click="navigator.pushView(HSliderView)"/>
-            
+
             <!-- ComboBox -->
             <s:Button label="Combo box View >>"
                       click="navigator.pushView(ComboBoxView)"/>
@@ -59,7 +63,7 @@
             <!-- MultipleChoiceList -->
             <s:Button label="Multiple Choice List >>"
                       click="navigator.pushView(MultipleChoiceListView)"/>
-            
+
             <!-- SlideDataGroup -->
             <s:Button label="Slide DataGroup View >>"
                       click="navigator.pushView(SlideDataGroupView)"/>
