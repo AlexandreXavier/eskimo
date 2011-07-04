@@ -256,5 +256,10 @@ components|DeletableItemRenderer
 
 components|MultipleChoiceList
 {
-    skinClass: ClassReference("com.piaction.skins.mobile.MultipleChoiceListSkin");
+  skinClass: ClassReference("com.piaction.skins.mobile.MultipleChoiceListSkin");
+}
+
+components|DateChooser
+{
+  skinClass: ClassReference("com.piaction.skins.mobile.DateChooserSkin")
 }

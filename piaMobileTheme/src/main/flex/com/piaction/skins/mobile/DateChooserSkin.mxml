@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" 
+        xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:components="com.piaction.components.*">
+    <!-- host component -->
+    <fx:Metadata>
+        [HostComponent("com.piaction.components.DateChooser")]
+    </fx:Metadata>
+
+    <!-- timeInput -->
+    <s:Group id="dateInput" clipAndEnableScrolling="true" width="100%" height="180">
+        <s:layout>
+            <s:HorizontalLayout verticalAlign="bottom"/>
+        </s:layout>
+        <s:VGroup width="100%" height="100%">
+          <components:ListWheel id="dateOfMonthList" width="100%" height="100%" minHeight="10" />
+        </s:VGroup>
+        <s:VGroup width="100%" height="100%">
+          <components:ListWheel id="monthList" width="100%" height="100%" minHeight="10" />
+        </s:VGroup>
+      <s:VGroup width="100%" height="100%">
+        <components:ListWheel id="yearList" width="100%" height="100%" minHeight="10" />
+      </s:VGroup>      
+    </s:Group>
+</s:Skin>

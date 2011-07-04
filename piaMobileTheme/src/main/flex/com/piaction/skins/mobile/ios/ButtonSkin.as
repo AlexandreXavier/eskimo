@@ -1,7 +1,6 @@
 package com.piaction.skins.mobile.ios
 {
     import com.piaction.skins.mobile.ios.assets.Button_down;
-    import com.piaction.skins.mobile.ios.assets.Button_down_yoan;
     import com.piaction.skins.mobile.ios.assets.Button_fill;
     import com.piaction.skins.mobile.ios.assets.Button_up;
     

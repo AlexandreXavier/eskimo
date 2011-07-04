@@ -33,6 +33,10 @@
             <s:Button label="Combo box View >>"
                       click="navigator.pushView(ComboBoxView)"/>
 
+            <!-- Date chooser -->
+            <s:Button label="Date Chooser >>"
+                      click="navigator.pushView(DateChooserView)"/>
+            
             <!-- Alert -->
             <s:Button label="Alert View >>"
                       click="navigator.pushView(AlertView)"/>
