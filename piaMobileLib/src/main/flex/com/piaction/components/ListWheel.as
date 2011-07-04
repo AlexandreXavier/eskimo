@@ -165,6 +165,7 @@ package com.piaction.components
                 _dataProviderChange = true;
                 
                 invalidateProperties();
+                invalidateDisplayList();
             }
         }
         
@@ -175,6 +176,7 @@ package com.piaction.components
         {
             super.selectedItem = value;
             _selectedItemChanged = true;
+            _haveToAnimate = true;
             invalidateDisplayList();
         }
         
@@ -182,6 +184,18 @@ package com.piaction.components
          * Specify the selected Index
          */
         override public function set selectedIndex(value:int):void
+        {
+            super.selectedIndex = value;
+            
+            _selectedItemChanged = true;
+            _haveToAnimate = true;
+            invalidateDisplayList();
+        }
+        
+        /**
+         * Specify the selected Index without animation
+         */
+        public function set selectedIndexWithoutAnimation(value:int):void
         {
             super.selectedIndex = value;
             
@@ -196,13 +210,17 @@ package com.piaction.components
         {
             if (_dataProviderChange)
             {
-                var sourceDP:Array = _dataProvider.source;
-                sourceDP = sourceDP.concat(sourceDP);
-                sourceDP = sourceDP.concat(sourceDP);
-                _customDataprovider = new ArrayCollection(sourceDP);
-                
-                super.dataProvider = _customDataprovider;
+                if (_dataProvider)
+                {
+                    var sourceDP:Array = _dataProvider.source;
+                    sourceDP = sourceDP.concat(sourceDP);
+                    sourceDP = sourceDP.concat(sourceDP);
+                    _customDataprovider = new ArrayCollection(sourceDP);
+                    
+                    super.dataProvider = _customDataprovider;
+                }
                 _dataProviderChange = false;
+                _selectedItemChanged = true;
             }
             super.commitProperties();
         }
@@ -217,8 +235,7 @@ package com.piaction.components
             
             if (_selectedItemChanged)
             {
-                _haveToAnimate = true;
-                ensureIndexIsVisible(selectedIndex);
+                ensureIndexIsVisible(selectedIndex % _dataProvider.length + dataProvider.length);
                 _selectedItemChanged = false;
             }
         }
@@ -467,12 +484,10 @@ package com.piaction.components
         */
         override public function ensureIndexIsVisible(index:int):void
         {
-            if (dataGroup == null)
+            if (dataGroup == null || _dataProvider == null)
             {
                 return;
             }
-            
-            index = index % _dataProvider.length + dataProvider.length;
             
             _verticalScrollPosition = (_verticalScrollPosition % (_dataProvider.length * rowHeight)) + (_dataProvider.length * rowHeight);
             
