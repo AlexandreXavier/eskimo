@@ -169,7 +169,7 @@ package com.piaction.components
     }
     
     /**
-     * @private
+     * Specify the selected Item
      */
     override public function set selectedItem(value:*):void
     {
@@ -435,9 +435,9 @@ package com.piaction.components
     }
     
     /**
-     * Scroll to selected item.
+     * @private
      */
-    public function scrollToItem():void
+    private function scrollToItem():void
     {
       if (!layout)
       {
