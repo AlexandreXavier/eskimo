@@ -6,5 +6,35 @@
         <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
     </fx:Declarations>
 
-    <s:NumericStepper verticalCenter="0" horizontalCenter="0"/>
+    <fx:Script>
+        <![CDATA[
+            import mx.formatters.DateFormatter;
+            
+            private var month:Array = ["Janv", "Fév", "Mar", "Avr", "Mai", "Juin", "Jui", "Aou", "Sep", "Oct", "Nov"
+                                       , "Déc"];
+            
+            public function formatMonth(value:Number):String
+            {
+                var result:String = "";
+                
+                if (value < month.length)
+                {
+                    result = month[value];
+                }
+                return result;
+            }
+            
+            public function valueParseFunction(value:String):Number
+            {
+                return month.lastIndexOf(value);
+            }
+        ]]>
+    </fx:Script>
+    <s:HGroup verticalCenter="0" horizontalCenter="0" gap="0">
+
+        <s:NumericStepper maximum="30" minimum="1" value="17"/>
+        <s:NumericStepper maximum="11" valueFormatFunction="{formatMonth}"
+                          valueParseFunction="{valueParseFunction}" value="7"/>
+        <s:NumericStepper maximum="3000" value="2011"/>
+    </s:HGroup>
 </s:View>

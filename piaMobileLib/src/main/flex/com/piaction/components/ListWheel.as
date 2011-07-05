@@ -176,7 +176,6 @@ package com.piaction.components
         {
             super.selectedItem = value;
             _selectedItemChanged = true;
-            _haveToAnimate = true;
             invalidateDisplayList();
         }
         
@@ -188,18 +187,29 @@ package com.piaction.components
             super.selectedIndex = value;
             
             _selectedItemChanged = true;
+            invalidateDisplayList();
+        }
+        
+        /**
+         * Specify the selected Item with an an animation
+         */
+        public function animateToSelectedItem(value:*):void
+        {
+            super.selectedItem = value;
+            _selectedItemChanged = true;
             _haveToAnimate = true;
             invalidateDisplayList();
         }
         
         /**
-         * Specify the selected Index without animation
+         * Specify the selected Index with an animation
          */
-        public function set selectedIndexWithoutAnimation(value:int):void
+        public function animateToSelectedIndex(value:int):void
         {
             super.selectedIndex = value;
             
             _selectedItemChanged = true;
+            _haveToAnimate = true;
             invalidateDisplayList();
         }
         
