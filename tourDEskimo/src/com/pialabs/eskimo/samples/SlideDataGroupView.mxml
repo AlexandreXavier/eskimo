@@ -51,7 +51,7 @@
     <components:SlideDataGroup id="slideDataGroup" width="300" height="200"
                                orientation="{SlideDataGroup.HORIZONTAL}"
                                direction="{SlideDataGroup.NORMAL}"
-                               itemRenderer="com.piaction.piaMobileLibExamples.renderers.ImageRenderer"
+                               itemRenderer="com.pialabs.eskimo.samples.renderer.ImageRenderer"
                                dataProvider="{photoList}"
                                selectedItem="{simpleList.selectedItem}">
     </components:SlideDataGroup>

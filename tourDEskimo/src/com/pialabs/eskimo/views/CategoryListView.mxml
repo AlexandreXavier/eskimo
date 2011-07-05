@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark" title="CategoryListView">
+        xmlns:s="library://ns.adobe.com/flex/spark" title="CategoryListView"
+        viewActivate="onViewActivate(event)">
   <s:layout>
     <s:VerticalLayout/>
   </s:layout>
@@ -9,9 +10,25 @@
   </fx:Declarations>
   <fx:Script>
     <![CDATA[
+      import com.pialabs.eskimo.model.Model;
+      
+      import mx.collections.ArrayCollection;
+      
+      import spark.events.ViewNavigatorEvent;
+      
+      
       [Bindable]
       [Embed(source = "assets/icon/eskimo.png")]
       private var _logo:Class;
+      
+      [Bindable]
+      private var _dp:ArrayCollection;
+      
+      protected function onViewActivate(event:ViewNavigatorEvent):void
+      {
+        _dp = new ArrayCollection(Model.getInstance().samples.samples);
+      
+      }
     ]]>
   </fx:Script>
   <!-- Title -->
@@ -21,6 +38,6 @@
     </s:HGroup>
   </s:titleContent>
   <!-- Content-->
-  <s:List width="100%" height="100%">
+  <s:List width="100%" height="100%" dataProvider="{_dp}" labelField="name">
   </s:List>
 </s:View>
