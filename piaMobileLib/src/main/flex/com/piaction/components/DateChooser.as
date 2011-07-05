@@ -1,5 +1,7 @@
 package com.piaction.components
 {
+    import com.piaction.utils.DateUtils;
+    
     import mx.collections.ArrayCollection;
     import mx.collections.IList;
     
@@ -15,7 +17,7 @@ package com.piaction.components
         }
         
         [SkinPart(required = "true")]
-        public var dateOfMonthList:List;
+        public var dayList:List;
         
         [SkinPart(required = "true")]
         public var monthList:List;
@@ -31,9 +33,9 @@ package com.piaction.components
         
         private var _selectedDateChange:Boolean;
         
-        private var _dateOfMonthProviderChange:Boolean;
+        private var _dayProviderChange:Boolean;
         
-        private var _dateOfMonthProvider:IList;
+        private var _dayProvider:IList;
         
         override protected function partAdded(partName:String, instance:Object):void
         {
@@ -56,13 +58,14 @@ package com.piaction.components
             {
               yearProvider.addItem(year);
             }
-            yearList.addEventListener(IndexChangeEvent.CHANGE, onMonthOrYearChange);
             selectYear();
+            yearList.addEventListener(IndexChangeEvent.CHANGE, onMonthOrYearChange);
           }
           
-          if(dateOfMonthList == instance)
+          if(dayList == instance)
           {
-            dateOfMonthProvider = 30;
+            dayProvider = DateUtils.numberDayInMonth(selectedDate.month + 1, selectedDate.fullYear);
+            dayList.selectedIndex = selectedDate.date - 1;
           }
         }
         
@@ -73,46 +76,40 @@ package com.piaction.components
         {
           super.commitProperties();
           
-          if(_dateOfMonthProviderChange)
+          if(_dayProviderChange)
           {
-            dateOfMonthList.dataProvider = _dateOfMonthProvider;
-            _dateOfMonthProviderChange = false;
+            dayList.dataProvider = _dayProvider;
+            _dayProviderChange = false;
           }
         }
         
         private function onMonthOrYearChange(event:IndexChangeEvent):void
         {
-          var curDate:Date = currentDate;
-          if(curDate.month == 7)
+          var year:Number = minYear + yearList.selectedIndex;
+          dayProvider = DateUtils.numberDayInMonth(monthList.selectedIndex + 1, year);
+          
+          var currentIndex:int = dayList.selectedIndex;
+          dayList.validateNow();
+          if(_dayProvider.length > currentIndex)
           {
-            dateOfMonthProvider = 31;
+            dayList.selectedIndex = currentIndex;
           }
           else
           {
-            dateOfMonthProvider = 30;
+            dayList.selectedIndex = _dayProvider.length - 1;
           }
         }
         
-        private function get currentDate():Date
+        private function set dayProvider(endDateOfMonth:Number):void
         {
-          var date:Date = new Date();
-          date.date = dateOfMonthList.selectedIndex;
-          date.month = monthList.selectedIndex;
-          date.fullYear = minYear + yearList.selectedIndex;
-          
-          return date;
-        }
-        
-        private function set dateOfMonthProvider(endDateOfMonth:Number):void
-        {
-          _dateOfMonthProvider = new ArrayCollection();
-          for(var date:Number = 0; date < endDateOfMonth; date++)
+          _dayProvider = new ArrayCollection();
+          for(var date:Number = 1; date <= endDateOfMonth; date++)
           {
-            _dateOfMonthProvider.addItem(date + 1);
+            _dayProvider.addItem(date);
           }
           
-          dateOfMonthList.dataProvider = _dateOfMonthProvider;
-          _dateOfMonthProviderChange = true;
+          dayList.dataProvider = _dayProvider;
+          _dayProviderChange = true;
           invalidateProperties();
         }
         
@@ -143,7 +140,7 @@ package com.piaction.components
         private function selectDateOfMonth():void
         {
           var dateOfMonth:Number = selectedDate.date;
-          dateOfMonthList.selectedIndex = dateOfMonth;
+          dayList.selectedIndex = dateOfMonth;
         }
         
         private function selectMonth():void
