@@ -14,6 +14,7 @@
       
       import mx.collections.ArrayCollection;
       
+      import spark.events.IndexChangeEvent;
       import spark.events.ViewNavigatorEvent;
       
       
@@ -29,6 +30,11 @@
         _dp = new ArrayCollection(Model.getInstance().samples.samples);
       
       }
+      
+      protected function onCategoryListChange(event:IndexChangeEvent):void
+      {
+        navigator.pushView(ComponentListView, categoryList.selectedItem);
+      }
     ]]>
   </fx:Script>
   <!-- Title -->
@@ -38,6 +44,7 @@
     </s:HGroup>
   </s:titleContent>
   <!-- Content-->
-  <s:List width="100%" height="100%" dataProvider="{_dp}" labelField="name">
+  <s:List id="categoryList" width="100%" height="100%" dataProvider="{_dp}"
+          labelField="name" change="onCategoryListChange(event)">
   </s:List>
 </s:View>
