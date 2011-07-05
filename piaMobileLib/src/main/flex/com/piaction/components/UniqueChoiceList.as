@@ -2,7 +2,7 @@ package com.piaction.components
 {
 
     /**
-     * Component that represented by a ListWheel on iOs and a list of radioButton item on android.
+     * Component represented by a ListWheel on iOs and a list of radioButton item on android.
      * 
      * @see com.piaction.components.CheckBoxItemRenderer
      */

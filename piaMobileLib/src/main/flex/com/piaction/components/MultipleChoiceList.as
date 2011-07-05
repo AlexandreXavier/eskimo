@@ -10,7 +10,7 @@ package com.piaction.components
 
     
     /**
-     * Component that represented by a a list of CheckBox item.
+     * Component represented by a list of CheckBox (uses Switch skin on iOs) item .
      * 
      * @see com.piaction.components.CheckBoxItemRenderer
      */
