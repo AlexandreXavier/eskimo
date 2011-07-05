@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark" title="PopOverView"
+        xmlns:components="com.piaction.components.*">
+
+    <fx:Script>
+        <![CDATA[
+            import com.piaction.controls.SkinnableAlert;
+            
+            protected function onButtonBarClick(event:MouseEvent):void
+            {
+                
+                buttonBarPopOver.target = event.target as DisplayObject;
+                
+                
+                buttonBarPopOver.open(content, true);
+            }
+            
+            protected function onPopOverButtonClick(event:MouseEvent):void
+            {
+                SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK | SkinnableAlert.CANCEL);
+                buttonBarPopOver.close();
+            }
+            
+            protected function onButtonClick(event:MouseEvent):void
+            {
+                buttonPopOver.target = event.currentTarget as DisplayObject;
+                buttonPopOver.open(content, true);
+            }
+        ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <!-- Place non-visual elements (e.g., services, value objects) here -->
+        <components:PopOver id="buttonBarPopOver"
+                            mouseDownOutside="buttonBarPopOver.close()"
+                            direction="vertical">
+
+            <s:Button label="Bouton pop-over" color="#000000"
+                      chromeColor="#EEEEEE" click="onPopOverButtonClick(event)"/>
+            <s:Button label="Bouton pop-over 2" color="#000000"
+                      chromeColor="#EEEEEE" click="onPopOverButtonClick(event)"/>
+            <s:Button label="Bouton pop-over 3" color="#000000"
+                      chromeColor="#EEEEEE" click="onPopOverButtonClick(event)"/>
+        </components:PopOver>
+
+
+        <!-- Place non-visual elements (e.g., services, value objects) here -->
+        <components:PopOver id="buttonPopOver"
+                            mouseDownOutside="buttonPopOver.close()"
+                            direction="horizontal">
+            <s:HGroup>
+                <s:Label text="Pop-over title" color="#FFFFFF" width="100%"
+                         height="100%" paddingLeft="5" verticalAlign="middle"/>
+                <s:Button label="Cancel" click="buttonPopOver.close()"/>
+            </s:HGroup>
+            <s:Form>
+                <s:FormItem width="100%">
+                    <s:CheckBox label="Value 1" width="100%"/>
+                </s:FormItem>
+                <s:FormItem width="100%">
+                    <s:CheckBox label="Value 2" width="100%"/>
+                </s:FormItem>
+                <s:FormItem width="100%">
+                    <s:CheckBox label="Value 3" width="100%"/>
+                </s:FormItem>
+                <s:FormItem width="100%">
+                    <s:CheckBox label="Value 3" width="100%"/>
+                </s:FormItem>
+            </s:Form>
+
+            <s:TextArea width="100%" height="200" prompt="Comments"/>
+
+
+            <components:ConfirmButton buttonLabel="OK" cancelLabel="Cancel"
+                                      confirmLabel="Comfirm"
+                                      buttonPercentWidth="100"
+                                      buttonColor="#FFFFFF"
+                                      buttonChromeColor="#FF3333"
+                                      confirm="buttonPopOver.close()"/>
+        </components:PopOver>
+    </fx:Declarations>
+
+    <s:navigationContent>
+        <s:Button label="Retour" click="navigator.popView()"/>
+    </s:navigationContent>
+
+    <s:actionContent>
+        <s:ButtonBar click="onButtonBarClick(event)" width="100%">
+            <s:dataProvider>
+                <s:ArrayCollection>
+                    <fx:Object label="button 1"/>
+                    <fx:Object label="button 2"/>
+                    <fx:Object label="button 3"/>
+                    <fx:Object label="button 4"/>
+                </s:ArrayCollection>
+            </s:dataProvider>
+        </s:ButtonBar>
+    </s:actionContent>
+
+    <s:Group id="content" width="100%" height="100%">
+
+        <s:Button label="Click Me" click="onButtonClick(event)" top="10"
+                  left="10"/>
+        <s:Button label="Click Me" click="onButtonClick(event)" top="10"
+                  right="10"/>
+        <s:Button label="Click Me" click="onButtonClick(event)" bottom="10"
+                  left="10"/>
+        <s:Button label="Click Me" click="onButtonClick(event)" bottom="10"
+                  right="10"/>
+
+        <s:Button label="Click Me" click="onButtonClick(event)" right="10"
+                  verticalCenter="0"/>
+        <s:Button label="Click Me" click="onButtonClick(event)" left="10"
+                  verticalCenter="0"/>
+        <s:Button label="Click Me" click="onButtonClick(event)" top="10"
+                  horizontalCenter="0"/>
+        <s:Button label="Click Me" click="onButtonClick(event)" bottom="10"
+                  horizontalCenter="0"/>
+        <s:Button label="Click Me" click="onButtonClick(event)"
+                  verticalCenter="0" horizontalCenter="0"/>
+    </s:Group>
+
+
+</s:View>

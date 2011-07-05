@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark" title="FormView">
+    <fx:Declarations>
+        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+    </fx:Declarations>
+    <s:layout>
+        <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
+                          paddingLeft="10"/>
+    </s:layout>
+
+    <s:navigationContent>
+        <s:Button label="Retour" click="navigator.popView()"/>
+    </s:navigationContent>
+
+    <s:Form width="100%">
+        <s:FormItem label="name" width="100%">
+            <s:TextInput maxChars="64" width="100%" prompt="Jean Dupont"/>
+        </s:FormItem>
+        <s:FormItem label="password" width="100%">
+            <s:TextInput maxChars="64" displayAsPassword="true" width="100%"
+                         prompt="azerty"/>
+        </s:FormItem>
+
+        <s:FormItem label="Renember password" width="100%">
+            <s:CheckBox width="100%"/>
+        </s:FormItem>
+
+    </s:Form>
+    <s:Group width="100%">
+        <s:layout>
+            <s:HorizontalLayout horizontalAlign="right"/>
+        </s:layout>
+        <s:Button label="Connect"/>
+    </s:Group>
+    <s:Label text="Formulaire"/>
+    <s:Form width="100%">
+        <s:FormItem label="CheckBox 1" width="100%">
+            <s:CheckBox width="100%"/>
+        </s:FormItem>
+        <s:FormItem label="CheckBox 2" width="100%">
+            <s:CheckBox width="100%"/>
+        </s:FormItem>
+        <s:FormItem label="CheckBox 3" width="100%">
+            <s:CheckBox width="100%"/>
+        </s:FormItem>
+        <s:FormItem label="CheckBox 4" width="100%">
+            <s:CheckBox width="100%"/>
+        </s:FormItem>
+        <s:FormItem label="CheckBox 5" width="100%">
+            <s:CheckBox width="100%"/>
+        </s:FormItem>
+
+    </s:Form>
+</s:View>

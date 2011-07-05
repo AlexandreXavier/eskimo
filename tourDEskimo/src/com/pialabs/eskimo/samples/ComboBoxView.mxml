@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.adobe.com/flex/spark" title="ComboBoxView" xmlns:components="com.piaction.components.*">
+    <fx:Declarations>
+        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+    </fx:Declarations>
+    
+    <s:layout>
+        <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
+                          paddingLeft="10"/>
+    </s:layout>
+    
+    <s:navigationContent>
+        <s:Button label="Retour" click="navigator.popView()"/>
+    </s:navigationContent>
+    
+    <components:ComboBox width="80%"
+                         selectedItem="{comboData.getItemAt(1)}">
+        <components:dataProvider>
+            <s:ArrayCollection id="comboData">
+                <fx:Object label="15 minutes"/>
+                <fx:Object label="30 minutes"/>
+                <fx:Object label="45 minutes"/>
+                <fx:Object label="1 hour"/>
+            </s:ArrayCollection>
+        </components:dataProvider>
+    </components:ComboBox>
+</s:View>
