@@ -33,7 +33,7 @@
       
       protected function onCategoryListChange(event:IndexChangeEvent):void
       {
-        navigator.pushView(ComponentListView, categoryList.selectedItem);
+        navigator.pushView(SampleListView, categoryList.selectedItem);
       }
     ]]>
   </fx:Script>
