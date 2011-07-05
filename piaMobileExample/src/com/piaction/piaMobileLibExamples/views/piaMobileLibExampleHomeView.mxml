@@ -21,8 +21,8 @@
             <s:Button label="Button bar View >>"
                       click="navigator.pushView(ButtonBarView)"/>
 
-            <!-- NumericStepper -->
-            <s:Button label="Numeric stepper View >>"
+            <!-- NumericStepper & ListStepper -->
+            <s:Button label="Steppers View >>"
                       click="navigator.pushView(NumericStepperView)"/>
 
             <!-- HSlider -->
