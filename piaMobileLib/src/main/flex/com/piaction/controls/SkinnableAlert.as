@@ -58,7 +58,10 @@ package com.piaction.controls
     [Style(name = "noButtonStyleName", inherit = "no", type = "String")]
     
     /**
-     * This component allow the user to display a pop-up Alert with buttons thanks to the static method show
+     * This component allow the user to display an Alert. 
+     * It automatically uses iOS or Android 's style depending to the execution plateform.
+     * 
+     * It follows the mx.controls.Alert 's behavior.
      */
     public class SkinnableAlert extends SkinnableComponent
     {
