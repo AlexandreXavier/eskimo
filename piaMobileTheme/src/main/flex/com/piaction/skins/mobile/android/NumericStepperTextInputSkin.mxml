@@ -102,9 +102,20 @@
         <s:fill>
             <!--- @private
                   Defines the background fill of the NumericStepper component's background. -->
+            <s:SolidColor color="#d8d8d8"/>
+        </s:fill>
+    </s:Rect>
+
+    <!-- shadow -->
+    <!--- Defines the appearance of the NumericStepper component's shadow. -->
+    <s:Rect id="shadow" left="1" right="1" top="1" bottom="1">
+        <s:fill>
+            <!--- @private
+                  Defines the background fill of the NumericStepper component's background. -->
             <s:LinearGradient rotation="90">
-                <s:GradientEntry color="#B8B8B8"/>
-                <s:GradientEntry color="#D8D8D8"/>
+                <s:GradientEntry ratio="0" color="#000000" alpha="0.2"/>
+                <s:GradientEntry ratio="0.32" color="#000000" alpha="0"/>
+                <s:GradientEntry ratio="1" color="#000000" alpha="0"/>
             </s:LinearGradient>
         </s:fill>
     </s:Rect>
