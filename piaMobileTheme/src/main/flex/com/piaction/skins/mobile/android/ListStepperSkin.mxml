@@ -11,56 +11,26 @@ in accordance with the terms of the license agreement accompanying it.
 
 -->
 
-<!--- The default skin class for a Spark NumericStepper component. The skin for the text input field on a NumericStepper
-component is defined by the NumericStepperTextInputSkin class.
+<!--- The default skin class for the Spark SkinnableDataContainer container.
 
-@see spark.components.NumericStepper
-@see spark.skins.spark.NumericStepperTextInputSkin
+@see spark.components.SkinnableDataContainer
 
 @langversion 3.0
 @playerversion Flash 10
 @playerversion AIR 1.5
 @productversion Flex 4
 -->
-<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
-             xmlns:s="library://ns.adobe.com/flex/spark"
-             xmlns:fb="http://ns.adobe.com/flashbuilder/2009" minHeight="130"
-             minWidth="70" alpha.disabled="0.5" focusEnabled="false">
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark">
+    <fx:Metadata>[HostComponent("com.piaction.components.ListStepper")]</fx:Metadata>
 
-    <fx:Metadata>
-        <![CDATA[ 
-        /** 
-        * @copy spark.skins.spark.ApplicationSkin#hostComponent
-        */
-        [HostComponent("spark.components.NumericStepper")]
-        ]]>
-    </fx:Metadata>
-
-    <fx:Script fb:purpose="styling">
+    <fx:Script>
         <![CDATA[
-            /* Define the skin elements that should not be colorized.
-            For numeric stepper, the skin itself is colorized but the individual parts are not. */
-            static private const exclusions:Array = ["textDisplay", "decrementButton", "incrementButton", "border"];
+            import spark.components.Label;
             
             /**
-             * @private
+             *  @private
              */
-            override public function get colorizeExclusions():Array
-            {
-                return exclusions;
-            }
-            
-            /**
-             * @private
-             */
-            override protected function initializationComplete():void
-            {
-                useChromeColor = true;
-                super.initializationComplete();
-            }
-            /**
-            * @private
-            */
             private var chromeColorChanged:Boolean;
             
             /**
@@ -94,13 +64,18 @@ component is defined by the NumericStepperTextInputSkin class.
                 }
             }
         ]]>
-
     </fx:Script>
-
     <s:states>
         <s:State name="normal"/>
         <s:State name="disabled"/>
     </s:states>
+
+    <!--
+    Note: setting the minimum size to 0 here so that changes to the host component's
+    size will not be thwarted by this skin part's minimum size.   This is a compromise,
+    more about it here: http://bugs.adobe.com/jira/browse/SDK-21143
+    -->
+
 
     <s:Group top="0" right="0" bottom="0" left="0">
 
@@ -115,12 +90,40 @@ component is defined by the NumericStepperTextInputSkin class.
                   tabEnabled="false" color="#909090"
                   skinClass="com.piaction.skins.mobile.android.NumericStepperIncrementButtonSkin"/>
 
-        <!--- The default class is NumericStepperTextInputSkin.
-        @copy spark.components.NumericStepper#textDisplay
-        @see spark.skins.spark.NumericStepperTextInputSkin -->
-        <s:TextInput id="textDisplay" height="100%" editable="false"
-                     selectable="false"
-                     skinClass="com.piaction.skins.mobile.android.NumericStepperTextInputSkin"/>
+        <s:Group height="100%">
+
+            <!--- The Scroller component to add scroll bars to the list. -->
+            <s:Scroller id="scroller" top="0" right="0" bottom="0" left="0"
+                        mouseEnabled="false" mouseChildren="false">
+                <!--- @copy spark.components.SkinnableDataContainer#dataGroup -->
+                <s:DataGroup id="dataGroup" height="100%"
+                             itemRenderer="spark.skins.spark.DefaultItemRenderer">
+                    <s:layout>
+                        <!--- The default layout is vertical and measures at least for 5 rows.
+                        When switching to a different layout, HorizontalLayout for example,
+                        make sure to adjust the minWidth, minHeight sizes of the skin -->
+                        <s:VerticalLayout gap="0"
+                                          horizontalAlign="contentJustify"
+                                          rowHeight="{scroller.height}"
+                                          variableRowHeight="false"/>
+                    </s:layout>
+                </s:DataGroup>
+            </s:Scroller>
+
+            <!-- shadow -->
+            <!--- Defines the appearance of the NumericStepper component's shadow. -->
+            <s:Rect id="shadow" left="1" right="1" top="1" bottom="1">
+                <s:fill>
+                    <!--- @private
+                    Defines the background fill of the NumericStepper component's background. -->
+                    <s:LinearGradient rotation="90">
+                        <s:GradientEntry ratio="0" color="#000000" alpha="0.2"/>
+                        <s:GradientEntry ratio="0.32" color="#000000" alpha="0"/>
+                        <s:GradientEntry ratio="1" color="#000000" alpha="0"/>
+                    </s:LinearGradient>
+                </s:fill>
+            </s:Rect>
+        </s:Group>
 
         <!--- The default class is NumericStepperDecrementButtonSkin.
         @copy spark.components.Spinner#decrementButton
@@ -130,8 +133,6 @@ component is defined by the NumericStepperTextInputSkin class.
                   skinClass="com.piaction.skins.mobile.android.NumericStepperDecrementButtonSkin"/>
 
     </s:Group>
-
-    <!--- Define the border of the skin -->
     <s:Rect id="border" left="0" right="0" top="0" bottom="0" radiusX="2">
         <s:stroke>
             <s:LinearGradientStroke weight="2" rotation="90">
@@ -140,4 +141,5 @@ component is defined by the NumericStepperTextInputSkin class.
             </s:LinearGradientStroke>
         </s:stroke>
     </s:Rect>
-</s:SparkSkin>
+
+</s:Skin>

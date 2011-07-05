@@ -40,7 +40,7 @@
             import spark.components.Group;
             /* Define the skin elements that should not be colorized.
             For button, the graphics are colorized but the label is not. */
-            static private const exclusions:Array = ["labelDisplay"];
+            static private const exclusions:Array = ["labelDisplay", "fill", "border", "shadow"];
             
             /**
              * @private
@@ -62,9 +62,15 @@
             /**
              *  @private
              */
+            [Bindable]
+            private var _downColor:uint;
+            
+            /**
+             *  @private
+             */
             override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
             {
-                var cr:Number = getStyle("cornerRadius");
+                _downColor = getStyle("chromeColor");
                 
                 
                 super.updateDisplayList(unscaledWidth, unscaledHeight);
@@ -85,7 +91,7 @@
     <s:Rect id="fill" left="1" right="1" top="1" bottom="1"
             bottomLeftRadiusX="2" bottomRightRadiusX="2">
         <s:fill>
-            <s:SolidColor color="#f8f8f8" color.down="#FF7800"/>
+            <s:SolidColor color="#f8f8f8" color.down="{_downColor}"/>
         </s:fill>
     </s:Rect>
 

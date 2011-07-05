@@ -191,6 +191,7 @@
     {
         skinClass: ClassReference("com.piaction.skins.mobile.android.NumericStepperSkin");
         fontSize: 30;
+        chromeColor: #FF7800;
     }
     
 }
@@ -261,5 +262,14 @@ components|MultipleChoiceList
 
 components|DateChooser
 {
-  skinClass: ClassReference("com.piaction.skins.mobile.DateChooserSkin")
+  skinClass: ClassReference("com.piaction.skins.mobile.DateChooserSkin");
+}
+
+components|ListStepper
+{
+    skinClass: ClassReference("com.piaction.skins.mobile.android.ListStepperSkin");
+    fontSize: 30;
+    textAlign: center;
+    alternatingItemColors: #d8d8d8;
+    chromeColor: #FF7800;
 }
