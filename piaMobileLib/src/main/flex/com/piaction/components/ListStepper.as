@@ -4,12 +4,9 @@ package com.piaction.components
     import flash.geom.Point;
     
     import mx.events.FlexEvent;
-    import mx.formatters.DateFormatter;
     
     import spark.components.Button;
-    import spark.components.List;
     import spark.components.supportClasses.ListBase;
-    import spark.formatters.DateTimeFormatter;
     
     
     /**
@@ -63,7 +60,6 @@ package com.piaction.components
         public function get allowValueWrap():Boolean
         {
             return _allowValueWrap;
-            DateTimeFormatter
         }
         
         /**
