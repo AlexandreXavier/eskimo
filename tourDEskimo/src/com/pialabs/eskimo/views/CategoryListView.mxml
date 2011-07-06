@@ -43,7 +43,8 @@
         }
         else if (selectedItem is Sample)
         {
-          navigator.pushView(SampleView, selectedItem);
+          var seletedItem:Sample = Sample(selectedItem);
+          navigator.pushView(seletedItem.resource, selectedItem);
         }
         else
         {

@@ -36,7 +36,8 @@
       
       protected function onSampleListChange(event:IndexChangeEvent):void
       {
-        navigator.pushView(SampleView, sampleList.selectedItem);
+        var seletedItem:Sample = Sample(sampleList.selectedItem);
+        navigator.pushView(seletedItem.resource, sampleList.selectedItem);
       }
       
       protected function filterChange(event:TextOperationEvent):void
