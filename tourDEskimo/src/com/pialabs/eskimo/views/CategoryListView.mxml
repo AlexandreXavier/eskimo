@@ -39,7 +39,7 @@
         if (selectedItem is Category)
         {
           navigator.pushView(SampleListView, selectedItem);
-          Model.getInstance().currentItem = selectedItem;
+            //Model.getInstance().currentItem = selectedItem;
         }
         else if (selectedItem is Sample)
         {

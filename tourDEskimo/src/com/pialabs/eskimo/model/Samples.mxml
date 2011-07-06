@@ -49,11 +49,20 @@
       </model:samples>
     </model:Category>
 
-    <model:Sample uid="1000501" name="SlideDataGroup"
-                  resource="com.pialabs.eskimo.samples.SlideDataGroupView"/>
-    <model:Sample uid="1000502" name="Form"
-                  resource="com.pialabs.eskimo.samples.FormView"/>
-    <model:Sample uid="1000503" name="PageIndicator"
-                  resource="com.pialabs.eskimo.samples.PageIndicatorView"/>
+    <model:Category name="Container">
+      <model:samples>
+        <model:Sample uid="1000500" name="Form"
+                      resource="com.pialabs.eskimo.samples.FormView"/>
+        <model:Sample uid="1000501" name="SlideDataGroup"
+                      resource="com.pialabs.eskimo.samples.SlideDataGroupView"/>
+      </model:samples>
+    </model:Category>
+
+    <model:Category name="Navigation">
+      <model:samples>
+        <model:Sample uid="1000600" name="PageIndicator"
+                      resource="com.pialabs.eskimo.samples.PageIndicatorView"/>
+      </model:samples>
+    </model:Category>
   </model:samples>
 </model:Category>
