@@ -1,63 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark" title="NumericStepperView"
-        backgroundColor="#000000" xmlns:components="com.piaction.components.*">
-    <fx:Declarations>
-        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
-    </fx:Declarations>
+<views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
+                  xmlns:s="library://ns.adobe.com/flex/spark"
+                  title="NumericStepperView" backgroundColor="#000000"
+                  xmlns:components="com.piaction.components.*"
+                  xmlns:views="com.pialabs.eskimo.views.*">
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+  </fx:Declarations>
+  <fx:Script>
+    <![CDATA[
+      import mx.formatters.DateFormatter;
+      
+      private var month:Array = ["Janv", "Fév", "Mar", "Avr", "Mai", "Juin", "Jui", "Aou", "Sep", "Oct", "Nov", "Déc"];
+      
+      public function formatMonth(value:Number):String
+      {
+        var result:String = "";
+        
+        if (value < month.length)
+        {
+          result = month[value];
+        }
+        return result;
+      }
+      
+      public function valueParseFunction(value:String):Number
+      {
+        return month.lastIndexOf(value);
+      }
+    ]]>
+  </fx:Script>
+  <s:VGroup verticalCenter="0" horizontalCenter="0" verticalAlign="middle">
 
-    <fx:Script>
-        <![CDATA[
-            import mx.formatters.DateFormatter;
-            
-            private var month:Array = ["Janv", "Fév", "Mar", "Avr", "Mai", "Juin", "Jui", "Aou", "Sep", "Oct", "Nov"
-                                       , "Déc"];
-            
-            public function formatMonth(value:Number):String
-            {
-                var result:String = "";
-                
-                if (value < month.length)
-                {
-                    result = month[value];
-                }
-                return result;
-            }
-            
-            public function valueParseFunction(value:String):Number
-            {
-                return month.lastIndexOf(value);
-            }
-        ]]>
-    </fx:Script>
-    <s:VGroup verticalCenter="0" horizontalCenter="0" verticalAlign="middle">
+    <s:Label text="NumericSteppers" color="#FFFFFF"/>
 
-        <s:Label text="NumericSteppers" color="#FFFFFF"/>
+    <s:HGroup gap="2">
 
-        <s:HGroup gap="2">
+      <s:NumericStepper maximum="30" minimum="1" value="17"
+                        allowValueWrap="true"/>
+      <s:NumericStepper maximum="11" valueFormatFunction="{formatMonth}"
+                        allowValueWrap="true"
+                        valueParseFunction="{valueParseFunction}" value="7"/>
+      <s:NumericStepper maximum="3000" value="2011" allowValueWrap="true"/>
+    </s:HGroup>
 
-            <s:NumericStepper maximum="30" minimum="1" value="17"
-                              allowValueWrap="true"/>
-            <s:NumericStepper maximum="11" valueFormatFunction="{formatMonth}"
-                              allowValueWrap="true"
-                              valueParseFunction="{valueParseFunction}"
-                              value="7"/>
-            <s:NumericStepper maximum="3000" value="2011" allowValueWrap="true"/>
-        </s:HGroup>
+    <s:Label text="ListStepper" color="#FFFFFF"/>
 
-        <s:Label text="ListStepper" color="#FFFFFF"/>
-
-        <components:ListStepper allowValueWrap="true">
-            <components:dataProvider>
-                <s:ArrayCollection>
-                    <fx:Object label="Item 1"/>
-                    <fx:Object label="Item 2"/>
-                    <fx:Object label="Item 3"/>
-                    <fx:Object label="Item 4"/>
-                    <fx:Object label="Item 5"/>
-                    <fx:Object label="Item 6"/>
-                </s:ArrayCollection>
-            </components:dataProvider>
-        </components:ListStepper>
-    </s:VGroup>
-</s:View>
+    <components:ListStepper allowValueWrap="true">
+      <components:dataProvider>
+        <s:ArrayCollection>
+          <fx:Object label="Item 1"/>
+          <fx:Object label="Item 2"/>
+          <fx:Object label="Item 3"/>
+          <fx:Object label="Item 4"/>
+          <fx:Object label="Item 5"/>
+          <fx:Object label="Item 6"/>
+        </s:ArrayCollection>
+      </components:dataProvider>
+    </components:ListStepper>
+  </s:VGroup>
+</views:SampleView>

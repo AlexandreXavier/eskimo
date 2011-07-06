@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark" title="SlideDataGroupView"
-        xmlns:components="com.piaction.components.*">
+<views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
+                  xmlns:s="library://ns.adobe.com/flex/spark"
+                  title="SlideDataGroupView"
+                  xmlns:components="com.piaction.components.*"
+                  xmlns:views="com.pialabs.eskimo.views.*">
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
     <s:ArrayCollection id="photoList">
@@ -37,21 +39,12 @@
       }
     ]]>
   </fx:Script>
-  <s:layout>
-    <s:VerticalLayout paddingTop="20" paddingRight="20" paddingBottom="20"
-                      paddingLeft="20"/>
-  </s:layout>
-
-  <s:navigationContent>
-    <s:Button label="Retour" click="navigator.popView()"/>
-  </s:navigationContent>
-
   <s:HGroup width="100%">
     <s:Button label="Previous" click="slideDataGroup.previous()"/>
     <components:SlideDataGroup id="slideDataGroup" width="300" height="200"
                                orientation="{SlideDataGroup.HORIZONTAL}"
                                direction="{SlideDataGroup.NORMAL}"
-                               itemRenderer="com.pialabs.eskimo.samples.renderer.ImageRenderer"
+                               itemRenderer="com.pialabs.eskimo.samples.renderers.ImageRenderer"
                                dataProvider="{photoList}"
                                selectedItem="{simpleList.selectedItem}">
     </components:SlideDataGroup>
@@ -101,4 +94,4 @@
       <s:List id="simpleList" dataProvider="{photoList}" labelField="source"/>
     </s:VGroup>
   </s:HGroup>
-</s:View>
+</views:SampleView>

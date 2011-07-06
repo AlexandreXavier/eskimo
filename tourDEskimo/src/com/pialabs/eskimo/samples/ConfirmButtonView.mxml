@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark" title="ConfirmButtonView"
-        backgroundColor="#CCCCCC" xmlns:components="com.piaction.components.*">
+<views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
+                  xmlns:s="library://ns.adobe.com/flex/spark"
+                  title="ConfirmButtonView" backgroundColor="#CCCCCC"
+                  xmlns:components="com.piaction.components.*"
+                  xmlns:views="com.pialabs.eskimo.views.*">
   <fx:Script>
     <![CDATA[
       import com.piaction.controls.SkinnableAlert;
@@ -10,21 +12,10 @@
   <fx:Declarations>
     <!-- Place non-visual elements (e.g., services, value objects) here -->
   </fx:Declarations>
-  <s:layout>
-    <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
-                      paddingLeft="10"/>
-  </s:layout>
-
-  <s:navigationContent>
-    <s:Button label="Retour" click="navigator.popView()"/>
-  </s:navigationContent>
-
   <components:ConfirmButton id="confirmButton" width="300"
                             buttonPercentWidth="100"
-                            buttonLabel="Confirm Button"
-                            cancelLabel="Cancel"
-                            confirmLabel="Confirm"
-                            confirmChromeColor="#FF3333"
+                            buttonLabel="Confirm Button" cancelLabel="Cancel"
+                            confirmLabel="Confirm" confirmChromeColor="#FF3333"
                             confirm="SkinnableAlert.show('ok', 'Skinnable Alert')"/>
   <s:Form>
     <s:FormHeading label="Parameters"/>
@@ -105,4 +96,4 @@
       </s:HGroup>
     </s:FormItem>
   </s:Form>
-</s:View>
+</views:SampleView>
