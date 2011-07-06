@@ -12,15 +12,15 @@
         <s:layout>
           <s:HorizontalLayout verticalAlign="bottom" gap="0"/>
         </s:layout>
-        <s:VGroup width="100%" height="100%">
-          <s:Label text="day" />
+        <s:VGroup width="100%" height="100%" id="dayGroup">
+          <s:Label text="day"/>
           <components:ListWheel id="dayList" width="100%" height="100%" minHeight="10" />
         </s:VGroup>
-        <s:VGroup width="100%" height="100%">
+        <s:VGroup width="100%" height="100%" id="monthGroup">
           <s:Label text="month" />
           <components:ListWheel id="monthList" width="100%" height="100%" minHeight="10" />
         </s:VGroup>
-      <s:VGroup width="100%" height="100%">
+      <s:VGroup width="100%" height="100%" id="yearGroup">
         <s:Label text="year" />
         <components:ListWheel id="yearList" width="100%" height="100%" minHeight="10" />
       </s:VGroup>      
