@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
-        xmlns:s="library://ns.adobe.com/flex/spark" title="SampleView">
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark" title="{data.name}">
+
   <fx:Declarations>
     <!-- Place non-visual elements (e.g., services, value objects) here -->
   </fx:Declarations>
+  <s:layout>
+    <s:VerticalLayout/>
+  </s:layout>
+  <s:navigationContent>
+    <s:Button label="Back" click="navigator.popView()"/>
+  </s:navigationContent>
 </s:View>

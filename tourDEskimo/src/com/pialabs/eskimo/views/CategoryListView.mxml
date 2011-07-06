@@ -10,7 +10,9 @@
   </fx:Declarations>
   <fx:Script>
     <![CDATA[
+      import com.pialabs.eskimo.model.Category;
       import com.pialabs.eskimo.model.Model;
+      import com.pialabs.eskimo.model.Sample;
       
       import mx.collections.ArrayCollection;
       
@@ -33,7 +35,20 @@
       
       protected function onCategoryListChange(event:IndexChangeEvent):void
       {
-        navigator.pushView(SampleListView, categoryList.selectedItem);
+        var selectedItem:* = categoryList.selectedItem;
+        if (selectedItem is Category)
+        {
+          navigator.pushView(SampleListView, selectedItem);
+          Model.getInstance().currentItem = selectedItem;
+        }
+        else if (selectedItem is Sample)
+        {
+          navigator.pushView(SampleView, selectedItem);
+        }
+        else
+        {
+          throw new TypeError("Unknown item type.");
+        }
       }
     ]]>
   </fx:Script>
