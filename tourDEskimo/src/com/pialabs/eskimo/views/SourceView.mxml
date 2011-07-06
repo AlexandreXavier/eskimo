@@ -1,17 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark" title="{data.name}">
-
-  <fx:Script>
-    <![CDATA[
-      protected function onSourceButtonClick(event:MouseEvent):void
-      {
-        navigator.pushView(SourceView, data);
-      }
-    ]]>
-  </fx:Script>
-
-
+        xmlns:s="library://ns.adobe.com/flex/spark" title="SourceView">
   <fx:Declarations>
     <!-- Place non-visual elements (e.g., services, value objects) here -->
   </fx:Declarations>
@@ -21,7 +10,4 @@
   <s:navigationContent>
     <s:Button label="Back" click="navigator.popView()"/>
   </s:navigationContent>
-  <s:actionContent>
-    <s:Button label="Source" click="onSourceButtonClick(event)"/>
-  </s:actionContent>
 </s:View>
