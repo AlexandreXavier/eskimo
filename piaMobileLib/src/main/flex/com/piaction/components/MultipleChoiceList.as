@@ -22,6 +22,7 @@ package com.piaction.components
     
     /**
      * Component represented by a list of CheckBox (uses Switch skin on iOs) item .
+     * ItemRender must dispatch <code>Event.CHANGE</code> event when user click on it.
      *
      * @see com.piaction.components.CheckBoxItemRenderer
      */

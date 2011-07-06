@@ -15,6 +15,9 @@ package com.piaction.components
      */
     public class CheckBoxItemRenderer extends ItemRenderer
     {
+        /**
+        * Contructor
+        */
         public function CheckBoxItemRenderer()
         {
             super();
@@ -22,8 +25,14 @@ package com.piaction.components
             autoDrawBackground = false;
         }
         
+        /**
+         * CheckBox Componenet
+         */
         protected var checkBox:CheckBox;
         
+        /**
+         * @private
+         */
         override protected function createChildren():void
         {
             super.createChildren();
@@ -35,6 +44,9 @@ package com.piaction.components
             this.checkBox.percentWidth = 100;
         }
         
+        /**
+         * @private
+         */
         override protected function commitProperties():void
         {
             super.commitProperties();
@@ -43,16 +55,20 @@ package com.piaction.components
             checkBox.label = label;
         }
         
+        /**
+         * @private
+         */
         override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
         {
             super.updateDisplayList(unscaledWidth, unscaledHeight);
             
             checkBox.setLayoutBoundsSize(unscaledWidth, unscaledHeight);
-            
-            trace(getStyle("paddingLeft"))
         }
         
         
+        /**
+         * @private
+         */
         private function onToggleChange(event:Event):void
         {
             var changeEvent:Event = new Event(Event.CHANGE);
