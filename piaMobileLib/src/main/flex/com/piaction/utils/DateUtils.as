@@ -1,8 +1,9 @@
 package com.piaction.utils
 {
+  import flash.globalization.DateTimeFormatter;
   import flash.globalization.DateTimeStyle;
+  import flash.globalization.LocaleID;
   
-  import spark.formatters.DateTimeFormatter;
   import spark.globalization.StringTools;
 
   public class DateUtils
@@ -11,7 +12,7 @@ package com.piaction.utils
     {
     }
     
-    private static var _dateTimeFormatter:DateTimeFormatter = new DateTimeFormatter();
+    private static var _dateTimeFormatter:DateTimeFormatter = new DateTimeFormatter(LocaleID.DEFAULT);
     
     public static const DAY_CHAR:String = "d";
     
@@ -50,9 +51,9 @@ package com.piaction.utils
     {
       if(dateTimePattern == null)
       {
-        dateTimePattern = _dateTimeFormatter.dateTimePattern;
+        dateTimePattern = _dateTimeFormatter.getDateTimePattern();
       }
-      _dateTimeFormatter.dateTimePattern = "MMM";
+      _dateTimeFormatter.setDateTimePattern("MMM");
       return _dateTimeFormatter.format(date);
     }
     
@@ -62,7 +63,8 @@ package com.piaction.utils
       date.date = 1;
       date.month = month - 1;
 
-      _dateTimeFormatter.dateTimePattern = mPattern;
+      _dateTimeFormatter.setDateTimePattern(mPattern);
+      //_dateTimeFormatter.setStyle("locale", "fr-FR");
       return _dateTimeFormatter.format(date);
     }
    

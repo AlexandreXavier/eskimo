@@ -32,5 +32,5 @@
     <s:Button label="Retour" click="navigator.popView()"/>
   </s:navigationContent>
 
-  <components:DateChooser id="date" width="60%" datePattern="MMM dd yyyy" minYear="2005" maxYear="2020"/>
+  <components:DateChooser id="date" width="100%" datePattern="MMM dd yyyy" minYear="2005" maxYear="2020"/>
 </s:View>
