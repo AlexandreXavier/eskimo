@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark" title="SourceView">
+        xmlns:s="library://ns.adobe.com/flex/spark" title="SourceView"
+        viewActivate="onViewActivate(event)">
   <fx:Declarations>
     <!-- Place non-visual elements (e.g., services, value objects) here -->
   </fx:Declarations>
+
+  <fx:Script>
+    <![CDATA[
+      import spark.events.ViewNavigatorEvent;
+      
+      protected var swv:StageWebView;
+      
+      protected function updateSWVSize():void
+      {
+        if (swv != null)
+        {
+          swv.viewPort = new Rectangle(0, 70, this.stage.stageWidth, this.stage.stageHeight);
+        }
+      }
+      
+      protected function onViewActivate(event:ViewNavigatorEvent):void
+      {
+        swv = new StageWebView();
+        var location:String = swv.location;
+        updateSWVSize();
+        swv.stage = stage;
+        var url:String = File.applicationDirectory.resolvePath("test.html").url;
+        swv.loadURL("app://test.html");
+        //swv.loadURL("http://flex.org/index.html");
+      }
+    ]]>
+  </fx:Script>
   <s:layout>
     <s:VerticalLayout/>
   </s:layout>
