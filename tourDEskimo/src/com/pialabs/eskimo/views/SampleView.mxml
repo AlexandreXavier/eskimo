@@ -4,10 +4,7 @@
 
   <fx:Script>
     <![CDATA[
-      protected function onSourceButtonClick(event:MouseEvent):void
-      {
-        navigator.pushView(SourceView, data);
-      }
+      
     ]]>
   </fx:Script>
 
@@ -21,7 +18,4 @@
   <s:navigationContent>
     <s:Button label="Back" click="navigator.popView()"/>
   </s:navigationContent>
-  <s:actionContent>
-    <s:Button label="Source" click="onSourceButtonClick(event)"/>
-  </s:actionContent>
 </s:View>
