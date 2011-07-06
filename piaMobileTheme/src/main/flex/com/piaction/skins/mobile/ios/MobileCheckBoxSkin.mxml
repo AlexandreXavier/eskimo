@@ -38,7 +38,7 @@
              */
             protected function onCursorDown(event:MouseEvent):void
             {
-                if (mouseX > buttonGroup.x && mouseX < width)
+                if (mouseX > buttonGroup.x && mouseX < buttonGroup.x + buttonGroup.width)
                 {
                     
                     systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
@@ -46,6 +46,11 @@
                     dragOffset = cursorGroup.mouseX;
                     
                     dragInitialX = mouseX;
+                }
+                else
+                {
+                    //Little hack to disable click on outside the checkbox button
+                    callLater(dispatchAnEvent);
                 }
             }
             
@@ -115,8 +120,9 @@
                 hostComponent.invalidateSkinState();
             }
             
-            
-            
+            /**
+             *  @private
+             */
             override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
             {
                 super.updateDisplayList(unscaledWidth, unscaledHeight);
@@ -140,11 +146,17 @@
             
             }
             
+            /**
+             *  @private
+             */
             protected function get applicationDPI():Number
             {
                 return FlexGlobals.topLevelApplication.applicationDPI;
             }
             
+            /**
+             *  @private
+             */
             protected function onInitialize(event:FlexEvent):void
             {
                 // TODO Auto-generated method stub
@@ -176,6 +188,9 @@
                 hostComponent.addEventListener(MouseEvent.MOUSE_DOWN, onCursorDown, false, 0, true);
             }
             
+            /**
+             *  @private
+             */
             override public function set currentState(value:String):void
             {
                 var state:String = "up";
@@ -203,6 +218,17 @@
                     state = "dragged";
                 }
                 super.currentState = state;
+            }
+            
+            /**
+             *  @private
+             */
+            private function dispatchAnEvent():void
+            {
+                trace("dispatchAnEvent");
+                var mouseEvent:MouseEvent = new MouseEvent(MouseEvent.MOUSE_UP, false, false, 1000, 1000, this);
+                this.dispatchEvent(mouseEvent);
+            
             }
         ]]>
     </fx:Script>

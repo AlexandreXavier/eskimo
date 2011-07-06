@@ -71,8 +71,11 @@ package com.piaction.components
          */
         private function onToggleChange(event:Event):void
         {
-            var changeEvent:Event = new Event(Event.CHANGE);
-            dispatchEvent(changeEvent);
+            if (checkBox.selected != selected)
+            {
+                var changeEvent:Event = new Event(Event.CHANGE);
+                dispatchEvent(changeEvent);
+            }
         }
     }
 }
