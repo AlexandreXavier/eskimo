@@ -45,7 +45,7 @@
             <s:CheckBox width="100%"/>
         </s:FormItem>
         <s:FormItem label="CheckBox 4" width="100%">
-            <s:CheckBox width="100%"/>
+            <s:CheckBox width="100%" selected="true"/>
         </s:FormItem>
         <s:FormItem label="CheckBox 5" width="100%">
             <s:CheckBox width="100%"/>

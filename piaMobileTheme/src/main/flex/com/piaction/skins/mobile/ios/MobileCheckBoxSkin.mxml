@@ -227,14 +227,21 @@
     -->
 
     <s:transitions>
-        <s:Transition toState="upAndSelected" fromState="*">
+        <s:Transition fromState="up" toState="upAndSelected" autoReverse="true">
             <s:Parallel>
-                <s:Move target="{cursorGroup}" xFrom="{cursorGroup.x}"
+                <s:Move target="{cursorGroup}" xFrom="0"
                         xTo="{buttonGroup.width - cursorGroup.width}"
                         duration="200"/>
             </s:Parallel>
         </s:Transition>
-        <s:Transition fromState="*" toState="up">
+        <s:Transition fromState="dragged" toState="upAndSelected">
+            <s:Parallel>
+                <s:Move target="{cursorGroup}"
+                        xTo="{buttonGroup.width - cursorGroup.width}"
+                        xFrom="{cursorGroup.x}" duration="200"/>
+            </s:Parallel>
+        </s:Transition>
+        <s:Transition fromState="dragged" toState="up">
             <s:Parallel>
                 <s:Move target="{cursorGroup}" xTo="0" xFrom="{cursorGroup.x}"
                         duration="200"/>

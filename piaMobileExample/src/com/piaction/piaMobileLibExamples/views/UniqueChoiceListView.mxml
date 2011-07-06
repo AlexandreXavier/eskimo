@@ -11,9 +11,10 @@
     </s:navigationContent>
 
     <s:layout>
-        <s:VerticalLayout paddingLeft="20" paddingTop="20"/>
+        <s:VerticalLayout paddingLeft="20" paddingTop="20" paddingRight="20"
+                          paddingBottom="20"/>
     </s:layout>
-    
+
     <components:UniqueChoiceList id="list" width="100%" height="100%"
                                  click="trace(event.target)">
         <components:dataProvider>
@@ -27,5 +28,5 @@
             </s:ArrayCollection>
         </components:dataProvider>
     </components:UniqueChoiceList>
-    
+
 </s:View>

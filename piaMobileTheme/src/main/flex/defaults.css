@@ -194,6 +194,18 @@
         chromeColor: #FF7800;
     }
     
+    s|CheckBox
+    {
+        skinClass: ClassReference("com.piaction.skins.mobile.android.CheckBoxSkin");
+        iconPlacement: "right";
+    }
+    
+    s|RadioButton
+    {
+        skinClass: ClassReference("com.piaction.skins.mobile.android.RadioButtonSkin");
+        iconPlacement: "right";
+    }
+    
 }
 
 components|MobileContextMenu
@@ -257,7 +269,7 @@ components|DeletableItemRenderer
 
 components|MultipleChoiceList
 {
-  skinClass: ClassReference("com.piaction.skins.mobile.MultipleChoiceListSkin");
+    contentBackgroundAlpha: 0;
 }
 
 components|DateChooser

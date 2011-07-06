@@ -5,14 +5,16 @@ package com.piaction.components
     import mx.collections.IList;
     
     import spark.components.List;
+    import spark.components.SkinnableDataContainer;
+    import spark.components.supportClasses.ListBase;
     import spark.components.supportClasses.SkinnableComponent;
     import spark.events.IndexChangeEvent;
     
     /**
-     *  Dispatched after the selection has changed. 
+     *  Dispatched after the selection has changed.
      *  This event is dispatched when the user interacts with the control.
      */
-    [Event(name="change", type="spark.events.IndexChangeEvent")]
+    [Event(name = "change", type = "spark.events.IndexChangeEvent")]
     
     
     public class ChoiceList extends SkinnableComponent
@@ -26,8 +28,8 @@ package com.piaction.components
         /**
          * list Display Skin Part
          */
-        [SkinPart(required="true")]
-        public var listDisplay:List;
+        [SkinPart(required = "true")]
+        public var listDisplay:ListBase;
         
         /**
          * @private
@@ -50,10 +52,10 @@ package com.piaction.components
         protected var _labelField:String = "label";
         
         /**
-         *  The name of the field in the data provider items to display 
-         *  as the label. 
+         *  The name of the field in the data provider items to display
+         *  as the label.
          *
-         *  @default "label" 
+         *  @default "label"
          */
         public function get labelField():String
         {
@@ -71,11 +73,11 @@ package com.piaction.components
         /**
          * @private
          */
-        public function set dataProvider( value:IList ):void
+        public function set dataProvider(value:IList):void
         {
-            if(value != _dataProvider)
+            if (value != _dataProvider)
             {
-                _dataProvider = value ;
+                _dataProvider = value;
                 
                 _dataProviderChange = true;
                 
@@ -98,7 +100,7 @@ package com.piaction.components
         {
             super.partAdded(partName, instance);
             
-            if(instance == listDisplay)
+            if (instance == listDisplay)
             {
                 listDisplay.addEventListener(IndexChangeEvent.CHANGE, onIndexChange);
                 listDisplay.labelField = labelField;
@@ -122,13 +124,13 @@ package com.piaction.components
         {
             super.commitProperties();
             
-            if(_dataProviderChange)
+            if (_dataProviderChange)
             {
                 listDisplay.dataProvider = dataProvider;
                 _dataProviderChange = false;
             }
             
-            if(listDisplay != null)
+            if (listDisplay != null)
             {
                 listDisplay.labelField = labelField;
             }

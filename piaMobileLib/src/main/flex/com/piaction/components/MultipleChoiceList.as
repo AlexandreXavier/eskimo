@@ -1,20 +1,31 @@
 package com.piaction.components
 {
+    import flash.display.DisplayObjectContainer;
     import flash.events.Event;
+    import flash.events.MouseEvent;
     
     import mx.collections.IList;
+    import mx.core.ClassFactory;
+    import mx.core.InteractionMode;
+    import mx.core.mx_internal;
+    import mx.events.SandboxMouseEvent;
+    import mx.managers.DragManager;
     
+    import spark.components.IItemRenderer;
     import spark.components.List;
     import spark.components.supportClasses.SkinnableComponent;
     import spark.events.IndexChangeEvent;
-
+    import spark.events.RendererExistenceEvent;
+    import spark.layouts.VerticalLayout;
+    
+    use namespace mx_internal;
     
     /**
      * Component represented by a list of CheckBox (uses Switch skin on iOs) item .
-     * 
+     *
      * @see com.piaction.components.CheckBoxItemRenderer
      */
-    public class MultipleChoiceList extends ChoiceList
+    public class MultipleChoiceList extends List
     {
         
         /**
@@ -23,12 +34,33 @@ package com.piaction.components
         public function MultipleChoiceList()
         {
             super();
+            
+            itemRenderer = new ClassFactory(CheckBoxItemRenderer);
+            
+            allowMultipleSelection = true;
+            
+            var verticalLayout:VerticalLayout = new VerticalLayout();
+            verticalLayout.horizontalAlign = "contentJustify";
+            layout = verticalLayout;
         }
         
         /**
          * @private
          */
-        private var _selectedItems:Vector.<Object>;
+        override protected function partAdded(partName:String, instance:Object):void
+        {
+            super.partAdded(partName, instance);
+            
+            if (instance == scroller)
+            {
+                scroller.setStyle("verticalScrollPolicy", "auto");
+            }
+            if (instance == dataGroup)
+            {
+                dataGroup.addEventListener(RendererExistenceEvent.RENDERER_ADD, onRendererAdd);
+                dataGroup.addEventListener(RendererExistenceEvent.RENDERER_REMOVE, onRendererRemove);
+            }
+        }
         
         /**
          * @private
@@ -36,36 +68,57 @@ package com.piaction.components
         override protected function commitProperties():void
         {
             super.commitProperties();
-            
-            if(_selectedChange)
-            {
-                listDisplay.selectedItems = _selectedItems;
-                _selectedChange = false;
-            }
-        }
-        
-        /**  
-         * Setting this property deselects the currently selected 
-         *  items and selects the newly specified items.
-         */
-        public function set selectedItems(value:Vector.<Object>):void
-        {
-            if(value != _selectedItems)
-            {
-                _selectedItems = value;
-                
-                _selectedChange = true;
-                
-                invalidateProperties();
-            }
         }
         
         /**
-         *  A Vector of Objects representing the currently selected data items. 
+         * @private
          */
-        public function get selectedItems():Vector.<Object>
+        protected function onRendererAdd(event:RendererExistenceEvent):void
         {
-            return listDisplay.selectedItems;
+            event.renderer.addEventListener(Event.CHANGE, onRendererChange, false, 0, true);
+        }
+        
+        /**
+         * @private
+         */
+        protected function onRendererRemove(event:RendererExistenceEvent):void
+        {
+            event.renderer.removeEventListener(Event.CHANGE, onRendererChange);
+        }
+        
+        /**
+        * @private
+        */
+        override protected function mouseUpHandler(event:Event):void
+        {
+            if (getStyle("interactionMode") == InteractionMode.TOUCH)
+            {
+                systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, false);
+                systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, false);
+                systemManager.getSandboxRoot().removeEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, mouseUpHandler, false);
+            }
+            else
+            {
+                super.mouseUpHandler(event);
+            }
+        
+        }
+        
+        /**
+         * @private
+         */
+        protected function onRendererChange(event:Event):void
+        {
+            if (getStyle("interactionMode") == InteractionMode.TOUCH)
+            {
+                if (allowMultipleSelection)
+                {
+                    var newIndex:int = (event.currentTarget as IItemRenderer).itemIndex;
+                    
+                    setSelectedIndices(calculateSelectedIndices(newIndex, pendingSelectionShiftKey, pendingSelectionCtrlKey), true);
+                }
+            }
+        
         }
     }
 }
