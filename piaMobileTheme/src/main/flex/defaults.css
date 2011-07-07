@@ -145,7 +145,12 @@
         confirmChromeColor: #FF3333;
         buttonColor: #FFFFFF;
     }
-    
+ 
+    components|DateChooser
+    {
+      skinClass: ClassReference("com.piaction.skins.mobile.ios.DateChooserSkin");
+    }
+
     s|TextInput
     {
         contentBackgroundColor: #FFFFFF;
@@ -217,6 +222,10 @@
         iconPlacement: "right";
     }
     
+    components|DateChooser
+    {
+      skinClass: ClassReference("com.piaction.skins.mobile.android.DateChooserSkin");
+    }
 }
 
 components|MobileContextMenu
@@ -281,11 +290,6 @@ components|DeletableItemRenderer
 components|MultipleChoiceList
 {
     contentBackgroundAlpha: 0;
-}
-
-components|DateChooser
-{
-  skinClass: ClassReference("com.piaction.skins.mobile.DateChooserSkin");
 }
 
 components|ListStepper
