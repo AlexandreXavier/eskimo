@@ -113,14 +113,17 @@ package com.piaction.components
          */
         override protected function commitProperties():void
         {
-            if (selectedIndex == -1 && dataProvider)
-            {
-                selectedIndex = 0;
-            }
-            
             super.commitProperties();
             
             ensureIndexIsVisible(selectedIndex);
+        }
+        
+        /**
+         *  @private
+         */
+        override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+        {
+            super.updateDisplayList(unscaledWidth, unscaledHeight);
         }
         
         /**
@@ -155,7 +158,15 @@ package com.piaction.components
             }
             else
             {
-                selectedIndex += increase ? 1 : -1;
+                var newSelectedIndex:int = selectedIndex + (increase ? 1 : -1);
+                newSelectedIndex = Math.max(0, newSelectedIndex);
+                
+                if (dataProvider)
+                {
+                    newSelectedIndex = Math.min(newSelectedIndex, dataProvider.length);
+                }
+                
+                selectedIndex += newSelectedIndex;
             }
         }
         
@@ -231,12 +242,6 @@ package com.piaction.components
         */
         override public function set selectedIndex(value:int):void
         {
-            value = Math.max(0, value);
-            
-            if (dataProvider)
-            {
-                value = Math.min(value, dataProvider.length);
-            }
             
             super.selectedIndex = value;
         }
