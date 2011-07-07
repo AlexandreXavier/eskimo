@@ -13,15 +13,15 @@
       <s:HorizontalLayout verticalAlign="bottom" gap="0"/>
     </s:layout>
     <s:VGroup height="100%" id="dayGroup" horizontalAlign="center">
-      <s:Label text="day"/>
+      <s:Label id="dayLabel"/>
       <components:ListStepper allowValueWrap="true" id="dayList" height="100%" minHeight="10" width="90"/>
     </s:VGroup>
     <s:VGroup height="100%" id="monthGroup" horizontalAlign="center">
-      <s:Label text="month" />
+      <s:Label id="monthLabel"/>
       <components:ListStepper allowValueWrap="true" id="monthList" height="100%" minHeight="10" width="90"/>
     </s:VGroup>
     <s:VGroup height="100%" id="yearGroup" horizontalAlign="center">
-      <s:Label text="year" />
+      <s:Label id="yearLabel"/>
       <components:ListStepper allowValueWrap="true" id="yearList" height="100%" minHeight="10"  width="90"/>
     </s:VGroup>      
   </s:Group>
