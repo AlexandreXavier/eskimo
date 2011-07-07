@@ -2,65 +2,65 @@
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark" title="CategoryListView"
         viewActivate="onViewActivate(event)">
-  <s:layout>
-    <s:VerticalLayout/>
-  </s:layout>
-  <fx:Declarations>
-    <!-- Place non-visual elements (e.g., services, value objects) here -->
-  </fx:Declarations>
-  <fx:Script>
-    <![CDATA[
-      import com.pialabs.eskimo.model.Category;
-      import com.pialabs.eskimo.model.Model;
-      import com.pialabs.eskimo.model.Sample;
-      
-      import mx.collections.ArrayCollection;
-      
-      import spark.events.IndexChangeEvent;
-      import spark.events.ViewNavigatorEvent;
-      
-      
-      [Bindable]
-      [Embed(source = "assets/icon/eskimo.png")]
-      private var _logo:Class;
-      
-      [Bindable]
-      private var _dp:ArrayCollection;
-      
-      protected function onViewActivate(event:ViewNavigatorEvent):void
-      {
-        _dp = new ArrayCollection(Model.getInstance().samples.samples);
-      
-      }
-      
-      protected function onCategoryListChange(event:IndexChangeEvent):void
-      {
-        var selectedItem:* = categoryList.selectedItem;
-        if (selectedItem is Category)
-        {
-          navigator.pushView(SampleListView, selectedItem);
-            //Model.getInstance().currentItem = selectedItem;
-        }
-        else if (selectedItem is Sample)
-        {
-          var seletedItem:Sample = Sample(selectedItem);
-          navigator.pushView(seletedItem.resource, selectedItem);
-        }
-        else
-        {
-          throw new TypeError("Unknown item type.");
-        }
-      }
-    ]]>
-  </fx:Script>
-  <!-- Title -->
-  <s:titleContent>
-    <s:HGroup horizontalAlign="center" color="#ffffff" width="100%">
-      <s:BitmapImage source="{_logo}"/>
-    </s:HGroup>
-  </s:titleContent>
-  <!-- Content-->
-  <s:List id="categoryList" width="100%" height="100%" dataProvider="{_dp}"
-          labelField="name" change="onCategoryListChange(event)">
-  </s:List>
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    <fx:Declarations>
+        <!-- Place non-visual elements (e.g., services, value objects) here -->
+    </fx:Declarations>
+    <fx:Script>
+        <![CDATA[
+            import com.pialabs.eskimo.model.Category;
+            import com.pialabs.eskimo.model.Model;
+            import com.pialabs.eskimo.model.Sample;
+            
+            import mx.collections.ArrayCollection;
+            
+            import spark.events.IndexChangeEvent;
+            import spark.events.ViewNavigatorEvent;
+            
+            
+            [Bindable]
+            [Embed(source = "assets/icon/eskimo.png")]
+            private var _logo:Class;
+            
+            [Bindable]
+            private var _dp:ArrayCollection;
+            
+            protected function onViewActivate(event:ViewNavigatorEvent):void
+            {
+                _dp = new ArrayCollection(Model.getInstance().samples.samples);
+            
+            }
+            
+            protected function onCategoryListChange(event:IndexChangeEvent):void
+            {
+                var selectedItem:* = categoryList.selectedItem;
+                if (selectedItem is Category)
+                {
+                    navigator.pushView(SampleListView, selectedItem);
+                        //Model.getInstance().currentItem = selectedItem;
+                }
+                else if (selectedItem is Sample)
+                {
+                    var seletedItem:Sample = Sample(selectedItem);
+                    navigator.pushView(seletedItem.resource, selectedItem);
+                }
+                else
+                {
+                    throw new TypeError("Unknown item type.");
+                }
+            }
+        ]]>
+    </fx:Script>
+    <!-- Title -->
+    <s:titleContent>
+        <s:HGroup horizontalAlign="center" color="#ffffff" width="100%">
+            <s:BitmapImage source="{_logo}"/>
+        </s:HGroup>
+    </s:titleContent>
+    <!-- Content-->
+    <s:List id="categoryList" width="100%" height="100%" dataProvider="{_dp}"
+            labelField="name" change="onCategoryListChange(event)">
+    </s:List>
 </s:View>

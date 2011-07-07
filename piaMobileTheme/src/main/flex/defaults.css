@@ -146,6 +146,17 @@
         buttonColor: #FFFFFF;
     }
     
+    s|TextInput
+    {
+        contentBackgroundColor: #FFFFFF;
+        focusAlpha: 0;
+    }
+    
+    ios1|SearchTextInputSkin
+    {
+        icon: Embed(source="com/piaction/skins/mobile/ios/assets/searchIcon.png");
+    }
+    
 }
 
 @media (os-platform:"ANDROID")

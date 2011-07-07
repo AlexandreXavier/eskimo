@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic  version="2.0" xmlns="http://ns.adobe.com/fxg/2008"
+           viewWidth="300" viewHeight="33" scaleGridLeft="16" scaleGridTop="16" scaleGridRight="84" scaleGridBottom="17">
+
+	<Group >
+    	<Rect y="0" width="300" height="33" radiusX="17">
+            <stroke>
+                <SolidColorStroke weight="1" color="#7D8592"/>
+            </stroke>
+        </Rect>
+	</Group>
+        
+</Graphic>
