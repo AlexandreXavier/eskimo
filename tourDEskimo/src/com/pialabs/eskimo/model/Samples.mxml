@@ -1,68 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <model:Category xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns="*"
                 name="Tour d'Eskimo" xmlns:model="com.pialabs.eskimo.model.*">
-  <model:samples>
-    <model:Category name="Buttons">
-      <model:samples>
-        <model:Sample uid="1000100" name="ButtonBar"
-                      resource="com.pialabs.eskimo.samples.ButtonBarView"/>
-        <model:Sample uid="1000101" name="ConfirmButton"
-                      resource="com.pialabs.eskimo.samples.ConfirmButtonView"/>
-      </model:samples>
-    </model:Category>
+    <model:samples>
+        <model:Category name="Buttons">
+            <model:samples>
+                <model:Sample uid="1000100" name="ButtonBar"
+                              resource="com.pialabs.eskimo.samples.ButtonBarView"/>
+                <model:Sample uid="1000101" name="ConfirmButton"
+                              resource="com.pialabs.eskimo.samples.ConfirmButtonView"/>
+            </model:samples>
+        </model:Category>
 
-    <model:Category name="Selectors">
-      <model:samples>
-        <model:Sample uid="1000200" name="HSlider"
-                      resource="com.pialabs.eskimo.samples.HSliderView"/>
-        <model:Sample uid="1000201" name="NumericStepper"
-                      resource="com.pialabs.eskimo.samples.NumericStepperView"/>
-        <!-- TODO : add this view -->
-        <!--<model:Sample uid="1000202" name="Checkbox"
-                      resource="com.pialabs.eskimo.samples.CheckboxView"/>-->
-      </model:samples>
-    </model:Category>
+        <model:Category name="Selectors">
+            <model:samples>
+                <model:Sample uid="1000200" name="HSlider"
+                              resource="com.pialabs.eskimo.samples.HSliderView"/>
+                <model:Sample uid="1000201" name="NumericStepper"
+                              resource="com.pialabs.eskimo.samples.NumericStepperView"/>
+                <!-- TODO : add this view -->
+                <!--<model:Sample uid="1000202" name="Checkbox"
+                              resource="com.pialabs.eskimo.samples.CheckboxView"/>-->
+            </model:samples>
+        </model:Category>
 
-    <model:Category name="Lists">
-      <model:samples>
-        <model:Sample uid="1000300" name="ComboBox"
-                      resource="com.pialabs.eskimo.samples.ComboBoxView"/>
-        <model:Sample uid="1000301" name="DeletableList"
-                      resource="com.pialabs.eskimo.samples.DeletableListView"/>
-        <model:Sample uid="1000302" name="ContextableList"
-                      resource="com.pialabs.eskimo.samples.ContextableListView"/>
-        <model:Sample uid="1000303" name="UniqueChoiceList"
-                      resource="com.pialabs.eskimo.samples.UniqueChoiceListView"/>
-        <model:Sample uid="1000304" name="MultipleChoiceList"
-                      resource="com.pialabs.eskimo.samples.MultipleChoiceListView"/>
-        <model:Sample uid="1000305" name="ListWheel"
-                      resource="com.pialabs.eskimo.samples.ListWheelView"/>
-      </model:samples>
-    </model:Category>
+        <model:Category name="Lists">
+            <model:samples>
+                <model:Sample uid="1000300" name="ComboBox"
+                              resource="com.pialabs.eskimo.samples.ComboBoxView"/>
+                <model:Sample uid="1000301" name="DeletableList"
+                              resource="com.pialabs.eskimo.samples.DeletableListView"/>
+                <model:Sample uid="1000302" name="ContextableList"
+                              resource="com.pialabs.eskimo.samples.ContextableListView"/>
+                <model:Sample uid="1000303" name="UniqueChoiceList"
+                              resource="com.pialabs.eskimo.samples.UniqueChoiceListView"/>
+                <model:Sample uid="1000304" name="MultipleChoiceList"
+                              resource="com.pialabs.eskimo.samples.MultipleChoiceListView"/>
+                <model:Sample uid="1000305" name="ListWheel"
+                              resource="com.pialabs.eskimo.samples.ListWheelView"/>
+            </model:samples>
+        </model:Category>
 
-    <model:Category name="Popup">
-      <model:samples>
-        <model:Sample uid="1000400" name="Alert"
-                      resource="com.pialabs.eskimo.samples.AlertView"/>
-        <model:Sample uid="1000401" name="PopOver"
-                      resource="com.pialabs.eskimo.samples.PopOverView"/>
-      </model:samples>
-    </model:Category>
+        <model:Category name="Popup">
+            <model:samples>
+                <model:Sample uid="1000400" name="Alert"
+                              resource="com.pialabs.eskimo.samples.AlertView"/>
+                <model:Sample uid="1000401" name="PopOver"
+                              resource="com.pialabs.eskimo.samples.PopOverView"/>
+            </model:samples>
+        </model:Category>
 
-    <model:Category name="Container">
-      <model:samples>
-        <model:Sample uid="1000500" name="Form"
-                      resource="com.pialabs.eskimo.samples.FormView"/>
-        <model:Sample uid="1000501" name="SlideDataGroup"
-                      resource="com.pialabs.eskimo.samples.SlideDataGroupView"/>
-      </model:samples>
-    </model:Category>
+        <model:Category name="Container">
+            <model:samples>
+                <model:Sample uid="1000500" name="Form"
+                              resource="com.pialabs.eskimo.samples.FormView"/>
+                <model:Sample uid="1000501" name="SlideDataGroup"
+                              resource="com.pialabs.eskimo.samples.SlideDataGroupView"/>
+                <model:Sample uid="1000502" name="MultiPlateformeGroup"
+                              resource="com.pialabs.eskimo.samples.MultiPlateformeGroupView"/>
+            </model:samples>
+        </model:Category>
 
-    <model:Category name="Navigation">
-      <model:samples>
-        <model:Sample uid="1000600" name="PageIndicator"
-                      resource="com.pialabs.eskimo.samples.PageIndicatorView"/>
-      </model:samples>
-    </model:Category>
-  </model:samples>
+        <model:Category name="Navigation">
+            <model:samples>
+                <model:Sample uid="1000600" name="PageIndicator"
+                              resource="com.pialabs.eskimo.samples.PageIndicatorView"/>
+            </model:samples>
+        </model:Category>
+    </model:samples>
 </model:Category>
