@@ -54,8 +54,8 @@ package com.piaction.skins.mobile.ios
             if (_icon)
             {
                 setElementSize(_icon, iconWidth, iconWidth);
+                setElementPosition(_icon, paddingLeft, (unscaledHeight - iconWidth) / 2);
             }
-            setElementPosition(_icon, paddingLeft, (unscaledHeight - iconWidth) / 2);
             
             super.textDisplay.x = paddingLeft + iconWidth;
             super.textDisplay.width = textDisplayWidth;
