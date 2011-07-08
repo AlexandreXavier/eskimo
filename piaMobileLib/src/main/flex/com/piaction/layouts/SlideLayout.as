@@ -126,17 +126,19 @@ package com.piaction.layouts
         _newElement.setLayoutBoundsSize(width, height);
         
         _direction = direction * (_oldIndex - _index);
+        
+        _oldElement = getVisualElement(_oldIndex);
+        
         if (orientation == HORIZONTAL)
         {
           _newElement.setLayoutBoundsPosition(-_direction * width, 0);
+          _tween = new Tween(this, 0, width, 300, 30, tweenUpdateHandler, tweenEndHandler);
         }
         else if (orientation == VERTICAL)
         {
           _newElement.setLayoutBoundsPosition(0, -_direction * height);
+          _tween = new Tween(this, 0, height, 300, 30, tweenUpdateHandler, tweenEndHandler);
         }
-        _oldElement = getVisualElement(_oldIndex);
-        
-        _tween = new Tween(this, 0, width, 300, 30, tweenUpdateHandler, tweenEndHandler);
       }
     }
     
