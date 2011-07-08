@@ -82,9 +82,9 @@ package com.piaction.components
         /**  The pattern string used by the DateChooser object to format
         *  dates.
         *
-        *  @default "MMM dd yyyy"
+        *  @default OS locale
         */
-        public var datePattern:String = "MMM dd yyyy";
+        public var datePattern:String = DateUtils.defaultDateTimePattern;
         
         private var _selectedDate:Date = new Date();
         
@@ -136,7 +136,7 @@ package com.piaction.components
           var monthPattern:String = dateUtils.monthPattern(datePattern);
           for(var index:int = 1; index < 13; index++)
           {
-            monthProvider.addItem(dateUtils.formatMonth(index, monthPattern));
+            monthProvider.addItem(dateUtils.formatShortMonth(index, monthPattern));
           }
           selectMonth();
           monthList.addEventListener(IndexChangeEvent.CHANGE, onMonthOrYearChange);
