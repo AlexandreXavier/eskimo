@@ -28,6 +28,7 @@
         </components:layout>
         <s:Label text="ANDROID CONTENT"
                  creationComplete="trace('content 2 created')"/>
+        <components:ListWheel/>
     </components:MultiplateformeGroup>
 
 </s:View>

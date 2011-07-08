@@ -8,21 +8,21 @@ package com.piaction.components
     import spark.components.Group;
     
     /**
-    * Group container that render children for a specfic plateforme (ios, android, qnx)
-    */
+     * Group container that render children for a specfic plateforme (ios, android, qnx).
+     */
     public class MultiplateformeGroup extends Group
     {
         /**
-        * IOS plateforme
-        */
+         * IOS plateforme
+         */
         public static const IOS:String = "IOS";
         /**
-        * Android plateforme
-        */
+         * Android plateforme
+         */
         public static const ANDROID:String = "AND";
         /**
-        * QNX plateforme
-        */
+         * QNX plateforme
+         */
         public static const QNX:String = "QNX";
         
         /**
@@ -105,8 +105,8 @@ package com.piaction.components
         
         [Inspectable(category = "General", enumeration = "IOS,AND,QNX", defaultValue = "AND")]
         /**
-        * Select the plateforme
-        */
+         * Select the plateforme
+         */
         public function set type(value:String):void
         {
             if (value != _type)
@@ -128,8 +128,8 @@ package com.piaction.components
         }
         
         /**
-        * @private
-        */
+         * @private
+         */
         override public function addElementAt(element:IVisualElement, index:int):IVisualElement
         {
             if (_systemType == _type)
@@ -146,17 +146,17 @@ package com.piaction.components
         /**
          * @private
          */
-        public function get switchable():Boolean
+        public function set switchable(value:Boolean):void
         {
-            return _switchable;
+            _switchable = value;
         }
         
         /**
          * @private
          */
-        public function set switchable(value:Boolean):void
+        public function get switchable():Boolean
         {
-            _switchable = value;
+            return _switchable;
         }
     
     
