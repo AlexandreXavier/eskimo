@@ -3,6 +3,9 @@ package com.piaction.skins.mobile.ios
     
     import flash.events.Event;
     
+    import mx.binding.utils.BindingUtils;
+    import mx.events.FlexEvent;
+    
     import spark.components.Button;
     import spark.skins.mobile.HSliderSkin;
     
@@ -47,27 +50,11 @@ package com.piaction.skins.mobile.ios
             coloredTrack.setStyle("skinClass", coloredTrackSkinClass);
             addChildAt(coloredTrack, 1);
             
-            hostComponent.addEventListener(Event.CHANGE, onChange, false, 0, true);
+            BindingUtils.bindSetter(layoutColorTrack, thumb, "x");
         }
         
-        /**
-         * @private
-         */
-        protected function onChange(event:Event):void
+        private function layoutColorTrack(positionX:Number):void
         {
-            invalidateDisplayList();
-        }
-        
-        /**
-         * @private
-         */
-        override protected function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void
-        {
-            super.layoutContents(unscaledWidth, unscaledHeight);
-            
-            track.setStyle("chromeColor", 0xf8f8f8);
-            coloredTrack.setStyle("chromeColor", getStyle("chromeColor"));
-            
             // minimum height is no smaller than the larger of the thumb or track
             var calculatedSkinHeight:int = Math.max(Math.max(thumb.getPreferredBoundsHeight(), track.getPreferredBoundsHeight()), unscaledHeight);
             
@@ -80,6 +67,19 @@ package com.piaction.skins.mobile.ios
             
             setElementSize(coloredTrack, calculatedTrackX, track.getPreferredBoundsHeight()); // note track is NOT scaled vertically
             setElementPosition(coloredTrack, 0, calculatedTrackY);
+        }
+        
+        /**
+         * @private
+         */
+        override protected function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void
+        {
+            super.layoutContents(unscaledWidth, unscaledHeight);
+            
+            track.setStyle("chromeColor", 0xf8f8f8);
+            coloredTrack.setStyle("chromeColor", getStyle("chromeColor"));
+            
+            layoutColorTrack(thumb.x);
         }
     }
 }
