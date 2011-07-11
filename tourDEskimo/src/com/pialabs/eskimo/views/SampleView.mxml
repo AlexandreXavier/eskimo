@@ -4,7 +4,18 @@
 
   <fx:Script>
     <![CDATA[
+      import com.pialabs.eskimo.model.Model;
       
+      import mx.utils.object_proxy;
+      
+      import spark.components.Application;
+      import spark.events.IndexChangeEvent;
+      
+      
+      protected function onOSChange(event:IndexChangeEvent):void
+      {
+        //Model.getInstance().osStyle = selectedStyle.selectedItem;
+      }
     ]]>
   </fx:Script>
 
@@ -18,4 +29,12 @@
   <s:navigationContent>
     <s:Button label="Back" click="navigator.popView()"/>
   </s:navigationContent>
+
+  <s:actionContent>
+    <s:ButtonBar id="selectedStyle" change="onOSChange(event)"
+                 dataProvider="{Model.OS_STYLES}"
+                 selectedItem="{Model.getInstance().osStyle}"/>
+  </s:actionContent>
+
+  <s:CheckBox id="checkBox"/>
 </s:View>

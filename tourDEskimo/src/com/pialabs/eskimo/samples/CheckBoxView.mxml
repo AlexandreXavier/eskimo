@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
+                  xmlns:s="library://ns.adobe.com/flex/spark" title="AlertView"
+                  xmlns:views="com.pialabs.eskimo.views.*">
+  <fx:Script>
+    <![CDATA[
+      
+    ]]>
+  </fx:Script>
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+  </fx:Declarations>
+  <s:CheckBox/>
+
+</views:SampleView>
