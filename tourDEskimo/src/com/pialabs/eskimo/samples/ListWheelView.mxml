@@ -40,7 +40,7 @@
   </fx:Script>
   <s:VGroup>
     
-  <s:HGroup width="100%" height="100%" paddingLeft="30">
+  <s:HGroup width="100%" height="100%">
     <components:ListWheel id="listWheel" height="150"
                           dataProvider="{_currentDP}"/>
   </s:HGroup>
@@ -57,14 +57,11 @@
                      prompt="Color gradient begin" width="250"/>
     </s:FormItem>
     <s:FormItem>
-      <s:VGroup gap="20">
         <s:TextInput id="selectionColorEnd"
                      prompt="Color gradient end" width="250"/>
-        <s:Button label="Apply"
-                  click="applyHandler(event)" width="100"/>
-      </s:VGroup>
     </s:FormItem>
-
   </s:Form>
+    <s:Button label="Apply"
+              click="applyHandler(event)" width="100"/>
   </s:VGroup>
 </views:SampleView>

@@ -37,16 +37,16 @@
 
         <s:HGroup gap="2">
 
-            <s:NumericStepper maximum="30" minimum="1" value="17"
+            <s:NumericStepper maximum="31" minimum="1" value="17" width="80"
                               allowValueWrap="true"/>
             <s:NumericStepper maximum="11" valueFormatFunction="{formatMonth}"
                               allowValueWrap="true"
-                              valueParseFunction="{valueParseFunction}"
+                              valueParseFunction="{valueParseFunction}" width="80"
                               value="7"/>
-            <s:NumericStepper maximum="3000" value="2011" allowValueWrap="true"/>
+            <s:NumericStepper maximum="2050" minimum="2000" value="2011" allowValueWrap="true"/>
         </s:HGroup>
 
-        <s:Label text="ListStepper" color="#FFFFFF"/>
+        <s:Label text="ListStepper" color="#FFFFFF" paddingTop="20"/>
 
         <components:ListStepper allowValueWrap="true" selectedIndex="3">
             <components:dataProvider>
