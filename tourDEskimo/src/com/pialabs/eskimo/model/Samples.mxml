@@ -17,6 +17,8 @@
                               resource="com.pialabs.eskimo.samples.HSliderView"/>
                 <model:Sample uid="1000201" name="NumericStepper"
                               resource="com.pialabs.eskimo.samples.NumericStepperView"/>
+                <model:Sample uid="1000201" name="DateChooser"
+                              resource="com.pialabs.eskimo.samples.DateChooserView"/>
                 <!-- TODO : add this view -->
                 <!--<model:Sample uid="1000202" name="Checkbox"
                               resource="com.pialabs.eskimo.samples.CheckboxView"/>-->

@@ -8,5 +8,5 @@
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
   </fx:Declarations>
 
-  <components:DateChooser width="60%"/>
+  <components:DateChooser />
 </views:SampleView>

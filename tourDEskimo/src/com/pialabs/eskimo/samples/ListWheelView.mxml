@@ -8,54 +8,62 @@
   <fx:Script>
     <![CDATA[
       import mx.collections.ArrayCollection;
+      import mx.utils.StringUtil;
       
       private var timeDP:ArrayCollection = new ArrayCollection([{label: "15 minutes"}, {label: "20 minutes"}
                                                                  , {label: "30 minutes"}, {label: "45 minutes"}]);
-      private var timeDP2:ArrayCollection = new ArrayCollection([{label: "10 minutes"}, {label: "20 minutes"}
-                                                                  , {label: "30 minutes"}, {label: "40 minutes"}]);
       
       [Bindable]
       private var _currentDP:ArrayCollection = timeDP;
+      
+      protected function applyHandler(event:MouseEvent):void
+      {
+        var indexText:String = selectedIndexTextInput.text;
+        if(indexText != null && indexText.length > 0)
+        {
+          listWheel.animateToSelectedIndex( Number(indexText));
+        }
+
+        var colorBeginText:String = StringUtil.trim(selectionColorBegin.text);
+        if(colorBeginText != null && colorBeginText.length > 0)
+        {
+          listWheel.setStyle('gradientColorBegin', Number("0x" + colorBeginText));
+        }
+        
+        var colorEndText:String = StringUtil.trim(selectionColorEnd.text);
+        if(colorEndText != null && colorEndText.length > 0)
+        {
+          listWheel.setStyle('gradientColorEnd', Number("0x" + colorEndText));
+        }
+      }
+      
     ]]>
   </fx:Script>
-  <s:HGroup width="100%">
+  <s:HGroup width="100%" height="100%" paddingLeft="30">
     <components:ListWheel id="listWheel" height="150"
                           dataProvider="{_currentDP}"/>
-    <s:List id="simpleList" height="200" dataProvider="{_currentDP}"
-            change="listWheel.animateToSelectedIndex(event.newIndex)"/>
-    <s:Label text="Click the list to select an item in the wheel list"/>
   </s:HGroup>
 
-  <s:ToggleButton id="swap" label="Swap DP"
-                  click="_currentDP = swap.selected ? timeDP2 : timeDP"/>
-  <s:Form>
-    <s:FormHeading label="Parameters"/>
+  <s:Form width="100%">
     <!-- Selected element -->
-    <s:FormItem label="Selected element">
-      <s:HGroup>
+    <s:FormItem>
         <s:TextInput id="selectedIndexTextInput"
-                     prompt="Enter the index (current: {listWheel.selectedIndex})"/>
-        <s:Button label="Apply"
-                  click="listWheel.animateToSelectedIndex( Number(selectedIndexTextInput.text) )"/>
-      </s:HGroup>
+                     prompt="Element index" width="250"/>
     </s:FormItem>
     <!-- Selection color -->
-    <s:FormItem label="Selection color gradient begin">
-      <s:HGroup>
+    <s:FormItem>
         <s:TextInput id="selectionColorBegin"
-                     prompt="{'0x' + listWheel.getStyle('gradientColorBegin').toString(16)}"/>
-        <s:Button label="Apply"
-                  click="listWheel.setStyle('gradientColorBegin', Number(selectionColorBegin.text))"/>
-      </s:HGroup>
+                     prompt="Color gradient begin" width="250"/>
     </s:FormItem>
-    <s:FormItem label="Selection color gradient end">
-      <s:HGroup>
+    <s:FormItem>
+      <s:VGroup gap="20">
         <s:TextInput id="selectionColorEnd"
-                     prompt="{'0x' + listWheel.getStyle('gradientColorEnd').toString(16)}"/>
+                     prompt="Color gradient end" width="250"/>
         <s:Button label="Apply"
-                  click="listWheel.setStyle('gradientColorEnd', Number(selectionColorEnd.text))"/>
-      </s:HGroup>
+                  click="applyHandler(event)" width="100"/>
+      </s:VGroup>
     </s:FormItem>
+
   </s:Form>
 
 </views:SampleView>
