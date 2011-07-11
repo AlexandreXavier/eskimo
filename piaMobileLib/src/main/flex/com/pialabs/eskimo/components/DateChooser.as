@@ -10,6 +10,7 @@ package com.pialabs.eskimo.components
     
     import spark.components.Group;
     import spark.components.List;
+    import spark.components.supportClasses.ListBase;
     import spark.components.supportClasses.SkinnableComponent;
     import spark.events.IndexChangeEvent;
     import spark.formatters.DateTimeFormatter;
@@ -20,6 +21,10 @@ package com.pialabs.eskimo.components
      */
     [Event(name="change", type="spark.events.IndexChangeEvent")]
     
+    /**
+     *  The DateChooser displays the column of the days of the month, month and the year.
+     *  Each column represented by a ListWheel on iOs and a ListStepper on android.
+     */
     public class DateChooser extends SkinnableComponent
     {
         public function DateChooser()
@@ -40,19 +45,34 @@ package com.pialabs.eskimo.components
         public var yearGroup:Group;
         
         [SkinPart(required = "true")]
-        public var dayList:List;
+        public var dayList:ListBase;
         
         [SkinPart(required = "true")]
-        public var monthList:List;
+        public var monthList:ListBase;
         
         [SkinPart(required = "true")]
-        public var yearList:List;
+        public var yearList:ListBase;
         
-        public var maxYear:Number;
+        /**
+         *  The last year selectable in the control.
+         *
+         *  @default 2040
+         */
+        public var maxYear:Number = 2040;
         
-        public var minYear:Number;
+        /**
+         *  The first year selectable in the control.
+         *
+         *  @default 1980
+         */
+        public var minYear:Number = 1980;
         
-        public var datePattern:String;
+        /**  The pattern string used by the DateChooser object to format
+         *  dates.
+         *
+         *  @default OS locale
+         */
+        public var datePattern:String = DateUtils.defaultDateTimePattern;
         
         private var _selectedDate:Date = new Date();
         
@@ -64,8 +84,6 @@ package com.pialabs.eskimo.components
         
         override protected function partAdded(partName:String, instance:Object):void
         {
-/*          setStyle("locale", "fr-FR");
-          trace("locale " + getStyle('locale'));*/
           if(monthList == instance)
           {
             createMonthProvider();
@@ -94,7 +112,7 @@ package com.pialabs.eskimo.components
           var monthPattern:String = dateUtils.monthPattern(datePattern);
           for(var index:int = 1; index < 13; index++)
           {
-            monthProvider.addItem(dateUtils.formatMonth(index, monthPattern));
+            monthProvider.addItem(dateUtils.formatShortMonth(index, monthPattern));
           }
           selectMonth();
           monthList.addEventListener(IndexChangeEvent.CHANGE, onMonthOrYearChange);
@@ -191,7 +209,7 @@ package com.pialabs.eskimo.components
           dateInput.setElementIndex(monthGroup, monthPos);
           dateInput.setElementIndex(yearGroup, yearPos);  
         }
-        private function onMonthOrYearChange(event:IndexChangeEvent):void
+        private function onMonthOrYearChange(event:Event):void
         {
           var dateUtils:DateUtils = new DateUtils();
           var year:Number = minYear + yearList.selectedIndex;
@@ -208,14 +226,14 @@ package com.pialabs.eskimo.components
             dayList.selectedIndex = _dayProvider.length - 1;
           }
           
-          var evt:Event = event.clone();
+          var evt:Event = new IndexChangeEvent(IndexChangeEvent.CHANGE);
           dispatchEvent(evt);
         }
         
         
-        private function onDayChange(event:IndexChangeEvent):void
+        private function onDayChange(event:Event):void
         {
-          var evt:Event = event.clone();
+          var evt:Event = new IndexChangeEvent(IndexChangeEvent.CHANGE);
           dispatchEvent(evt);
         }
         

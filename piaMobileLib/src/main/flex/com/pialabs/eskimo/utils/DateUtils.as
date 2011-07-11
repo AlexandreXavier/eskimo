@@ -1,8 +1,9 @@
 package com.pialabs.eskimo.utils
 {
+  import flash.globalization.DateTimeFormatter;
   import flash.globalization.DateTimeStyle;
+  import flash.globalization.LocaleID;
   
-  import spark.formatters.DateTimeFormatter;
   import spark.globalization.StringTools;
 
   public class DateUtils
@@ -11,7 +12,9 @@ package com.pialabs.eskimo.utils
     {
     }
     
-    private static var _dateTimeFormatter:DateTimeFormatter = new DateTimeFormatter();
+    public static var dateTimeFormatter:DateTimeFormatter = new DateTimeFormatter(LocaleID.DEFAULT);
+    
+    public static var defaultDateTimePattern:String = dateTimeFormatter.getDateTimePattern();
     
     public static const DAY_CHAR:String = "d";
     
@@ -50,20 +53,26 @@ package com.pialabs.eskimo.utils
     {
       if(dateTimePattern == null)
       {
-        dateTimePattern = _dateTimeFormatter.dateTimePattern;
+        dateTimePattern = dateTimeFormatter.getDateTimePattern();
       }
-      _dateTimeFormatter.dateTimePattern = "MMM";
-      return _dateTimeFormatter.format(date);
+      dateTimeFormatter.setDateTimePattern("MMM");
+      return dateTimeFormatter.format(date);
     }
     
-    public function formatMonth(month:int, mPattern:String):String
+    public function formatShortMonth(month:int, mPattern:String):String
     {
       var date:Date = new Date();
       date.date = 1;
       date.month = month - 1;
-
-      _dateTimeFormatter.dateTimePattern = mPattern;
-      return _dateTimeFormatter.format(date);
+      if(mPattern.length > 3)
+      {
+        dateTimeFormatter.setDateTimePattern("MMM");
+      }
+      else
+      {
+        dateTimeFormatter.setDateTimePattern(mPattern);
+      }
+      return dateTimeFormatter.format(date);
     }
    
     public function formatDay(day:Number, dPattern:String):String
