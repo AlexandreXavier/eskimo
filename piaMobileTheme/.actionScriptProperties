@@ -10,6 +10,7 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="3" linkType="1" path="/piaMobileLib/bin/piaMobileLib.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="1" linkType="1" path="${PROJECT_FRAMEWORKS}/themes/Mobile"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

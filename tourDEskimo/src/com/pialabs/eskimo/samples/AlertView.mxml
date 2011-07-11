@@ -4,7 +4,7 @@
                   xmlns:views="com.pialabs.eskimo.views.*">
   <fx:Script>
     <![CDATA[
-      import com.piaction.controls.SkinnableAlert;
+      import com.pialabs.eskimo.controls.SkinnableAlert;
     ]]>
   </fx:Script>
   <fx:Declarations>

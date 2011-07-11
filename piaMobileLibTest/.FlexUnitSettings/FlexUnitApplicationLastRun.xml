@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testrun name="" >
 <testsuite  name="Default Test Suite" project="piaMobileLibTest">
-<testsuite name="com.piaction.components:PageIndicatorTest" type="testsuiteclass"/>
+<testsuite name="com.piaction.components:ConfirmButtonTest" type="testcaseclass"/>
+<testsuite name="com.piaction.components:ContextableListTest" type="testcaseclass"/>
+<testsuite name="com.piaction.components:DeletableListTest" type="testcaseclass"/>
+<testsuite name="com.piaction.components:PageIndicatorTest" type="testcaseclass"/>
 </testsuite>
 </testrun>

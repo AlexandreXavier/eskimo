@@ -1,69 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark"
-                  title="ListWheelView"
-                  xmlns:components="com.piaction.components.*"
-                  xmlns:views="com.pialabs.eskimo.views.*">
+                  title="ListWheelView" xmlns:views="com.pialabs.eskimo.views.*"
+                  xmlns:components="com.pialabs.eskimo.components.*">
 
-  <fx:Script>
-    <![CDATA[
-      import mx.collections.ArrayCollection;
-      import mx.utils.StringUtil;
-      
-      private var timeDP:ArrayCollection = new ArrayCollection([{label: "15 minutes"}, {label: "20 minutes"}
-                                                                 , {label: "30 minutes"}, {label: "45 minutes"}]);
-      
-      [Bindable]
-      private var _currentDP:ArrayCollection = timeDP;
-      
-      protected function applyHandler(event:MouseEvent):void
-      {
-        var indexText:String = selectedIndexTextInput.text;
-        if(indexText != null && indexText.length > 0)
-        {
-          listWheel.animateToSelectedIndex( Number(indexText));
-        }
+    <fx:Script>
+        <![CDATA[
+            import mx.collections.ArrayCollection;
+            import mx.utils.StringUtil;
+            
+            private var timeDP:ArrayCollection = new ArrayCollection([{label: "15 minutes"}, {label: "20 minutes"}
+                                                                       , {label: "30 minutes"}, {label: "45 minutes"}]);
+            
+            [Bindable]
+            private var _currentDP:ArrayCollection = timeDP;
+            
+            protected function applyHandler(event:MouseEvent):void
+            {
+                var indexText:String = selectedIndexTextInput.text;
+                if (indexText != null && indexText.length > 0)
+                {
+                    listWheel.animateToSelectedIndex(Number(indexText));
+                }
+                
+                var colorBeginText:String = StringUtil.trim(selectionColorBegin.text);
+                if (colorBeginText != null && colorBeginText.length > 0)
+                {
+                    listWheel.setStyle('gradientColorBegin', Number("0x" + colorBeginText));
+                }
+                
+                var colorEndText:String = StringUtil.trim(selectionColorEnd.text);
+                if (colorEndText != null && colorEndText.length > 0)
+                {
+                    listWheel.setStyle('gradientColorEnd', Number("0x" + colorEndText));
+                }
+            }
+        ]]>
+    </fx:Script>
+    <s:HGroup width="100%" height="100%" paddingLeft="30">
+        <components:ListWheel id="listWheel" height="150"
+                              dataProvider="{_currentDP}"/>
+    </s:HGroup>
 
-        var colorBeginText:String = StringUtil.trim(selectionColorBegin.text);
-        if(colorBeginText != null && colorBeginText.length > 0)
-        {
-          listWheel.setStyle('gradientColorBegin', Number("0x" + colorBeginText));
-        }
-        
-        var colorEndText:String = StringUtil.trim(selectionColorEnd.text);
-        if(colorEndText != null && colorEndText.length > 0)
-        {
-          listWheel.setStyle('gradientColorEnd', Number("0x" + colorEndText));
-        }
-      }
-      
-    ]]>
-  </fx:Script>
-  <s:HGroup width="100%" height="100%" paddingLeft="30">
-    <components:ListWheel id="listWheel" height="150"
-                          dataProvider="{_currentDP}"/>
-  </s:HGroup>
+    <s:Form width="100%">
+        <!-- Selected element -->
+        <s:FormItem>
+            <s:TextInput id="selectedIndexTextInput" prompt="Element index"
+                         width="250"/>
+        </s:FormItem>
+        <!-- Selection color -->
+        <s:FormItem>
+            <s:TextInput id="selectionColorBegin" prompt="Color gradient begin"
+                         width="250"/>
+        </s:FormItem>
+        <s:FormItem>
+            <s:VGroup gap="20">
+                <s:TextInput id="selectionColorEnd" prompt="Color gradient end"
+                             width="250"/>
+                <s:Button label="Apply" click="applyHandler(event)" width="100"/>
+            </s:VGroup>
+        </s:FormItem>
 
-  <s:Form width="100%">
-    <!-- Selected element -->
-    <s:FormItem>
-        <s:TextInput id="selectedIndexTextInput"
-                     prompt="Element index" width="250"/>
-    </s:FormItem>
-    <!-- Selection color -->
-    <s:FormItem>
-        <s:TextInput id="selectionColorBegin"
-                     prompt="Color gradient begin" width="250"/>
-    </s:FormItem>
-    <s:FormItem>
-      <s:VGroup gap="20">
-        <s:TextInput id="selectionColorEnd"
-                     prompt="Color gradient end" width="250"/>
-        <s:Button label="Apply"
-                  click="applyHandler(event)" width="100"/>
-      </s:VGroup>
-    </s:FormItem>
-
-  </s:Form>
+    </s:Form>
 
 </views:SampleView>

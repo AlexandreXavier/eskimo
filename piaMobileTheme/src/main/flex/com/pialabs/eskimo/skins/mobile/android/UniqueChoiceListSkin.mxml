@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:mx="library://ns.adobe.com/flex/mx">
+    <!--- The android skin class for the UniqueChoiceList component.
+       The UniqueChoiceList component defines a group of RadioButton components
+       that act as a single mutually exclusive component; therefore,
+       a user can select only one RadioButton component at a time.
+
+    @see com.piaction.components.UniqueChoiceList
+    -->
+    <fx:Metadata>
+    [HostComponent("com.pialabs.eskimo.components.UniqueChoiceList")]
+  </fx:Metadata>
+
+    <s:List id="listDisplay" top="0" right="0" bottom="0" left="0"
+            itemRenderer="com.pialabs.eskimo.components.RadioButtonItemRenderer"
+            verticalScrollPolicy="off" contentBackgroundAlpha="0">
+        <s:layout>
+            <s:VerticalLayout horizontalAlign="justify" gap="3"/>
+        </s:layout>
+    </s:List>
+
+</s:Skin>

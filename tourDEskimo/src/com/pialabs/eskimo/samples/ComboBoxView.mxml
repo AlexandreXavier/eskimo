@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark"
-                  title="ComboBoxView"
-                  xmlns:components="com.piaction.components.*"
-                  xmlns:views="com.pialabs.eskimo.views.*">
-  <fx:Declarations>
-    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
-  </fx:Declarations>
-  <components:ComboBox width="80%" selectedItem="{comboData.getItemAt(1)}">
-    <components:dataProvider>
-      <s:ArrayCollection id="comboData">
-        <fx:Object label="15 minutes"/>
-        <fx:Object label="30 minutes"/>
-        <fx:Object label="45 minutes"/>
-        <fx:Object label="1 hour"/>
-      </s:ArrayCollection>
-    </components:dataProvider>
-  </components:ComboBox>
+                  title="ComboBoxView" xmlns:views="com.pialabs.eskimo.views.*"
+                  xmlns:components="com.pialabs.eskimo.components.*">
+    <fx:Declarations>
+        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+    </fx:Declarations>
+    <components:ComboBox width="80%" selectedItem="{comboData.getItemAt(1)}">
+        <components:dataProvider>
+            <s:ArrayCollection id="comboData">
+                <fx:Object label="15 minutes"/>
+                <fx:Object label="30 minutes"/>
+                <fx:Object label="45 minutes"/>
+                <fx:Object label="1 hour"/>
+            </s:ArrayCollection>
+        </components:dataProvider>
+    </components:ComboBox>
 </views:SampleView>

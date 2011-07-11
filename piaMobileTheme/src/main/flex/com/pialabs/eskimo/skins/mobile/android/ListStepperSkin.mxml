@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+ADOBE SYSTEMS INCORPORATED
+Copyright 2008 Adobe Systems Incorporated
+All Rights Reserved.
+
+NOTICE: Adobe permits you to use, modify, and distribute this file
+in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+<!--- The default skin class for the Spark SkinnableDataContainer container.
+
+@see spark.components.SkinnableDataContainer
+
+@langversion 3.0
+@playerversion Flash 10
+@playerversion AIR 1.5
+@productversion Flex 4
+-->
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark">
+    <fx:Metadata>[HostComponent("com.pialabs.eskimo.components.ListStepper")]</fx:Metadata>
+
+    <fx:Script>
+        <![CDATA[
+            import spark.components.Label;
+            
+            /**
+             *  @private
+             */
+            private var chromeColorChanged:Boolean;
+            
+            /**
+             *  @private
+             */
+            override protected function commitProperties():void
+            {
+                super.commitProperties();
+                
+                if (chromeColorChanged)
+                {
+                    incrementButton.setStyle("chromeColor", getStyle("chromeColor"));
+                    decrementButton.setStyle("chromeColor", getStyle("chromeColor"));
+                    chromeColorChanged = false;
+                }
+            }
+            
+            /**
+             *  @private
+             */
+            override public function styleChanged(styleProp:String):void
+            {
+                var allStyles:Boolean = !styleProp || styleProp == "styleName";
+                
+                super.styleChanged(styleProp);
+                
+                if (allStyles || styleProp == "chromeColor")
+                {
+                    chromeColorChanged = true;
+                    invalidateProperties();
+                }
+            }
+        ]]>
+    </fx:Script>
+    <s:states>
+        <s:State name="normal"/>
+        <s:State name="disabled"/>
+    </s:states>
+
+    <!--
+    Note: setting the minimum size to 0 here so that changes to the host component's
+    size will not be thwarted by this skin part's minimum size.   This is a compromise,
+    more about it here: http://bugs.adobe.com/jira/browse/SDK-21143
+    -->
+
+
+    <s:Group top="0" right="0" bottom="0" left="0">
+
+        <s:layout>
+            <s:VerticalLayout gap="0" horizontalAlign="justify"/>
+        </s:layout>
+
+        <!--- The default class is NumericStepperIncrementButtonSkin.
+        @copy spark.components.Spinner#incrementButton
+        @see spark.skins.spark.NumericStepperIncrementButtonSkin -->
+        <s:Button id="incrementButton" height="100%" label="+"
+                  tabEnabled="false" color="#909090"
+                  skinClass="com.pialabs.eskimo.skins.mobile.android.NumericStepperIncrementButtonSkin"/>
+
+        <s:Group height="100%">
+
+            <!--- The Scroller component to add scroll bars to the list. -->
+            <s:Scroller id="scroller" top="0" right="0" bottom="0" left="0"
+                        mouseEnabled="false" mouseChildren="false">
+                <!--- @copy spark.components.SkinnableDataContainer#dataGroup -->
+                <s:DataGroup id="dataGroup" height="100%"
+                             itemRenderer="spark.skins.spark.DefaultItemRenderer">
+                    <s:layout>
+                        <!--- The default layout is vertical and measures at least for 5 rows.
+                        When switching to a different layout, HorizontalLayout for example,
+                        make sure to adjust the minWidth, minHeight sizes of the skin -->
+                        <s:VerticalLayout gap="0"
+                                          horizontalAlign="contentJustify"
+                                          rowHeight="{scroller.height}"
+                                          variableRowHeight="false"/>
+                    </s:layout>
+                </s:DataGroup>
+            </s:Scroller>
+
+            <!-- shadow -->
+            <!--- Defines the appearance of the NumericStepper component's shadow. -->
+            <s:Rect id="shadow" left="1" right="1" top="1" bottom="1">
+                <s:fill>
+                    <!--- @private
+                    Defines the background fill of the NumericStepper component's background. -->
+                    <s:LinearGradient rotation="90">
+                        <s:GradientEntry ratio="0" color="#000000" alpha="0.2"/>
+                        <s:GradientEntry ratio="0.32" color="#000000" alpha="0"/>
+                        <s:GradientEntry ratio="1" color="#000000" alpha="0"/>
+                    </s:LinearGradient>
+                </s:fill>
+            </s:Rect>
+        </s:Group>
+
+        <!--- The default class is NumericStepperDecrementButtonSkin.
+        @copy spark.components.Spinner#decrementButton
+        @see spark.skins.spark.NumericStepperDecrementButtonSkin -->
+        <s:Button id="decrementButton" height="100%" label="-"
+                  tabEnabled="false" color="#909090"
+                  skinClass="com.pialabs.eskimo.skins.mobile.android.NumericStepperDecrementButtonSkin"/>
+
+    </s:Group>
+    <s:Rect id="border" left="0" right="0" top="0" bottom="0" radiusX="2">
+        <s:stroke>
+            <s:LinearGradientStroke weight="2" rotation="90">
+                <s:GradientEntry color="#787878"/>
+                <s:GradientEntry color="#202020" ratio="0.1"/>
+            </s:LinearGradientStroke>
+        </s:stroke>
+    </s:Rect>
+
+</s:Skin>

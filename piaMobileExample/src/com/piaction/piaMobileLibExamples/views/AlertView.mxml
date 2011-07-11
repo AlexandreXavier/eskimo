@@ -3,7 +3,7 @@
         xmlns:s="library://ns.adobe.com/flex/spark" title="AlertView">
     <fx:Script>
         <![CDATA[
-            import com.piaction.controls.SkinnableAlert;
+            import com.pialabs.eskimo.controls.SkinnableAlert;
         ]]>
     </fx:Script>
     <fx:Declarations>

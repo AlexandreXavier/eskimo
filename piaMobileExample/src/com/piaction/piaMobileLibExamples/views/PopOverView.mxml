@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark" title="PopOverView"
-        xmlns:components="com.piaction.components.*">
+        xmlns:components="com.piaction.components.*" xmlns:components1="com.pialabs.eskimo.components.*">
 
     <fx:Script>
         <![CDATA[
-            import com.piaction.controls.SkinnableAlert;
+            import com.pialabs.eskimo.controls.SkinnableAlert;
             
             protected function onButtonBarClick(event:MouseEvent):void
             {
@@ -32,7 +32,7 @@
 
     <fx:Declarations>
         <!-- Place non-visual elements (e.g., services, value objects) here -->
-        <components:PopOver id="buttonBarPopOver"
+        <components1:PopOver id="buttonBarPopOver"
                             mouseDownOutside="buttonBarPopOver.close()"
                             direction="vertical">
 
@@ -42,11 +42,11 @@
                       chromeColor="#EEEEEE" click="onPopOverButtonClick(event)"/>
             <s:Button label="Bouton pop-over 3" color="#000000"
                       chromeColor="#EEEEEE" click="onPopOverButtonClick(event)"/>
-        </components:PopOver>
+        </components1:PopOver>
 
 
         <!-- Place non-visual elements (e.g., services, value objects) here -->
-        <components:PopOver id="buttonPopOver"
+        <components1:PopOver id="buttonPopOver"
                             mouseDownOutside="buttonPopOver.close()"
                             direction="horizontal">
             <s:HGroup>
@@ -59,7 +59,7 @@
                     <s:CheckBox label="Value 1" width="100%"/>
                 </s:FormItem>
                 <s:FormItem width="100%">
-                    <s:CheckBox label="Value 2" width="100%"/>
+                    <s:CheckBox label="Value 2" width="100%" selected="true"/>
                 </s:FormItem>
                 <s:FormItem width="100%">
                     <s:CheckBox label="Value 3" width="100%"/>
@@ -72,13 +72,13 @@
             <s:TextArea width="100%" height="200" prompt="Comments"/>
 
 
-            <components:ConfirmButton buttonLabel="OK" cancelLabel="Cancel"
+            <components1:ConfirmButton buttonLabel="OK" cancelLabel="Cancel"
                                       confirmLabel="Comfirm"
                                       buttonPercentWidth="100"
                                       buttonColor="#FFFFFF"
                                       buttonChromeColor="#FF3333"
                                       confirm="buttonPopOver.close()"/>
-        </components:PopOver>
+        </components1:PopOver>
     </fx:Declarations>
 
     <s:navigationContent>

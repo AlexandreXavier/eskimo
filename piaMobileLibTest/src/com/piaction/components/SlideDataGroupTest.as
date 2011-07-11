@@ -8,6 +8,7 @@ package com.piaction.components
   
   import spark.layouts.HorizontalLayout;
   import spark.layouts.supportClasses.LayoutBase;
+  import com.pialabs.eskimo.components.SlideDataGroup;
   
   public class SlideDataGroupTest
   {

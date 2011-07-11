@@ -1,6 +1,6 @@
 package com.piaction.components
 {
-    import com.piaction.controls.SkinnableAlert;
+    import com.pialabs.eskimo.controls.SkinnableAlert;
     
     import flexunit.framework.Assert;
     
@@ -9,6 +9,7 @@ package com.piaction.components
     import mx.core.UIComponent;
     
     import org.fluint.uiImpersonation.UIImpersonator;
+    import com.pialabs.eskimo.components.DeletableList;
     
     public class DeletableListTest
     {

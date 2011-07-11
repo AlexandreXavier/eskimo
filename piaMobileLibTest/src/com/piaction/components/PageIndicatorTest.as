@@ -13,6 +13,7 @@ package com.piaction.components
   import org.fluint.sequence.SequenceSetter;
   import org.fluint.sequence.SequenceWaiter;
   import org.fluint.uiImpersonation.UIImpersonator;
+  import com.pialabs.eskimo.components.PageIndicator;
   
   public class PageIndicatorTest
   {

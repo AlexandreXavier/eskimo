@@ -1,37 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
-        xmlns:s="library://ns.adobe.com/flex/spark" title="ComboBoxView" xmlns:components="com.piaction.components.*"
-        viewActivate="view1_viewActivateHandler(event)">
-  <fx:Script>
-    <![CDATA[
-      import spark.events.IndexChangeEvent;
-      import spark.events.ViewNavigatorEvent;
-      
-      protected function view1_viewActivateHandler(event:ViewNavigatorEvent):void
-      {
-        date.addEventListener(IndexChangeEvent.CHANGE, onDateChange);
-      }
-      
-      protected function onDateChange(event:IndexChangeEvent):void
-      {
-        trace("date changed");
-      }
-      
-    ]]>
-  </fx:Script>
-  <fx:Declarations>
-    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
-  </fx:Declarations>
-  
-  <s:layout>
-    <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
-                          paddingLeft="10"/>
-  </s:layout>
-    
-  <s:navigationContent>
-    <s:Button label="Retour" click="navigator.popView()"/>
-  </s:navigationContent>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark" title="ComboBoxView"
+        xmlns:components="com.piaction.components.*"
+        viewActivate="view1_viewActivateHandler(event)"
+        xmlns:components1="com.pialabs.eskimo.components.*">
+    <fx:Script>
+        <![CDATA[
+            import spark.events.IndexChangeEvent;
+            import spark.events.ViewNavigatorEvent;
+            
+            protected function view1_viewActivateHandler(event:ViewNavigatorEvent):void
+            {
+                date.addEventListener(IndexChangeEvent.CHANGE, onDateChange);
+            }
+            
+            protected function onDateChange(event:IndexChangeEvent):void
+            {
+                trace("date changed");
+            }
+        ]]>
+    </fx:Script>
+    <fx:Declarations>
+        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+    </fx:Declarations>
 
-  
-  <components:DateChooser id="date" width="100%"/>
+    <s:layout>
+        <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
+                          paddingLeft="10"/>
+    </s:layout>
+
+    <s:navigationContent>
+        <s:Button label="Retour" click="navigator.popView()"/>
+    </s:navigationContent>
+
+    <components1:DateChooser id="date" width="60%" datePattern="MMM dd yyyy"
+                             minYear="2005" maxYear="2020"/>
 </s:View>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark" title="NumericStepperView"
-        backgroundColor="#000000" xmlns:components="com.piaction.components.*">
+        backgroundColor="#000000"
+        xmlns:components="com.pialabs.eskimo.components.*">
     <fx:Declarations>
         <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
     </fx:Declarations>
@@ -47,7 +48,7 @@
 
         <s:Label text="ListStepper" color="#FFFFFF"/>
 
-        <components:ListStepper allowValueWrap="true">
+        <components:ListStepper allowValueWrap="true" selectedIndex="4">
             <components:dataProvider>
                 <s:ArrayCollection>
                     <fx:Object label="Item 1"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark" title="SlideDataGroupView"
-        xmlns:components="com.piaction.components.*">
+        xmlns:components="com.piaction.components.*" xmlns:components1="com.pialabs.eskimo.components.*">
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
     <s:ArrayCollection id="photoList">
@@ -19,7 +19,7 @@
   </fx:Declarations>
   <fx:Script>
     <![CDATA[
-      import com.piaction.layouts.SlideLayout;
+      import com.pialabs.eskimo.layouts.SlideLayout;
       
       private function changeOrientationSelection(event:Event):void
       {
@@ -48,13 +48,13 @@
 
   <s:HGroup width="100%">
     <s:Button label="Previous" click="slideDataGroup.previous()"/>
-    <components:SlideDataGroup id="slideDataGroup" width="300" height="200"
+    <components1:SlideDataGroup id="slideDataGroup" width="300" height="200"
                                orientation="{SlideDataGroup.HORIZONTAL}"
                                direction="{SlideDataGroup.NORMAL}"
                                itemRenderer="com.piaction.piaMobileLibExamples.renderers.ImageRenderer"
                                dataProvider="{photoList}"
                                selectedItem="{simpleList.selectedItem}">
-    </components:SlideDataGroup>
+    </components1:SlideDataGroup>
     <s:Button label="Next" click="slideDataGroup.next()"/>
     <s:VGroup>
       <s:Label text="Item count: {slideDataGroup.count}"/>

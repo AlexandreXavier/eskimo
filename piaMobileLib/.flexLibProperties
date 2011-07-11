@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="true" version="3">
   <includeClasses>
-    <classEntry path="com.piaction.components.ConfirmButton"/>
-    <classEntry path="com.piaction.components.ContextableList"/>
-    <classEntry path="com.piaction.components.DeletableList"/>
-    <classEntry path="com.piaction.components.ListWheel"/>
-    <classEntry path="com.piaction.components.MobileContextMenu"/>
     <classEntry path="com.piaction.components.SlideDataGroup"/>
-    <classEntry path="com.piaction.components.TimeItem"/>
     <classEntry path="com.piaction.components.UniqueChoiceList"/>
     <classEntry path="com.piaction.controls.SkinnableAlert"/>
     <classEntry path="com.piaction.events.ConfirmEvent"/>
@@ -16,8 +10,6 @@
     <classEntry path="com.piaction.events.MobileCalendarEvent"/>
     <classEntry path="com.piaction.events.MobileContextMenuEvent"/>
     <classEntry path="com.piaction.layouts.SlideLayout"/>
-    <classEntry path="com.piaction.components.PopOver"/>
-    <classEntry path="com.piaction.components.PageIndicatorItem"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

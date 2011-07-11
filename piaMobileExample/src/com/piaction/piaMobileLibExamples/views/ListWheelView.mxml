@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark" title="ListWheelView"
-        xmlns:components="com.piaction.components.*">
+        xmlns:components="com.piaction.components.*" xmlns:components1="com.pialabs.eskimo.components.*">
 
     <fx:Script>
         <![CDATA[
@@ -26,7 +26,7 @@
     </s:navigationContent>
 
     <s:HGroup width="100%">
-        <components:ListWheel id="listWheel" height="150"
+        <components1:ListWheel id="listWheel" height="150"
                               dataProvider="{_currentDP}"/>
         <s:List id="simpleList" height="200" dataProvider="{_currentDP}"
                 change="listWheel.animateToSelectedIndex(event.newIndex)"/>
