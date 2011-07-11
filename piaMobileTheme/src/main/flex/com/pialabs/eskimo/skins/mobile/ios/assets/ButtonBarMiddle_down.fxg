@@ -25,7 +25,9 @@
 
     <Rect width="58" height="28">
         <stroke>
-            <SolidColorStroke weight="1.2" color="#222222" alpha="0.7"/>
+            <LinearGradientStroke rotation="90" weight="1">
+                <GradientEntry color="#222222" alpha="0.7"/>
+            </LinearGradientStroke>
         </stroke>
     </Rect>
 

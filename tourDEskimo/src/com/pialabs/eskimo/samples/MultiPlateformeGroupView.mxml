@@ -11,25 +11,25 @@
 
     <views:layout>
         <s:VerticalLayout paddingTop="20" paddingRight="20" paddingBottom="20"
-                          paddingLeft="20"/>
+                          paddingLeft="20" verticalAlign="middle"/>
     </views:layout>
 
-    <components:MultiplateformeGroup type="IOS">
-        <components:layout>
-            <s:VerticalLayout/>
-        </components:layout>
-        <s:Label text="IOS CONTENT"
-                 creationComplete="trace('content 1 created')"/>
+    <components:MultiplateformeGroup type="IOS" width="100%">
+        <s:Form width="100%">
+            <s:FormItem width="100%" top="20">
 
+                <s:Label text="This container is only visible on IOS devices"
+                         width="100%"/>
+            </s:FormItem>
+        </s:Form>
     </components:MultiplateformeGroup>
 
-    <components:MultiplateformeGroup>
-        <components:layout>
-            <s:VerticalLayout/>
-        </components:layout>
-        <s:Label text="ANDROID CONTENT"
-                 creationComplete="trace('content 2 created')"/>
-        <components:ListWheel/>
+    <components:MultiplateformeGroup width="100%">
+        <s:FormItem width="100%">
+
+            <s:Label text="This container is only visible on Android devices"
+                     width="100%"/>
+        </s:FormItem>
     </components:MultiplateformeGroup>
 
 </views:SampleView>
