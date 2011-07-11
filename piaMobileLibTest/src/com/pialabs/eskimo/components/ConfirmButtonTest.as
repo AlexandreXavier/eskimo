@@ -1,8 +1,7 @@
-package com.piaction.components
+package com.pialabs.eskimo.components
 {
-    import com.piaction.tool.PropertyData;
-    import com.piaction.tool.TestHelper;
-    import com.pialabs.eskimo.components.ConfirmButton;
+    import com.pialabs.eskimo.tool.PropertyData;
+    import com.pialabs.eskimo.tool.TestHelper;
     import com.pialabs.eskimo.events.ConfirmEvent;
     
     import flash.events.MouseEvent;

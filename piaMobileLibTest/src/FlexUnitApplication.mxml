@@ -9,22 +9,22 @@
                minWidth="955" minHeight="600" creationComplete="onCreationComplete()">
   <fx:Script>
     <![CDATA[
-      import com.piaction.components.ConfirmButtonTest;
-      import com.piaction.components.ContextableListTest;
-      import com.piaction.components.DeletableListTest;
-      import com.piaction.components.PageIndicatorTest;
-      import com.piaction.components.SlideDataGroupTest;
-      import com.piaction.tool.DateUtilsTest;
+      import com.pialabs.eskimo.components.ConfirmButtonTest;
+      import com.pialabs.eskimo.components.ContextableListTest;
+      import com.pialabs.eskimo.components.DeletableListTest;
+      import com.pialabs.eskimo.components.PageIndicatorTest;
+      import com.pialabs.eskimo.components.SlideDataGroupTest;
+      import com.pialabs.eskimo.tool.DateUtilsTest;
       
       public function currentRunTestSuite():Array
       {
         var testsToRun:Array = new Array();
-        testsToRun.push(com.piaction.components.ConfirmButtonTest);
-        testsToRun.push(com.piaction.components.ContextableListTest);
-        testsToRun.push(com.piaction.components.DeletableListTest);
-        testsToRun.push(com.piaction.components.PageIndicatorTest);
-        testsToRun.push(com.piaction.components.SlideDataGroupTest);
-        testsToRun.push(com.piaction.tool.DateUtilsTest);
+        testsToRun.push(com.pialabs.eskimo.components.ConfirmButtonTest);
+        testsToRun.push(com.pialabs.eskimo.components.ContextableListTest);
+        testsToRun.push(com.pialabs.eskimo.components.DeletableListTest);
+        testsToRun.push(com.pialabs.eskimo.components.PageIndicatorTest);
+        testsToRun.push(com.pialabs.eskimo.components.SlideDataGroupTest);
+        testsToRun.push(com.pialabs.eskimo.tool.DateUtilsTest);
         return testsToRun;
       }
       

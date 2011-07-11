@@ -1,4 +1,4 @@
-package com.piaction.components
+package com.pialabs.eskimo.components
 {
   import flexunit.framework.Assert;
   
@@ -8,7 +8,6 @@ package com.piaction.components
   
   import spark.layouts.HorizontalLayout;
   import spark.layouts.supportClasses.LayoutBase;
-  import com.pialabs.eskimo.components.SlideDataGroup;
   
   public class SlideDataGroupTest
   {

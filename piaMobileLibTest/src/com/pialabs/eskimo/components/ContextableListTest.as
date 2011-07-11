@@ -1,4 +1,4 @@
-package com.piaction.components
+package com.pialabs.eskimo.components
 {
     import com.pialabs.eskimo.controls.SkinnableAlert;
     import com.pialabs.eskimo.events.ContextableListEvent;
@@ -16,7 +16,6 @@ package com.piaction.components
     import org.fluint.sequence.SequenceRunner;
     import org.fluint.sequence.SequenceWaiter;
     import org.fluint.uiImpersonation.UIImpersonator;
-    import com.pialabs.eskimo.components.ContextableList;
     
     public class ContextableListTest
     {

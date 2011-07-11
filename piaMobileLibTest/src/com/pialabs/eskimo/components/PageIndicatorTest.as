@@ -1,7 +1,7 @@
-package com.piaction.components
+package com.pialabs.eskimo.components
 {
-  import com.piaction.tool.PropertyData;
-  import com.piaction.tool.TestHelper;
+  import com.pialabs.eskimo.tool.PropertyData;
+  import com.pialabs.eskimo.tool.TestHelper;
   
   import flexunit.framework.Assert;
   
@@ -13,7 +13,6 @@ package com.piaction.components
   import org.fluint.sequence.SequenceSetter;
   import org.fluint.sequence.SequenceWaiter;
   import org.fluint.uiImpersonation.UIImpersonator;
-  import com.pialabs.eskimo.components.PageIndicator;
   
   public class PageIndicatorTest
   {
