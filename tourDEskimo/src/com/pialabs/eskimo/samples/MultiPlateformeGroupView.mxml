@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark"
-        title="MultiPlateformeGroupView"
-        xmlns:components="com.piaction.components.*">
+<views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
+                  xmlns:s="library://ns.adobe.com/flex/spark"
+                  title="MultiPlateformeGroupView"
+                  xmlns:components="com.piaction.components.*"
+                  xmlns:views="com.pialabs.eskimo.views.*">
     <fx:Declarations>
         <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
     </fx:Declarations>
 
 
-    <s:layout>
+    <views:layout>
         <s:VerticalLayout paddingTop="20" paddingRight="20" paddingBottom="20"
                           paddingLeft="20"/>
-    </s:layout>
+    </views:layout>
 
     <components:MultiplateformeGroup type="IOS">
         <components:layout>
@@ -31,4 +32,4 @@
         <components:ListWheel/>
     </components:MultiplateformeGroup>
 
-</s:View>
+</views:SampleView>
