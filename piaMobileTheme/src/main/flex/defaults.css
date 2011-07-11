@@ -262,6 +262,11 @@ components|ListWheel
     selectionColor: #FFFFFF;
 }
 
+components|ListWheel s|Label
+{
+    verticalAlign: middle;
+}
+
 components|PageIndicator
 {
   pageItemColor: #FFFFFF;
@@ -297,4 +302,9 @@ components|ListStepper
     textAlign: center;
     alternatingItemColors: #d8d8d8;
     chromeColor: #FF7800;
+}
+
+components|ListStepper s|Label
+{
+    verticalAlign: middle;
 }
