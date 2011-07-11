@@ -1,40 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark" title="{data.name}">
+        xmlns:s="library://ns.adobe.com/flex/spark" title="{data.name}"
+        viewActivate="onViewActivate(event)">
+    <fx:Script>
+        <![CDATA[
+            import com.pialabs.eskimo.model.Model;
+            import com.pialabs.eskimo.model.Sample;
+            
+            import mx.utils.object_proxy;
+            
+            import spark.components.Application;
+            import spark.events.IndexChangeEvent;
+            import spark.events.ViewNavigatorEvent;
+            
+            
+            protected function onOSChange(event:IndexChangeEvent):void
+            {
+                //Model.getInstance().osStyle = selectedStyle.selectedItem;
+            }
+            
+            protected function onViewActivate(event:ViewNavigatorEvent):void
+            {
+                var sample:Sample = Sample(data);
+                if (sample.exclusiveOS != null && sample.exclusiveOS != "")
+                {
+                    switch (sample.exclusiveOS)
+                    {
+                        case Model.ANDROID:
+                        case Model.IOS:
+                            OSlabel.text = "Only for " + sample.exclusiveOS;
+                            this.actionContent = [OSlabel];
+                            break;
+                        default:
+                            throw new TypeError("Unknown OS:" + sample.exclusiveOS);
+                            break;
+                    }
+                }
+                else
+                {
+                    this.actionContent = [selectedStyle];
+                }
+            }
+        ]]>
+    </fx:Script>
+    <fx:Declarations>
+        <s:ButtonBar id="selectedStyle" change="onOSChange(event)"
+                     dataProvider="{Model.OS_STYLES}"
+                     selectedItem="{Model.getInstance().osStyle}"/>
+        <s:Label id="OSlabel"/>
+    </fx:Declarations>
+    <s:layout>
+        <s:VerticalLayout/>
+    </s:layout>
+    <s:navigationContent>
+        <s:Button label="Back" click="navigator.popView()"/>
+    </s:navigationContent>
 
-  <fx:Script>
-    <![CDATA[
-      import com.pialabs.eskimo.model.Model;
-      
-      import mx.utils.object_proxy;
-      
-      import spark.components.Application;
-      import spark.events.IndexChangeEvent;
-      
-      
-      protected function onOSChange(event:IndexChangeEvent):void
-      {
-        //Model.getInstance().osStyle = selectedStyle.selectedItem;
-      }
-    ]]>
-  </fx:Script>
-
-
-  <fx:Declarations>
-    <!-- Place non-visual elements (e.g., services, value objects) here -->
-  </fx:Declarations>
-  <s:layout>
-    <s:VerticalLayout/>
-  </s:layout>
-  <s:navigationContent>
-    <s:Button label="Back" click="navigator.popView()"/>
-  </s:navigationContent>
-
-  <s:actionContent>
-    <s:ButtonBar id="selectedStyle" change="onOSChange(event)"
-                 dataProvider="{Model.OS_STYLES}"
-                 selectedItem="{Model.getInstance().osStyle}"/>
-  </s:actionContent>
-
-  <s:CheckBox id="checkBox"/>
+    <s:CheckBox id="checkBox"/>
 </s:View>
