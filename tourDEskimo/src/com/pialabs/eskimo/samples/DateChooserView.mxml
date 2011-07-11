@@ -6,6 +6,63 @@
     <fx:Declarations>
         <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
     </fx:Declarations>
+  <fx:Script>
+    <![CDATA[
+      import mx.collections.ArrayCollection;
+      import mx.utils.StringUtil;
+      
+      protected function applyHandler(event:MouseEvent):void
+      {
+        var dateChooser:DateChooser = dateGroup.getChildByName("dateChooser") as DateChooser;
+        dateGroup.removeElement(dateChooser);
+        
+        dateChooser = new DateChooser();
+        dateChooser.name = "dateChooser";
 
-    <components:DateChooser/>
+        var minYearText:String = StringUtil.trim(minYearTextInput.text);
+        if(minYearText != null && minYearText.length > 0)
+        {
+          dateChooser.minYear = Number(minYearText);
+        }
+        
+        var maxYearText:String = StringUtil.trim(maxYearTextInput.text);
+        if(maxYearText != null && maxYearText.length > 0)
+        {
+          dateChooser.maxYear = Number(maxYearText);
+        }
+        
+        var datePatternText:String = StringUtil.trim(datePatternTextInput.text);
+        if(datePatternText != null && datePatternText.length > 0)
+        {
+          dateChooser.datePattern = datePatternText;
+        }
+        dateGroup.addElementAt(dateChooser, 0);
+      }
+    ]]>
+  </fx:Script>
+  <s:VGroup id="dateGroup">
+    
+    <components:DateChooser name="dateChooser"/>
+    
+    <s:Form width="100%">
+      <!-- Selected element -->
+      <s:FormItem>
+        <s:TextInput id="minYearTextInput"
+                     prompt="minimum year" width="250"/>
+      </s:FormItem>
+      <!-- Selection color -->
+      <s:FormItem>
+        <s:TextInput id="maxYearTextInput"
+                     prompt="maximum year" width="250"/>
+      </s:FormItem>
+      <s:FormItem>
+          <s:TextInput id="datePatternTextInput"
+                       prompt="date pattern" width="250"/>
+      </s:FormItem>
+      <s:FormItem>
+        <s:Button label="Apply"
+                  click="applyHandler(event)" width="100"/>
+      </s:FormItem>    
+    </s:Form>
+  </s:VGroup>
 </views:SampleView>

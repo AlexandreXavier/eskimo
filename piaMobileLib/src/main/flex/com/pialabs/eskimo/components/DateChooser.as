@@ -6,14 +6,12 @@ package com.pialabs.eskimo.components
     
     import mx.collections.ArrayCollection;
     import mx.collections.IList;
-    import mx.formatters.DateFormatter;
     
     import spark.components.Group;
-    import spark.components.List;
+    import spark.components.Label;
     import spark.components.supportClasses.ListBase;
     import spark.components.supportClasses.SkinnableComponent;
     import spark.events.IndexChangeEvent;
-    import spark.formatters.DateTimeFormatter;
 
     /**
      *  Dispatched after the selection has changed. 
@@ -25,6 +23,7 @@ package com.pialabs.eskimo.components
      *  The DateChooser displays the column of the days of the month, month and the year.
      *  Each column represented by a ListWheel on iOs and a ListStepper on android.
      */
+    [ResourceBundle("i18n")]
     public class DateChooser extends SkinnableComponent
     {
         public function DateChooser()
@@ -52,6 +51,15 @@ package com.pialabs.eskimo.components
         
         [SkinPart(required = "true")]
         public var yearList:ListBase;
+        
+        [SkinPart(required = "false")]
+        public var dayLabel:Label;
+        
+        [SkinPart(required = "false")]
+        public var monthLabel:Label;
+        
+        [SkinPart(required = "false")]
+        public var yearLabel:Label;
         
         /**
          *  The last year selectable in the control.
@@ -100,6 +108,19 @@ package com.pialabs.eskimo.components
             dayList.selectedIndex = selectedDate.date - 1;
             
             dayList.addEventListener(IndexChangeEvent.CHANGE, onDayChange);
+          }
+          
+          if(dayLabel == instance)
+          {
+            dayLabel.text = resourceManager.getString("i18n", "day.label");
+          }
+          if(monthLabel == instance)
+          {
+            monthLabel.text = resourceManager.getString("i18n", "month.label");
+          }
+          if(yearLabel == instance)
+          {
+            yearLabel.text = resourceManager.getString("i18n", "year.label");
           }
         }
         

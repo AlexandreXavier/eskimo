@@ -17,7 +17,7 @@
       
       protected function applyHandler(event:MouseEvent):void
       {
-        var indexText:String = selectedIndexTextInput.text;
+        var indexText:String = StringUtil.trim(selectedIndexTextInput.text);
         if(indexText != null && indexText.length > 0)
         {
           listWheel.animateToSelectedIndex( Number(indexText));
