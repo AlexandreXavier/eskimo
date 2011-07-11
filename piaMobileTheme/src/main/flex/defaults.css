@@ -156,6 +156,10 @@
         icon: Embed(source="com/pialabs/eskimo/skins/mobile/ios/assets/searchIcon.png");
     }
     
+    components|DateChooser
+    {
+      skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.DateChooserSkin");
+    }
 }
 
 @media (os-platform:"ANDROID")
@@ -216,6 +220,10 @@
         iconPlacement: "right";
     }
     
+    components|DateChooser
+    {
+      skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.DateChooserSkin");
+    }
 }
 
 components|MobileContextMenu
@@ -280,11 +288,6 @@ components|DeletableItemRenderer
 components|MultipleChoiceList
 {
     contentBackgroundAlpha: 0;
-}
-
-components|DateChooser
-{
-  skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.DateChooserSkin");
 }
 
 components|ListStepper
