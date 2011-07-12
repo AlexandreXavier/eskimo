@@ -1,69 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark"
-                  title="PageIndicatorView" backgroundColor="#CCCCCC"
                   xmlns:views="com.pialabs.eskimo.views.*"
-                  xmlns:components="com.pialabs.eskimo.components.*">
-    <fx:Declarations>
+                  xmlns:components="com.pialabs.eskimo.components.*"
+                  backgroundColor="#CCCCCC" title="PageIndicatorView">
+  
+  <fx:Script>
+    <![CDATA[
+      import mx.utils.StringUtil;
+      protected function applyChangeHandler(event:MouseEvent):void
+      {
+        var selectedPageItemColorText:String = StringUtil.trim(selectedPageItemColor.text);
+        if(selectedPageItemColorText != null && selectedPageItemColorText.length > 0)
+        {
+          pageIndicator.setStyle("selectedPageItemColor", "0x" + selectedPageItemColorText);
+        }
+        
+        var pageItemColorText:String = StringUtil.trim(pageItemColor.text);
+        if(pageItemColorText != null && pageItemColorText.length > 0)
+        {
+          pageIndicator.setStyle("pageItemColor", "0x" + pageItemColorText);
+        }
+        
+        var pageCountText:String = StringUtil.trim(pageCount.text);
+        if(pageCountText != null && pageCountText.length > 0)
+        {
+          pageIndicator.pageCount = Number(pageCountText);
+        }
+        trace(form.width);
+      }
+    ]]>
+  </fx:Script>
+  
+  <fx:Declarations>
         <!-- Place non-visual elements (e.g., services, value objects) here -->
-    </fx:Declarations>
+  </fx:Declarations>
+  <s:Scroller width="100%" height="100%" top="0" right="0" bottom="0" left="0" horizontalScrollPolicy="off">
+    <s:VGroup width="100%">
+
     <s:HGroup>
         <s:Button label="Prev" click="pageIndicator.previous()"/>
-        <components:PageIndicator id="pageIndicator" height="40" pageCount="8"
-                                  selectedIndex="2"/>
+        <components:PageIndicator id="pageIndicator" height="40" pageCount="4" selectedIndex="2"/>
         <s:Button label="Next" click="pageIndicator.next()"/>
     </s:HGroup>
-    <s:Form>
-        <s:FormHeading label="Page Indicator parameters"/>
+    <s:Form id="form" width="100%">
         <!-- Page Item Size -->
-        <s:FormItem label="Page item size">
-            <s:HSlider id="pageItemSize" minimum="8" maximum="60" value="15"
-                       stepSize="0.5" width="100%"
-                       change="{pageIndicator. setStyle('pageItemSize', pageItemSize.value)}"/>
+        <s:FormItem>
+          <s:Label text="Page item size" />
+        </s:FormItem>      
+        <s:FormItem>
+            <s:HSlider id="pageItemSize" width="260"
+                       change="{pageIndicator. setStyle('pageItemSize', pageItemSize.value)}"
+                       maximum="40" minimum="8" stepSize="1" value="15"/>
         </s:FormItem>
         <!-- Selected Page Item Size -->
-        <s:FormItem label="Selected page item size">
-            <s:HSlider id="selectedPageItemSize" minimum="8" maximum="60"
-                       value="15" stepSize="0.5" width="100%"
-                       change="{pageIndicator. setStyle('selectedPageItemSize', selectedPageItemSize.value)}"/>
+        <s:FormItem>
+          <s:Label text="Selected page item size" />
+        </s:FormItem>      
+        <s:FormItem>
+            <s:HSlider id="selectedPageItemSize" width="260"
+                       change="{pageIndicator. setStyle('selectedPageItemSize', selectedPageItemSize.value)}"
+                       maximum="40" minimum="8" stepSize="1" value="15"/>
         </s:FormItem>
+      <!-- Item Alpha -->
+        <s:FormItem>
+          <s:Label text="Item alpha" />
+        </s:FormItem>         
+        <s:FormItem>
+          <s:HSlider id="pageItemAlpha" width="260"
+                   change="{pageIndicator.setStyle('pageItemAlpha', pageItemAlpha.value)}"
+                   maximum="1" minimum="0" stepSize="0.05" value="0.5"/>
+        </s:FormItem>
+      <!-- Selected Item Alpha -->
+        <s:FormItem>
+          <s:Label text="Selected Item Alpha" />
+        </s:FormItem>
+        <s:FormItem>
+          <s:HSlider id="selectedPageItemAlpha" minimum="0" maximum="1"
+                   value="1" stepSize="0.05" width="260"
+                   change="{pageIndicator.setStyle('selectedPageItemAlpha', selectedPageItemAlpha.value)}"/>
+        </s:FormItem>      
         <!-- Page Count -->
-        <s:FormItem label="page count">
+        <s:FormItem>
             <s:HGroup>
-                <s:TextInput id="pageCount" prompt="enter the number of pages"/>
-                <s:Button label="Apply"
-                          click="pageIndicator.pageCount = Number(pageCount.text)"/>
+                <s:TextInput id="pageCount" prompt="Number of pages"/>
             </s:HGroup>
         </s:FormItem>
         <!-- Item Color -->
-        <s:FormItem label="Item color">
+        <s:FormItem>
             <s:HGroup>
-                <s:TextInput id="pageItemColor"
-                             prompt="enter hexa color ex:0xFFFFFF"/>
-                <s:Button label="Apply"
-                          click="pageIndicator.setStyle('pageItemColor', pageItemColor.text)"/>
+                <s:TextInput id="pageItemColor" prompt="Item color"/>
             </s:HGroup>
-        </s:FormItem>
-        <!-- Item Alpha -->
-        <s:FormItem label="item alpha">
-            <s:HSlider id="pageItemAlpha" minimum="0" maximum="1" value="0.5"
-                       stepSize="0.05" width="100%"
-                       change="{pageIndicator.setStyle('pageItemAlpha', pageItemAlpha.value)}"/>
         </s:FormItem>
         <!-- Selected Item Color -->
-        <s:FormItem label="Selected item color">
-            <s:HGroup>
-                <s:TextInput id="selectedPageItemColor"
-                             prompt="enter hexa color ex:0xFFFFFF"/>
-                <s:Button label="Apply"
-                          click="pageIndicator.setStyle('selectedPageItemColor', selectedPageItemColor.text)"/>
-            </s:HGroup>
+        <s:FormItem>
+          <s:TextInput id="selectedPageItemColor" prompt="Selected item color"/>
         </s:FormItem>
-        <!-- Selected Item Alpha -->
-        <s:FormItem label="item alpha">
-            <s:HSlider id="selectedPageItemAlpha" minimum="0" maximum="1"
-                       value="1" stepSize="0.05" width="100%"
-                       change="{pageIndicator.setStyle('selectedPageItemAlpha', selectedPageItemAlpha.value)}"/>
-        </s:FormItem>
+        <s:FormItem>
+          <s:Button label="Apply"
+                    click="applyChangeHandler(event)"/>
+        </s:FormItem>      
     </s:Form>
+
+    </s:VGroup>
+
+  </s:Scroller>
 </views:SampleView>

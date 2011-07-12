@@ -131,10 +131,6 @@ package com.pialabs.eskimo.utils
     
     private function retrievePattern(ch:String , datePattern:String = null):String
     {
-/*      if(datePattern == null)
-      {
-        datePattern = _dateTimeFormatter.dateTimePattern;
-      }*/
       var patternMaxIndex:int = datePattern.length - 1;
       var patternIndex:int = datePattern.indexOf(ch);
       var foundChar:Boolean = patternIndex > -1;
