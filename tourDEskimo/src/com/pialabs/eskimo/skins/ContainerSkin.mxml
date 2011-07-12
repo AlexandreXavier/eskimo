@@ -35,7 +35,7 @@
 
     <!--- @copy spark.components.SkinnableContainer#contentGroup -->
     <s:Group id="contentGroup" showErrorSkin="true" showErrorTip="true"
-             left="10" right="10" top="10" bottom="10">
+             left="10" right="10" top="20" bottom="20">
         <s:layout>
             <s:VerticalLayout/>
         </s:layout>

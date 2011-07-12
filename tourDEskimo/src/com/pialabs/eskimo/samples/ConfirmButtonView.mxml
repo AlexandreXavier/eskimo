@@ -31,10 +31,9 @@
     </s:SkinnableContainer>
     <s:SkinnableContainer width="100%" styleName="parameterContainerStyle">
         <s:layout>
-            <s:VerticalLayout/>
+            <s:VerticalLayout horizontalAlign="center"/>
         </s:layout>
         <s:Form width="100%">
-            <s:FormHeading label="Parameters" width="100%"/>
             <!-- Label-->
             <s:FormItem label="Button label" width="100%">
                 <s:TextInput id="buttonLabel" prompt="Button label"
