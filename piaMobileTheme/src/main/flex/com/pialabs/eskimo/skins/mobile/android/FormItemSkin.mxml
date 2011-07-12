@@ -109,22 +109,7 @@ Move the indicator tooltip string to a resource bundle
     </s:states>
 
     <s:layout>
-        <s:FormItemLayout>
-            <s:constraintColumns>
-                <!--- The column containing the sequence label. -->
-                <s:ConstraintColumn id="sequenceCol"/>
-                <!--- The column containing the FormItem's label. -->
-                <s:ConstraintColumn id="labelCol"/>
-                <!--- The column containing the FormItem's content. -->
-                <s:ConstraintColumn id="contentCol" width="100%"/>
-                <!--- The column containing the FormItem's help content. -->
-                <s:ConstraintColumn id="helpCol" maxWidth="200"/>
-            </s:constraintColumns>
-            <s:constraintRows>
-                <!--- @private -->
-                <s:ConstraintRow id="row1" baseline="maxAscent:10" height="100%"/>
-            </s:constraintRows>
-        </s:FormItemLayout>
+        <s:VerticalLayout horizontalAlign="justify"/>
     </s:layout>
 
     <!--- Defines the appearance of the FormItem's background. -->
@@ -136,16 +121,15 @@ Move the indicator tooltip string to a resource bundle
     </s:Rect>
 
     <!--- @copy spark.components.FormItem#sequenceLabelDisplay -->
-    <s:Label id="sequenceLabelDisplay" fontWeight="bold" left="sequenceCol:10"
-             right="sequenceCol:5" bottom="row1:10" baseline="row1:0"/>
+    <s:Label id="sequenceLabelDisplay" fontWeight="bold" left="10" right="5"
+             bottom="10" baseline="0"/>
     <!--- @copy spark.components.FormItem#labelDisplay -->
-    <s:Label id="labelDisplay" fontWeight="bold" left="labelCol:0"
-             right="labelCol:5" bottom="row1:10" baseline="row1:0"/>
+    <s:Label id="labelDisplay" fontWeight="bold" left="0" right="5" bottom="10"
+             baseline="0"/>
     <!--- @copy spark.components.SkinnableContainer#contentGroup -->
     <!-- Don't show the error tip on the content elements -->
     <s:Group id="contentGroup" showErrorTip="false" showErrorSkin="true"
-             left="contentCol:0" right="contentCol:1" baseline="row1:0"
-             bottom="row1:10">
+             left="0" right="1" baseline="0" bottom="10">
         <s:layout>
             <s:VerticalLayout horizontalAlign="justify"/>
         </s:layout>

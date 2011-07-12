@@ -172,6 +172,19 @@
         modalTransparencyDuration: 250;   
     }
     
+    s|Form
+    {
+        skinClass:ClassReference("com.pialabs.eskimo.skins.mobile.android.FormSkin");
+    } 
+    s|FormItem
+    {
+        skinClass:ClassReference("com.pialabs.eskimo.skins.mobile.android.FormItemSkin");
+    } 
+    s|FormItem s|CheckBox
+    {
+     skinClass: ClassReference("spark.skins.mobile.CheckBoxSkin");   
+    }
+    
     controls|SkinnableAlert
     {
         skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.AlertSkin");
