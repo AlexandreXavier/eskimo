@@ -91,8 +91,8 @@ Move the indicator tooltip string to a resource bundle
             override protected function measure():void
             {
                 super.measure();
-                
-                measuredHeight = 52;
+            
+                //measuredHeight = 52;
             }
         ]]>
     </fx:Script>
@@ -121,15 +121,15 @@ Move the indicator tooltip string to a resource bundle
     </s:Rect>
 
     <!--- @copy spark.components.FormItem#sequenceLabelDisplay -->
-    <s:Label id="sequenceLabelDisplay" fontWeight="bold" left="10" right="5"
-             bottom="10" baseline="0"/>
+    <s:Label id="sequenceLabelDisplay" fontWeight="bold" left="0" right="0"
+             bottom="0" baseline="0"/>
     <!--- @copy spark.components.FormItem#labelDisplay -->
-    <s:Label id="labelDisplay" fontWeight="bold" left="0" right="5" bottom="10"
+    <s:Label id="labelDisplay" fontWeight="bold" left="0" right="0" bottom="0"
              baseline="0"/>
     <!--- @copy spark.components.SkinnableContainer#contentGroup -->
     <!-- Don't show the error tip on the content elements -->
     <s:Group id="contentGroup" showErrorTip="false" showErrorSkin="true"
-             left="0" right="1" baseline="0" bottom="10">
+             left="0" right="0" baseline="0" bottom="0">
         <s:layout>
             <s:VerticalLayout horizontalAlign="justify"/>
         </s:layout>

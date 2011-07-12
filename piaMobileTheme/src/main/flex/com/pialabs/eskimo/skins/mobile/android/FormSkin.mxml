@@ -82,7 +82,7 @@ that has additional logic to align the columns of FormItems.
              left="10" right="10" top="10" bottom="10">
         <s:layout>
             <s:VerticalLayout horizontalAlign="contentJustify" paddingTop="-7"
-                              gap="20" paddingBottom="-7"/>
+                              paddingBottom="-7" gap="-20"/>
         </s:layout>
     </s:Group>
 
