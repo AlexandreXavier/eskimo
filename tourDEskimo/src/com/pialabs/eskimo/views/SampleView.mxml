@@ -56,7 +56,7 @@
                    height="30"/>
   </fx:Declarations>
   <s:layout>
-    <s:VerticalLayout/>
+    <s:VerticalLayout paddingTop="10" paddingLeft="3" paddingRight="3"/>
   </s:layout>
   <s:navigationContent>
     <s:Button label="Back" click="navigator.popView()"/>
