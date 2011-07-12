@@ -7,20 +7,31 @@
       import com.pialabs.eskimo.model.Model;
       import com.pialabs.eskimo.model.Sample;
       
-      import spark.events.IndexChangeEvent;
       import spark.events.ViewNavigatorEvent;
+      
+      [Bindable]
+      [Embed(source = "assets/icon/apple.png")]
+      private var _logoAppleCls:Class;
+      
+      [Bindable]
+      [Embed(source = "assets/icon/android.png")]
+      private var _logoAndroidCls:Class;
       
       protected function onViewActivate(event:ViewNavigatorEvent):void
       {
         var sample:Sample = Sample(data);
+        var actionContentSrc:Array = [];
+        
         if (sample.exclusiveOS != null && sample.exclusiveOS != "")
         {
+          actionContentSrc.push(OSlabel);
           switch (sample.exclusiveOS)
           {
             case Model.ANDROID:
+              actionContentSrc.push(androidIcon);
+              break;
             case Model.IOS:
-              OSlabel.text = "Only for " + sample.exclusiveOS;
-              this.actionContent = [OSlabel];
+              actionContentSrc.push(appleIcon);
               break;
             default:
               throw new TypeError("Unknown OS:" + sample.exclusiveOS);
@@ -29,13 +40,20 @@
         }
         else
         {
-          this.actionContent = [OSlabel];
+          actionContentSrc = [OSlabel, androidIcon, appleIcon];
         }
+        
+        this.actionContent = actionContentSrc;
       }
     ]]>
   </fx:Script>
   <fx:Declarations>
-    <s:Label id="OSlabel"/>
+    <s:Label height="100%" color="#ffffff" id="OSlabel" text="⎮Available OS  "
+             verticalAlign="middle"/>
+    <s:BitmapImage id="appleIcon" source="{_logoAppleCls}" width="30"
+                   height="30"/>
+    <s:BitmapImage id="androidIcon" source="{_logoAndroidCls}" width="30"
+                   height="30"/>
   </fx:Declarations>
   <s:layout>
     <s:VerticalLayout/>
