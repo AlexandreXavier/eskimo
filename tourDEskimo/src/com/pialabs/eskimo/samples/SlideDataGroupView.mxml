@@ -45,31 +45,27 @@
         <s:Group width="100%" height="100%">
             <s:layout>
                 <s:VerticalLayout paddingTop="10" paddingRight="10"
-                                  paddingBottom="10" paddingLeft="10"/>
+                                  paddingBottom="10" paddingLeft="10"
+                                  horizontalAlign="center"/>
             </s:layout>
 
-            <s:HGroup width="100%" verticalAlign="middle">
-                <s:Button label="&lt;" click="slideDataGroup.previous()"
+            <components:SlideDataGroup id="slideDataGroup" width="150"
+                                       height="150"
+                                       orientation="{SlideDataGroup.HORIZONTAL}"
+                                       direction="{SlideDataGroup.NORMAL}"
+                                       itemRenderer="com.pialabs.eskimo.samples.renderers.ImageRenderer"
+                                       dataProvider="{photoList}">
+            </components:SlideDataGroup>
+            <s:HGroup width="100%" height="100%">
+                <s:Button label="previous" click="slideDataGroup.previous()"
                           width="100%"/>
-                <components:SlideDataGroup id="slideDataGroup" width="150"
-                                           height="150"
-                                           orientation="{SlideDataGroup.HORIZONTAL}"
-                                           direction="{SlideDataGroup.NORMAL}"
-                                           itemRenderer="com.pialabs.eskimo.samples.renderers.ImageRenderer"
-                                           dataProvider="{photoList}">
-                </components:SlideDataGroup>
-                <s:Button label="&gt;" click="slideDataGroup.next()"
+                <s:Button label="next" click="slideDataGroup.next()"
                           width="100%"/>
             </s:HGroup>
-            <s:VGroup>
-                <s:Label text="Item count: {slideDataGroup.count}"/>
-                <s:Label 
-                         text="Selected Item index: {slideDataGroup.selectedIndex}"/>
-            </s:VGroup>
 
-            <s:HGroup id="myGroup" width="100%" height="150">
+            <s:HGroup id="myGroup" width="100%">
                 <s:Form width="100%">
-                    <s:FormHeading label="Parameters"/>
+                    <s:FormHeading label="Parameters" width="100%"/>
                     <!-- Orientation -->
                     <s:FormItem label="Orientation">
                         <s:ButtonBar id="orientationMenu" width="100%"
@@ -86,7 +82,7 @@
                         </s:ButtonBar>
                     </s:FormItem>
                     <!-- Direction -->
-                    <s:FormItem label="Direction">
+                    <s:FormItem label="Direction" width="100%">
                         <s:ButtonBar id="directionMenu" requireSelection="true"
                                      width="100%"
                                      change="changeDirectionSelection(event)">
@@ -101,7 +97,7 @@
                         </s:ButtonBar>
                     </s:FormItem>
                     <!-- Selection -->
-                    <s:FormItem label="Selected Index">
+                    <s:FormItem label="Selected Index" width="100%">
                         <s:HSlider id="selectedIndexNS" stepSize="1" minimum="0"
                                    maximum="{photoList.length - 1}" width="100%"
                                    change="slideDataGroup.selectedIndex = selectedIndexNS.value"

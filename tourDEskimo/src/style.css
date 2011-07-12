@@ -1,6 +1,7 @@
 /* CSS file */
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace samples "com.pialabs.eskimo.samples.*";
+@namespace views "com.pialabs.eskimo.views.*";
 
 @media (os-platform:"ANDROID")
 {
@@ -12,5 +13,12 @@
     samples|FormView s|Label
     {
         color: #FFFFFF;
+    }
+}
+@media (os-platform:"IOS")
+{
+    views|SampleListView#filterInput
+    {
+        skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.SearchTextInputSkin");
     }
 }

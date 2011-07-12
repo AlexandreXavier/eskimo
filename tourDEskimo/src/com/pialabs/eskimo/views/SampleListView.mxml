@@ -65,9 +65,8 @@
         <s:Button label="Back" click="navigator.popToFirstView()"/>
     </s:navigationContent>
 
-    <s:TextInput id="filterInput" change="filterChange(event)"
-                 skinClass="com.pialabs.eskimo.skins.mobile.ios.SearchTextInputSkin"
-                 prompt="Search" paddingLeft="10" paddingRight="10"/>
+    <s:TextInput id="filterInput" change="filterChange(event)" prompt="Search"
+                 paddingLeft="10" paddingRight="10"/>
     <s:List id="sampleList" width="100%" height="100%" dataProvider="{_dp}"
             labelField="name" change="onSampleListChange(event)">
     </s:List>
