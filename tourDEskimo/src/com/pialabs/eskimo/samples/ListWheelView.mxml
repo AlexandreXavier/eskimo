@@ -60,8 +60,10 @@
         <s:TextInput id="selectionColorEnd"
                      prompt="Color gradient end" width="250"/>
     </s:FormItem>
-  </s:Form>
-    <s:Button label="Apply"
+    <s:FormItem>
+      <s:Button label="Apply"
               click="applyHandler(event)" width="100"/>
+    </s:FormItem>
+  </s:Form>
   </s:VGroup>
 </views:SampleView>

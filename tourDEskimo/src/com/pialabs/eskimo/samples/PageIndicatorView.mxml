@@ -27,7 +27,6 @@
         {
           pageIndicator.pageCount = Number(pageCountText);
         }
-        trace(form.width);
       }
     ]]>
   </fx:Script>
@@ -43,22 +42,22 @@
         <components:PageIndicator id="pageIndicator" height="40" pageCount="4" selectedIndex="2"/>
         <s:Button label="Next" click="pageIndicator.next()"/>
     </s:HGroup>
-    <s:Form id="form" width="100%">
+    <s:Form width="100%">
         <!-- Page Item Size -->
         <s:FormItem>
-          <s:Label text="Page item size" />
+          <s:Label text="Page item size"/>
         </s:FormItem>      
         <s:FormItem>
-            <s:HSlider id="pageItemSize" width="260"
+            <s:HSlider id="pageItemSize" width="80%"
                        change="{pageIndicator. setStyle('pageItemSize', pageItemSize.value)}"
                        maximum="40" minimum="8" stepSize="1" value="15"/>
         </s:FormItem>
         <!-- Selected Page Item Size -->
         <s:FormItem>
-          <s:Label text="Selected page item size" />
+          <s:Label text="Selected page item size"/>
         </s:FormItem>      
         <s:FormItem>
-            <s:HSlider id="selectedPageItemSize" width="260"
+            <s:HSlider id="selectedPageItemSize" width="80%"
                        change="{pageIndicator. setStyle('selectedPageItemSize', selectedPageItemSize.value)}"
                        maximum="40" minimum="8" stepSize="1" value="15"/>
         </s:FormItem>
@@ -67,7 +66,7 @@
           <s:Label text="Item alpha" />
         </s:FormItem>         
         <s:FormItem>
-          <s:HSlider id="pageItemAlpha" width="260"
+          <s:HSlider id="pageItemAlpha" width="80%"
                    change="{pageIndicator.setStyle('pageItemAlpha', pageItemAlpha.value)}"
                    maximum="1" minimum="0" stepSize="0.05" value="0.5"/>
         </s:FormItem>
@@ -77,24 +76,26 @@
         </s:FormItem>
         <s:FormItem>
           <s:HSlider id="selectedPageItemAlpha" minimum="0" maximum="1"
-                   value="1" stepSize="0.05" width="260"
+                   value="1" stepSize="0.05" width="80%"
                    change="{pageIndicator.setStyle('selectedPageItemAlpha', selectedPageItemAlpha.value)}"/>
         </s:FormItem>      
         <!-- Page Count -->
         <s:FormItem>
             <s:HGroup>
-                <s:TextInput id="pageCount" prompt="Number of pages"/>
+                <s:TextInput id="pageCount" prompt="Number of pages" width="80%"/>
             </s:HGroup>
         </s:FormItem>
         <!-- Item Color -->
         <s:FormItem>
             <s:HGroup>
-                <s:TextInput id="pageItemColor" prompt="Item color"/>
+                <s:TextInput id="pageItemColor" prompt="Item color" width="80%"/>
             </s:HGroup>
         </s:FormItem>
         <!-- Selected Item Color -->
         <s:FormItem>
-          <s:TextInput id="selectedPageItemColor" prompt="Selected item color"/>
+          <s:HGroup>
+            <s:TextInput id="selectedPageItemColor" prompt="Selected item color" width="80%"/>
+          </s:HGroup>
         </s:FormItem>
         <s:FormItem>
           <s:Button label="Apply"
