@@ -17,7 +17,7 @@
 }
 @media (os-platform:"IOS")
 {
-    views|SampleListView#filterInput
+    views|SampleListView #filterInput
     {
         skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.SearchTextInputSkin");
     }

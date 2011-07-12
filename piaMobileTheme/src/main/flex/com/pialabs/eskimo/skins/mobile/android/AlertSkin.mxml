@@ -52,7 +52,7 @@
         <s:BasicLayout/>
     </s:layout>
     <!--- Background fill -->
-    <s:Rect id="background" left="1" top="1" right="1" bottom="0" radiusX="5">
+    <s:Rect id="background" left="1" top="1" right="1" bottom="0" radiusX="10">
         <s:fill>
             <s:SolidColor id="backgroundFill" color="#424242" alpha="0.9"/>
         </s:fill>
