@@ -23,8 +23,6 @@ package com.pialabs.eskimo.model
     public var samples:Category;
     [Bindable]
     public var currentItem:Sample;
-    [Bindable]
-    public var osStyle:String;
     
     public static const IOS:String = "IOS";
     public static const ANDROID:String = "ANDROID";
@@ -35,15 +33,6 @@ package com.pialabs.eskimo.model
     {
       samples = new Samples();
       currentItem = samples;
-      if (Capabilities.version.indexOf("AND") == 0)
-      {
-        osStyle = ANDROID;
-      }
-      else
-      {
-        // if we are not on IOS or ANDROID we choose IOS
-        osStyle = IOS;
-      }
     }
     
     public function findParent(item:Sample):Category
