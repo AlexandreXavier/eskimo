@@ -3,17 +3,42 @@
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   title="ComboBoxView" xmlns:views="com.pialabs.eskimo.views.*"
                   xmlns:components="com.pialabs.eskimo.components.*">
+
+    <fx:Script>
+        <![CDATA[
+            protected function onLabelFieldButtonBarClick(event:MouseEvent):void
+            {
+                var buttonBar:ButtonBar = ButtonBar(event.currentTarget);
+                var obj:Object = buttonBar.selectedItem;
+                comboBox.labelField = String(obj.label);
+            
+            }
+        ]]>
+    </fx:Script>
+
     <fx:Declarations>
         <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+        <s:ArrayCollection id="comboData">
+            <fx:Object label="15 minutes" value="15" unit="min"/>
+            <fx:Object label="30 minutes" value="30" unit="min"/>
+            <fx:Object label="45 minutes" value="45" unit="min"/>
+            <fx:Object label="1 hour" value="1" unit="hour"/>
+        </s:ArrayCollection>
     </fx:Declarations>
-    <components:ComboBox width="80%" selectedItem="{comboData.getItemAt(1)}">
-        <components:dataProvider>
-            <s:ArrayCollection id="comboData">
-                <fx:Object label="15 minutes"/>
-                <fx:Object label="30 minutes"/>
-                <fx:Object label="45 minutes"/>
-                <fx:Object label="1 hour"/>
-            </s:ArrayCollection>
-        </components:dataProvider>
-    </components:ComboBox>
+    <s:HGroup width="100%">
+        <components:ComboBox id="comboBox" width="40%"
+                             selectedItem="{comboData.getItemAt(1)}"
+                             dataProvider="{comboData}"/>
+        <s:DataGrid dataProvider="{comboData}" width="60%"/>
+    </s:HGroup>
+    <s:Form>
+        <s:FormItem label="labelField">
+            <s:ButtonBar click="onLabelFieldButtonBarClick(event)">
+                <s:ArrayCollection>
+                    <fx:Object label="label"/>
+                    <fx:Object label="value"/>
+                </s:ArrayCollection>
+            </s:ButtonBar>
+        </s:FormItem>
+    </s:Form>
 </views:SampleView>
