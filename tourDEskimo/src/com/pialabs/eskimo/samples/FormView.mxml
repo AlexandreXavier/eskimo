@@ -15,40 +15,29 @@
             </s:layout>
             <s:Form width="100%">
                 <s:FormItem label="name" width="100%">
-                    <s:TextInput maxChars="64" width="100%" prompt="Jean Dupont"/>
+                    <s:TextInput prompt="Jean Dupont"/>
                 </s:FormItem>
                 <s:FormItem label="password" width="100%">
-                    <s:TextInput maxChars="64" displayAsPassword="true"
-                                 width="100%" prompt="azerty"/>
+                    <s:TextInput displayAsPassword="true" prompt="azerty"/>
                 </s:FormItem>
 
                 <s:FormItem label="Renember password" width="100%">
-                    <s:CheckBox width="100%"/>
+                    <s:CheckBox/>
                 </s:FormItem>
 
             </s:Form>
-            <s:Group width="100%">
-                <s:layout>
-                    <s:HorizontalLayout horizontalAlign="right"/>
-                </s:layout>
-                <s:Button label="Connect"/>
-            </s:Group>
-            <s:Label text="Formulaire"/>
             <s:Form width="100%">
-                <s:FormItem label="CheckBox 1" width="100%">
-                    <s:CheckBox width="100%"/>
+
+                <s:FormItem label="CheckBox" width="100%">
+                    <s:CheckBox/>
                 </s:FormItem>
-                <s:FormItem label="CheckBox 2" width="100%">
-                    <s:CheckBox width="100%"/>
+
+                <s:FormItem label="Slider" width="100%">
+                    <s:HSlider/>
                 </s:FormItem>
-                <s:FormItem label="CheckBox 3" width="100%">
-                    <s:CheckBox width="100%"/>
-                </s:FormItem>
-                <s:FormItem label="CheckBox 4" width="100%">
-                    <s:CheckBox width="100%" selected="true"/>
-                </s:FormItem>
-                <s:FormItem label="CheckBox 5" width="100%">
-                    <s:CheckBox width="100%"/>
+
+                <s:FormItem label="Button" width="100%">
+                    <s:Button label="Click"/>
                 </s:FormItem>
 
             </s:Form>

@@ -175,10 +175,12 @@
     s|Form
     {
         skinClass:ClassReference("com.pialabs.eskimo.skins.mobile.android.FormSkin");
+        backgroundAlpha: 0;
     } 
     s|FormItem
     {
         skinClass:ClassReference("com.pialabs.eskimo.skins.mobile.android.FormItemSkin");
+        backgroundAlpha: 0;
     } 
     s|FormItem s|CheckBox
     {

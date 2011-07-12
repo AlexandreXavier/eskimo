@@ -1,0 +1,16 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace samples "com.pialabs.eskimo.samples.*";
+
+@media (os-platform:"ANDROID")
+{
+    samples|FormView
+    {
+        backgroundColor: #000000;
+    }
+    
+    samples|FormView s|Label
+    {
+        color: #FFFFFF;
+    }
+}
