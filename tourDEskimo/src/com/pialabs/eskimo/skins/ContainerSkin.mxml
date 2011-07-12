@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark">
+    <!-- host component -->
+    <fx:Metadata>
+        [HostComponent("spark.components.SkinnableContainer")]
+    </fx:Metadata>
+
+    <!-- states -->
+    <s:states>
+        <s:State name="disabled"/>
+        <s:State name="normal"/>
+    </s:states>
+
+    <!-- SkinParts
+    name=contentGroup, type=spark.components.Group, required=false
+    -->
+
+    <!--- Defines the appearance of the SkinnableContainer class's background. -->
+    <s:Rect id="background" left="0" right="0" top="0" bottom="0" radiusX="10"
+            radiusY="10">
+        <s:stroke>
+            <s:SolidColorStroke id="strokeFill" color="#b4b7bb" weight="1"/>
+        </s:stroke>
+        <s:fill>
+            <s:SolidColor id="bgFill" color="#FFFFFF"/>
+        </s:fill>
+    </s:Rect>
+
+    <!--- Dropdown shadow -->
+    <s:RectangularDropShadow id="dropDownShadow" top="0" right="0" bottom="0"
+                             left="0" distance="1" angle="90" color="#FFFFFF"
+                             blurY="0" blurX="0" alpha="0.5" tlRadius="10"
+                             trRadius="10" blRadius="10" brRadius="10"/>
+
+    <!--- @copy spark.components.SkinnableContainer#contentGroup -->
+    <s:Group id="contentGroup" showErrorSkin="true" showErrorTip="true"
+             left="10" right="10" top="10" bottom="10">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+    </s:Group>
+</s:Skin>

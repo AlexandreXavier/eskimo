@@ -7,95 +7,48 @@
     <fx:Script>
         <![CDATA[
             import com.pialabs.eskimo.controls.SkinnableAlert;
+            
+            protected function applyParameters(event:MouseEvent):void
+            {
+                confirmButton.buttonLabel = buttonLabel.text;
+                confirmButton.cancelLabel = cancelButtonLabel.text;
+                confirmButton.confirmLabel = confirmButtonLabel.text;
+            
+            }
         ]]>
     </fx:Script>
     <fx:Declarations>
         <!-- Place non-visual elements (e.g., services, value objects) here -->
     </fx:Declarations>
-    <components:ConfirmButton id="confirmButton" width="300"
-                              buttonPercentWidth="100"
-                              buttonLabel="Confirm Button" cancelLabel="Cancel"
-                              confirmLabel="Confirm"
-                              confirmChromeColor="#FF3333"
-                              confirm="SkinnableAlert.show('ok', 'Skinnable Alert')"/>
-    <s:Form>
-        <s:FormHeading label="Parameters"/>
-        <!-- Label-->
-        <s:FormItem label="Button label">
-            <s:HGroup>
-                <s:TextInput id="buttonLabel" prompt="Button label"/>
-                <s:Button label="Apply"
-                          click="confirmButton.buttonLabel = buttonLabel.text"/>
-            </s:HGroup>
-        </s:FormItem>
-        <s:FormItem label="Cancel button label">
-            <s:HGroup>
-                <s:TextInput id="cancelButtonLabel" prompt="Cancel button label"/>
-                <s:Button label="Apply"
-                          click="confirmButton.cancelLabel = cancelButtonLabel.text"/>
-            </s:HGroup>
-        </s:FormItem>
-        <s:FormItem label="Confirm button label">
-            <s:HGroup>
+    <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+
+        <components:ConfirmButton id="confirmButton" width="100%"
+                                  buttonPercentWidth="100"
+                                  buttonLabel="Confirm Button"
+                                  cancelLabel="Cancel" confirmLabel="Confirm"
+                                  confirmChromeColor="#FF3333"
+                                  confirm="SkinnableAlert.show('ok', 'Skinnable Alert')"/>
+    </s:SkinnableContainer>
+    <s:SkinnableContainer width="100%" styleName="parameterContainerStyle">
+        <s:layout>
+            <s:VerticalLayout/>
+        </s:layout>
+        <s:Form width="100%">
+            <s:FormHeading label="Parameters" width="100%"/>
+            <!-- Label-->
+            <s:FormItem label="Button label" width="100%">
+                <s:TextInput id="buttonLabel" prompt="Button label"
+                             text="Confirm Button"/>
+            </s:FormItem>
+            <s:FormItem label="Cancel button label" width="100%">
+                <s:TextInput id="cancelButtonLabel" prompt="Cancel button label"
+                             text="Cancel"/>
+            </s:FormItem>
+            <s:FormItem label="Confirm button label" width="100%">
                 <s:TextInput id="confirmButtonLabel"
-                             prompt="Confirm button label"/>
-                <s:Button label="Apply"
-                          click="confirmButton.confirmLabel = confirmButtonLabel.text"/>
-            </s:HGroup>
-        </s:FormItem>
-
-        <!-- Button Color -->
-        <s:FormItem label="Button color">
-            <s:HGroup>
-                <s:TextInput id="buttonColor"
-                             prompt="{'0x' + confirmButton.getStyle('buttonColor').toString(16)}"/>
-                <s:Button label="Apply"
-                          click="confirmButton.setStyle('buttonColor', Number(buttonColor.text))"/>
-            </s:HGroup>
-        </s:FormItem>
-        <s:FormItem label="Chrome button color">
-            <s:HGroup>
-                <s:TextInput id="buttonChromeColor"
-                             prompt="{'0x' + confirmButton.getStyle('buttonChromeColor').toString(16)}"/>
-                <s:Button label="Apply"
-                          click="confirmButton.setStyle('buttonChromeColor', Number(buttonChromeColor.text))"/>
-            </s:HGroup>
-        </s:FormItem>
-
-        <!-- Cancel Button Color -->
-        <s:FormItem label="Cancel button color">
-            <s:HGroup>
-                <s:TextInput id="cancelButtonColor"
-                             prompt="{'0x' + confirmButton.getStyle('cancelColor').toString(16)}"/>
-                <s:Button label="Apply"
-                          click="confirmButton.setStyle('cancelColor', Number(cancelButtonColor.text))"/>
-            </s:HGroup>
-        </s:FormItem>
-        <s:FormItem label="Chrome cancel button color">
-            <s:HGroup>
-                <s:TextInput id="cancelButtonChromeColor"
-                             prompt="{'0x' + confirmButton.getStyle('cancelChromeColor').toString(16)}"/>
-                <s:Button label="Apply"
-                          click="confirmButton.setStyle('cancelChromeColor', Number(cancelButtonChromeColor.text))"/>
-            </s:HGroup>
-        </s:FormItem>
-
-        <!-- Confirm Button Color -->
-        <s:FormItem label="Confirm button color">
-            <s:HGroup>
-                <s:TextInput id="confirmButtonColor"
-                             prompt="{'0x' + confirmButton.getStyle('confirmColor').toString(16)}"/>
-                <s:Button label="Apply"
-                          click="confirmButton.setStyle('confirmColor', Number(confirmButtonColor.text))"/>
-            </s:HGroup>
-        </s:FormItem>
-        <s:FormItem label="Chrome cancel button color">
-            <s:HGroup>
-                <s:TextInput id="confirmChromeColor"
-                             prompt="{'0x' + confirmButton.getStyle('confirmChromeColor').toString(16)}"/>
-                <s:Button label="Apply"
-                          click="confirmButton.setStyle('confirmChromeColor', Number(confirmChromeColor.text))"/>
-            </s:HGroup>
-        </s:FormItem>
-    </s:Form>
+                             prompt="Confirm button label" text="Confirm"/>
+            </s:FormItem>
+        </s:Form>
+        <s:Button label="Apply" click="applyParameters(event)"/>
+    </s:SkinnableContainer>
 </views:SampleView>
