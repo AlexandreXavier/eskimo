@@ -2,45 +2,45 @@
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark" title="FormView"
                   xmlns:views="com.pialabs.eskimo.views.*">
-    <fx:Declarations>
-        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
-    </fx:Declarations>
-    <s:Scroller width="100%" height="100%">
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+  </fx:Declarations>
+  <s:Scroller width="100%" height="100%">
 
 
-        <s:Group width="100%" height="100%">
-            <s:layout>
-                <s:VerticalLayout paddingTop="10" paddingRight="10"
-                                  paddingBottom="10" paddingLeft="10"/>
-            </s:layout>
-            <s:Form width="100%">
-                <s:FormItem label="name" width="100%">
-                    <s:TextInput prompt="Jean Dupont"/>
-                </s:FormItem>
-                <s:FormItem label="password" width="100%">
-                    <s:TextInput displayAsPassword="true" prompt="azerty"/>
-                </s:FormItem>
+    <s:Group width="100%" height="100%">
+      <s:layout>
+        <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
+                          paddingLeft="10"/>
+      </s:layout>
+      <s:Form width="100%">
+        <s:FormItem label="name" width="100%">
+          <s:TextInput prompt="Jean Dupont"/>
+        </s:FormItem>
+        <s:FormItem label="password" width="100%">
+          <s:TextInput displayAsPassword="true" prompt="azerty"/>
+        </s:FormItem>
 
-                <s:FormItem label="Renember password" width="100%">
-                    <s:CheckBox/>
-                </s:FormItem>
+        <s:FormItem label="Keep login" width="100%">
+          <s:CheckBox/>
+        </s:FormItem>
 
-            </s:Form>
-            <s:Form width="100%">
+      </s:Form>
+      <s:Form width="100%">
 
-                <s:FormItem label="CheckBox" width="100%">
-                    <s:CheckBox/>
-                </s:FormItem>
+        <s:FormItem label="CheckBox" width="100%">
+          <s:CheckBox/>
+        </s:FormItem>
 
-                <s:FormItem label="Slider" width="100%">
-                    <s:HSlider/>
-                </s:FormItem>
+        <s:FormItem label="Slider" width="100%">
+          <s:HSlider/>
+        </s:FormItem>
 
-                <s:FormItem label="Button" width="100%">
-                    <s:Button label="Click"/>
-                </s:FormItem>
+        <s:FormItem label="Button" width="100%">
+          <s:Button label="Click"/>
+        </s:FormItem>
 
-            </s:Form>
-        </s:Group>
-    </s:Scroller>
+      </s:Form>
+    </s:Group>
+  </s:Scroller>
 </views:SampleView>

@@ -107,8 +107,8 @@ Move the indicator tooltip string to a resource bundle
   </s:states>
 
   <s:layout>
-    <s:VerticalLayout horizontalAlign="justify" paddingLeft="15"
-                      paddingRight="40"/>
+    <s:VerticalLayout horizontalAlign="justify" paddingLeft="0"
+                      paddingRight="10"/>
   </s:layout>
 
   <!--- Defines the appearance of the FormItem's background. -->

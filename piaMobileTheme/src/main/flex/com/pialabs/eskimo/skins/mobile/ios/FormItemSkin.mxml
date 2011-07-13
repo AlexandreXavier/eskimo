@@ -111,7 +111,7 @@ Move the indicator tooltip string to a resource bundle
     <s:FormItemLayout>
       <s:constraintColumns>
         <!--- The column containing the sequence label. -->
-        <s:ConstraintColumn id="sequenceCol"/>
+        <s:ConstraintColumn id="sequenceCol" width="0"/>
         <!--- The column containing the FormItem's label. -->
         <s:ConstraintColumn id="labelCol"/>
         <!--- The column containing the FormItem's content. -->
@@ -136,15 +136,17 @@ Move the indicator tooltip string to a resource bundle
 
   <!--- @copy spark.components.FormItem#sequenceLabelDisplay -->
   <s:Label id="sequenceLabelDisplay" fontWeight="bold" left="sequenceCol:10"
-           right="sequenceCol:5" bottom="row1:10" baseline="row1:0"/>
+           includeInLayout="false" visible="false" right="sequenceCol:5"
+           bottom="row1:10" baseline="row1:0"/>
   <!--- @copy spark.components.FormItem#labelDisplay -->
   <s:Label id="labelDisplay" fontWeight="bold" left="labelCol:0"
-           right="labelCol:5" bottom="row1:10" baseline="row1:0"/>
+           verticalAlign="middle" right="labelCol:5" bottom="row1:0"
+           top="row1:0" baseline="row1:0"/>
   <!--- @copy spark.components.SkinnableContainer#contentGroup -->
   <!-- Don't show the error tip on the content elements -->
   <s:Group id="contentGroup" showErrorTip="false" showErrorSkin="true"
            left="contentCol:0" right="contentCol:1" baseline="row1:0"
-           bottom="row1:10">
+           bottom="row1:0">
     <s:layout>
       <s:VerticalLayout horizontalAlign="justify" verticalAlign="middle"/>
     </s:layout>
