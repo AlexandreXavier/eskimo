@@ -7,6 +7,10 @@ package com.pialabs.eskimo.model
   
   public class Model
   {
+    // List of name used in the samples
+    public static const personList:ArrayCollection = new ArrayCollection(["Jean Dupont", "John Doe", "Mike Smith"
+                                                                          , "Jing Ming", "Esteban Garcia"
+                                                                          , "Eva Shlinberg"]);
     private static var instance:Model;
     
     public static function getInstance():Model
