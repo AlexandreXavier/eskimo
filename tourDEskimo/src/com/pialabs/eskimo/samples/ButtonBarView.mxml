@@ -5,15 +5,15 @@
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
   </fx:Declarations>
-  <s:ButtonBar width="100%">
-    <s:dataProvider>
-      <s:ArrayCollection>
-        <fx:Object label="button 1"/>
-        <fx:Object label="button 2"/>
-        <fx:Object label="button 3"/>
-        <fx:Object label="button 4"/>
-      </s:ArrayCollection>
-    </s:dataProvider>
-  </s:ButtonBar>
-
+  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+    <s:ButtonBar width="100%">
+      <s:dataProvider>
+        <s:ArrayCollection>
+          <fx:Object label="button 1"/>
+          <fx:Object label="button 2"/>
+          <fx:Object label="button 3"/>
+        </s:ArrayCollection>
+      </s:dataProvider>
+    </s:ButtonBar>
+  </s:SkinnableContainer>
 </views:SampleView>
