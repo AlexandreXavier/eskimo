@@ -10,14 +10,16 @@
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
   </fx:Declarations>
-  <s:VGroup gap="10">
-    <s:Button label="Show Alert OK"
-              click="SkinnableAlert.show('Alert content', 'Alert Title')"/>
-    <s:Button label="Show Alert OK/CANCEL"
-              click="SkinnableAlert.show('Try an alert content with several lines, some words, some words, some words, some words, some words', 'Alert Title', SkinnableAlert.OK|SkinnableAlert.CANCEL)"/>
-    <s:Button label="Show Alert YES/NO"
-              click="SkinnableAlert.show('Alert content', 'Alert Title', SkinnableAlert.YES|SkinnableAlert.NO)"/>
-    <s:Button label="Show Alert YES/NO/CANCEL"
-              click="SkinnableAlert.show('Alert content', 'Alert Title', SkinnableAlert.YES|SkinnableAlert.NO|SkinnableAlert.CANCEL)"/>
-  </s:VGroup>
+  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+    <s:VGroup gap="10">
+      <s:Button label="Show Alert OK"
+                click="SkinnableAlert.show('Alert content', 'Alert Title')"/>
+      <s:Button label="Show Alert OK/CANCEL"
+                click="SkinnableAlert.show('Try an alert content with several lines, some words, some words, some words, some words, some words', 'Alert Title', SkinnableAlert.OK|SkinnableAlert.CANCEL)"/>
+      <s:Button label="Show Alert YES/NO"
+                click="SkinnableAlert.show('Alert content', 'Alert Title', SkinnableAlert.YES|SkinnableAlert.NO)"/>
+      <s:Button label="Show Alert YES/NO/CANCEL"
+                click="SkinnableAlert.show('Alert content', 'Alert Title', SkinnableAlert.YES|SkinnableAlert.NO|SkinnableAlert.CANCEL)"/>
+    </s:VGroup>
+  </s:SkinnableContainer>
 </views:SampleView>
