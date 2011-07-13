@@ -46,7 +46,7 @@
     <s:VGroup width="100%" horizontalAlign="center">
       <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
         <s:VGroup id="dateGroup" horizontalAlign="center" width="100%">
-          <components:DateChooser width="100%" name="dateChooser"/>
+          <components:DateChooser name="dateChooser"/>
         </s:VGroup>
       </s:SkinnableContainer>
 
