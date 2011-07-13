@@ -42,7 +42,8 @@
       }
     ]]>
   </fx:Script>
-  <s:Scroller width="100%" height="100%" horizontalScrollPolicy="off">
+  <s:Scroller width="100%" height="100%" horizontalScrollPolicy="off"
+              verticalScrollPolicy="auto">
     <s:VGroup width="100%" horizontalAlign="center">
       <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
         <s:VGroup id="dateGroup" horizontalAlign="center" width="100%">
@@ -54,20 +55,21 @@
         <s:layout>
           <s:VerticalLayout horizontalAlign="center"/>
         </s:layout>
-        <s:HGroup horizontalAlign="left" width="100%">
-          <s:Label text="Date pattern"/>
-        </s:HGroup>
-        <s:ButtonBar id="datePattern" width="100%" requireSelection="true">
-          <s:dataProvider>
-            <s:ArrayCollection>
-              <fx:Object label="default"
-                         value="{DateUtils.defaultDateTimePattern}"/>
-              <fx:Object label="d MM yyyy" value="d MM yyyy"/>
-              <fx:Object label="MMM dd yy" value="MMM dd yy"/>
-            </s:ArrayCollection>
-          </s:dataProvider>
-        </s:ButtonBar>
+
         <s:Form width="100%">
+          <s:FormItem label="Date pattern" styleName="verticalFormItemStyle"
+                      width="100%">
+            <s:ButtonBar id="datePattern" width="100%" requireSelection="true">
+              <s:dataProvider>
+                <s:ArrayCollection>
+                  <fx:Object label="default"
+                             value="{DateUtils.defaultDateTimePattern}"/>
+                  <fx:Object label="d MM yyyy" value="d MM yyyy"/>
+                  <fx:Object label="MMM dd yy" value="MMM dd yy"/>
+                </s:ArrayCollection>
+              </s:dataProvider>
+            </s:ButtonBar>
+          </s:FormItem>
           <s:FormItem width="100%" label="Minimum year">
             <s:TextInput id="minYearTextInput" prompt="1980"/>
           </s:FormItem>

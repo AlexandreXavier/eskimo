@@ -44,12 +44,17 @@
   
   .parameterContainerStyle
   {
-    skinClass: ClassReference("com.pialabs.eskimo.skins.ContainerSkin");
+    backgroundAlpha: 0;
   }
   
   s|NumericStepper
   {
     skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.NumericStepperSkin");
     fontSize: 30;
+  }
+  
+  .verticalFormItemStyle
+  {
+    skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.VerticalFormItemSkin");
   }
 }
