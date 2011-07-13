@@ -3,7 +3,8 @@
                     xmlns:s="library://ns.adobe.com/flex/spark"
                     labelField="name" iconWidth="30" iconHeight="30" height="60"
                     verticalAlign="middle" iconField="icon"
-                    xmlns:icons="com.pialabs.eskimo.icons.*">
+                    xmlns:icons="com.pialabs.eskimo.icons.*"
+                    decorator="@Embed(source='com/pialabs/eskimo/icons/fleche.png')">
   <fx:Script>
     <![CDATA[
       
