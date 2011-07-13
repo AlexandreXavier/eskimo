@@ -3,34 +3,38 @@
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   title="MultipleChoiceListView"
                   xmlns:views="com.pialabs.eskimo.views.*"
-                  xmlns:components="com.pialabs.eskimo.components.*">
-    <fx:Declarations>
-        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
-    </fx:Declarations>
-    <fx:Script>
-        <![CDATA[
-            private function defaultSelectedItems():Vector.<Object>
-            {
-                var selItems:Vector.<Object> = new Vector.<Object>();
-                selItems.push(checkboxData.getItemAt(1));
-                selItems.push(checkboxData.getItemAt(3));
-                
-                return selItems;
-            }
-        ]]>
-    </fx:Script>
-    <components:MultipleChoiceList id="list" width="100%" height="100%"
-                                   change="trace(list.selectedItems)"
-                                   selectedItems="{defaultSelectedItems()}">
-        <components:dataProvider>
-            <s:ArrayCollection id="checkboxData">
-                <fx:Object label="Item 1"/>
-                <fx:Object label="Item 2"/>
-                <fx:Object label="Item 3"/>
-                <fx:Object label="Item 4"/>
-                <fx:Object label="Item 5"/>
-                <fx:Object label="Item 6"/>
-            </s:ArrayCollection>
-        </components:dataProvider>
+                  xmlns:components="com.pialabs.eskimo.components.*"
+                  initialize="sampleview1_initializeHandler(event)">
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+  </fx:Declarations>
+  <fx:Script>
+    <![CDATA[
+      import com.pialabs.eskimo.model.Model;
+      
+      import mx.collections.ArrayCollection;
+      import mx.events.FlexEvent;
+      
+      protected function sampleview1_initializeHandler(event:FlexEvent):void
+      {
+        var dataProvider:ArrayCollection = Model.createPersonList();
+        list.dataProvider = dataProvider;
+        
+        if (dataProvider && dataProvider.length > 3)
+        {
+          var selectedItems:Vector.<Object> = new Vector.<Object>();
+          
+          selectedItems.push(dataProvider[1]);
+          selectedItems.push(dataProvider[2]);
+          
+          list.selectedItems = selectedItems;
+        }
+      
+      }
+    ]]>
+  </fx:Script>
+  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+    <components:MultipleChoiceList id="list" width="100%" height="100%">
     </components:MultipleChoiceList>
+  </s:SkinnableContainer>
 </views:SampleView>

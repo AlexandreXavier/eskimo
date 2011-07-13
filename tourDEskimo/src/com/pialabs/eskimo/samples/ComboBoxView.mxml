@@ -10,7 +10,10 @@
   </fx:Script>
 
   <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
-    <components:ComboBox id="comboBox" width="100%"
+    <s:layout>
+      <s:VerticalLayout horizontalAlign="center"/>
+    </s:layout>
+    <components:ComboBox id="comboBox" width="100%" maxWidth="300"
                          dataProvider="{Model.createPersonList()}"/>
   </s:SkinnableContainer>
 </views:SampleView>

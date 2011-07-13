@@ -32,8 +32,10 @@
     <!-- Place non-visual elements (e.g., services, value objects) here -->
   </fx:Declarations>
   <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
-
-    <components:ConfirmButton id="confirmButton" width="100%"
+    <s:layout>
+      <s:VerticalLayout horizontalAlign="center"/>
+    </s:layout>
+    <components:ConfirmButton id="confirmButton" width="100%" maxWidth="300"
                               buttonPercentWidth="100"
                               buttonLabel="Confirm Button" cancelLabel="Cancel"
                               confirmLabel="Confirm"
