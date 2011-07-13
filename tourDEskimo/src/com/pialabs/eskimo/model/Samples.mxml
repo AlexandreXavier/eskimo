@@ -16,6 +16,7 @@
         <model:Sample uid="1000200" name="HSlider"
                       resource="com.pialabs.eskimo.samples.HSliderView"/>
         <model:Sample uid="1000201" name="NumericStepper"
+                      exclusiveOS="{Model.ANDROID}"
                       resource="com.pialabs.eskimo.samples.NumericStepperView"/>
         <model:Sample uid="1000201" name="DateChooser"
                       resource="com.pialabs.eskimo.samples.DateChooserView"/>

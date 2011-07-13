@@ -46,4 +46,10 @@
   {
     backgroundAlpha: 0;
   }
+  
+  s|NumericStepper
+  {
+    skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.NumericStepperSkin");
+    fontSize: 30;
+  }
 }

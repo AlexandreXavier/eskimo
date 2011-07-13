@@ -1,64 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark"
-                  title="NumericStepperView" backgroundColor="#000000"
+                  title="NumericStepperView"
                   xmlns:views="com.pialabs.eskimo.views.*"
                   xmlns:components="com.pialabs.eskimo.components.*">
-    <fx:Declarations>
-        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
-    </fx:Declarations>
-    <fx:Script>
-        <![CDATA[
-            import mx.formatters.DateFormatter;
-            
-            private var month:Array = ["Janv", "Fév", "Mar", "Avr", "Mai", "Juin", "Jui", "Aou", "Sep", "Oct", "Nov"
-                                       , "Déc"];
-            
-            public function formatMonth(value:Number):String
-            {
-                var result:String = "";
-                
-                if (value < month.length)
-                {
-                    result = month[value];
-                }
-                return result;
-            }
-            
-            public function valueParseFunction(value:String):Number
-            {
-                return month.lastIndexOf(value);
-            }
-        ]]>
-    </fx:Script>
-    <s:VGroup verticalCenter="0" horizontalCenter="0" verticalAlign="middle">
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+  </fx:Declarations>
+  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+    <s:layout>
+      <s:HorizontalLayout horizontalAlign="center" gap="1"/>
+    </s:layout>
 
-        <s:Label text="NumericSteppers" color="#FFFFFF"/>
 
-        <s:HGroup gap="2">
+    <s:NumericStepper maximum="31" minimum="1" value="17" width="80"
+                      allowValueWrap="true"/>
+    <s:NumericStepper maximum="12" minimum="1" value="6" width="80"
+                      allowValueWrap="true"/>
+    <s:NumericStepper maximum="2040" minimum="1900" value="2011" width="80"
+                      allowValueWrap="true"/>
 
-            <s:NumericStepper maximum="31" minimum="1" value="17" width="80"
-                              allowValueWrap="true"/>
-            <s:NumericStepper maximum="11" valueFormatFunction="{formatMonth}"
-                              allowValueWrap="true"
-                              valueParseFunction="{valueParseFunction}" width="80"
-                              value="7"/>
-            <s:NumericStepper maximum="2050" minimum="2000" value="2011" allowValueWrap="true"/>
-        </s:HGroup>
 
-        <s:Label text="ListStepper" color="#FFFFFF" paddingTop="20"/>
-
-        <components:ListStepper allowValueWrap="true" selectedIndex="3">
-            <components:dataProvider>
-                <s:ArrayCollection>
-                    <fx:Object label="Item 1"/>
-                    <fx:Object label="Item 2"/>
-                    <fx:Object label="Item 3"/>
-                    <fx:Object label="Item 4"/>
-                    <fx:Object label="Item 5"/>
-                    <fx:Object label="Item 6"/>
-                </s:ArrayCollection>
-            </components:dataProvider>
-        </components:ListStepper>
-    </s:VGroup>
+  </s:SkinnableContainer>
 </views:SampleView>
