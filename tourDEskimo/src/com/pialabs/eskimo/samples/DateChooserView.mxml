@@ -54,19 +54,20 @@
         <s:layout>
           <s:VerticalLayout horizontalAlign="center"/>
         </s:layout>
+        <s:HGroup horizontalAlign="left" width="100%">
+          <s:Label text="Date pattern"/>
+        </s:HGroup>
+        <s:ButtonBar id="datePattern" width="100%" requireSelection="true">
+          <s:dataProvider>
+            <s:ArrayCollection>
+              <fx:Object label="default"
+                         value="{DateUtils.defaultDateTimePattern}"/>
+              <fx:Object label="d MM yyyy" value="d MM yyyy"/>
+              <fx:Object label="MMM dd yy" value="MMM dd yy"/>
+            </s:ArrayCollection>
+          </s:dataProvider>
+        </s:ButtonBar>
         <s:Form width="100%">
-          <s:FormItem width="100%" label="Date pattern">
-            <s:ButtonBar id="datePattern" width="100%" requireSelection="true">
-              <s:dataProvider>
-                <s:ArrayCollection>
-                  <fx:Object label="default"
-                             value="{DateUtils.defaultDateTimePattern}"/>
-                  <fx:Object label="d MM yyyy" value="d MM yyyy"/>
-                  <fx:Object label="MMM dd yy" value="MMM dd yy"/>
-                </s:ArrayCollection>
-              </s:dataProvider>
-            </s:ButtonBar>
-          </s:FormItem>
           <s:FormItem width="100%" label="Minimum year">
             <s:TextInput id="minYearTextInput" prompt="1980"/>
           </s:FormItem>
