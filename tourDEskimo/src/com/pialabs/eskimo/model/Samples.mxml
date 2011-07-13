@@ -30,6 +30,7 @@
                       exclusiveOS="{Model.ANDROID}"
                       resource="com.pialabs.eskimo.samples.ComboBoxView"/>
         <model:Sample uid="1000301" name="DeletableList"
+                      exclusiveOS="{Model.IOS}"
                       resource="com.pialabs.eskimo.samples.DeletableListView"/>
         <model:Sample uid="1000302" name="ContextableList"
                       exclusiveOS="{Model.ANDROID}"
