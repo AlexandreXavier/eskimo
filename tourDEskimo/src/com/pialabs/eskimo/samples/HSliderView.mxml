@@ -7,7 +7,7 @@
   </fx:Declarations>
   <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
     <s:layout>
-      <s:VerticalLayout/>
+      <s:VerticalLayout horizontalAlign="center"/>
     </s:layout>
     <s:HSlider stepSize="0.2" width="300" value="2"/>
     <s:HSlider stepSize="0.5" width="300" chromeColor="#66FF66" value="4"/>

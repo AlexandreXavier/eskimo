@@ -10,6 +10,11 @@
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
   </fx:Declarations>
-  <s:CheckBox/>
-
+  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+    <s:layout>
+      <s:VerticalLayout horizontalAlign="center"/>
+    </s:layout>
+    <s:CheckBox/>
+    <s:CheckBox label="Turn on Wifi"/>
+  </s:SkinnableContainer> 
 </views:SampleView>

@@ -23,6 +23,9 @@
         <!-- Place non-visual elements (e.g., services, value objects) here -->
   </fx:Declarations>
   <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+    <s:layout>
+      <s:VerticalLayout horizontalAlign="center"/>
+    </s:layout>
     <s:HGroup>
         <s:Button label="Prev" click="pageIndicator.previous()"/>
         <components:PageIndicator id="pageIndicator" height="40" pageCount="4" selectedIndex="2"/>
