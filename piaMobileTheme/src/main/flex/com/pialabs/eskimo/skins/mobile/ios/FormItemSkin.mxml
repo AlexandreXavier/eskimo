@@ -92,7 +92,7 @@ Move the indicator tooltip string to a resource bundle
             {
                 super.measure();
                 
-                measuredHeight = 52;
+                measuredHeight = 38;
             }
         ]]>
     </fx:Script>
@@ -122,7 +122,7 @@ Move the indicator tooltip string to a resource bundle
             </s:constraintColumns>
             <s:constraintRows>
                 <!--- @private -->
-                <s:ConstraintRow id="row1" baseline="maxAscent:10" height="100%"/>
+                <s:ConstraintRow id="row1" baseline="maxAscent:2" height="100%"/>
             </s:constraintRows>
         </s:FormItemLayout>
     </s:layout>
@@ -147,7 +147,7 @@ Move the indicator tooltip string to a resource bundle
              left="contentCol:0" right="contentCol:1" baseline="row1:0"
              bottom="row1:10">
         <s:layout>
-            <s:VerticalLayout horizontalAlign="justify"/>
+            <s:VerticalLayout horizontalAlign="justify" verticalAlign="middle"/>
         </s:layout>
     </s:Group>
     <!-- Don't include the indicator in layout since we position it ourselves -->

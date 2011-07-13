@@ -10,21 +10,21 @@
             
             protected function applyParameters(event:MouseEvent):void
             {
-              var buttonLabelText:String = getValueFromTextInput(buttonLabel);
-              if(buttonLabelText != null)
-              {
-                confirmButton.buttonLabel = buttonLabelText;
-              }
-              var cancelButtonLabelText:String = getValueFromTextInput(cancelButtonLabel);
-              if(cancelButtonLabelText != null)
-              {
-                confirmButton.cancelLabel = cancelButtonLabelText;
-              }
-              var confirmButtonLabelText:String = getValueFromTextInput(confirmButtonLabel);
-              if(confirmButtonLabelText != null)
-              {
-                confirmButton.confirmLabel = confirmButtonLabelText;
-              }  
+                var buttonLabelText:String = getValueFromTextInput(buttonLabel);
+                if (buttonLabelText != null)
+                {
+                    confirmButton.buttonLabel = buttonLabelText;
+                }
+                var cancelButtonLabelText:String = getValueFromTextInput(cancelButtonLabel);
+                if (cancelButtonLabelText != null)
+                {
+                    confirmButton.cancelLabel = cancelButtonLabelText;
+                }
+                var confirmButtonLabelText:String = getValueFromTextInput(confirmButtonLabel);
+                if (confirmButtonLabelText != null)
+                {
+                    confirmButton.confirmLabel = confirmButtonLabelText;
+                }
             }
         ]]>
     </fx:Script>
@@ -53,8 +53,7 @@
                 <s:TextInput id="cancelButtonLabel" prompt="Cancel"/>
             </s:FormItem>
             <s:FormItem label="Confirm button label" width="100%">
-                <s:TextInput id="confirmButtonLabel"
-                             prompt="Confirm"/>
+                <s:TextInput id="confirmButtonLabel" prompt="Confirm"/>
             </s:FormItem>
         </s:Form>
         <s:Button label="Apply" click="applyParameters(event)"/>

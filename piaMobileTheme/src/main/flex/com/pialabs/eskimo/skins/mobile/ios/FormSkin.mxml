@@ -106,8 +106,8 @@ that has additional logic to align the columns of FormItems.
     <s:Group id="contentGroup" showErrorSkin="true" showErrorTip="true" left="0"
              right="0" top="0" bottom="0" added="invalidateDisplayList()">
         <s:layout>
-            <s:FormLayout paddingTop="-7" paddingBottom="-7" paddingLeft="0"
-                          paddingRight="-25" gap="-14"/>
+            <s:FormLayout paddingTop="0" paddingBottom="0" paddingLeft="0"
+                          paddingRight="-25" gap="0"/>
         </s:layout>
     </s:Group>
 
