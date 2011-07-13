@@ -4,32 +4,21 @@
                   title="MultiPlateformeGroupView"
                   xmlns:views="com.pialabs.eskimo.views.*"
                   xmlns:components="com.pialabs.eskimo.components.*">
-    <fx:Declarations>
-        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
-    </fx:Declarations>
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+  </fx:Declarations>
 
-
-    <views:layout>
-        <s:VerticalLayout paddingTop="20" paddingRight="20" paddingBottom="20"
-                          paddingLeft="20" verticalAlign="middle"/>
-    </views:layout>
+  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
 
     <components:MultiplateformeGroup type="IOS" width="100%">
-        <s:Form width="100%">
-            <s:FormItem width="100%" top="20">
 
-                <s:Label text="This container is only visible on IOS devices"
-                         width="100%"/>
-            </s:FormItem>
-        </s:Form>
+      <s:Label text="This label is only visible on IOS devices" width="100%"/>
     </components:MultiplateformeGroup>
 
     <components:MultiplateformeGroup width="100%">
-        <s:FormItem width="100%">
 
-            <s:Label text="This container is only visible on Android devices"
-                     width="100%"/>
-        </s:FormItem>
+      <s:Label text="This label is only visible on Android devices" width="100%"/>
     </components:MultiplateformeGroup>
+  </s:SkinnableContainer>
 
 </views:SampleView>
