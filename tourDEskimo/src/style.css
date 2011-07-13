@@ -44,7 +44,7 @@
   
   .parameterContainerStyle
   {
-    backgroundAlpha: 0;
+    skinClass: ClassReference("com.pialabs.eskimo.skins.ContainerSkin");
   }
   
   s|NumericStepper
