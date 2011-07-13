@@ -5,7 +5,9 @@
     <fx:Declarations>
         <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
     </fx:Declarations>
-    <s:HSlider stepSize="0.1" width="300" value="2"/>
-    <s:HSlider stepSize="0.1" width="300" chromeColor="#66FF66" value="4"/>
-    <s:HSlider stepSize="0.1" width="300" chromeColor="#FF6666" value="6"/>
+  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+    <s:HSlider stepSize="0.2" width="300" value="2"/>
+    <s:HSlider stepSize="0.5" width="300" chromeColor="#66FF66" value="4"/>
+    <s:HSlider stepSize="0.2" width="300" chromeColor="#FF6666" value="6"/>
+  </s:SkinnableContainer>    
 </views:SampleView>
