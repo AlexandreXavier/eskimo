@@ -1,7 +1,9 @@
 package com.pialabs.eskimo.components
 {
   import flash.events.Event;
+  import flash.events.KeyboardEvent;
   import flash.events.MouseEvent;
+  import flash.ui.Keyboard;
   
   import mx.collections.IList;
   import mx.events.ItemClickEvent;
@@ -106,8 +108,11 @@ package com.pialabs.eskimo.components
       popUp.maxHeight = systemManager.getSandboxRoot().height * (100 - 2 * POPUP_PADDING_PERCENT) / 100;
       
       popUp.x = systemManager.getSandboxRoot().width * POPUP_PADDING_PERCENT / 100;
-      PopUpManager.addPopUp(popUp, this);
+      PopUpManager.addPopUp(popUp, this, true);
       popUp.y = systemManager.getSandboxRoot().height / 2 - popUp.height / 2;
+      
+      systemManager.getSandboxRoot().addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown, false, 0, true);
+    
     }
     
     protected function onItemClick(event:ItemClickEvent):void
@@ -124,6 +129,8 @@ package com.pialabs.eskimo.components
       dispatchEvent(evt);
       
       PopUpManager.removePopUp(popUp);
+      
+      systemManager.getSandboxRoot().removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
     }
     
     /**
@@ -173,6 +180,21 @@ package com.pialabs.eskimo.components
           selectedLabel.text = _selectedItem.toString();
         }
         _selectedItemChange = false;
+      }
+    }
+    
+    /**
+     * @private
+     */
+    protected function onKeyDown(event:KeyboardEvent):void
+    {
+      if (event.keyCode == Keyboard.BACK)
+      {
+        event.preventDefault();
+        
+        PopUpManager.removePopUp(popUp);
+        
+        systemManager.getSandboxRoot().removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
       }
     }
   }
