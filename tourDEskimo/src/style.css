@@ -5,40 +5,45 @@
 
 @media (os-platform:"ANDROID")
 {
-    samples|FormView
-    {
-        backgroundColor: #000000;
-    }
-    
-    samples|FormView s|Label
-    {
-        color: #FFFFFF;
-    }
-    
-    .componentContainerStyle
-    {
-        skinClass: ClassReference("com.pialabs.eskimo.skins.AndroidContainerSkin");
-    }
-    
-    .parameterContainerStyle
-    {
-        skinClass: ClassReference("com.pialabs.eskimo.skins.AndroidContainerSkin");
-    }
+  views|SampleView
+  {
+    backgroundColor: #CCCCCC;
+  }
+  
+  samples|FormView
+  {
+    backgroundColor: #000000;
+  }
+  
+  samples|FormView s|Label
+  {
+    color: #FFFFFF;
+  }
+  
+  .componentContainerStyle
+  {
+    skinClass: ClassReference("com.pialabs.eskimo.skins.AndroidContainerSkin");
+  }
+  
+  .parameterContainerStyle
+  {
+    skinClass: ClassReference("com.pialabs.eskimo.skins.AndroidContainerSkin");
+  }
 }
 @media (os-platform:"IOS")
 {
-    views|SampleListView #filterInput
-    {
-        skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.SearchTextInputSkin");
-    }
-    
-    .componentContainerStyle
-    {
-        skinClass: ClassReference("com.pialabs.eskimo.skins.ContainerSkin");
-    }
-    
-    .parameterContainerStyle
-    {
-        backgroundAlpha: 0;
-    }
+  views|SampleListView #filterInput
+  {
+    skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.SearchTextInputSkin");
+  }
+  
+  .componentContainerStyle
+  {
+    skinClass: ClassReference("com.pialabs.eskimo.skins.ContainerSkin");
+  }
+  
+  .parameterContainerStyle
+  {
+    backgroundAlpha: 0;
+  }
 }
