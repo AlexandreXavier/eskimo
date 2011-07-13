@@ -7,10 +7,6 @@ package com.pialabs.eskimo.model
   
   public class Model
   {
-    // List of name used in the samples
-    public static const personList:ArrayCollection = new ArrayCollection(["Jean Dupont", "John Doe", "Mike Smith"
-                                                                          , "Jing Ming", "Esteban Garcia"
-                                                                          , "Eva Shlinberg"]);
     private static var instance:Model;
     
     public static function getInstance():Model
@@ -42,6 +38,15 @@ package com.pialabs.eskimo.model
     public function findParent(item:Sample):Category
     {
       return getParentOf(item, samples);
+    }
+    
+    /**
+    * Create a basic list of name
+    */
+    public static function createPersonList():ArrayCollection
+    {
+      return new ArrayCollection(["Jean Dupont", "John Doe", "Mike Smith", "Jing Ming", "Esteban Garcia"
+                                  , "Eva Shlinberg"]);
     }
     
     protected function getParentOf(item:Sample, searchNode:Category):Category

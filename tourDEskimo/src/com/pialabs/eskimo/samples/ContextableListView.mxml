@@ -9,6 +9,11 @@
       import com.pialabs.eskimo.events.ContextableListEvent;
       import com.pialabs.eskimo.model.Model;
       
+      import mx.collections.ArrayCollection;
+      
+      [Bindable]
+      private var _dataProvider:ArrayCollection = Model.createPersonList();
+      
       protected function list_contextMenuItemClickHandler(event:ContextableListEvent):void
       {
         if (event.menuItem.label == "Delete")
@@ -24,7 +29,7 @@
   <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
     <components:ContextableList id="list" width="100%" height="100%"
                                 contextMenuItemClick="list_contextMenuItemClickHandler(event)"
-                                dataProvider="{Model.personList}">
+                                dataProvider="{_dataProvider}">
       <components:contextMenuItems>
         <fx:Object label="Delete"/>
         <fx:Object label="Cancel"/>
