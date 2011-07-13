@@ -7,6 +7,9 @@
       import com.pialabs.eskimo.model.Model;
       import com.pialabs.eskimo.model.Sample;
       
+      import mx.utils.StringUtil;
+      
+      import spark.components.TextInput;
       import spark.events.ViewNavigatorEvent;
       
       [Bindable]
@@ -44,6 +47,21 @@
         }
         
         this.actionContent = [availableOS];
+      }
+      
+      protected function getValueFromTextInput(input:TextInput):String
+      {
+        var value:String = input.text;
+        if(value == null)
+        {
+          return null;
+        }
+        value = StringUtil.trim(value);
+        if(value.length == 0)
+        {
+          return null;
+        }
+        return value;
       }
     ]]>
   </fx:Script>

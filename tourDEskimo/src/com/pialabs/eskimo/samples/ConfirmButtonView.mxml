@@ -10,10 +10,21 @@
             
             protected function applyParameters(event:MouseEvent):void
             {
-                confirmButton.buttonLabel = buttonLabel.text;
-                confirmButton.cancelLabel = cancelButtonLabel.text;
-                confirmButton.confirmLabel = confirmButtonLabel.text;
-            
+              var buttonLabelText:String = getValueFromTextInput(buttonLabel);
+              if(buttonLabelText != null)
+              {
+                confirmButton.buttonLabel = buttonLabelText;
+              }
+              var cancelButtonLabelText:String = getValueFromTextInput(cancelButtonLabel);
+              if(cancelButtonLabelText != null)
+              {
+                confirmButton.cancelLabel = cancelButtonLabelText;
+              }
+              var confirmButtonLabelText:String = getValueFromTextInput(confirmButtonLabel);
+              if(confirmButtonLabelText != null)
+              {
+                confirmButton.confirmLabel = confirmButtonLabelText;
+              }  
             }
         ]]>
     </fx:Script>
@@ -36,16 +47,14 @@
         <s:Form width="100%">
             <!-- Label-->
             <s:FormItem label="Button label" width="100%">
-                <s:TextInput id="buttonLabel" prompt="Button label"
-                             text="Confirm Button"/>
+                <s:TextInput id="buttonLabel" prompt="Confirm button"/>
             </s:FormItem>
             <s:FormItem label="Cancel button label" width="100%">
-                <s:TextInput id="cancelButtonLabel" prompt="Cancel button label"
-                             text="Cancel"/>
+                <s:TextInput id="cancelButtonLabel" prompt="Cancel"/>
             </s:FormItem>
             <s:FormItem label="Confirm button label" width="100%">
                 <s:TextInput id="confirmButtonLabel"
-                             prompt="Confirm button label" text="Confirm"/>
+                             prompt="Confirm"/>
             </s:FormItem>
         </s:Form>
         <s:Button label="Apply" click="applyParameters(event)"/>
