@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
+                  xmlns:s="library://ns.adobe.com/flex/spark"
+                  xmlns:views="com.pialabs.eskimo.views.*">
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+  </fx:Declarations>
+
+  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+    <s:layout>
+      <s:VerticalLayout horizontalAlign="center"/>
+    </s:layout>
+    <s:TextInput width="100%" maxWidth="300"
+                 skinClass="com.pialabs.eskimo.skins.mobile.ios.SearchTextInputSkin"
+                 prompt="Search" paddingLeft="10" paddingRight="10"/>
+  </s:SkinnableContainer>
+</views:SampleView>
