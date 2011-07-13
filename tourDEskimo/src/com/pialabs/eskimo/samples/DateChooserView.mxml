@@ -4,9 +4,9 @@
                   xmlns:views="com.pialabs.eskimo.views.*"
                   xmlns:components="com.pialabs.eskimo.components.*"
                   title="ComboBoxView">
-    <fx:Declarations>
-        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
-    </fx:Declarations>
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+  </fx:Declarations>
   <fx:Script>
     <![CDATA[
       import com.pialabs.eskimo.utils.DateUtils;
@@ -20,21 +20,21 @@
         
         dateChooser = new DateChooser();
         dateChooser.name = "dateChooser";
-
+        
         var minYearText:String = getValueFromTextInput(minYearTextInput);
-        if(minYearText != null)
+        if (minYearText != null)
         {
           dateChooser.minYear = Number(minYearText);
         }
         
         var maxYearText:String = getValueFromTextInput(maxYearTextInput);
-        if(maxYearText != null)
+        if (maxYearText != null)
         {
           dateChooser.maxYear = Number(maxYearText);
         }
         
         var datePatternText:String = datePattern.selectedItem.value;
-        if(datePatternText != null && datePatternText.length > 0)
+        if (datePatternText != null && datePatternText.length > 0)
         {
           dateChooser.datePattern = datePatternText;
         }
@@ -56,11 +56,11 @@
         </s:layout>
         <s:Form width="100%">
           <s:FormItem width="100%" label="Date pattern">
-            <s:ButtonBar id="datePattern" width="100%"
-                         requireSelection="true">
+            <s:ButtonBar id="datePattern" width="100%" requireSelection="true">
               <s:dataProvider>
                 <s:ArrayCollection>
-                  <fx:Object label="default" value="{DateUtils.defaultDateTimePattern}"/>            
+                  <fx:Object label="default"
+                             value="{DateUtils.defaultDateTimePattern}"/>
                   <fx:Object label="d MM yyyy" value="d MM yyyy"/>
                   <fx:Object label="MMM dd yy" value="MMM dd yy"/>
                 </s:ArrayCollection>
@@ -74,7 +74,7 @@
             <s:TextInput id="maxYearTextInput" prompt="2040"/>
           </s:FormItem>
         </s:Form>
-        <s:Button label="Apply" click="applyParameters(event)" />
+        <s:Button label="Apply" click="applyParameters(event)"/>
       </s:SkinnableContainer>
     </s:VGroup>
   </s:Scroller>

@@ -1,35 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark">
-    <!-- host component -->
-    <fx:Metadata>
+  <!-- host component -->
+  <fx:Metadata>
         [HostComponent("spark.components.SkinnableContainer")]
     </fx:Metadata>
 
-    <!-- states -->
-    <s:states>
-        <s:State name="disabled"/>
-        <s:State name="normal"/>
-    </s:states>
+  <!-- states -->
+  <s:states>
+    <s:State name="disabled"/>
+    <s:State name="normal"/>
+  </s:states>
 
-    <!-- SkinParts
-    name=contentGroup, type=spark.components.Group, required=false
-    -->
-    <!--- Defines the appearance of the SkinnableContainer class's background. -->
-    <s:Rect id="background" left="0" right="0" top="0" bottom="0" radiusX="10"
-            radiusY="10">
-        <s:stroke>
-            <s:SolidColorStroke id="strokeFill" color="#444444" weight="1"/>
-        </s:stroke>
-        <s:fill>
-            <s:SolidColor id="bgFill" color="#AAAAAA"/>
-        </s:fill>
-    </s:Rect>
+  <!-- SkinParts
+  name=contentGroup, type=spark.components.Group, required=false
+  -->
+  <!--- Defines the appearance of the SkinnableContainer class's background. -->
+  <s:Rect id="background" left="0" right="0" top="0" bottom="0" radiusX="10"
+          radiusY="10">
+    <s:stroke>
+      <s:SolidColorStroke id="strokeFill" color="#444444" weight="1"/>
+    </s:stroke>
+    <s:fill>
+      <s:SolidColor id="bgFill" color="#AAAAAA"/>
+    </s:fill>
+  </s:Rect>
 
 
-    <s:Group id="contentGroup" top="20" right="10" bottom="20" left="10">
-        <s:layout>
-            <s:VerticalLayout/>
-        </s:layout>
-    </s:Group>
+  <s:Group id="contentGroup" top="20" right="10" bottom="20" left="10">
+  </s:Group>
 </s:Skin>

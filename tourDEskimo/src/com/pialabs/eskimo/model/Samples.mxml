@@ -49,7 +49,7 @@
       <model:samples>
         <model:Sample uid="1000400" name="Alert"
                       resource="com.pialabs.eskimo.samples.AlertView"/>
-        <model:Sample uid="1000401" name="PopOver"
+        <model:Sample uid="1000401" name="PopOver" exclusiveOS="{Model.IOS}"
                       resource="com.pialabs.eskimo.samples.PopOverView"/>
       </model:samples>
     </model:Category>

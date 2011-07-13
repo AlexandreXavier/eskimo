@@ -2,12 +2,15 @@
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   title="HSliderView" xmlns:views="com.pialabs.eskimo.views.*">
-    <fx:Declarations>
-        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
-    </fx:Declarations>
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+  </fx:Declarations>
   <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+    <s:layout>
+      <s:VerticalLayout/>
+    </s:layout>
     <s:HSlider stepSize="0.2" width="300" value="2"/>
     <s:HSlider stepSize="0.5" width="300" chromeColor="#66FF66" value="4"/>
     <s:HSlider stepSize="0.2" width="300" chromeColor="#FF6666" value="6"/>
-  </s:SkinnableContainer>    
+  </s:SkinnableContainer>
 </views:SampleView>

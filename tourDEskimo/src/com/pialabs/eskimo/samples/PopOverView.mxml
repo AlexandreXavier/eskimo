@@ -13,7 +13,7 @@
         buttonBarPopOver.target = event.target as DisplayObject;
         
         
-        buttonBarPopOver.open(content, true);
+        buttonBarPopOver.open(contentGroup, true);
       }
       
       protected function onPopOverButtonClick(event:MouseEvent):void
@@ -25,7 +25,7 @@
       protected function onButtonClick(event:MouseEvent):void
       {
         buttonPopOver.target = event.currentTarget as DisplayObject;
-        buttonPopOver.open(content, true);
+        buttonPopOver.open(contentGroup, true);
       }
       
       private function changeOrientationSelection(event:Event):void
@@ -55,10 +55,7 @@
     </components:PopOver>
 
 
-    <!-- Place non-visual elements (e.g., services, value objects) here -->
-    <components:PopOver id="buttonPopOver"
-                        mouseDownOutside="buttonPopOver.close()"
-                        direction="vertical" width="200">
+    <components:PopOver id="buttonPopOver" direction="vertical" width="200">
       <s:HGroup>
         <s:Label text="Pop-over title" color="#FFFFFF" width="100%"
                  height="100%" paddingLeft="5" verticalAlign="middle"/>
@@ -77,20 +74,14 @@
     </components:PopOver>
   </fx:Declarations>
 
-  <views:layout>
-    <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
-                      paddingLeft="10"/>
-  </views:layout>
+  <s:SkinnableContainer width="100%" id="content" minHeight="200"
+                        styleName="componentContainerStyle">
 
-
-  <s:Group id="content" width="100%" height="100%" minHeight="100">
     <s:ButtonBar click="onButtonBarClick(event)" width="100%" top="10">
       <s:dataProvider>
         <s:ArrayCollection>
           <fx:Object label="button 1"/>
           <fx:Object label="button 2"/>
-          <fx:Object label="button 3"/>
-          <fx:Object label="button 4"/>
         </s:ArrayCollection>
       </s:dataProvider>
     </s:ButtonBar>
@@ -99,36 +90,29 @@
     <s:Button label="Click Me" click="onButtonClick(event)" bottom="0" right="0"/>
     <s:Button label="Click Me" click="onButtonClick(event)" bottom="0"
               horizontalCenter="0"/>
+  </s:SkinnableContainer>
 
-    <s:Button label="Click Me" click="onButtonClick(event)" right="0"
-              verticalCenter="0"/>
-    <s:Button label="Click Me" click="onButtonClick(event)" left="0"
-              verticalCenter="0"/>
-    <s:Button label="Click Me" click="onButtonClick(event)" verticalCenter="0"
-              horizontalCenter="0"/>
-  </s:Group>
-  <s:Form width="100%">
-    <s:FormHeading label="Parameters"/>
-    <!-- Orientation -->
-    <s:FormItem label="Orientation" width="100%">
-      <s:ButtonBar id="orientationMenu" width="100%" requireSelection="true"
-                   selectedIndex="1" change="changeOrientationSelection(event)">
-        <s:dataProvider>
-          <s:ArrayCollection>
-            <fx:Object label="Horizontal" value="{PopOver.HORIZONTAL_DIRECTION}"/>
-            <fx:Object label="Vertical" value="{PopOver.VERTICAL_DIRECTION}"/>
-          </s:ArrayCollection>
-        </s:dataProvider>
-      </s:ButtonBar>
-    </s:FormItem>
-    <s:FormItem label="chromeColor" width="100%">
-      <s:layout>
-        <s:HorizontalLayout/>
-      </s:layout>
-      <s:TextInput id="chromeInput" prompt="ex:0xFFFFFF" width="100%"/>
-      <s:Button label="Apply"
-                click="buttonPopOver.setStyle('chromeColor', chromeInput.text)"/>
-    </s:FormItem>
-  </s:Form>
+  <s:SkinnableContainer width="100%" styleName="parameterContainerStyle">
+    <s:layout>
+      <s:VerticalLayout horizontalAlign="center"/>
+    </s:layout>
+    <s:Form width="100%">
+      <s:FormHeading label="Parameters"/>
+      <!-- Orientation -->
+      <s:FormItem label="Orientation" width="100%">
+        <s:ButtonBar id="orientationMenu" width="100%" requireSelection="true"
+                     selectedIndex="1"
+                     change="changeOrientationSelection(event)">
+          <s:dataProvider>
+            <s:ArrayCollection>
+              <fx:Object label="Horizontal"
+                         value="{PopOver.HORIZONTAL_DIRECTION}"/>
+              <fx:Object label="Vertical" value="{PopOver.VERTICAL_DIRECTION}"/>
+            </s:ArrayCollection>
+          </s:dataProvider>
+        </s:ButtonBar>
+      </s:FormItem>
+    </s:Form>
+  </s:SkinnableContainer>
 
 </views:SampleView>

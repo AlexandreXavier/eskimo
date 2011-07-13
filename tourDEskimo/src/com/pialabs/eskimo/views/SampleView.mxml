@@ -81,7 +81,7 @@
 
   </fx:Declarations>
   <s:layout>
-    <s:VerticalLayout paddingTop="10"
+    <s:VerticalLayout paddingTop="10" paddingLeft="3" paddingRight="3"
                       horizontalAlign="center"/>
   </s:layout>
   <s:navigationContent>
