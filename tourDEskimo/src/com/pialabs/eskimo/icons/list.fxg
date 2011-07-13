@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="100" viewWidth="100" ai:appVersion="15.0.2.399" ATE:version="1.0.0" flm:version="1.0.0" d:id="1" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group ai:artboardActive="1" ai:artboardIndex="0" ai:seqID="1" d:layerType="page" d:pageHeight="100" d:pageWidth="100" d:type="layer" d:userLabel="Plan de travail 1">
+    <Group ai:objID="39926a20" ai:seqID="2" d:id="2" d:type="layer" d:userLabel="Calque 1">
+      <Group x="21.4893" y="28.8799" ai:objID="39b92240" ai:seqID="3" flm:knockout="false">
+        <Path winding="nonZero" ai:objID="39b8cab0" ai:seqID="4" data="M14.5347 24.0752C15.5342 26.3818 17.8311 28 20.5 28L50.5 28C54.084 28 57 25.084 57 21.5 57 17.916 54.084 15 50.5 15L20.5 15C17.8311 15 15.5342 16.6182 14.5347 18.9243 13.7881 16.8921 12.1899 15.2734 10.1704 14.5 12.1899 13.7266 13.7881 12.1079
+ 14.5347 10.0757 15.5342 12.3813 17.8311 14 20.5 14L50.5 14C54.084 14 57 11.084 57 7.5 57 3.91602 54.084 1 50.5 1L20.5 1C17.8311 1 15.5342 2.61816 14.5347 4.92432 13.481 2.05566 10.73 0 7.5 0 3.36426 0 0 3.36426 0 7.5 0 10.6943 2.01025 13.4209
+ 4.82959 14.5 2.01025 15.5791 0 18.3057 0 21.5 0 24.6943 2.01025 27.4209 4.82959 28.5 2.01025 29.5791 0 32.3057 0 35.5 0 39.6357 3.36426 43 7.5 43 10.73 43 13.481 40.9443 14.5347 38.0752 15.5342 40.3818 17.8311 42 20.5 42L50.5 42C54.084 42 57
+ 39.084 57 35.5 57 31.916 54.084 29 50.5 29L20.5 29C17.8311 29 15.5342 30.6182 14.5347 32.9248 13.7881 30.8916 12.1899 29.2734 10.1704 28.5 12.1899 27.7266 13.7881 26.1084 14.5347 24.0752Z">
+          <fill>
+            <SolidColor color="#D1E3E9"/>
+          </fill>
+        </Path>
+        <Path x="2" y="2" winding="nonZero" ai:objID="2cd9f820" ai:seqID="5" data="M5.5 0C2.46729 0 0 2.46729 0 5.5 0 8.53271 2.46729 11 5.5 11 8.53271 11 11 8.53271 11 5.5 11 2.46729 8.53271 0 5.5 0ZM5.5 8C4.12158 8 3 6.87842 3 5.5 3 4.12158 4.12158 3 5.5 3 6.87842 3 8 4.12158 8 5.5 8 6.87842 6.87842 8 5.5 8Z">
+          <fill>
+            <LinearGradient x="5.5" y="0.120605" scaleX="37.3363" rotation="90">
+              <GradientEntry ratio="0" color="#25BED4"/>
+              <GradientEntry ratio="1" color="#2A78A9"/>
+            </LinearGradient>
+          </fill>
+        </Path>
+        <Path x="2" y="16" winding="nonZero" ai:objID="36ea9770" ai:seqID="6" data="M5.5 0C2.46729 0 0 2.46729 0 5.5 0 8.53223 2.46729 11 5.5 11 8.53271 11 11 8.53223 11 5.5 11 2.46729 8.53271 0 5.5 0ZM5.5 8C4.12158 8 3 6.87793 3 5.5 3 4.12158 4.12158 3 5.5 3 6.87842 3 8 4.12158 8 5.5 8 6.87793 6.87842 8 5.5 8Z">
+          <fill>
+            <LinearGradient x="5.5" y="-13.8799" scaleX="37.338" rotation="90">
+              <GradientEntry ratio="0" color="#25BED4"/>
+              <GradientEntry ratio="1" color="#2A78A9"/>
+            </LinearGradient>
+          </fill>
+        </Path>
+        <Path x="2" y="30" winding="nonZero" ai:objID="2cd3a8f0" ai:seqID="7" data="M5.5 0C2.46729 0 0 2.46777 0 5.5 0 8.53223 2.46729 11 5.5 11 8.53271 11 11 8.53223 11 5.5 11 2.46777 8.53271 0 5.5 0ZM5.5 8C4.12158 8 3 6.87793 3 5.5 3 4.12207 4.12158 3 5.5 3 6.87842 3 8 4.12207 8 5.5 8 6.87793 6.87842 8 5.5 8Z">
+          <fill>
+            <LinearGradient x="5.5" y="-27.8789" scaleX="37.3363" rotation="90">
+              <GradientEntry ratio="0" color="#25BED4"/>
+              <GradientEntry ratio="1" color="#2A78A9"/>
+            </LinearGradient>
+          </fill>
+        </Path>
+        <Path x="16" y="3" winding="nonZero" ai:objID="39b92cc0" ai:seqID="8" data="M4.5 9 34.5 9C36.9814 9 39 6.98145 39 4.5 39 2.01855 36.9814 0 34.5 0L4.5 0C2.01855 0 0 2.01855 0 4.5 0 6.98145 2.01855 9 4.5 9ZM4.5 3 34.5 3C35.3271 3 36 3.67285 36 4.5 36 5.32715 35.3271 6 34.5 6L4.5 6C3.67285 6 3 5.32715 3 4.5 3 3.67285 3.67285
+ 3 4.5 3Z">
+          <fill>
+            <LinearGradient x="19.5" y="-0.879395" scaleX="37.3363" rotation="90">
+              <GradientEntry ratio="0" color="#25BED4"/>
+              <GradientEntry ratio="1" color="#2A78A9"/>
+            </LinearGradient>
+          </fill>
+        </Path>
+        <Path x="16" y="17" winding="nonZero" ai:objID="39b936c0" ai:seqID="9" data="M34.5 0 4.5 0C2.01855 0 0 2.01855 0 4.5 0 6.98145 2.01855 9 4.5 9L34.5 9C36.9814 9 39 6.98145 39 4.5 39 2.01855 36.9814 0 34.5 0ZM34.5 6 4.5 6C3.67285 6 3 5.32715 3 4.5 3 3.67285 3.67285 3 4.5 3L34.5 3C35.3271 3 36 3.67285 36 4.5 36 5.32715 35.3271
+ 6 34.5 6Z">
+          <fill>
+            <LinearGradient x="19.5" y="-14.8804" scaleX="37.3383" rotation="90">
+              <GradientEntry ratio="0" color="#25BED4"/>
+              <GradientEntry ratio="1" color="#2A78A9"/>
+            </LinearGradient>
+          </fill>
+        </Path>
+        <Path x="16" y="31" winding="nonZero" ai:objID="39b91f80" ai:seqID="10" data="M34.5 0 4.5 0C2.01855 0 0 2.01855 0 4.5 0 6.98145 2.01855 9 4.5 9L34.5 9C36.9814 9 39 6.98145 39 4.5 39 2.01855 36.9814 0 34.5 0ZM34.5 6 4.5 6C3.67285 6 3 5.32715 3 4.5 3 3.67285 3.67285 3 4.5 3L34.5 3C35.3271 3 36 3.67285 36 4.5 36 5.32715 35.3271
+ 6 34.5 6Z">
+          <fill>
+            <LinearGradient x="19.5" y="-28.8789" scaleX="37.3363" rotation="90">
+              <GradientEntry ratio="0" color="#25BED4"/>
+              <GradientEntry ratio="1" color="#2A78A9"/>
+            </LinearGradient>
+          </fill>
+        </Path>
+      </Group>
+    </Group>
+  </Group>
+  <Private>
+      <ai:PrivateElement d:ref="#1">
+        <ai:SaveOptions>
+          <ai:Dict data="I rasterizeResolution 72 B includeObjectOutsideArtboard 0 B downsampleLinkedImages 0 B includeXMP 0 I preserveTextPolicy 4 B aiEditCap 1 I versionKey 2 I preserveGradientPolicy 4 B includeSymbol 0 I preserveFilterPolicy 3 B writeImages 1 I expandBlendsOption 5 "/>
+        </ai:SaveOptions>
+        <ai:DocData base="list.assets/images" rulerCanvasDiffH="50.5" rulerCanvasDiffV="50.5">
+          <ai:DocRasterSettings>
+            <ai:Dict data="I colr 4 I dpi. 300 B alis 0 B spot 1 B mask 0 R padd 36 "/>
+          </ai:DocRasterSettings>
+        </ai:DocData>
+        <ai:AutoGenImageList>
+          <ai:Dict/>
+        </ai:AutoGenImageList>
+      </ai:PrivateElement>
+      <ai:PrivateElement flm:hashcode="6A3E23564F6D9989C7E7E752A3EE9858" d:ref="#2">
+        <ai:LayerOptions color="5 79.31 257 128.502"/>
+      </ai:PrivateElement>
+    </Private>
+  </Graphic>

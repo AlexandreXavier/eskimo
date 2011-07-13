@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="100" viewWidth="100" ai:appVersion="15.0.2.399" ATE:version="1.0.0" flm:version="1.0.0" d:id="1" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group ai:artboardActive="1" ai:artboardIndex="0" ai:seqID="1" d:layerType="page" d:pageHeight="100" d:pageWidth="100" d:type="layer" d:userLabel="Plan de travail 1">
+    <Group ai:objID="39926a20" ai:seqID="2" d:id="2" d:type="layer" d:userLabel="Calque 1">
+      <Path x="41.4023" y="36.1523" winding="nonZero" ai:objID="2cd863e0" ai:seqID="3" data="M4.24219 28.0762 0 23.834 9.79492 14.0381 0 4.24219 4.24219 0 18.2793 14.0381 4.24219 28.0762Z">
+        <fill>
+          <SolidColor color="#9EA0A3"/>
+        </fill>
+      </Path>
+    </Group>
+  </Group>
+  <Private>
+      <ai:PrivateElement d:ref="#1">
+        <ai:SaveOptions>
+          <ai:Dict data="I rasterizeResolution 72 B includeObjectOutsideArtboard 0 B downsampleLinkedImages 0 B includeXMP 0 I preserveTextPolicy 4 B aiEditCap 1 I versionKey 2 I preserveGradientPolicy 4 B includeSymbol 0 I preserveFilterPolicy 3 B writeImages 1 I expandBlendsOption 5 "/>
+        </ai:SaveOptions>
+        <ai:DocData base="fleche.assets/images" rulerCanvasDiffH="50.5" rulerCanvasDiffV="50.5">
+          <ai:DocRasterSettings>
+            <ai:Dict data="I colr 4 I dpi. 300 B alis 0 B spot 1 B mask 0 R padd 36 "/>
+          </ai:DocRasterSettings>
+        </ai:DocData>
+        <ai:AutoGenImageList>
+          <ai:Dict/>
+        </ai:AutoGenImageList>
+      </ai:PrivateElement>
+      <ai:PrivateElement flm:hashcode="7D1B5CEBF06AAA7B3A8F220A99902781" d:ref="#2">
+        <ai:LayerOptions color="5 79.31 257 128.502"/>
+      </ai:PrivateElement>
+    </Private>
+  </Graphic>

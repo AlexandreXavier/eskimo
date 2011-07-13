@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="100" viewWidth="100" ai:appVersion="15.0.2.399" ATE:version="1.0.0" flm:version="1.0.0" d:id="1" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group ai:artboardActive="1" ai:artboardIndex="0" ai:seqID="1" d:layerType="page" d:pageHeight="100" d:pageWidth="100" d:type="layer" d:userLabel="Plan de travail 1">
+    <Group ai:objID="39926a20" ai:seqID="2" d:id="2" d:type="layer" d:userLabel="Calque 1">
+      <Path x="18.6602" y="30.5635" winding="nonZero" ai:objID="2cd3da50" ai:seqID="3" data="M11.8887 38.2568C5.33301 38.2568 0 32.9238 0 26.3682L0 11.8887C0 5.33301 5.33301 0 11.8887 0L50.916 0C57.4717 0 62.8047 5.33301 62.8047 11.8887L62.8047 26.3682C62.8047 32.9238 57.4717 38.2568 50.916 38.2568L11.8887 38.2568ZM11.8887 7C9.19336 7
+ 7 9.19287 7 11.8887L7 19.9629C7 22.6592 9.19336 24.8516 11.8887 24.8516L50.916 24.8516C53.6113 24.8516 55.8047 22.6592 55.8047 19.9629L55.8047 11.8887C55.8047 9.19287 53.6113 7 50.916 7L11.8887 7Z">
+        <fill>
+          <SolidColor color="#D1E3E9"/>
+        </fill>
+      </Path>
+      <Path x="20.6602" y="32.5635" winding="nonZero" ai:objID="2cd3c510" ai:seqID="4" data="M48.916 0 9.88867 0C4.43652 0 0 4.43604 0 9.88867L0 16.2939 0 17.9629 0 24.3682C0 29.8213 4.43652 34.2568 9.88867 34.2568L48.916 34.2568C54.3682 34.2568 58.8047 29.8213 58.8047 24.3682L58.8047 17.9629 58.8047 16.2939 58.8047 9.88867C58.8047 4.43604
+ 54.3682 0 48.916 0ZM3 9.88867C3 6.09033 6.08984 3 9.88867 3L48.916 3C52.7148 3 55.8047 6.09033 55.8047 9.88867L55.8047 16.2939 55.8047 17.9629C55.8047 21.7607 52.7148 24.8516 48.916 24.8516L9.88867 24.8516C6.08984 24.8516 3 21.7607 3 17.9629
+L3 16.2939 3 9.88867ZM48.916 31.2568 9.88867 31.2568C6.3291 31.2568 3.3916 28.543 3.03613 25.0762 4.81543 26.79 7.22852 27.8516 9.88867 27.8516L48.916 27.8516C51.5762 27.8516 53.9893 26.79 55.7686 25.0762 55.4131 28.543 52.4756 31.2568 48.916
+ 31.2568Z">
+        <fill>
+          <LinearGradient x="29.4019" y="-0.897461" scaleX="34.8012" rotation="90">
+            <GradientEntry ratio="0" color="#28BED4"/>
+            <GradientEntry ratio="1" color="#2978AA"/>
+          </LinearGradient>
+        </fill>
+      </Path>
+    </Group>
+  </Group>
+  <Private>
+      <ai:PrivateElement d:ref="#1">
+        <ai:SaveOptions>
+          <ai:Dict data="I rasterizeResolution 72 B includeObjectOutsideArtboard 0 B downsampleLinkedImages 0 B includeXMP 0 I preserveTextPolicy 4 B aiEditCap 1 I versionKey 2 I preserveGradientPolicy 4 B includeSymbol 0 I preserveFilterPolicy 3 B writeImages 1 I expandBlendsOption 5 "/>
+        </ai:SaveOptions>
+        <ai:DocData base="bouton.assets/images" rulerCanvasDiffH="50.5" rulerCanvasDiffV="50.5">
+          <ai:DocRasterSettings>
+            <ai:Dict data="I colr 4 I dpi. 300 B alis 0 B spot 1 B mask 0 R padd 36 "/>
+          </ai:DocRasterSettings>
+        </ai:DocData>
+        <ai:AutoGenImageList>
+          <ai:Dict/>
+        </ai:AutoGenImageList>
+      </ai:PrivateElement>
+      <ai:PrivateElement flm:hashcode="DF0B12FD0EAD3968B2367EAB6157FC92" d:ref="#2">
+        <ai:LayerOptions color="5 79.31 257 128.502"/>
+      </ai:PrivateElement>
+    </Private>
+  </Graphic>

@@ -2,7 +2,7 @@
 <model:Category xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns="*"
                 name="Tour d'Eskimo" xmlns:model="com.pialabs.eskimo.model.*">
   <model:samples>
-    <model:Category name="Buttons">
+    <model:Category name="Buttons" icon="com.pialabs.eskimo.icons.button">
       <model:samples>
         <model:Sample uid="1000100" name="ButtonBar"
                       resource="com.pialabs.eskimo.samples.ButtonBarView"/>
@@ -11,7 +11,7 @@
       </model:samples>
     </model:Category>
 
-    <model:Category name="Selectors">
+    <model:Category name="Selectors" icon="com.pialabs.eskimo.icons.selector">
       <model:samples>
         <model:Sample uid="1000200" name="HSlider"
                       resource="com.pialabs.eskimo.samples.HSliderView"/>
@@ -25,7 +25,7 @@
       </model:samples>
     </model:Category>
 
-    <model:Category name="Lists">
+    <model:Category name="Lists" icon="com.pialabs.eskimo.icons.list">
       <model:samples>
         <model:Sample uid="1000300" name="ComboBox"
                       exclusiveOS="{Model.ANDROID}"
@@ -48,7 +48,7 @@
       </model:samples>
     </model:Category>
 
-    <model:Category name="Popup">
+    <model:Category name="Popup" icon="com.pialabs.eskimo.icons.popup">
       <model:samples>
         <model:Sample uid="1000400" name="Alert"
                       resource="com.pialabs.eskimo.samples.AlertView"/>
@@ -57,7 +57,7 @@
       </model:samples>
     </model:Category>
 
-    <model:Category name="Container">
+    <model:Category name="Container" icon="com.pialabs.eskimo.icons.container">
       <model:samples>
         <model:Sample uid="1000500" name="Form"
                       resource="com.pialabs.eskimo.samples.FormView"/>
@@ -68,7 +68,7 @@
       </model:samples>
     </model:Category>
 
-    <model:Category name="Navigation">
+    <model:Category name="Navigation" icon="com.pialabs.eskimo.icons.nav">
       <model:samples>
         <model:Sample uid="1000600" name="PageIndicator"
                       exclusiveOS="{Model.IOS}"
