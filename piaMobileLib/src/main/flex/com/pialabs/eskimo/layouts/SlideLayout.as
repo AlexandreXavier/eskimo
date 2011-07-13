@@ -1,221 +1,221 @@
 package com.pialabs.eskimo.layouts
 {
-    import flash.display.Sprite;
-    import flash.events.Event;
-    import flash.geom.Point;
-    import flash.system.Capabilities;
-    
-    import mx.core.FlexGlobals;
-    import mx.core.IVisualElement;
-    import mx.effects.Tween;
-    
-    import spark.events.IndexChangeEvent;
-    import spark.layouts.supportClasses.LayoutBase;
-    
-    [Event(name = "indexChange", type = "spark.events.IndexChangeEvent")]
+  import flash.display.Sprite;
+  import flash.events.Event;
+  import flash.geom.Point;
+  import flash.system.Capabilities;
+  
+  import mx.core.FlexGlobals;
+  import mx.core.IVisualElement;
+  import mx.effects.Tween;
+  
+  import spark.events.IndexChangeEvent;
+  import spark.layouts.supportClasses.LayoutBase;
+  
+  [Event(name = "indexChange", type = "spark.events.IndexChangeEvent")]
+  
+  /**
+   * Layout that enable slide bitween visual element
+   */
+  public class SlideLayout extends LayoutBase
+  {
+    /**
+     * Oriantation vertival
+     */
+    public static var VERTICAL:String = "vertical";
+    /**
+     * Oriantation horizontal
+     */
+    public static var HORIZONTAL:String = "horizontal";
     
     /**
-     * Layout that enable slide bitween visual element
+     * @private
      */
-    public class SlideLayout extends LayoutBase
+    private var _mask:Sprite = new Sprite();
+    /**
+     * @private
+     */
+    protected var _tween:Tween;
+    /**
+     * @private
+     */
+    protected var _oldIndex:int = -1;
+    /**
+     * @private
+     */
+    protected var _index:uint = 0;
+    
+    /**
+    * Direction of the slide
+    */
+    public var direction:int = 1;
+    
+    private var _direction:int;
+    
+    /**
+     * Oriantation of the slide
+     */
+    public var orientation:String = HORIZONTAL;
+    
+    /**
+     * @private
+     */
+    private var _newElement:IVisualElement;
+    /**
+     * @private
+     */
+    private var _oldElement:IVisualElement
+    
+    /**
+     * currentitem index visible in the layout
+     */
+    [Bindable("indexChanged")]
+    public function get index():Number
     {
-        /**
-         * Oriantation vertival
-         */
-        public static var VERTICAL:String = "vertical";
-        /**
-         * Oriantation horizontal
-         */
-        public static var HORIZONTAL:String = "horizontal";
-        
-        /**
-         * @private
-         */
-        private var _mask:Sprite = new Sprite();
-        /**
-         * @private
-         */
-        protected var _tween:Tween;
-        /**
-         * @private
-         */
-        protected var _oldIndex:int = -1;
-        /**
-         * @private
-         */
-        protected var _index:uint = 0;
-        
-        /**
-        * Direction of the slide
-        */
-        public var direction:int = 1;
-        
-        private var _direction:int;
-        
-        /**
-         * Oriantation of the slide
-         */
-        public var orientation:String = HORIZONTAL;
-        
-        /**
-         * @private
-         */
-        private var _newElement:IVisualElement;
-        /**
-         * @private
-         */
-        private var _oldElement:IVisualElement
-        
-        /**
-         * currentitem index visible in the layout
-         */
-        [Bindable("indexChanged")]
-        public function get index():Number
+      return _index;
+    }
+    
+    /**
+     * @private
+     */
+    public function set index(value:Number):void
+    {
+      if (_index != value && target != null && value >= 0 && value < target.numElements)
+      {
+        if (_tween != null && _oldIndex >= 0)
         {
-            return _index;
+          _tween.endTween();
         }
-        
-        /**
-         * @private
-         */
-        public function set index(value:Number):void
-        {
-            if (_index != value && target != null && value >= 0 && value < target.numElements)
-            {
-                if (_tween != null && _oldIndex >= 0)
-                {
-                    _tween.endTween();
-                }
-                _oldIndex = _index;
-                _index = value;
-                dispatchEvent(new Event("indexChanged"));
-                target.invalidateDisplayList();
-            }
-        
-        }
-        
-        /**
-         * @private
-         */
-        override public function updateDisplayList(width:Number, height:Number):void
-        {
-            super.updateDisplayList(width, height);
-            var numElements:int = target.numElements;
-            
-            if (_oldIndex == -1)
-            {
-                for (var i:uint = 0; i < numElements; i++)
-                {
-                    var element:IVisualElement = getVisualElement(i);
-                    if (i == _index)
-                    {
-                        showVisualElement(element, true);
-                        element.setLayoutBoundsSize(width, height);
-                        element.setLayoutBoundsPosition(0, 0);
-                    }
-                    else
-                    {
-                        showVisualElement(element, false);
-                    }
-                }
-            }
-            else
-            {
-                createViewPort(width, height);
-                
-                _newElement = getVisualElement(_index);
-                showVisualElement(_newElement, true);
-                _newElement.setLayoutBoundsSize(width, height);
-                
-                _direction = direction * (_oldIndex - _index);
-                if (orientation == HORIZONTAL)
-                {
-                    _newElement.setLayoutBoundsPosition(-_direction * width, 0);
-                }
-                else if (orientation == VERTICAL)
-                {
-                    _newElement.setLayoutBoundsPosition(0, -_direction * height);
-                }
-                _oldElement = getVisualElement(_oldIndex);
-                
-                _tween = new Tween(this, 0, width, 300, 30, tweenUpdateHandler, tweenEndHandler);
-            }
-        }
-        
-        /**
-         * @private
-         */
-        private function createViewPort(width:Number, height:Number):void
-        {
-            var ratio:Number = Capabilities.screenDPI / FlexGlobals.topLevelApplication.applicationDPI;
-            var targetPosition:Point = target.localToGlobal(new Point())
-            _mask.graphics.clear();
-            _mask.graphics.beginFill(0xFFFFFF);
-            _mask.graphics.drawRect(targetPosition.x, targetPosition.y, width * ratio, height * ratio);
-            _mask.graphics.endFill();
-            target.mask = _mask;
-        }
-        
-        /**
-         * @private
-         */
-        private function tweenUpdateHandler(value:String):void
-        {
-            var position:int = int(value);
-            
-            if (orientation == HORIZONTAL)
-            {
-                _newElement.setLayoutBoundsPosition(_direction * position - _direction * _oldElement.width, 0);
-                
-                _oldElement.setLayoutBoundsPosition(_direction * position, 0);
-            }
-            else if (orientation == VERTICAL)
-            {
-                _newElement.setLayoutBoundsPosition(0, _direction * position - _direction * _oldElement.height);
-                
-                _oldElement.setLayoutBoundsPosition(0, _direction * position);
-            }
-        }
-        
-        /**
-         * @private
-         */
-        private function tweenEndHandler(value:String):void
-        {
-            _newElement.setLayoutBoundsPosition(0, 0);
-            
-            showVisualElement(_oldElement, false);
-            
-            _oldIndex = -1
-            
-            target.mask = null;
-        }
-        
-        /**
-         * @private
-         */
-        protected function showVisualElement(element:IVisualElement, show:Boolean):void
-        {
-            element.visible = show;
-            element.includeInLayout = show;
-        }
-        
-        /**
-         * @private
-         */
-        protected function getVisualElement(index:int):IVisualElement
-        {
-            var element:IVisualElement;
-            if (useVirtualLayout)
-            {
-                element = target.getVirtualElementAt(index);
-            }
-            else
-            {
-                element = target.getElementAt(index);
-            }
-            return element;
-        }
+        _oldIndex = _index;
+        _index = value;
+        dispatchEvent(new Event("indexChanged"));
+        target.invalidateDisplayList();
+      }
     
     }
+    
+    /**
+     * @private
+     */
+    override public function updateDisplayList(width:Number, height:Number):void
+    {
+      super.updateDisplayList(width, height);
+      var numElements:int = target.numElements;
+      
+      if (_oldIndex == -1)
+      {
+        for (var i:uint = 0; i < numElements; i++)
+        {
+          var element:IVisualElement = getVisualElement(i);
+          if (i == _index)
+          {
+            showVisualElement(element, true);
+            element.setLayoutBoundsSize(width, height);
+            element.setLayoutBoundsPosition(0, 0);
+          }
+          else
+          {
+            showVisualElement(element, false);
+          }
+        }
+      }
+      else
+      {
+        createViewPort(width, height);
+        
+        _newElement = getVisualElement(_index);
+        showVisualElement(_newElement, true);
+        _newElement.setLayoutBoundsSize(width, height);
+        
+        _direction = direction * (_oldIndex - _index);
+        if (orientation == HORIZONTAL)
+        {
+          _newElement.setLayoutBoundsPosition(-_direction * width, 0);
+        }
+        else if (orientation == VERTICAL)
+        {
+          _newElement.setLayoutBoundsPosition(0, -_direction * height);
+        }
+        _oldElement = getVisualElement(_oldIndex);
+        
+        _tween = new Tween(this, 0, width, 300, 30, tweenUpdateHandler, tweenEndHandler);
+      }
+    }
+    
+    /**
+     * @private
+     */
+    private function createViewPort(width:Number, height:Number):void
+    {
+      var ratio:Number = FlexGlobals.topLevelApplication.runtimeDPI / FlexGlobals.topLevelApplication.applicationDPI;
+      var targetPosition:Point = target.localToGlobal(new Point())
+      _mask.graphics.clear();
+      _mask.graphics.beginFill(0xFFFFFF);
+      _mask.graphics.drawRect(targetPosition.x, targetPosition.y, width * ratio, height * ratio);
+      _mask.graphics.endFill();
+      target.mask = _mask;
+    }
+    
+    /**
+     * @private
+     */
+    private function tweenUpdateHandler(value:String):void
+    {
+      var position:int = int(value);
+      
+      if (orientation == HORIZONTAL)
+      {
+        _newElement.setLayoutBoundsPosition(_direction * position - _direction * _oldElement.width, 0);
+        
+        _oldElement.setLayoutBoundsPosition(_direction * position, 0);
+      }
+      else if (orientation == VERTICAL)
+      {
+        _newElement.setLayoutBoundsPosition(0, _direction * position - _direction * _oldElement.height);
+        
+        _oldElement.setLayoutBoundsPosition(0, _direction * position);
+      }
+    }
+    
+    /**
+     * @private
+     */
+    private function tweenEndHandler(value:String):void
+    {
+      _newElement.setLayoutBoundsPosition(0, 0);
+      
+      showVisualElement(_oldElement, false);
+      
+      _oldIndex = -1
+      
+      target.mask = null;
+    }
+    
+    /**
+     * @private
+     */
+    protected function showVisualElement(element:IVisualElement, show:Boolean):void
+    {
+      element.visible = show;
+      element.includeInLayout = show;
+    }
+    
+    /**
+     * @private
+     */
+    protected function getVisualElement(index:int):IVisualElement
+    {
+      var element:IVisualElement;
+      if (useVirtualLayout)
+      {
+        element = target.getVirtualElementAt(index);
+      }
+      else
+      {
+        element = target.getElementAt(index);
+      }
+      return element;
+    }
+  
+  }
 }

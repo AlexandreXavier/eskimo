@@ -93,11 +93,7 @@
   </s:SkinnableContainer>
 
   <s:SkinnableContainer width="100%" styleName="parameterContainerStyle">
-    <s:layout>
-      <s:VerticalLayout horizontalAlign="center"/>
-    </s:layout>
     <s:Form width="100%">
-      <s:FormHeading label="Parameters"/>
       <!-- Orientation -->
       <s:FormItem label="Orientation" width="100%">
         <s:ButtonBar id="orientationMenu" width="100%" requireSelection="true"

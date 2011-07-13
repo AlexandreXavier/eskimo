@@ -4,108 +4,92 @@
                   title="SlideDataGroupView"
                   xmlns:views="com.pialabs.eskimo.views.*"
                   xmlns:components="com.pialabs.eskimo.components.*">
-    <fx:Declarations>
-        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
-        <s:ArrayCollection id="photoList">
-            <fx:Object source="data/img/photo01.jpg"/>
-            <fx:Object source="data/img/photo02.jpg"/>
-            <fx:Object source="data/img/photo03.jpg"/>
-            <fx:Object source="data/img/photo04.jpg"/>
-            <fx:Object source="data/img/photo05.jpg"/>
-            <fx:Object source="data/img/photo06.jpg"/>
-            <fx:Object source="data/img/photo07.jpg"/>
-            <fx:Object source="data/img/photo08.jpg"/>
-            <fx:Object source="data/img/photo09.jpg"/>
-            <fx:Object source="data/img/photo10.jpg"/>
-        </s:ArrayCollection>
-    </fx:Declarations>
-    <fx:Script>
-        <![CDATA[
-            import com.pialabs.eskimo.layouts.SlideLayout;
-            
-            private function changeOrientationSelection(event:Event):void
-            {
-                var value:String = ButtonBar(event.target).selectedItem.value;
-                if (value != null)
-                {
-                    slideDataGroup.orientation = value;
-                }
-            }
-            
-            private function changeDirectionSelection(event:Event):void
-            {
-                var value:int = ButtonBar(event.target).selectedItem.value;
-                slideDataGroup.direction = value;
-            }
-        ]]>
-    </fx:Script>
-    <s:Scroller width="100%" height="100%">
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+    <s:ArrayCollection id="photoList">
+      <fx:Object source="data/img/photo01.jpg"/>
+      <fx:Object source="data/img/photo02.jpg"/>
+      <fx:Object source="data/img/photo03.jpg"/>
+      <fx:Object source="data/img/photo04.jpg"/>
+      <fx:Object source="data/img/photo05.jpg"/>
+      <fx:Object source="data/img/photo06.jpg"/>
+      <fx:Object source="data/img/photo07.jpg"/>
+      <fx:Object source="data/img/photo08.jpg"/>
+      <fx:Object source="data/img/photo09.jpg"/>
+      <fx:Object source="data/img/photo10.jpg"/>
+    </s:ArrayCollection>
+  </fx:Declarations>
+  <fx:Script>
+    <![CDATA[
+      import com.pialabs.eskimo.layouts.SlideLayout;
+      
+      private function changeOrientationSelection(event:Event):void
+      {
+        var value:String = ButtonBar(event.target).selectedItem.value;
+        if (value != null)
+        {
+          slideDataGroup.orientation = value;
+        }
+      }
+      
+      private function changeDirectionSelection(event:Event):void
+      {
+        var value:int = ButtonBar(event.target).selectedItem.value;
+        slideDataGroup.direction = value;
+      }
+    ]]>
+  </fx:Script>
+  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+    <s:layout>
+      <s:HorizontalLayout verticalAlign="middle"/>
+    </s:layout>
+    <s:Spacer width="100%"/>
+    <s:Button label="&lt;" click="slideDataGroup.previous()"/>
+    <components:SlideDataGroup id="slideDataGroup" width="150" height="150"
+                               orientation="{SlideDataGroup.HORIZONTAL}"
+                               direction="{SlideDataGroup.NORMAL}"
+                               itemRenderer="com.pialabs.eskimo.samples.renderers.ImageRenderer"
+                               dataProvider="{photoList}">
+    </components:SlideDataGroup>
+    <s:Button label="&gt;" click="slideDataGroup.next()"/>
+    <s:Spacer width="100%"/>
+  </s:SkinnableContainer>
 
+  <s:SkinnableContainer width="100%" styleName="parameterContainerStyle">
 
-        <s:Group width="100%" height="100%">
-            <s:layout>
-                <s:VerticalLayout paddingTop="10" paddingRight="10"
-                                  paddingBottom="10" paddingLeft="10"
-                                  horizontalAlign="center"/>
-            </s:layout>
+    <s:Form width="100%">
+      <!-- Orientation -->
+      <s:FormItem label="Orientation">
+        <s:ButtonBar id="orientationMenu" requireSelection="true"
+                     change="changeOrientationSelection(event)">
+          <s:dataProvider>
+            <s:ArrayCollection>
+              <fx:Object label="Horizontal" value="{SlideDataGroup.HORIZONTAL}"/>
+              <fx:Object label="Vertical" value="{SlideDataGroup.VERTICAL}"/>
+            </s:ArrayCollection>
+          </s:dataProvider>
+        </s:ButtonBar>
+      </s:FormItem>
+      <!-- Direction -->
+      <s:FormItem label="Direction" width="100%">
+        <s:ButtonBar id="directionMenu" requireSelection="true"
+                     change="changeDirectionSelection(event)">
+          <s:dataProvider>
+            <s:ArrayCollection>
+              <fx:Object label="Normal" value="{SlideDataGroup.NORMAL}"/>
+              <fx:Object label="Reverse" value="{SlideDataGroup.REVERSE}"/>
+            </s:ArrayCollection>
+          </s:dataProvider>
+        </s:ButtonBar>
+      </s:FormItem>
+      <!-- Selection -->
+      <s:FormItem label="Selected Index" width="100%">
+        <s:HSlider id="selectedIndexNS" stepSize="1" minimum="0"
+                   maximum="{photoList.length - 1}"
+                   change="slideDataGroup.selectedIndex = selectedIndexNS.value"
+                   value="{slideDataGroup.selectedIndex}"/>
+      </s:FormItem>
+    </s:Form>
+  </s:SkinnableContainer>
 
-            <components:SlideDataGroup id="slideDataGroup" width="150"
-                                       height="150"
-                                       orientation="{SlideDataGroup.HORIZONTAL}"
-                                       direction="{SlideDataGroup.NORMAL}"
-                                       itemRenderer="com.pialabs.eskimo.samples.renderers.ImageRenderer"
-                                       dataProvider="{photoList}">
-            </components:SlideDataGroup>
-            <s:HGroup width="100%" height="100%">
-                <s:Button label="previous" click="slideDataGroup.previous()"
-                          width="100%"/>
-                <s:Button label="next" click="slideDataGroup.next()"
-                          width="100%"/>
-            </s:HGroup>
-
-            <s:HGroup id="myGroup" width="100%">
-                <s:Form width="100%">
-                    <s:FormHeading label="Parameters" width="100%"/>
-                    <!-- Orientation -->
-                    <s:FormItem label="Orientation">
-                        <s:ButtonBar id="orientationMenu" width="100%"
-                                     requireSelection="true"
-                                     change="changeOrientationSelection(event)">
-                            <s:dataProvider>
-                                <s:ArrayCollection>
-                                    <fx:Object label="Horizontal"
-                                               value="{SlideDataGroup.HORIZONTAL}"/>
-                                    <fx:Object label="Vertical"
-                                               value="{SlideDataGroup.VERTICAL}"/>
-                                </s:ArrayCollection>
-                            </s:dataProvider>
-                        </s:ButtonBar>
-                    </s:FormItem>
-                    <!-- Direction -->
-                    <s:FormItem label="Direction" width="100%">
-                        <s:ButtonBar id="directionMenu" requireSelection="true"
-                                     width="100%"
-                                     change="changeDirectionSelection(event)">
-                            <s:dataProvider>
-                                <s:ArrayCollection>
-                                    <fx:Object label="Normal"
-                                               value="{SlideDataGroup.NORMAL}"/>
-                                    <fx:Object label="Reverse"
-                                               value="{SlideDataGroup.REVERSE}"/>
-                                </s:ArrayCollection>
-                            </s:dataProvider>
-                        </s:ButtonBar>
-                    </s:FormItem>
-                    <!-- Selection -->
-                    <s:FormItem label="Selected Index" width="100%">
-                        <s:HSlider id="selectedIndexNS" stepSize="1" minimum="0"
-                                   maximum="{photoList.length - 1}" width="100%"
-                                   change="slideDataGroup.selectedIndex = selectedIndexNS.value"
-                                   value="{slideDataGroup.selectedIndex}"/>
-                    </s:FormItem>
-                </s:Form>
-            </s:HGroup>
-
-        </s:Group>
-    </s:Scroller>
 </views:SampleView>
