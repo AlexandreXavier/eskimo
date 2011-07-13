@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark"
+                  title="SlideDataGroupView"
                   xmlns:views="com.pialabs.eskimo.views.*"
-                  xmlns:components="com.pialabs.eskimo.components.*"
-                  backgroundColor="#CCCCCC" title="PageIndicatorView">
-  
+                  xmlns:components="com.pialabs.eskimo.components.*">
   <fx:Script>
     <![CDATA[
       import mx.utils.StringUtil;
@@ -26,9 +25,11 @@
     <s:layout>
       <s:VerticalLayout horizontalAlign="center"/>
     </s:layout>
+    
     <s:HGroup>
         <s:Button label="Prev" click="pageIndicator.previous()"/>
-        <components:PageIndicator id="pageIndicator" height="40" pageCount="4" selectedIndex="2"/>
+        <components:PageIndicator id="pageIndicator" height="40" pageCount="4" selectedIndex="2"
+                                  pageItemColor="#D0D0D0" selectedPageItemColor="#A4CA39"/>
         <s:Button label="Next" click="pageIndicator.next()"/>
     </s:HGroup>
   </s:SkinnableContainer>
@@ -37,23 +38,22 @@
       <s:VerticalLayout horizontalAlign="center"/>
     </s:layout>
     <s:Form width="100%">
-        <!-- Page Item Size -->
-      <s:FormItem label="Page item size">
-        <s:HSlider id="pageItemSize" width="80%"
-                       change="{pageIndicator. setStyle('pageItemSize', pageItemSize.value)}"
-                       maximum="40" minimum="8" stepSize="1" value="15"/>
-      </s:FormItem>
       <!-- Selected Page Item Size -->
-      <s:FormItem label="Selected page item size">
-        <s:HSlider id="selectedPageItemSize" width="80%"
-                       change="{pageIndicator. setStyle('selectedPageItemSize', selectedPageItemSize.value)}"
-                       maximum="40" minimum="8" stepSize="1" value="15"/>
-      </s:FormItem> 
+      <s:FormItem width="100%" label="Selected item size">
+        <s:HSlider id="selectedPageItemSize" 
+                 change="{pageIndicator. setStyle('selectedPageItemSize', selectedPageItemSize.value)}"
+                 maximum="40" minimum="8" stepSize="1" value="15"/>
+      </s:FormItem>
+      <!-- Page Item Size -->
+      <s:FormItem width="100%" label="Item size">
+        <s:HSlider id="pageItemSize" 
+                   change="{pageIndicator. setStyle('pageItemSize', pageItemSize.value)}"
+                   maximum="40" minimum="8" stepSize="1" value="15"/>
+      </s:FormItem>        
       <!-- Page Count -->
-      <s:FormItem label="Number of pages">
-        <s:HGroup>
-          <s:TextInput id="pageCount" width="80%" prompt="4"/>
-        </s:HGroup>
+      
+      <s:FormItem label="Number of items" width="100%">
+        <s:TextInput id="pageCount" prompt="4"/>
       </s:FormItem>
     </s:Form>
     <s:Button label="Apply" click="applyParameters(event)" />
