@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
+                  xmlns:s="library://ns.adobe.com/flex/spark"
+                  xmlns:views="com.pialabs.eskimo.views.*"
+                  xmlns:components="com.pialabs.eskimo.components.*">
+  <fx:Script>
+    <![CDATA[
+      import com.pialabs.eskimo.model.Model;
+    ]]>
+  </fx:Script>
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+  </fx:Declarations>
+
+  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+    <s:layout>
+      <s:VerticalLayout horizontalAlign="center"/>
+    </s:layout>
+    <components:ListStepper id="list" dataProvider="{Model.createPersonList()}"
+                            allowValueWrap="true"/>
+  </s:SkinnableContainer>
+  <s:SkinnableContainer width="100%" styleName="parameterContainerStyle">
+    <s:layout>
+      <s:VerticalLayout horizontalAlign="center"/>
+    </s:layout>
+    <s:Form width="100%">
+      <s:FormItem label="Allow Value Wrap">
+        <s:CheckBox id="allowValueWrap" selected="true"
+                    change="list.allowValueWrap = allowValueWrap.selected"/>
+      </s:FormItem>
+    </s:Form>
+  </s:SkinnableContainer>
+</views:SampleView>

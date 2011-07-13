@@ -42,6 +42,9 @@
                       resource="com.pialabs.eskimo.samples.MultipleChoiceListView"/>
         <model:Sample uid="1000305" name="ListWheel"
                       resource="com.pialabs.eskimo.samples.ListWheelView"/>
+        <model:Sample uid="1000306" name="ListStepper"
+                      exclusiveOS="{Model.ANDROID}"
+                      resource="com.pialabs.eskimo.samples.ListStepperView"/>
       </model:samples>
     </model:Category>
 
@@ -67,7 +70,8 @@
 
     <model:Category name="Navigation">
       <model:samples>
-        <model:Sample uid="1000600" name="PageIndicator" exclusiveOS="{Model.IOS}"
+        <model:Sample uid="1000600" name="PageIndicator"
+                      exclusiveOS="{Model.IOS}"
                       resource="com.pialabs.eskimo.samples.PageIndicatorView"/>
       </model:samples>
     </model:Category>
