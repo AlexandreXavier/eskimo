@@ -4,22 +4,22 @@
                   title="UniqueChoiceListView"
                   xmlns:views="com.pialabs.eskimo.views.*"
                   xmlns:components="com.pialabs.eskimo.components.*">
-    <fx:Declarations>
-        <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
-    </fx:Declarations>
+  <fx:Script>
+    <![CDATA[
+      import com.pialabs.eskimo.model.Model;
+    ]]>
+  </fx:Script>
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+  </fx:Declarations>
 
+  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+    <s:layout>
+      <s:VerticalLayout horizontalAlign="center"/>
+    </s:layout>
     <components:UniqueChoiceList id="list" width="100%" height="100%"
-                                 click="trace(event.target)">
-        <components:dataProvider>
-            <s:ArrayCollection>
-                <fx:Object label="Item 1"/>
-                <fx:Object label="Item 2"/>
-                <fx:Object label="Item 3"/>
-                <fx:Object label="Item 4"/>
-                <fx:Object label="Item 5"/>
-                <fx:Object label="Item 6"/>
-            </s:ArrayCollection>
-        </components:dataProvider>
-    </components:UniqueChoiceList>
+                                 dataProvider="{Model.createPersonList()}"/>
+    <s:Label text="{'Selected item : ' + list.selectedItem}" color="#000000"/>
+  </s:SkinnableContainer>
 
 </views:SampleView>

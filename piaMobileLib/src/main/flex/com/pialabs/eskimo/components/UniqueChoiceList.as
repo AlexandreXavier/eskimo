@@ -1,11 +1,11 @@
 package com.pialabs.eskimo.components
 {
-
-    /**
-     * Component represented by a ListWheel on iOs and a list of radioButton item on android.
-     * 
-     * @see com.piaction.components.CheckBoxItemRenderer
-     */
+  
+  /**
+   * Component represented by a ListWheel on iOs and a list of radioButton item on android.
+   *
+   * @see com.piaction.components.CheckBoxItemRenderer
+   */
   public class UniqueChoiceList extends ChoiceList
   {
     /**
@@ -27,37 +27,38 @@ package com.pialabs.eskimo.components
     override protected function commitProperties():void
     {
       super.commitProperties();
-        
-      if(_selectedChange)
+      
+      if (_selectedChange)
       {
-          listDisplay.selectedItem = _selectedItem;
-          _selectedChange = false;
+        listDisplay.selectedItem = _selectedItem;
+        _selectedChange = false;
       }
     }
     
-    /**  
-     * Setting this property deselects the currently selected 
+    /**
+     * Setting this property deselects the currently selected
      *  item and selects the newly specified item.
      *
-     *  <p>Setting <code>selectedItem</code> to an item that is not 
-     *  in this component results in no selection, 
+     *  <p>Setting <code>selectedItem</code> to an item that is not
+     *  in this component results in no selection,
      *  and <code>selectedItem</code> being set to <code>undefined</code>.</p>
      */
     public function set selectedItem(value:Object):void
     {
-        if(value != _selectedItem)
-        {
-            _selectedItem = value;
-            
-            _selectedChange = true;
-            
-            invalidateProperties();
-        }
+      if (value != _selectedItem)
+      {
+        _selectedItem = value;
+        
+        _selectedChange = true;
+        
+        invalidateProperties();
+      }
     }
     
     /**
-     *  The item currently selected. 
+     *  The item currently selected.
      */
+    [Bindable("change")]
     public function get selectedItem():Object
     {
       return listDisplay.selectedItem;

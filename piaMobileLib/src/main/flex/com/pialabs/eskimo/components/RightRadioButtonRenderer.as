@@ -13,61 +13,32 @@ package com.pialabs.eskimo.components
    *  The RightRadioButtonRenderer class defines the radio item renderer
    *  This contains a text component and a right-align radio button.
    */
-  public class RightRadioButtonRenderer extends LabelItemRenderer
+  public class RightRadioButtonRenderer extends RadioButtonItemRenderer
   {
     public function RightRadioButtonRenderer()
     {
       super();
-      addEventListener(MouseEvent.CLICK, clickHandler);
+      padding = 10;
     }
     
-    protected var radioButton:RadioButton;
-    
-    override protected function createChildren():void
+    protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
     {
-      super.createChildren();
-      this.radioButton = new RadioButton();
-      this.addChild(this.radioButton);
+      super.updateDisplayList(unscaledWidth, unscaledHeight);
+      
+      drawBackground(unscaledWidth, unscaledHeight);
     }
     
-    protected function clickHandler(evt:MouseEvent):void
+    override protected function measure():void
     {
-      var e:ItemClickEvent = new ItemClickEvent(ItemClickEvent.ITEM_CLICK, true);
-      e.item = data;
-      e.index = itemIndex;
-      dispatchEvent(e);
-    }
-    
-    override protected function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void
-    {
+      super.measure();
       
-      var radioButtonWidth:Number = this.getElementPreferredWidth(this.radioButton);
-      var radioButtonHeight:Number = this.getElementPreferredHeight(this.radioButton);
-      radioButtonHeight = Math.max(unscaledHeight, radioButtonHeight);
-      setElementSize(this.radioButton, radioButtonWidth, radioButtonHeight);
-      
-      var labelWidth:Number = unscaledWidth - radioButtonWidth;
-      var labelHeight:Number = getElementPreferredHeight(labelDisplay);
-      setElementSize(this.labelDisplay, labelWidth, labelHeight);
-      
-      var padding:int = 10;
-      this.setElementPosition(this.labelDisplay, padding, (radioButtonHeight - labelHeight) / 2);
-      var labelAndGap:Number = this.labelDisplay.x + this.labelDisplay.width;
-      this.setElementPosition(this.radioButton, labelAndGap - 2 * padding, 0);
-    
-    }
-    
-    override protected function commitProperties():void
-    {
-      super.commitProperties();
-      
-      radioButton.selected = selected;
+      measuredHeight = radioButton.getPreferredBoundsHeight() + padding * 2;
     }
     
     /**
      *  Renders a background for the item renderer.
      */
-    override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void
+    protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void
     {
       var colors:Array = [0x000000, 0x000000, 0x000000];
       

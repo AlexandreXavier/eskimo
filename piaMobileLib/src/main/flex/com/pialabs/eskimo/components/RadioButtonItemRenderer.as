@@ -1,7 +1,10 @@
 package com.pialabs.eskimo.components
 {
   
+  import flash.events.MouseEvent;
+  
   import mx.core.FlexGlobals;
+  import mx.events.ItemClickEvent;
   import mx.styles.CSSStyleDeclaration;
   
   import spark.components.LabelItemRenderer;
@@ -19,10 +22,21 @@ package com.pialabs.eskimo.components
   {
     protected var radioButton:RadioButton;
     
+    protected var padding:int = 0;
+    
     public function RadioButtonItemRenderer()
     {
       this.showsCaret = false;
       autoDrawBackground = false;
+      addEventListener(MouseEvent.CLICK, clickHandler, false, 0, true);
+    }
+    
+    protected function clickHandler(evt:MouseEvent):void
+    {
+      var e:ItemClickEvent = new ItemClickEvent(ItemClickEvent.ITEM_CLICK, true);
+      e.item = data;
+      e.index = itemIndex;
+      dispatchEvent(e);
     }
     
     override protected function createChildren():void
@@ -33,13 +47,19 @@ package com.pialabs.eskimo.components
       if (radioButton == null)
       {
         radioButton = new RadioButton();
-        radioButton.percentWidth = 100;
-        radioButton.percentHeight = 100;
-        
-        
         
         addElement(radioButton);
       }
+    }
+    
+    override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+    {
+      super.updateDisplayList(unscaledWidth, unscaledHeight);
+      
+      var buttonHeight:int = radioButton.getPreferredBoundsHeight();
+      
+      radioButton.setLayoutBoundsSize(unscaledWidth - 2 * padding, buttonHeight);
+      radioButton.setLayoutBoundsPosition(padding, (unscaledHeight - buttonHeight) / 2);
     }
     
     override protected function commitProperties():void
