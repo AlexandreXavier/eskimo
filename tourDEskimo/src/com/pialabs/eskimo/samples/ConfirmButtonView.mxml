@@ -4,58 +4,58 @@
                   title="ConfirmButtonView" backgroundColor="#CCCCCC"
                   xmlns:views="com.pialabs.eskimo.views.*"
                   xmlns:components="com.pialabs.eskimo.components.*">
-    <fx:Script>
-        <![CDATA[
-            import com.pialabs.eskimo.controls.SkinnableAlert;
-            
-            protected function applyParameters(event:MouseEvent):void
-            {
-                var buttonLabelText:String = getValueFromTextInput(buttonLabel);
-                if (buttonLabelText != null)
-                {
-                    confirmButton.buttonLabel = buttonLabelText;
-                }
-                var cancelButtonLabelText:String = getValueFromTextInput(cancelButtonLabel);
-                if (cancelButtonLabelText != null)
-                {
-                    confirmButton.cancelLabel = cancelButtonLabelText;
-                }
-                var confirmButtonLabelText:String = getValueFromTextInput(confirmButtonLabel);
-                if (confirmButtonLabelText != null)
-                {
-                    confirmButton.confirmLabel = confirmButtonLabelText;
-                }
-            }
-        ]]>
-    </fx:Script>
-    <fx:Declarations>
-        <!-- Place non-visual elements (e.g., services, value objects) here -->
-    </fx:Declarations>
-    <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+  <fx:Script>
+    <![CDATA[
+      import com.pialabs.eskimo.controls.SkinnableAlert;
+      
+      protected function applyParameters(event:MouseEvent):void
+      {
+        var buttonLabelText:String = getValueFromTextInput(buttonLabel);
+        if (buttonLabelText != null)
+        {
+          confirmButton.buttonLabel = buttonLabelText;
+        }
+        var cancelButtonLabelText:String = getValueFromTextInput(cancelButtonLabel);
+        if (cancelButtonLabelText != null)
+        {
+          confirmButton.cancelLabel = cancelButtonLabelText;
+        }
+        var confirmButtonLabelText:String = getValueFromTextInput(confirmButtonLabel);
+        if (confirmButtonLabelText != null)
+        {
+          confirmButton.confirmLabel = confirmButtonLabelText;
+        }
+      }
+    ]]>
+  </fx:Script>
+  <fx:Declarations>
+    <!-- Place non-visual elements (e.g., services, value objects) here -->
+  </fx:Declarations>
+  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
 
-        <components:ConfirmButton id="confirmButton" width="100%"
-                                  buttonPercentWidth="100"
-                                  buttonLabel="Confirm Button"
-                                  cancelLabel="Cancel" confirmLabel="Confirm"
-                                  confirmChromeColor="#FF3333"
-                                  confirm="SkinnableAlert.show('Do you really want to delete this person ?', 'Confirmation')"/>
-    </s:SkinnableContainer>
-    <s:SkinnableContainer width="100%" styleName="parameterContainerStyle">
-        <s:layout>
-            <s:VerticalLayout horizontalAlign="center"/>
-        </s:layout>
-        <s:Form width="100%">
-            <!-- Label-->
-            <s:FormItem label="Button label" width="100%">
-                <s:TextInput id="buttonLabel" prompt="Confirm button"/>
-            </s:FormItem>
-            <s:FormItem label="Cancel button label" width="100%">
-                <s:TextInput id="cancelButtonLabel" prompt="Cancel"/>
-            </s:FormItem>
-            <s:FormItem label="Confirm button label" width="100%">
-                <s:TextInput id="confirmButtonLabel" prompt="Confirm"/>
-            </s:FormItem>
-        </s:Form>
-        <s:Button label="Apply" click="applyParameters(event)"/>
-    </s:SkinnableContainer>
+    <components:ConfirmButton id="confirmButton" width="100%"
+                              buttonPercentWidth="100"
+                              buttonLabel="Confirm Button" cancelLabel="Cancel"
+                              confirmLabel="Confirm"
+                              confirmChromeColor="#FF3333"
+                              confirm="SkinnableAlert.show('Do you really want to delete this person ?', 'Confirmation')"/>
+  </s:SkinnableContainer>
+  <s:SkinnableContainer width="100%" styleName="parameterContainerStyle">
+    <s:layout>
+      <s:VerticalLayout horizontalAlign="center"/>
+    </s:layout>
+    <s:Form width="100%">
+      <!-- Label-->
+      <s:FormItem label="Button label" width="100%">
+        <s:TextInput id="buttonLabel" prompt="Confirm button"/>
+      </s:FormItem>
+      <s:FormItem label="Cancel button label" width="100%">
+        <s:TextInput id="cancelButtonLabel" prompt="Cancel"/>
+      </s:FormItem>
+      <s:FormItem label="Confirm button label" width="100%">
+        <s:TextInput id="confirmButtonLabel" prompt="Confirm"/>
+      </s:FormItem>
+    </s:Form>
+    <s:Button label="Apply" click="applyParameters(event)"/>
+  </s:SkinnableContainer>
 </views:SampleView>

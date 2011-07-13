@@ -30,10 +30,10 @@
           switch (sample.exclusiveOS)
           {
             case Model.ANDROID:
-              osPicto.addElement(appleIcon);
+              osPicto.addElement(androidIcon);
               break;
             case Model.IOS:
-              osPicto.addElement(androidIcon);
+              osPicto.addElement(appleIcon);
               break;
             default:
               throw new TypeError("Unknown OS:" + sample.exclusiveOS);
@@ -52,12 +52,12 @@
       protected function getValueFromTextInput(input:TextInput):String
       {
         var value:String = input.text;
-        if(value == null)
+        if (value == null)
         {
           return null;
         }
         value = StringUtil.trim(value);
-        if(value.length == 0)
+        if (value.length == 0)
         {
           return null;
         }
