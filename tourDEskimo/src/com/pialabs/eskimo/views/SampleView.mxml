@@ -20,18 +20,17 @@
       protected function onViewActivate(event:ViewNavigatorEvent):void
       {
         var sample:Sample = Sample(data);
-        var actionContentSrc:Array = [];
+        
         
         if (sample.exclusiveOS != null && sample.exclusiveOS != "")
         {
-          actionContentSrc.push(OSlabel);
           switch (sample.exclusiveOS)
           {
             case Model.ANDROID:
-              actionContentSrc.push(androidIcon);
+              osPicto.addElement(appleIcon);
               break;
             case Model.IOS:
-              actionContentSrc.push(appleIcon);
+              osPicto.addElement(androidIcon);
               break;
             default:
               throw new TypeError("Unknown OS:" + sample.exclusiveOS);
@@ -40,20 +39,28 @@
         }
         else
         {
-          actionContentSrc = [OSlabel, androidIcon, appleIcon];
+          osPicto.addElement(appleIcon);
+          osPicto.addElement(androidIcon);
         }
         
-        this.actionContent = actionContentSrc;
+        this.actionContent = [availableOS];
       }
     ]]>
   </fx:Script>
   <fx:Declarations>
-    <s:Label height="100%" color="#ffffff" id="OSlabel" text="⎮Available OS  "
-             verticalAlign="middle"/>
-    <s:BitmapImage id="appleIcon" source="{_logoAppleCls}" width="30"
-                   height="30"/>
-    <s:BitmapImage id="androidIcon" source="{_logoAndroidCls}" width="30"
-                   height="30"/>
+    <s:VGroup id="availableOS" gap="0">
+      <s:Label height="100%" color="#ffffff" fontSize="12" id="OSlabel"
+               text="Managed OS" verticalAlign="middle" width="100%"/>
+      <s:HGroup id="osPicto" horizontalAlign="center" width="100%">
+
+      </s:HGroup>
+    </s:VGroup>
+
+    <s:BitmapImage id="appleIcon" source="{_logoAppleCls}" width="25"
+                   height="25"/>
+    <s:BitmapImage id="androidIcon" source="{_logoAndroidCls}" width="25"
+                   height="25"/>
+
   </fx:Declarations>
   <s:layout>
     <s:VerticalLayout paddingTop="10" paddingLeft="3" paddingRight="3"/>

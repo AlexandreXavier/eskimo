@@ -3,140 +3,132 @@
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   title="PopOverView" xmlns:views="com.pialabs.eskimo.views.*"
                   xmlns:components="com.pialabs.eskimo.components.*">
-    <fx:Script>
-        <![CDATA[
-            import com.pialabs.eskimo.controls.SkinnableAlert;
-            
-            protected function onButtonBarClick(event:MouseEvent):void
-            {
-                
-                buttonBarPopOver.target = event.target as DisplayObject;
-                
-                
-                buttonBarPopOver.open(content, true);
-            }
-            
-            protected function onPopOverButtonClick(event:MouseEvent):void
-            {
-                SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK | SkinnableAlert.CANCEL);
-                buttonBarPopOver.close();
-            }
-            
-            protected function onButtonClick(event:MouseEvent):void
-            {
-                buttonPopOver.target = event.currentTarget as DisplayObject;
-                buttonPopOver.open(content, true);
-            }
-            
-            private function changeOrientationSelection(event:Event):void
-            {
-                var value:String = ButtonBar(event.target).selectedItem.value;
-                if (value != null)
-                {
-                    buttonPopOver.direction = value;
-                    buttonBarPopOver.direction = value;
-                }
-            }
-        ]]>
-    </fx:Script>
+  <fx:Script>
+    <![CDATA[
+      import com.pialabs.eskimo.controls.SkinnableAlert;
+      
+      protected function onButtonBarClick(event:MouseEvent):void
+      {
+        
+        buttonBarPopOver.target = event.target as DisplayObject;
+        
+        
+        buttonBarPopOver.open(content, true);
+      }
+      
+      protected function onPopOverButtonClick(event:MouseEvent):void
+      {
+        SkinnableAlert.show('Example', 'Selected item', SkinnableAlert.OK | SkinnableAlert.CANCEL);
+        buttonBarPopOver.close();
+      }
+      
+      protected function onButtonClick(event:MouseEvent):void
+      {
+        buttonPopOver.target = event.currentTarget as DisplayObject;
+        buttonPopOver.open(content, true);
+      }
+      
+      private function changeOrientationSelection(event:Event):void
+      {
+        var value:String = ButtonBar(event.target).selectedItem.value;
+        if (value != null)
+        {
+          buttonPopOver.direction = value;
+          buttonBarPopOver.direction = value;
+        }
+      }
+    ]]>
+  </fx:Script>
 
-    <fx:Declarations>
-        <!-- Place non-visual elements (e.g., services, value objects) here -->
-        <components:PopOver id="buttonBarPopOver"
-                            mouseDownOutside="buttonBarPopOver.close()"
-                            direction="vertical">
+  <fx:Declarations>
+    <!-- Place non-visual elements (e.g., services, value objects) here -->
+    <components:PopOver id="buttonBarPopOver"
+                        mouseDownOutside="buttonBarPopOver.close()"
+                        direction="vertical">
 
-            <s:Button label="Bouton pop-over" color="#000000"
-                      chromeColor="#EEEEEE" click="onPopOverButtonClick(event)"/>
-            <s:Button label="Bouton pop-over 2" color="#000000"
-                      chromeColor="#EEEEEE" click="onPopOverButtonClick(event)"/>
-            <s:Button label="Bouton pop-over 3" color="#000000"
-                      chromeColor="#EEEEEE" click="onPopOverButtonClick(event)"/>
-        </components:PopOver>
-
-
-        <!-- Place non-visual elements (e.g., services, value objects) here -->
-        <components:PopOver id="buttonPopOver"
-                            mouseDownOutside="buttonPopOver.close()"
-                            direction="vertical" width="200">
-            <s:HGroup>
-                <s:Label text="Pop-over title" color="#FFFFFF" width="100%"
-                         height="100%" paddingLeft="5" verticalAlign="middle"/>
-                <s:Button label="Cancel" click="buttonPopOver.close()"
-                          color="#FFFFFF"/>
-            </s:HGroup>
-
-            <s:TextArea height="50" prompt="Comments"/>
+      <s:Button label="Bouton pop-over" color="#000000" chromeColor="#EEEEEE"
+                click="onPopOverButtonClick(event)"/>
+      <s:Button label="Bouton pop-over 2" color="#000000" chromeColor="#EEEEEE"
+                click="onPopOverButtonClick(event)"/>
+      <s:Button label="Bouton pop-over 3" color="#000000" chromeColor="#EEEEEE"
+                click="onPopOverButtonClick(event)"/>
+    </components:PopOver>
 
 
-            <components:ConfirmButton buttonLabel="OK" cancelLabel="Cancel"
-                                      confirmLabel="Comfirm"
-                                      buttonPercentWidth="100"
-                                      buttonColor="#FFFFFF"
-                                      buttonChromeColor="#FF3333"
-                                      cancelColor="#FFFFFF"
-                                      confirmColor="#FFFFFF"
-                                      confirm="buttonPopOver.close()"/>
-        </components:PopOver>
-    </fx:Declarations>
+    <!-- Place non-visual elements (e.g., services, value objects) here -->
+    <components:PopOver id="buttonPopOver"
+                        mouseDownOutside="buttonPopOver.close()"
+                        direction="vertical" width="200">
+      <s:HGroup>
+        <s:Label text="Pop-over title" color="#FFFFFF" width="100%"
+                 height="100%" paddingLeft="5" verticalAlign="middle"/>
+        <s:Button label="Cancel" click="buttonPopOver.close()" color="#FFFFFF"/>
+      </s:HGroup>
 
-    <views:layout>
-        <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
-                          paddingLeft="10"/>
-    </views:layout>
+      <s:TextArea height="50" prompt="Comments"/>
 
 
-    <s:Group id="content" width="100%" height="100%" minHeight="100">
-        <s:ButtonBar click="onButtonBarClick(event)" width="100%" top="10">
-            <s:dataProvider>
-                <s:ArrayCollection>
-                    <fx:Object label="button 1"/>
-                    <fx:Object label="button 2"/>
-                    <fx:Object label="button 3"/>
-                    <fx:Object label="button 4"/>
-                </s:ArrayCollection>
-            </s:dataProvider>
-        </s:ButtonBar>
+      <components:ConfirmButton buttonLabel="OK" cancelLabel="Cancel"
+                                confirmLabel="Comfirm" buttonPercentWidth="100"
+                                buttonColor="#FFFFFF"
+                                buttonChromeColor="#FF3333"
+                                cancelColor="#FFFFFF" confirmColor="#FFFFFF"
+                                confirm="buttonPopOver.close()"/>
+    </components:PopOver>
+  </fx:Declarations>
 
-        <s:Button label="Click Me" click="onButtonClick(event)" bottom="0"
-                  left="0"/>
-        <s:Button label="Click Me" click="onButtonClick(event)" bottom="0"
-                  right="0"/>
-        <s:Button label="Click Me" click="onButtonClick(event)" bottom="0"
-                  horizontalCenter="0"/>
+  <views:layout>
+    <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
+                      paddingLeft="10"/>
+  </views:layout>
 
-        <s:Button label="Click Me" click="onButtonClick(event)" right="0"
-                  verticalCenter="0"/>
-        <s:Button label="Click Me" click="onButtonClick(event)" left="0"
-                  verticalCenter="0"/>
-        <s:Button label="Click Me" click="onButtonClick(event)"
-                  verticalCenter="0" horizontalCenter="0"/>
-    </s:Group>
-    <s:Form width="100%">
-        <s:FormHeading label="Parameters"/>
-        <!-- Orientation -->
-        <s:FormItem label="Orientation" width="100%">
-            <s:ButtonBar id="orientationMenu" width="100%"
-                         requireSelection="true" selectedIndex="1"
-                         change="changeOrientationSelection(event)">
-                <s:dataProvider>
-                    <s:ArrayCollection>
-                        <fx:Object label="Horizontal"
-                                   value="{PopOver.HORIZONTAL_DIRECTION}"/>
-                        <fx:Object label="Vertical"
-                                   value="{PopOver.VERTICAL_DIRECTION}"/>
-                    </s:ArrayCollection>
-                </s:dataProvider>
-            </s:ButtonBar>
-        </s:FormItem>
-        <s:FormItem label="chromeColor" width="100%">
-            <s:layout>
-                <s:HorizontalLayout/>
-            </s:layout>
-            <s:TextInput id="chromeInput" prompt="ex:0xFFFFFF" width="100%"/>
-            <s:Button label="Apply"
-                      click="buttonPopOver.setStyle('chromeColor', chromeInput.text)"/>
-        </s:FormItem>
-    </s:Form>
+
+  <s:Group id="content" width="100%" height="100%" minHeight="100">
+    <s:ButtonBar click="onButtonBarClick(event)" width="100%" top="10">
+      <s:dataProvider>
+        <s:ArrayCollection>
+          <fx:Object label="button 1"/>
+          <fx:Object label="button 2"/>
+          <fx:Object label="button 3"/>
+          <fx:Object label="button 4"/>
+        </s:ArrayCollection>
+      </s:dataProvider>
+    </s:ButtonBar>
+
+    <s:Button label="Click Me" click="onButtonClick(event)" bottom="0" left="0"/>
+    <s:Button label="Click Me" click="onButtonClick(event)" bottom="0" right="0"/>
+    <s:Button label="Click Me" click="onButtonClick(event)" bottom="0"
+              horizontalCenter="0"/>
+
+    <s:Button label="Click Me" click="onButtonClick(event)" right="0"
+              verticalCenter="0"/>
+    <s:Button label="Click Me" click="onButtonClick(event)" left="0"
+              verticalCenter="0"/>
+    <s:Button label="Click Me" click="onButtonClick(event)" verticalCenter="0"
+              horizontalCenter="0"/>
+  </s:Group>
+  <s:Form width="100%">
+    <s:FormHeading label="Parameters"/>
+    <!-- Orientation -->
+    <s:FormItem label="Orientation" width="100%">
+      <s:ButtonBar id="orientationMenu" width="100%" requireSelection="true"
+                   selectedIndex="1" change="changeOrientationSelection(event)">
+        <s:dataProvider>
+          <s:ArrayCollection>
+            <fx:Object label="Horizontal" value="{PopOver.HORIZONTAL_DIRECTION}"/>
+            <fx:Object label="Vertical" value="{PopOver.VERTICAL_DIRECTION}"/>
+          </s:ArrayCollection>
+        </s:dataProvider>
+      </s:ButtonBar>
+    </s:FormItem>
+    <s:FormItem label="chromeColor" width="100%">
+      <s:layout>
+        <s:HorizontalLayout/>
+      </s:layout>
+      <s:TextInput id="chromeInput" prompt="ex:0xFFFFFF" width="100%"/>
+      <s:Button label="Apply"
+                click="buttonPopOver.setStyle('chromeColor', chromeInput.text)"/>
+    </s:FormItem>
+  </s:Form>
 
 </views:SampleView>
