@@ -48,9 +48,9 @@
       </s:FormItem> 
       <!-- Page Count -->
       <s:FormItem label="Number of pages">
-            <s:HGroup>
-                <s:TextInput id="pageCount" width="80%" prompt="4"/>
-            </s:HGroup>
+        <s:HGroup>
+          <s:TextInput id="pageCount" width="80%" prompt="4"/>
+        </s:HGroup>
       </s:FormItem>
     </s:Form>
     <s:Button label="Apply" click="applyParameters(event)" />

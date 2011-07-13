@@ -67,7 +67,7 @@
 
     <model:Category name="Navigation">
       <model:samples>
-        <model:Sample uid="1000600" name="PageIndicator"
+        <model:Sample uid="1000600" name="PageIndicator" exclusiveOS="{Model.IOS}"
                       resource="com.pialabs.eskimo.samples.PageIndicatorView"/>
       </model:samples>
     </model:Category>
