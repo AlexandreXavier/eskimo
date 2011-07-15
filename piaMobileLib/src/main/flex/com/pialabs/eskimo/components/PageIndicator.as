@@ -68,7 +68,6 @@ package com.pialabs.eskimo.components
     private var _selectedIndexChanged:Boolean = true;
     
     private var _pageCount:int = DEFAULT_PAGE_COUNT;
-    private var _previousPageCount:int = 0;
     private var _pageCountChanged:Boolean = true;
     
     private var _pageItemColorChanged:Boolean = true;
@@ -222,7 +221,6 @@ package com.pialabs.eskimo.components
     {
       if (value != _pageCount && value > 0)
       {
-        _previousPageCount = _pageCount;
         _pageCount = value;
         _pageCountChanged = true;
         _sizeChanged = true;
@@ -303,23 +301,12 @@ package com.pialabs.eskimo.components
     {
       var index:int = 0;
       var gap:int = 0;
-      
-      // add missing elements
-      if (_pageCount > _previousPageCount)
+
+      _itemContainer.removeAllElements();
+
+      for (index = 0; index < _pageCount; index++)
       {
-        gap = _pageCount - _previousPageCount;
-        for (index = 0; index <= gap; index++)
-        {
-          _itemContainer.addElement(createPageItem());
-        }
-      }
-      else
-      {
-        // remove elements
-        while (_itemContainer.numChildren != _pageCount)
-        {
-          _itemContainer.removeElementAt(_pageCount);
-        }
+        _itemContainer.addElement(createPageItem());
       }
     }
     
