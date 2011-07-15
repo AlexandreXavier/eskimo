@@ -18,15 +18,15 @@
     </s:layout>
     <s:VGroup height="100%" id="dayGroup" horizontalAlign="center">
       <s:Label id="dayLabel"/>
-      <components:ListWheel id="dayList" height="100%" minHeight="10" width="90"/>
+      <components:ListWheel id="dayList" height="100%" minHeight="10" minWidth="75"/>
     </s:VGroup>
     <s:VGroup height="100%" id="monthGroup" horizontalAlign="center">
       <s:Label id="monthLabel"/>
-      <components:ListWheel id="monthList" height="100%" minHeight="10" width="90"/>
+      <components:ListWheel id="monthList" height="100%" minHeight="10" minWidth="75"/>
     </s:VGroup>
     <s:VGroup height="100%" id="yearGroup" horizontalAlign="center">
       <s:Label id="yearLabel"/>
-      <components:ListWheel id="yearList" height="100%" minHeight="10"  width="90"/>
+      <components:ListWheel id="yearList" height="100%" minHeight="10"  minWidth="75"/>
     </s:VGroup>      
   </s:Group>
 </s:Skin>

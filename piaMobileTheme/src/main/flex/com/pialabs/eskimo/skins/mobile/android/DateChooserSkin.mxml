@@ -22,18 +22,18 @@
     <s:VGroup width="100%" height="100%" id="dayGroup" horizontalAlign="center">
       <s:Label id="dayLabel"/>
       <components:ListStepper allowValueWrap="true" id="dayList" height="100%"
-                              minHeight="10" width="90"/>
+                              minHeight="10" minWidth="75"/>
     </s:VGroup>
     <s:VGroup width="100%" height="100%" id="monthGroup"
               horizontalAlign="center">
       <s:Label id="monthLabel"/>
       <components:ListStepper allowValueWrap="true" id="monthList" height="100%"
-                              minHeight="10" width="90"/>
+                              minHeight="10" minWidth="75"/>
     </s:VGroup>
     <s:VGroup width="100%" height="100%" id="yearGroup" horizontalAlign="center">
       <s:Label id="yearLabel"/>
       <components:ListStepper allowValueWrap="true" id="yearList" height="100%"
-                              minHeight="10" width="90"/>
+                              minHeight="10" minWidth="75"/>
     </s:VGroup>
   </s:Group>
 </s:Skin>

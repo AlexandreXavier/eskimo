@@ -1,10 +1,7 @@
 package com.pialabs.eskimo.utils
 {
   import flash.globalization.DateTimeFormatter;
-  import flash.globalization.DateTimeStyle;
   import flash.globalization.LocaleID;
-  
-  import spark.globalization.StringTools;
 
   public class DateUtils
   {
@@ -64,14 +61,9 @@ package com.pialabs.eskimo.utils
       var date:Date = new Date();
       date.date = 1;
       date.month = month - 1;
-      if(mPattern.length > 3)
-      {
-        dateTimeFormatter.setDateTimePattern("MMM");
-      }
-      else
-      {
-        dateTimeFormatter.setDateTimePattern(mPattern);
-      }
+
+      dateTimeFormatter.setDateTimePattern(mPattern);
+
       return dateTimeFormatter.format(date);
     }
    
@@ -79,7 +71,7 @@ package com.pialabs.eskimo.utils
     {
       if(dPattern == null)
       {
-        return "" + day;
+        return day.toString();
       }
       var patternSize:int = dPattern.length;
 
@@ -90,7 +82,7 @@ package com.pialabs.eskimo.utils
     {
       if(yPattern == null)
       {
-        return "" + year;
+        return year.toString();
       }
       var patternSize:int = yPattern.length;
       if(patternSize <= 2)
@@ -109,7 +101,7 @@ package com.pialabs.eskimo.utils
       }
       else
       {
-        valueStr = "" + value;
+        valueStr = value.toString();
       }
       return valueStr;
     }
