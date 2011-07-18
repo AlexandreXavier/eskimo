@@ -7,7 +7,37 @@
                     decorator="@Embed(source='assets/icon/fleche.png')">
   <fx:Script>
     <![CDATA[
-      
+      override protected function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void
+      {
+        super.layoutContents(unscaledWidth, unscaledHeight);
+        
+        // start laying out our children now
+        var iconWidth:Number = 0;
+        var iconHeight:Number = 0;
+        var IconAlignOffset:int = 6;
+        
+        var paddingLeft:Number = getStyle("paddingLeft");
+        var paddingTop:Number = getStyle("paddingTop");
+        var paddingBottom:Number = getStyle("paddingBottom");
+        
+        var viewHeight:Number = unscaledHeight - paddingTop - paddingBottom;
+        
+        
+        // icon is on the left
+        if (iconDisplay)
+        {
+          // set the icon's position and size
+          setElementSize(iconDisplay, this.iconWidth, this.iconHeight);
+          
+          iconWidth = iconDisplay.getLayoutBoundsWidth();
+          iconHeight = iconDisplay.getLayoutBoundsHeight();
+          
+          
+          // use vAlign to position the icon.
+          var iconDisplayY:Number = Math.round(0.5 * (unscaledHeight - iconHeight));
+          setElementPosition(iconDisplay, paddingLeft, iconDisplayY - IconAlignOffset);
+        }
+      }
     ]]>
   </fx:Script>
 
