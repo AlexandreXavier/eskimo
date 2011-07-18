@@ -22,7 +22,7 @@
       
       
       [Bindable]
-      [Embed(source = "assets/icon/eskimo.png")]
+      [Embed(source = "assets/eskimo.png")]
       private var _logo:Class;
       
       [Bindable]

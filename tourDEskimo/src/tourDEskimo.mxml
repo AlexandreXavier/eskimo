@@ -2,7 +2,7 @@
 <s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
                             xmlns:s="library://ns.adobe.com/flex/spark"
                             firstView="com.pialabs.eskimo.views.CategoryListView"
-                            splashScreenImage="@Embed('assets/icon/eskimo.png')"
+                            splashScreenImage="@Embed('assets/eskimo-splash.png')"
                             applicationDPI="160">
   <fx:Style source="style.css"/>
   <fx:Declarations>
