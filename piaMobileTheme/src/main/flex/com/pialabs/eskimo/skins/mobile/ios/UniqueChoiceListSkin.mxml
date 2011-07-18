@@ -12,8 +12,6 @@
   name=listDisplay, type=spark.components.List, required=true
   -->
 
-  <components:ListWheel id="listDisplay" maxHeight="150" maxWidth="400"
-                        width="100%" height="100%" verticalCenter="0"
-                        horizontalCenter="0"/>
+  <components:ListWheel id="listDisplay" verticalCenter="0" horizontalCenter="0"/>
 
 </s:Skin>

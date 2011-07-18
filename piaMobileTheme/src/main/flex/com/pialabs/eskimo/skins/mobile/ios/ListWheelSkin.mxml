@@ -130,6 +130,13 @@
         
         return maxItem;
       }
+      
+      override protected function measure():void
+      {
+        super.measure();
+        
+        measuredHeight = 150;
+      }
     ]]>
   </fx:Script>
 
