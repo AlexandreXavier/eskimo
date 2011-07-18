@@ -17,7 +17,7 @@
     <s:layout>
       <s:VerticalLayout horizontalAlign="center"/>
     </s:layout>
-    <components:UniqueChoiceList id="list" width="190" height="150"
+    <components:UniqueChoiceList id="list" width="190" height="100%"
                                  dataProvider="{Model.createPersonList()}"/>
     <s:Label text="{'Selected item : ' + list.selectedItem}" color="#000000"/>
   </s:SkinnableContainer>
