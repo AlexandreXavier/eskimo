@@ -7,7 +7,7 @@
   <fx:Style source="style.css"/>
   <fx:Script>
     <![CDATA[
-
+      
     ]]>
   </fx:Script>
   <fx:Declarations>

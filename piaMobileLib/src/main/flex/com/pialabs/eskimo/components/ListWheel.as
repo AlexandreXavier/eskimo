@@ -247,7 +247,7 @@ package com.pialabs.eskimo.components
       if (selectedIndex == -1)
       {
         selectedIndex = 0;
-        dispatchEvent(new IndexChangeEvent("change"));
+          //dispatchEvent(new IndexChangeEvent("change"));
       }
       
       if (_selectedItemChanged)
