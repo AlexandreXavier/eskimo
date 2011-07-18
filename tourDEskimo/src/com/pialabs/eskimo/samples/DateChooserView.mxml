@@ -15,12 +15,6 @@
       
       protected function applyParameters(event:Event):void
       {
-        var dateChooser:DateChooser = dateGroup.getChildByName("dateChooser") as DateChooser;
-        dateGroup.removeElement(dateChooser);
-        
-        dateChooser = new DateChooser();
-        dateChooser.name = "dateChooser";
-        
         var minYearText:String = getValueFromTextInput(minYearTextInput);
         if (minYearText != null)
         {
@@ -38,7 +32,6 @@
         {
           dateChooser.datePattern = datePatternText;
         }
-        dateGroup.addElementAt(dateChooser, 0);
       }
     ]]>
   </fx:Script>
@@ -47,7 +40,8 @@
     <s:VGroup width="100%" horizontalAlign="center">
       <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
         <s:VGroup id="dateGroup" horizontalAlign="center" width="100%">
-          <components:DateChooser name="dateChooser"/>
+          <components:DateChooser id="dateChooser"
+                                  change="trace(dateChooser.selectedDate)"/>
         </s:VGroup>
       </s:SkinnableContainer>
 
@@ -59,7 +53,8 @@
         <s:Form width="100%">
           <s:FormItem label="Date pattern" styleName="verticalFormItemStyle"
                       width="100%">
-            <s:ButtonBar id="datePattern" width="100%" requireSelection="true">
+            <s:ButtonBar id="datePattern" width="100%" requireSelection="true"
+                         change="applyParameters(event)">
               <s:dataProvider>
                 <s:ArrayCollection>
                   <fx:Object label="default"
