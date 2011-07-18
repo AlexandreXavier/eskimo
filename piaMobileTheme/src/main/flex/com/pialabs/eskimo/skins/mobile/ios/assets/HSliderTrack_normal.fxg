@@ -8,7 +8,7 @@
 	<!--- The track braground -->
   <Rect id="background" x="0" y="0" height="13" width="33" radiusX="6">
     <stroke>
-      <SolidColorStroke color="#818181"/>
+      <SolidColorStroke color="#818181" pixelHinting="true"/>
     </stroke>
   </Rect>
   

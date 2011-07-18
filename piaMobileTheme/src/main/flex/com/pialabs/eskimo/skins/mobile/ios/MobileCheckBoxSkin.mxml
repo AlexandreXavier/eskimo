@@ -133,6 +133,7 @@
                 border.radiusX = buttonGroup.height / 2;
                 backgroundMaskRect.radiusX = buttonGroup.height / 2;
                 glowMaskRect.radiusX = buttonGroup.height / 4;
+                onBackgroundRect.topLeftRadiusX = onBackgroundRect.bottomLeftRadiusX = buttonGroup.height / 2;
                 
                 background.width = buttonGroup.width * 2 - cursorGroup.width;
                 
@@ -301,7 +302,7 @@
             </s:Rect>
 
             <s:Rect id="onBackgroundRect" top="0" left="0" right="75" bottom="0"
-                    radiusX="13">
+                    topLeftRadiusX="13" bottomLeftRadiusX="13">
                 <s:fill>
                     <s:SolidColor id="onBackgroundColor" color="#0073F5"/>
                 </s:fill>
