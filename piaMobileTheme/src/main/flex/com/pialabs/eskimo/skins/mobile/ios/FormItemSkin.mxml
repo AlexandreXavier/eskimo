@@ -73,6 +73,24 @@ Move the indicator tooltip string to a resource bundle
           indicatorDisplay.source = indicatorSource;
         }
         
+        if (sequenceLabelDisplay.text == "")
+        {
+          sequenceLabelDisplay.visible = sequenceLabelDisplay.includeInLayout = false;
+        }
+        else
+        {
+          sequenceLabelDisplay.visible = sequenceLabelDisplay.includeInLayout = true;
+        }
+        
+        if (helpContentGroup.numElements < 0)
+        {
+          helpContentGroup.visible = helpContentGroup.includeInLayout = false;
+        }
+        else
+        {
+          helpContentGroup.visible = helpContentGroup.includeInLayout = true;
+        }
+        
         super.updateDisplayList(unscaledWidth, unscaledHeight);
       }
       
@@ -121,7 +139,7 @@ Move the indicator tooltip string to a resource bundle
       </s:constraintColumns>
       <s:constraintRows>
         <!--- @private -->
-        <s:ConstraintRow id="row1" baseline="maxAscent:2" height="100%"/>
+        <s:ConstraintRow id="row1" height="100%"/>
       </s:constraintRows>
     </s:FormItemLayout>
   </s:layout>
@@ -135,9 +153,8 @@ Move the indicator tooltip string to a resource bundle
   </s:Rect>
 
   <!--- @copy spark.components.FormItem#sequenceLabelDisplay -->
-  <s:Label id="sequenceLabelDisplay" fontWeight="bold" left="sequenceCol:10"
-           includeInLayout="false" visible="false" right="sequenceCol:5"
-           bottom="row1:10" baseline="row1:0"/>
+  <s:Label id="sequenceLabelDisplay" fontWeight="bold" left="sequenceCol:0"
+           right="sequenceCol:5" bottom="row1:10" baseline="row1:0"/>
   <!--- @copy spark.components.FormItem#labelDisplay -->
   <s:Label id="labelDisplay" fontWeight="bold" left="labelCol:0"
            verticalAlign="middle" right="labelCol:5" bottom="row1:0"
@@ -145,8 +162,7 @@ Move the indicator tooltip string to a resource bundle
   <!--- @copy spark.components.SkinnableContainer#contentGroup -->
   <!-- Don't show the error tip on the content elements -->
   <s:Group id="contentGroup" showErrorTip="false" showErrorSkin="true"
-           left="contentCol:0" right="contentCol:1" baseline="row1:0"
-           bottom="row1:0">
+           left="contentCol:0" right="contentCol:1" bottom="row1:0" top="row1:0">
     <s:layout>
       <s:VerticalLayout horizontalAlign="justify" verticalAlign="middle"/>
     </s:layout>

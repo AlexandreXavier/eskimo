@@ -55,6 +55,11 @@
     {
         color: #000000;
     }
+    s|FormItem #sequenceDisplay
+    {
+        color: #000000;
+    }
+    
     s|FormItem s|TextInput
     {
         borderVisible: false;

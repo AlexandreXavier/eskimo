@@ -73,6 +73,24 @@ Move the indicator tooltip string to a resource bundle
           indicatorDisplay.source = indicatorSource;
         }
         
+        if (sequenceLabelDisplay.text == "")
+        {
+          sequenceLabelDisplay.visible = sequenceLabelDisplay.includeInLayout = false;
+        }
+        else
+        {
+          sequenceLabelDisplay.visible = sequenceLabelDisplay.includeInLayout = true;
+        }
+        
+        if (helpContentGroup.numElements < 0)
+        {
+          helpContentGroup.visible = helpContentGroup.includeInLayout = false;
+        }
+        else
+        {
+          helpContentGroup.visible = helpContentGroup.includeInLayout = true;
+        }
+        
         super.updateDisplayList(unscaledWidth, unscaledHeight);
       }
       
@@ -119,16 +137,28 @@ Move the indicator tooltip string to a resource bundle
     </s:fill>
   </s:Rect>
 
-  <!--- @copy spark.components.FormItem#sequenceLabelDisplay -->
-  <s:Label id="sequenceLabelDisplay" fontWeight="bold" left="0" right="0"
-           bottom="0" baseline="0" includeInLayout="false" visible="false"/>
-  <!--- @copy spark.components.FormItem#labelDisplay -->
-  <s:Label id="labelDisplay" fontWeight="bold" left="0" right="0" bottom="0"
-           baseline="0"/>
+  <s:HGroup width="100%" height="100%">
+    <!--- @copy spark.components.FormItem#sequenceLabelDisplay -->
+    <s:Label id="sequenceLabelDisplay" fontWeight="bold" height="100%"
+             baseline="0"/>
+    <!--- @copy spark.components.FormItem#labelDisplay -->
+    <s:Label id="labelDisplay" fontWeight="bold" height="100%" baseline="0"/>
+
+
+    <!--- @copy spark.components.FormItem#helpContentGroup -->
+    <s:Group id="helpContentGroup" excludeFrom="errorStates" fontStyle="italic"
+             fontWeight="normal" color="0x666666" width="100%" height="100%"
+             baseline="0"/>
+    <!--- @copy spark.components.FormItem#errorTextDisplay -->
+    <s:RichText id="errorTextDisplay" includeIn="errorStates" fontStyle="italic"
+                fontWeight="normal" color="0xFE0000" width="100%" height="100%"
+                baseline="0" maxDisplayedLines="-1"/>
+  </s:HGroup>
+
   <!--- @copy spark.components.SkinnableContainer#contentGroup -->
   <!-- Don't show the error tip on the content elements -->
   <s:Group id="contentGroup" showErrorTip="false" showErrorSkin="true" left="0"
-           right="0" baseline="0" bottom="0">
+           right="0" baseline="0" bottom="10">
     <s:layout>
       <s:VerticalLayout horizontalAlign="justify"/>
     </s:layout>
@@ -143,13 +173,4 @@ Move the indicator tooltip string to a resource bundle
              toolTip.errorStates="" includeIn="requiredStates,errorStates"/>
   </s:Group>
 
-  <!--- @copy spark.components.FormItem#helpContentGroup -->
-  <s:Group id="helpContentGroup" excludeFrom="errorStates" fontStyle="italic"
-           fontWeight="normal" color="0x666666" left="helpCol:27"
-           right="helpCol:10" bottom="row1:10" baseline="row1:0"/>
-  <!--- @copy spark.components.FormItem#errorTextDisplay -->
-  <s:RichText id="errorTextDisplay" includeIn="errorStates" fontStyle="italic"
-              fontWeight="normal" color="0xFE0000" left="helpCol:27"
-              right="helpCol:10" bottom="row1:10" baseline="row1:0"
-              maxDisplayedLines="-1"/>
 </s:Skin>
