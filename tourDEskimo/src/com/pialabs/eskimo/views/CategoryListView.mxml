@@ -2,7 +2,7 @@
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark" title="CategoryListView"
         viewActivate="onViewActivate(event)"
-        xmlns:icons="com.pialabs.eskimo.icons.*">
+        xmlns:icons="com.pialabs.eskimo.icons.*" xmlns:assets="assets.*">
   <s:layout>
     <s:VerticalLayout/>
   </s:layout>
@@ -20,10 +20,6 @@
       import spark.events.IndexChangeEvent;
       import spark.events.ViewNavigatorEvent;
       
-      
-      [Bindable]
-      [Embed(source = "assets/eskimo.png")]
-      private var _logo:Class;
       
       [Bindable]
       private var _dp:ArrayCollection;
@@ -57,7 +53,7 @@
   <!-- Title -->
   <s:titleContent>
     <s:HGroup horizontalAlign="center" color="#ffffff" width="100%">
-      <s:BitmapImage source="{_logo}"/>
+      <assets:logo />
     </s:HGroup>
   </s:titleContent>
   <!-- Content-->
