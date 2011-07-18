@@ -2,72 +2,73 @@
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark" title="{data.name}">
 
-    <s:layout>
-        <s:VerticalLayout paddingTop="10" horizontalAlign="center"/>
-    </s:layout>
+  <s:layout>
+    <s:VerticalLayout paddingTop="10" horizontalAlign="center"/>
+  </s:layout>
 
-    <fx:Script>
-        <![CDATA[
-            import com.pialabs.eskimo.model.Category;
-            import com.pialabs.eskimo.model.Sample;
-            
-            import mx.collections.ArrayCollection;
-            import mx.utils.StringUtil;
-            
-            import spark.events.IndexChangeEvent;
-            import spark.events.TextOperationEvent;
-            import spark.events.ViewNavigatorEvent;
-            
-            [Bindable]
-            private var _dp:ArrayCollection;
-            
-            private var _filterUpper:String = "";
-            
-            public override function set data(value:Object):void
-            {
-                super.data = value;
-                if (value is Category)
-                {
-                    var category:Category = Category(value);
-                    _dp = new ArrayCollection(category.samples);
-                    _dp.filterFunction = filterSample;
-                }
-            }
-            
-            protected function onSampleListChange(event:IndexChangeEvent):void
-            {
-                var seletedItem:Sample = Sample(sampleList.selectedItem);
-                navigator.pushView(seletedItem.resource, sampleList.selectedItem);
-            }
-            
-            protected function filterChange(event:TextOperationEvent):void
-            {
-                _filterUpper = filterInput.text.toUpperCase();
-                _dp.refresh();
-            }
-            
-            private function filterSample(o:Object):Boolean
-            {
-                var sample:Sample = Sample(o);
-                if (sample.name.toUpperCase().indexOf(_filterUpper) != -1)
-                {
-                    return true;
-                }
-                return false;
-            }
-        ]]>
-    </fx:Script>
-    <fx:Declarations>
-        <!-- Place non-visual elements (e.g., services, value objects) here -->
-    </fx:Declarations>
+  <fx:Script>
+    <![CDATA[
+      import com.pialabs.eskimo.model.Category;
+      import com.pialabs.eskimo.model.Sample;
+      
+      import mx.collections.ArrayCollection;
+      import mx.utils.StringUtil;
+      
+      import spark.events.IndexChangeEvent;
+      import spark.events.TextOperationEvent;
+      import spark.events.ViewNavigatorEvent;
+      
+      [Bindable]
+      private var _dp:ArrayCollection;
+      
+      private var _filterUpper:String = "";
+      
+      public override function set data(value:Object):void
+      {
+        super.data = value;
+        if (value is Category)
+        {
+          var category:Category = Category(value);
+          _dp = new ArrayCollection(category.samples);
+          _dp.filterFunction = filterSample;
+        }
+      }
+      
+      protected function onSampleListChange(event:IndexChangeEvent):void
+      {
+        var seletedItem:Sample = Sample(sampleList.selectedItem);
+        navigator.pushView(seletedItem.resource, sampleList.selectedItem);
+      }
+      
+      protected function filterChange(event:TextOperationEvent):void
+      {
+        _filterUpper = filterInput.text.toUpperCase();
+        _dp.refresh();
+      }
+      
+      private function filterSample(o:Object):Boolean
+      {
+        var sample:Sample = Sample(o);
+        if (sample.name.toUpperCase().indexOf(_filterUpper) != -1)
+        {
+          return true;
+        }
+        return false;
+      }
+    ]]>
+  </fx:Script>
+  <fx:Declarations>
+    <!-- Place non-visual elements (e.g., services, value objects) here -->
+  </fx:Declarations>
 
-    <s:navigationContent>
-        <s:Button label="Back" click="navigator.popToFirstView()"/>
-    </s:navigationContent>
+  <s:navigationContent>
+    <s:Button label="Back" click="navigator.popToFirstView()"/>
+  </s:navigationContent>
 
-    <s:TextInput id="filterInput" change="filterChange(event)" prompt="Search"
-                 paddingLeft="10" paddingRight="10"/>
-    <s:List id="sampleList" width="100%" height="100%" dataProvider="{_dp}"
-            labelField="name" change="onSampleListChange(event)">
-    </s:List>
+  <s:TextInput id="filterInput" change="filterChange(event)" prompt="Search"
+               paddingLeft="10" paddingRight="10"/>
+  <s:List id="sampleList" width="100%" height="100%" dataProvider="{_dp}"
+          labelField="name" change="onSampleListChange(event)"
+          itemRenderer="com.pialabs.eskimo.views.SampleItemRenderer">
+  </s:List>
 </s:View>
