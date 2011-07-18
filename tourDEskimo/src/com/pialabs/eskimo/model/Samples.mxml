@@ -73,7 +73,8 @@
         <model:Sample uid="1000600" name="PageIndicator"
                       exclusiveOS="{Model.IOS}"
                       resource="com.pialabs.eskimo.samples.PageIndicatorView"/>
-        <model:Sample uid="1000601" name="TextInput" exclusiveOS="{Model.IOS}"
+        <model:Sample uid="1000601" name="SearchTextInput"
+                      exclusiveOS="{Model.IOS}"
                       resource="com.pialabs.eskimo.samples.SearchTextInputView"/>
       </model:samples>
     </model:Category>

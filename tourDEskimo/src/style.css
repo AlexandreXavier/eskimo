@@ -2,6 +2,7 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace samples "com.pialabs.eskimo.samples.*";
 @namespace views "com.pialabs.eskimo.views.*";
+@namespace components "com.pialabs.eskimo.components.*";
 
 @media (os-platform:"ANDROID")
 {
@@ -28,6 +29,11 @@
   .parameterContainerStyle
   {
     skinClass: ClassReference("com.pialabs.eskimo.skins.AndroidContainerSkin");
+  }
+  
+  components|DeletableList s|Button
+  {
+    textShadowColor: #000000;
   }
 }
 @media (os-platform:"IOS")
