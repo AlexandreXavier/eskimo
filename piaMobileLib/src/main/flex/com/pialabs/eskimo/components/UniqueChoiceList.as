@@ -1,5 +1,6 @@
 package com.pialabs.eskimo.components
 {
+  import spark.events.IndexChangeEvent;
   
   /**
    * Component represented by a ListWheel on iOs and a list of radioButton item on android.
@@ -31,6 +32,7 @@ package com.pialabs.eskimo.components
       if (_selectedChange)
       {
         listDisplay.selectedItem = _selectedItem;
+        dispatchEvent(new IndexChangeEvent("change"));
         _selectedChange = false;
       }
     }

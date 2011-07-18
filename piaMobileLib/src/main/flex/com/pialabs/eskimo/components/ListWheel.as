@@ -22,6 +22,7 @@ package com.pialabs.eskimo.components
     import spark.effects.animation.SimpleMotionPath;
     import spark.effects.easing.EasingFraction;
     import spark.effects.easing.Sine;
+    import spark.events.IndexChangeEvent;
     
     use namespace mx_internal;
     
@@ -243,6 +244,12 @@ package com.pialabs.eskimo.components
             super.updateDisplayList(unscaledWidth, unscaledHeight);
             dispatchEvent(new Event("rowHeightChange"));
             
+            if(selectedIndex == -1)
+            {
+              selectedIndex = 0;
+              dispatchEvent(new IndexChangeEvent("change"));
+            }
+
             if (_selectedItemChanged)
             {
                 ensureIndexIsVisible(selectedIndex % _dataProvider.length + dataProvider.length);
