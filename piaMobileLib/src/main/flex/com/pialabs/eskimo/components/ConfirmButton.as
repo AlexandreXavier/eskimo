@@ -15,21 +15,21 @@ package com.pialabs.eskimo.components
   /**
    *  Dispatched when the button is clicked.
    *
-   *  @eventType com.piaction.events.ConfirmEvent.ENTER_CONFIRMATION
+   *  @eventType com.pialabs.eskimo.events.ConfirmEvent.ENTER_CONFIRMATION
    */
   [Event(name = "enterConfirmation", type = "com.pialabs.eskimo.events.ConfirmEvent")]
   
   /**
    *  Dispatched when the cancel button is clicked.
    *
-   *  @eventType com.piaction.events.ConfirmEvent.CANCEL
+   *  @eventType com.pialabs.eskimo.events.ConfirmEvent.CANCEL
    */
   [Event(name = "cancel", type = "com.pialabs.eskimo.events.ConfirmEvent")]
   
   /**
    *  Dispatched when the confirm button is clicked.
    *
-   *  @eventType com.piaction.events.ConfirmEvent.CONFIRM
+   *  @eventType com.pialabs.eskimo.events.ConfirmEvent.CONFIRM
    */
   [Event(name = "confirm", type = "com.pialabs.eskimo.events.ConfirmEvent")]
   

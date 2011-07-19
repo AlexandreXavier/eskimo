@@ -7,7 +7,6 @@
              xmlns:s="library://ns.adobe.com/flex/spark"
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009" minWidth="112"
              alpha.disabled="0.5" blendMode="normal"
-             xmlns:combo="com.piaction.timesheet.tablet.presentation.common.combo.*"
              clipAndEnableScrolling="true" contentBackgroundAlpha="0">
 
   <fx:Metadata>

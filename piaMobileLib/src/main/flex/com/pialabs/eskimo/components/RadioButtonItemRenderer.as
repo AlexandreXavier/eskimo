@@ -16,7 +16,7 @@ package com.pialabs.eskimo.components
    *  The RadioButtonItemRenderer class defines the radio item renderer
    *  This is a simple item renderer with a single radio button component.
    *
-   *  @see com.piaction.components.UniqueChoiceList
+   *  @see com.pialabs.eskimo.components.UniqueChoiceList
    */
   public class RadioButtonItemRenderer extends ItemRenderer
   {

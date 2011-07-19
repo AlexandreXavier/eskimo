@@ -5,7 +5,7 @@ package com.pialabs.eskimo.components
   /**
    * Component represented by a ListWheel on iOs and a list of radioButton item on android.
    *
-   * @see com.piaction.components.CheckBoxItemRenderer
+   * @see com.pialabs.eskimo.components.CheckBoxItemRenderer
    */
   public class UniqueChoiceList extends ChoiceList
   {
