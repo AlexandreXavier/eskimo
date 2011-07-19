@@ -4,16 +4,39 @@
   <fx:Declarations>
     <!-- Place non-visual elements (e.g., services, value objects) here -->
   </fx:Declarations>
-  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
-    <s:layout>
-      <s:VerticalLayout/>
-    </s:layout>
-    <s:Label text="Welcome to Tour D'eskimo" />
-    <s:Label fontSize="14">
-      <s:text>Add Text here</s:text>
-    </s:Label>
-  </s:SkinnableContainer>
+  <s:layout>
+    <s:VerticalLayout paddingTop="5" paddingBottom="5" paddingLeft="5" paddingRight="5"/>
+  </s:layout>
   
+  <s:Scroller width="100%" height="100%">
+    <s:Group>
+      <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+        <s:layout>
+          <s:VerticalLayout/>
+        </s:layout>
+        <s:Label text="Welcome to Tour D'eskimo" fontWeight="bold"/>
+        <s:Label fontSize="14" width="100%"
+                 text="The aim of this project is to show you how to use the eskimo library. The look and feel of samples will be different according to the execution platform (iOS, Android)."/>
+        <s:Spacer height="5"/>
+        <s:Label fontSize="14" width="100%"
+                 text="Example: The checkbox sample will display a classic checkbox on Android and a switch button style on iOS."/>
+        <s:Spacer height="10"/>
+        <s:Label text="Learn more about Eskimo:" fontWeight="bold"/>
+        <s:Button label="Eskimo website" click="navigateToURL(new URLRequest('http://e-skimo.com'))" width="100%"/>
+        
+        <s:Spacer height="10"/>
+        
+        <s:Label text="Developed by:" fontWeight="bold"/>
+        <s:Button label="People In Action" click="navigateToURL(new URLRequest('http://www.pia-conseil.com'))" width="100%"/>
+        
+        <s:Spacer height="10"/>
+        
+        <s:Label text="Contact us:" fontWeight="bold"/>
+        <s:Button label="eskimo@pia-conseil.com" click="navigateToURL(new URLRequest('mailto:eskimo@pia-conseil.com'))" width="100%"/>
+       
+      </s:SkinnableContainer>
+    </s:Group>
+  </s:Scroller>
   <s:navigationContent>
     <s:Button label="Back" click="navigator.popView()"/>
   </s:navigationContent>
