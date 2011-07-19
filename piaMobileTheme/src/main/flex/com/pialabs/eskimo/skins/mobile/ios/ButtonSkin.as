@@ -16,7 +16,7 @@ package com.pialabs.eskimo.skins.mobile.ios
   [Style(name = "fillAlpha", inherit = "no", type = "Number")]
   
   /**
-   * The IOS skin class for the Spark Button component.
+   * The iOS skin class for the Spark Button component.
    *
    *  @see spark.components.Button
    */

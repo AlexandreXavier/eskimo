@@ -8,6 +8,11 @@ package com.pialabs.eskimo.skins.mobile.ios
   import spark.skins.mobile.TextInputSkin;
   
   [Style(name = "icon", inherit = "no", type = "Class")]
+  
+  /**
+   * The iOS skin class for the Spark TextInput component
+   * @see spark.components.TextInput
+   */
   public class SearchTextInputSkin extends spark.skins.mobile.TextInputSkin
   {
     private var _icon:DisplayObject;
