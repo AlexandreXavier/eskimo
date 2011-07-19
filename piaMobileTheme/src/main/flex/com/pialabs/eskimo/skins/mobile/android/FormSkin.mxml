@@ -10,19 +10,11 @@ in accordance with the terms of the license agreement accompanying it.
 
 -->
 
-<!--- The default skin class for a Spark Form container.
-
-This skin defines a contentGroup for the Form container with a
-FormLayout as its layout object. The FormLayout is a VerticalLayout
-that has additional logic to align the columns of FormItems.
+<!--- The android skin class for a Spark Form container.
 
 @see spark.components.Form
 @see spark.layouts.FormLayout
 
-@langversion 3.0
-@playerversion Flash 10
-@playerversion AIR 1.5
-@productversion Flex 4.5
 -->
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark"

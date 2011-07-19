@@ -11,14 +11,11 @@ in accordance with the terms of the license agreement accompanying it.
 
 -->
 
-<!--- The default skin class for the Spark SkinnableDataContainer container.
+<!--- The android skin class for the Eskimo ListStepper component.
 
-@see spark.components.SkinnableDataContainer
+@see com.pialabs.eskimo.components.ListStepper
 
-@langversion 3.0
-@playerversion Flash 10
-@playerversion AIR 1.5
-@productversion Flex 4
+
 -->
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark">

@@ -5,6 +5,14 @@ package com.pialabs.eskimo.skins.mobile.android
     import spark.components.IconPlacement;
     import spark.skins.mobile.RadioButtonSkin;
     
+    /**
+     * The android skin class for the Spark RadioButton component.
+     * 
+     * Extends spark.skins.mobile.RadioButtonSkin to have space between the radiobutton and its label.
+     * 
+     * @see spark.components.RadioButton
+     * 
+     */
     public class RadioButtonSkin extends spark.skins.mobile.RadioButtonSkin
     {
         public function RadioButtonSkin()

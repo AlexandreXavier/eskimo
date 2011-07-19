@@ -5,6 +5,14 @@ package com.pialabs.eskimo.skins.mobile.android
     import spark.components.IconPlacement;
     import spark.skins.mobile.CheckBoxSkin;
     
+    /**
+     * The android skin class for the Spark Checkbox component.
+     * 
+     * Extends spark.skins.mobile.CheckBoxSkin to have space between the checkbox and its label.
+     * 
+     * @see spark.components.CheckBox
+     * 
+     */
     public class CheckBoxSkin extends spark.skins.mobile.CheckBoxSkin
     {
         public function CheckBoxSkin()
