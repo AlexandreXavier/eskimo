@@ -14,24 +14,23 @@
         <s:layout>
           <s:VerticalLayout/>
         </s:layout>
-        <s:Label text="Welcome to Tour D'eskimo" fontWeight="bold"/>
+        <s:Label text="Welcome to Tour D'Eskimo" fontWeight="bold"/>
         <s:Label fontSize="14" width="100%"
                  text="The aim of this project is to show you how to use the eskimo library. The look and feel of samples will be different according to the execution platform (iOS, Android)."/>
-        <s:Spacer height="5"/>
+
         <s:Label fontSize="14" width="100%"
                  text="Example: The checkbox sample will display a classic checkbox on Android and a switch button style on iOS."/>
-        <s:Spacer height="10"/>
+        <s:Spacer height="5"/>
         <s:Label text="Learn more about Eskimo:" fontWeight="bold"/>
         <s:Button label="Eskimo website" click="navigateToURL(new URLRequest('http://e-skimo.com'))" width="100%"/>
-        
-        <s:Spacer height="10"/>
         
         <s:Label text="Developed by:" fontWeight="bold"/>
         <s:Button label="People In Action" click="navigateToURL(new URLRequest('http://www.pia-conseil.com'))" width="100%"/>
         
-        <s:Spacer height="10"/>
-        
         <s:Label text="Contact us:" fontWeight="bold"/>
+       
+        <s:Button label="UserVoice" click="navigateToURL(new URLRequest('http://eskimo.uservoice.com/'))" width="100%"/>
+        
         <s:Button label="eskimo@pia-conseil.com" click="navigateToURL(new URLRequest('mailto:eskimo@pia-conseil.com'))" width="100%"/>
        
       </s:SkinnableContainer>
