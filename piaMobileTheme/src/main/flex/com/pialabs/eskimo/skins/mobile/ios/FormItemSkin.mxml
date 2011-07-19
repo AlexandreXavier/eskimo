@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-
-ADOBE SYSTEMS INCORPORATED
-Copyright 2010 Adobe Systems Incorporated
-All Rights Reserved.
-
-NOTICE: Adobe permits you to use, modify, and distribute this file
-in accordance with the terms of the license agreement accompanying it.
-
--->
-
-<!-- TODO
-Move the indicator tooltip string to a resource bundle
--->
-
-<!--- The default skin class for the Spark FormItem component.
-
+<!---
+The iOS skin class for the Spark FormItem component.
 @see spark.components.FormItem
-
-@langversion 3.0
-@playerversion Flash 10
-@playerversion AIR 1.5
-@productversion Flex 4.5
 -->
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark"
