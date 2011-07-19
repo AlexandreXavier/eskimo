@@ -156,11 +156,6 @@
         focusAlpha: 0;
     }
     
-    ios|SearchTextInputSkin
-    {
-        icon: Embed(source="com/pialabs/eskimo/skins/mobile/ios/assets/searchIcon.png");
-    }
-    
     components|DateChooser
     {
       skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.DateChooserSkin");
@@ -327,4 +322,9 @@ components|ListStepper
 components|ListStepper s|Label
 {
     verticalAlign: middle;
+}
+
+ios|SearchTextInputSkin
+{
+  icon: Embed(source="com/pialabs/eskimo/skins/mobile/ios/assets/searchIcon.png");
 }
