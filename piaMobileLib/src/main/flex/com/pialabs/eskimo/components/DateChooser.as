@@ -62,18 +62,14 @@ package com.pialabs.eskimo.components
     public var yearLabel:Label;
     
     /**
-     *  The last year selectable in the control.
-     *
-     *  @default 2040
+     * @private
      */
-    public var maxYear:Number = 2040;
+    private var _maxYear:Number = 2040;
     
     /**
-     *  The first year selectable in the control.
-     *
-     *  @default 1980
+     * @private
      */
-    public var minYear:Number = 1980;
+    private var _minYear:Number = 1980;
     
     /**
      * @private
@@ -218,7 +214,10 @@ package com.pialabs.eskimo.components
       
       if (_selectedDateChange)
       {
-        createDayProvider(numberDaynMonth);
+        if (_dayProvider.length != numberDaynMonth)
+        {
+          createDayProvider(numberDaynMonth);
+        }
         
         _selectedDateChange = false;
       }
@@ -381,6 +380,7 @@ package com.pialabs.eskimo.components
     private function selectMonth():void
     {
       var month:Number = selectedDate.month;
+      monthList.validateNow();
       monthList.selectedIndex = month;
     }
     
@@ -391,7 +391,7 @@ package com.pialabs.eskimo.components
     {
       var year:Number = selectedDate.fullYear;
       var selectedIndex:Number = year - minYear;
-      
+      yearList.validateNow();
       yearList.selectedIndex = Math.max(0, selectedIndex);
     }
     
@@ -416,6 +416,52 @@ package com.pialabs.eskimo.components
       
       invalidateProperties();
     }
+    
+    /**
+     *  The last year selectable in the control.
+     *
+     *  @default 2040
+     */
+    public function get maxYear():Number
+    {
+      return _maxYear;
+    }
+    
+    /**
+     * @private
+     */
+    public function set maxYear(value:Number):void
+    {
+      _maxYear = value;
+      
+      _datePatternChange = true;
+      
+      invalidateProperties();
+    }
+    
+    /**
+     *  The first year selectable in the control.
+     *
+     *  @default 1980
+     */
+    public function get minYear():Number
+    {
+      return _minYear;
+    }
+    
+    /**
+     * @private
+     */
+    public function set minYear(value:Number):void
+    {
+      _minYear = value;
+      
+      _datePatternChange = true;
+      
+      invalidateProperties();
+    }
+  
+  
   
   }
 }
