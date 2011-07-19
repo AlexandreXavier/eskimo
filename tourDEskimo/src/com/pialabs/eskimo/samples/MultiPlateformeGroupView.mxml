@@ -11,7 +11,7 @@
   <s:Label width="100%" fontSize="14" text="This container renders children for a specfic platform" />
   <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
 
-    <components:MultiplateformeGroup type="IOS" width="100%">
+    <components:MultiplateformeGroup type="{MultiplateformeGroup.IOS}" width="100%">
 
       <s:Label text="This label is only visible on iOS platform" width="100%"/>
     </components:MultiplateformeGroup>
