@@ -382,6 +382,7 @@ package com.pialabs.eskimo.components
       var month:Number = selectedDate.month;
       monthList.validateNow();
       monthList.selectedIndex = month;
+      monthList.invalidateProperties();
     }
     
     /**
@@ -393,6 +394,7 @@ package com.pialabs.eskimo.components
       var selectedIndex:Number = year - minYear;
       yearList.validateNow();
       yearList.selectedIndex = Math.max(0, selectedIndex);
+      yearList.invalidateProperties();
     }
     
     /**  The pattern string used by the DateChooser object to format
