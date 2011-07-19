@@ -43,8 +43,7 @@
     <s:VGroup width="100%" horizontalAlign="center">
       <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
         <s:VGroup id="dateGroup" horizontalAlign="center" width="100%">
-          <components:DateChooser id="dateChooser"
-                                  change="trace(dateChooser.selectedDate)"/>
+          <components:DateChooser id="dateChooser"/>
         </s:VGroup>
       </s:SkinnableContainer>
 

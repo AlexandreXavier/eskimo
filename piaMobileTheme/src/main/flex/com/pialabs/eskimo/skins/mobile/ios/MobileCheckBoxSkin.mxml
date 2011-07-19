@@ -4,380 +4,376 @@
         xmlns:mx="library://ns.adobe.com/flex/mx" clipAndEnableScrolling="true"
         initialize="onInitialize(event)" minHeight="40"
         creationComplete="this.invalidateDisplayList()">
-    <!-- host component -->
-    <fx:Metadata>
+  <!-- host component -->
+  <fx:Metadata>
     [HostComponent("spark.components.CheckBox")]
   </fx:Metadata>
 
-    <fx:Script>
-        <![CDATA[
-            import mx.core.DPIClassification;
-            import mx.core.FlexGlobals;
-            import mx.events.FlexEvent;
-            
-            /**
-             *  @private
-             */
-            public var cursorPosition:Number;
-            /**
-             *  @private
-             */
-            protected var cursorDragged:Boolean;
-            /**
-             *  @private
-             */
-            protected var dragOffset:int;
-            protected var dragInitialX:int;
-            /**
-             *  @private
-             */
-            protected var DRAG_THRESHOLD:int = 5;
-            
-            /**
-             *  @private
-             */
-            protected function onCursorDown(event:MouseEvent):void
-            {
-                if (mouseX > buttonGroup.x && mouseX < buttonGroup.x + buttonGroup.width)
-                {
-                    
-                    systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
-                    systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_UP, onStageUp, false, 0, true);
-                    dragOffset = cursorGroup.mouseX;
-                    
-                    dragInitialX = mouseX;
-                }
-                else
-                {
-                    //Little hack to disable click on outside the checkbox button
-                    callLater(dispatchAnEvent);
-                }
-            }
-            
-            /**
-             *  @private
-             */
-            protected function onMouseMove(event:MouseEvent):void
-            {
-                hostComponent.mouseEnabled = false;
-                
-                var delta:int = Math.abs(dragInitialX - mouseX);
-                
-                if (!cursorDragged && delta > DRAG_THRESHOLD)
-                {
-                    super.currentState = "dragged";
-                    cursorDragged = true;
-                }
-                
-                if (cursorDragged)
-                {
-                    var point:Point = new Point(event.localX, event.localY);
-                    point = event.target.localToGlobal(point);
-                    point = buttonGroup.globalToLocal(point);
-                    
-                    var cursorX:int = point.x - dragOffset;
-                    cursorX = Math.min(cursorX, buttonGroup.width - cursorGroup.width);
-                    cursorX = Math.max(cursorX, 0);
-                    cursorGroup.x = cursorX;
-                }
-            }
-            
-            /**
-             *  @private
-             */
-            private function onStageUp(event:MouseEvent):void
-            {
-                finishDrag();
-            
-            }
-            
-            /**
-             *  @private
-             */
-            protected function finishDrag():void
-            {
-                systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
-                
-                systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_UP, onStageUp);
-                
-                if (cursorDragged)
-                {
-                    if (cursorGroup.x + cursorGroup.width / 2 < buttonGroup.width / 2)
-                    {
-                        hostComponent.selected = false;
-                    }
-                    else
-                    {
-                        hostComponent.selected = true;
-                    }
-                    
-                    hostComponent.dispatchEvent(new Event(Event.CHANGE));
-                }
-                
-                cursorDragged = false;
-                
-                hostComponent.mouseEnabled = true;
-                hostComponent.invalidateSkinState();
-            }
-            
-            /**
-             *  @private
-             */
-            override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
-            {
-                super.updateDisplayList(unscaledWidth, unscaledHeight);
-                
-                buttonGroup.width = buttonGroup.height * 3;
-                
-                glow.radiusX = buttonGroup.height / 2;
-                border.radiusX = buttonGroup.height / 2;
-                backgroundMaskRect.radiusX = buttonGroup.height / 2;
-                glowMaskRect.radiusX = buttonGroup.height / 4;
-                onBackgroundRect.topLeftRadiusX = onBackgroundRect.bottomLeftRadiusX = buttonGroup.height / 2;
-                
-                background.width = buttonGroup.width * 2 - cursorGroup.width;
-                
-                offPath.width = offPath.height;
-                
-                onPath.left = (buttonGroup.width - cursorGroup.width) / 2;
-                offPath.right = (buttonGroup.width - cursorGroup.width - offPath.width) / 2;
-                
-                onBackgroundRect.right = background.width / 2;
-                onBackgroundColor.color = getStyle("symbolColor");
-            
-            }
-            
-            /**
-             *  @private
-             */
-            protected function get applicationDPI():Number
-            {
-                return FlexGlobals.topLevelApplication.applicationDPI;
-            }
-            
-            /**
-             *  @private
-             */
-            protected function onInitialize(event:FlexEvent):void
-            {
-                // TODO Auto-generated method stub
-                switch (applicationDPI)
-                {
-                    case DPIClassification.DPI_320:
-                    {
-                        onPath.top = onPath.bottom = 16;
-                        offPath.top = offPath.bottom = 16;
-                        minHeight = 64;
-                        break;
-                    }
-                    case DPIClassification.DPI_240:
-                    {
-                        onPath.top = onPath.bottom = 12;
-                        offPath.top = offPath.bottom = 12;
-                        minHeight = 48;
-                        break;
-                    }
-                    default:
-                    {
-                        onPath.top = onPath.bottom = 8;
-                        offPath.top = offPath.bottom = 8;
-                        minHeight = 32;
-                        break;
-                    }
-                }
-                
-                hostComponent.addEventListener(MouseEvent.MOUSE_DOWN, onCursorDown, false, 0, true);
-            }
-            
-            /**
-             *  @private
-             */
-            override public function set currentState(value:String):void
-            {
-                var state:String = "up";
-                
-                if (!cursorDragged)
-                {
-                    switch (value)
-                    {
-                        case "up":
-                        case "over":
-                        case "down":
-                        case "disabled":
-                            state = "up";
-                            break;
-                        case "upAndSelected":
-                        case "overAndSelected":
-                        case "downAndSelected":
-                        case "disabledAndSelected":
-                            state = "upAndSelected";
-                            break;
-                    }
-                }
-                else
-                {
-                    state = "dragged";
-                }
-                super.currentState = state;
-            }
-            
-            /**
-             *  @private
-             */
-            private function dispatchAnEvent():void
-            {
-                trace("dispatchAnEvent");
-                var mouseEvent:MouseEvent = new MouseEvent(MouseEvent.MOUSE_UP, false, false, 1000, 1000, this);
-                this.dispatchEvent(mouseEvent);
-            
-            }
-        ]]>
-    </fx:Script>
+  <fx:Script>
+    <![CDATA[
+      import mx.core.DPIClassification;
+      import mx.core.FlexGlobals;
+      import mx.events.FlexEvent;
+      
+      /**
+       *  @private
+       */
+      public var cursorPosition:Number;
+      /**
+       *  @private
+       */
+      protected var cursorDragged:Boolean;
+      /**
+       *  @private
+       */
+      protected var dragOffset:int;
+      protected var dragInitialX:int;
+      /**
+       *  @private
+       */
+      protected var DRAG_THRESHOLD:int = 5;
+      
+      /**
+       *  @private
+       */
+      protected function onCursorDown(event:MouseEvent):void
+      {
+        if (mouseX > buttonGroup.x && mouseX < buttonGroup.x + buttonGroup.width)
+        {
+          
+          systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+          systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_UP, onStageUp, false, 0, true);
+          dragOffset = cursorGroup.mouseX;
+          
+          dragInitialX = mouseX;
+        }
+        else
+        {
+          //Little hack to disable click on outside the checkbox button
+          callLater(dispatchAnEvent);
+        }
+      }
+      
+      /**
+       *  @private
+       */
+      protected function onMouseMove(event:MouseEvent):void
+      {
+        hostComponent.mouseEnabled = false;
+        
+        var delta:int = Math.abs(dragInitialX - mouseX);
+        
+        if (!cursorDragged && delta > DRAG_THRESHOLD)
+        {
+          super.currentState = "dragged";
+          cursorDragged = true;
+        }
+        
+        if (cursorDragged)
+        {
+          var point:Point = new Point(event.localX, event.localY);
+          point = event.target.localToGlobal(point);
+          point = buttonGroup.globalToLocal(point);
+          
+          var cursorX:int = point.x - dragOffset;
+          cursorX = Math.min(cursorX, buttonGroup.width - cursorGroup.width);
+          cursorX = Math.max(cursorX, 0);
+          cursorGroup.x = cursorX;
+        }
+      }
+      
+      /**
+       *  @private
+       */
+      private function onStageUp(event:MouseEvent):void
+      {
+        finishDrag();
+      
+      }
+      
+      /**
+       *  @private
+       */
+      protected function finishDrag():void
+      {
+        systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+        
+        systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_UP, onStageUp);
+        
+        if (cursorDragged)
+        {
+          if (cursorGroup.x + cursorGroup.width / 2 < buttonGroup.width / 2)
+          {
+            hostComponent.selected = false;
+          }
+          else
+          {
+            hostComponent.selected = true;
+          }
+          
+          hostComponent.dispatchEvent(new Event(Event.CHANGE));
+        }
+        
+        cursorDragged = false;
+        
+        hostComponent.mouseEnabled = true;
+        hostComponent.invalidateSkinState();
+      }
+      
+      /**
+       *  @private
+       */
+      override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+      {
+        super.updateDisplayList(unscaledWidth, unscaledHeight);
+        
+        buttonGroup.width = buttonGroup.height * 3;
+        
+        glow.radiusX = buttonGroup.height / 2;
+        border.radiusX = buttonGroup.height / 2;
+        backgroundMaskRect.radiusX = buttonGroup.height / 2;
+        glowMaskRect.radiusX = buttonGroup.height / 4;
+        onBackgroundRect.topLeftRadiusX = onBackgroundRect.bottomLeftRadiusX = buttonGroup.height / 2;
+        
+        background.width = buttonGroup.width * 2 - cursorGroup.width;
+        
+        offPath.width = offPath.height;
+        
+        onPath.left = (buttonGroup.width - cursorGroup.width) / 2;
+        offPath.right = (buttonGroup.width - cursorGroup.width - offPath.width) / 2;
+        
+        onBackgroundRect.right = background.width / 2;
+        onBackgroundColor.color = getStyle("symbolColor");
+      
+      }
+      
+      /**
+       *  @private
+       */
+      protected function get applicationDPI():Number
+      {
+        return FlexGlobals.topLevelApplication.applicationDPI;
+      }
+      
+      /**
+       *  @private
+       */
+      protected function onInitialize(event:FlexEvent):void
+      {
+        // TODO Auto-generated method stub
+        switch (applicationDPI)
+        {
+          case DPIClassification.DPI_320:
+          {
+            onPath.top = onPath.bottom = 16;
+            offPath.top = offPath.bottom = 16;
+            minHeight = 64;
+            break;
+          }
+          case DPIClassification.DPI_240:
+          {
+            onPath.top = onPath.bottom = 12;
+            offPath.top = offPath.bottom = 12;
+            minHeight = 48;
+            break;
+          }
+          default:
+          {
+            onPath.top = onPath.bottom = 8;
+            offPath.top = offPath.bottom = 8;
+            minHeight = 32;
+            break;
+          }
+        }
+        
+        hostComponent.addEventListener(MouseEvent.MOUSE_DOWN, onCursorDown, false, 0, true);
+      }
+      
+      /**
+       *  @private
+       */
+      override public function set currentState(value:String):void
+      {
+        var state:String = "up";
+        
+        if (!cursorDragged)
+        {
+          switch (value)
+          {
+            case "up":
+            case "over":
+            case "down":
+            case "disabled":
+              state = "up";
+              break;
+            case "upAndSelected":
+            case "overAndSelected":
+            case "downAndSelected":
+            case "disabledAndSelected":
+              state = "upAndSelected";
+              break;
+          }
+        }
+        else
+        {
+          state = "dragged";
+        }
+        super.currentState = state;
+      }
+      
+      /**
+       *  @private
+       */
+      private function dispatchAnEvent():void
+      {
+        var mouseEvent:MouseEvent = new MouseEvent(MouseEvent.MOUSE_UP, false, false, 1000, 1000, this);
+        this.dispatchEvent(mouseEvent);
+      }
+    ]]>
+  </fx:Script>
 
-    <!-- states -->
-    <s:states>
-        <s:State name="up" stateGroups="normalStates"/>
-        <s:State name="over" stateGroups="overStates, normalStates"/>
-        <s:State name="down" stateGroups="downStates, normalStates"/>
-        <s:State name="disabled" stateGroups="disabledStates, normalStates"/>
-        <s:State name="upAndSelected" stateGroups="selectedStates"/>
-        <s:State name="overAndSelected" stateGroups="overStates, selectedStates"/>
-        <s:State name="downAndSelected" stateGroups="downStates, selectedStates"/>
-        <s:State name="disabledAndSelected"
-                 stateGroups="disabledStates, selectedStates"/>
-        <s:State name="dragged" stateGroups="draggedStates"/>
-    </s:states>
+  <!-- states -->
+  <s:states>
+    <s:State name="up" stateGroups="normalStates"/>
+    <s:State name="over" stateGroups="overStates, normalStates"/>
+    <s:State name="down" stateGroups="downStates, normalStates"/>
+    <s:State name="disabled" stateGroups="disabledStates, normalStates"/>
+    <s:State name="upAndSelected" stateGroups="selectedStates"/>
+    <s:State name="overAndSelected" stateGroups="overStates, selectedStates"/>
+    <s:State name="downAndSelected" stateGroups="downStates, selectedStates"/>
+    <s:State name="disabledAndSelected"
+             stateGroups="disabledStates, selectedStates"/>
+    <s:State name="dragged" stateGroups="draggedStates"/>
+  </s:states>
 
-    <!-- SkinParts
-    name=iconDisplay, type=spark.primitives.BitmapImage, required=false
-    name=labelDisplay, type=spark.core.IDisplayText, required=false
-    -->
+  <!-- SkinParts
+  name=iconDisplay, type=spark.primitives.BitmapImage, required=false
+  name=labelDisplay, type=spark.core.IDisplayText, required=false
+  -->
 
-    <s:transitions>
-        <s:Transition fromState="up" toState="upAndSelected" autoReverse="true">
-            <s:Parallel>
-                <s:Move target="{cursorGroup}" xFrom="0"
-                        xTo="{buttonGroup.width - cursorGroup.width}"
-                        duration="200"/>
-            </s:Parallel>
-        </s:Transition>
-        <s:Transition fromState="dragged" toState="upAndSelected">
-            <s:Parallel>
-                <s:Move target="{cursorGroup}"
-                        xTo="{buttonGroup.width - cursorGroup.width}"
-                        xFrom="{cursorGroup.x}" duration="200"/>
-            </s:Parallel>
-        </s:Transition>
-        <s:Transition fromState="dragged" toState="up">
-            <s:Parallel>
-                <s:Move target="{cursorGroup}" xTo="0" xFrom="{cursorGroup.x}"
-                        duration="200"/>
-            </s:Parallel>
-        </s:Transition>
-    </s:transitions>
+  <s:transitions>
+    <s:Transition fromState="up" toState="upAndSelected" autoReverse="true">
+      <s:Parallel>
+        <s:Move target="{cursorGroup}" xFrom="0"
+                xTo="{buttonGroup.width - cursorGroup.width}" duration="200"/>
+      </s:Parallel>
+    </s:Transition>
+    <s:Transition fromState="dragged" toState="upAndSelected">
+      <s:Parallel>
+        <s:Move target="{cursorGroup}"
+                xTo="{buttonGroup.width - cursorGroup.width}"
+                xFrom="{cursorGroup.x}" duration="200"/>
+      </s:Parallel>
+    </s:Transition>
+    <s:Transition fromState="dragged" toState="up">
+      <s:Parallel>
+        <s:Move target="{cursorGroup}" xTo="0" xFrom="{cursorGroup.x}"
+                duration="200"/>
+      </s:Parallel>
+    </s:Transition>
+  </s:transitions>
 
-    <s:layout>
-        <s:HorizontalLayout verticalAlign="middle"/>
-    </s:layout>
+  <s:layout>
+    <s:HorizontalLayout verticalAlign="middle"/>
+  </s:layout>
 
-    <s:Label id="labelDisplay" width="100%"/>
+  <s:Label id="labelDisplay" width="100%"/>
 
-    <s:Group id="buttonGroup" width="120" height="100%" right="0">
+  <s:Group id="buttonGroup" width="120" height="100%" right="0">
 
-        <s:Rect id="border" top="0" right="0" bottom="0" left="0" radiusX="13">
-            <s:stroke>
-                <s:SolidColorStroke color="#989898"/>
-            </s:stroke>
-        </s:Rect>
+    <s:Rect id="border" top="0" right="0" bottom="0" left="0" radiusX="13">
+      <s:stroke>
+        <s:SolidColorStroke color="#989898"/>
+      </s:stroke>
+    </s:Rect>
 
 
-        <s:Group id="background" height="100%" width="150"
-                 mask="{backgroundMask}"
-                 x="{(cursorGroup.x - (background.width - cursorGroup.width)/2 )}">
+    <s:Group id="background" height="100%" width="150" mask="{backgroundMask}"
+             x="{(cursorGroup.x - (background.width - cursorGroup.width)/2 )}">
 
-            <s:Rect top="0" right="0" bottom="0" left="0" radiusX="13">
-                <s:fill>
-                    <s:SolidColor color="#EEEEEE"/>
-                </s:fill>
-            </s:Rect>
+      <s:Rect top="0" right="0" bottom="0" left="0" radiusX="13">
+        <s:fill>
+          <s:SolidColor color="#EEEEEE"/>
+        </s:fill>
+      </s:Rect>
 
-            <s:Rect id="onBackgroundRect" top="0" left="0" right="75" bottom="0"
-                    topLeftRadiusX="13" bottomLeftRadiusX="13">
-                <s:fill>
-                    <s:SolidColor id="onBackgroundColor" color="#0073F5"/>
-                </s:fill>
-            </s:Rect>
-
-
-            <s:Rect id="onPath" top="12" bottom="12" width="3" left="32">
-                <s:fill>
-                    <s:SolidColor color="#FFFFFF"/>
-                </s:fill>
-            </s:Rect>
-
-            <s:Ellipse id="offPath" top="12" bottom="12" right="32">
-                <s:stroke>
-                    <s:SolidColorStroke color="#777777" weight="3"/>
-                </s:stroke>
-            </s:Ellipse>
-
-            <s:filters>
-                <s:DropShadowFilter inner="true" angle="90" alpha="0.2"/>
-            </s:filters>
-        </s:Group>
-
-        <s:Group id="backgroundMask" top="1" right="1" bottom="1" left="1">
-            <s:Rect id="backgroundMaskRect" top="0" right="0" bottom="0"
-                    left="0" radiusX="13">
-                <s:fill>
-                    <s:SolidColor color="#EEEEEE"/>
-                </s:fill>
-            </s:Rect>
-        </s:Group>
+      <s:Rect id="onBackgroundRect" top="0" left="0" right="75" bottom="0"
+              topLeftRadiusX="13" bottomLeftRadiusX="13">
+        <s:fill>
+          <s:SolidColor id="onBackgroundColor" color="#0073F5"/>
+        </s:fill>
+      </s:Rect>
 
 
+      <s:Rect id="onPath" top="12" bottom="12" width="3" left="32">
+        <s:fill>
+          <s:SolidColor color="#FFFFFF"/>
+        </s:fill>
+      </s:Rect>
 
-        <s:Rect id="glow" top="1" right="1" bottom="1" left="1" radiusX="13"
-                mask="{glowMask}">
-            <s:fill>
-                <s:LinearGradient rotation="90">
-                    <s:GradientEntry color="#FFFFFF" ratio="0.5" alpha="0.2"/>
-                    <s:GradientEntry color="#FFFFFF" ratio="1" alpha="0.3"/>
-                </s:LinearGradient>
-            </s:fill>
-        </s:Rect>
+      <s:Ellipse id="offPath" top="12" bottom="12" right="32">
+        <s:stroke>
+          <s:SolidColorStroke color="#777777" weight="3"/>
+        </s:stroke>
+      </s:Ellipse>
 
-        <s:Group id="glowMask" top="1" right="1" bottom="1" left="1">
-            <s:Rect id="glowMaskRect" top="{buttonGroup.height/2}" right="3"
-                    bottom="0" left="3" radiusX="7">
-                <s:fill>
-                    <s:SolidColor color="#EEEEEE"/>
-                </s:fill>
-            </s:Rect>
-        </s:Group>
-
-        <s:Group id="cursorGroup" width="{buttonGroup.height}"
-                 height="{buttonGroup.height}"
-                 x.selectedStates="{buttonGroup.width - cursorGroup.width}"
-                 x.normalStates="0">
-            <s:Ellipse top="0" right="0" bottom="0" left="0">
-                <s:stroke>
-                    <s:SolidColorStroke color="#989898"/>
-                </s:stroke>
-                <s:fill>
-                    <s:SolidColor color="#EFEFEF"/>
-                </s:fill>
-            </s:Ellipse>
-            <s:Ellipse top="3" right="3" bottom="3" left="3">
-                <s:fill>
-                    <s:LinearGradient rotation="90">
-                        <s:GradientEntry color="#000000" alpha="0.15" ratio="0"/>
-                        <s:GradientEntry color="#000000" alpha="0" ratio="1"/>
-                    </s:LinearGradient>
-                </s:fill>
-            </s:Ellipse>
-        </s:Group>
-
+      <s:filters>
+        <s:DropShadowFilter inner="true" angle="90" alpha="0.2"/>
+      </s:filters>
     </s:Group>
+
+    <s:Group id="backgroundMask" top="1" right="1" bottom="1" left="1">
+      <s:Rect id="backgroundMaskRect" top="0" right="0" bottom="0" left="0"
+              radiusX="13">
+        <s:fill>
+          <s:SolidColor color="#EEEEEE"/>
+        </s:fill>
+      </s:Rect>
+    </s:Group>
+
+
+
+    <s:Rect id="glow" top="1" right="1" bottom="1" left="1" radiusX="13"
+            mask="{glowMask}">
+      <s:fill>
+        <s:LinearGradient rotation="90">
+          <s:GradientEntry color="#FFFFFF" ratio="0.5" alpha="0.2"/>
+          <s:GradientEntry color="#FFFFFF" ratio="1" alpha="0.3"/>
+        </s:LinearGradient>
+      </s:fill>
+    </s:Rect>
+
+    <s:Group id="glowMask" top="1" right="1" bottom="1" left="1">
+      <s:Rect id="glowMaskRect" top="{buttonGroup.height/2}" right="3"
+              bottom="0" left="3" radiusX="7">
+        <s:fill>
+          <s:SolidColor color="#EEEEEE"/>
+        </s:fill>
+      </s:Rect>
+    </s:Group>
+
+    <s:Group id="cursorGroup" width="{buttonGroup.height}"
+             height="{buttonGroup.height}"
+             x.selectedStates="{buttonGroup.width - cursorGroup.width}"
+             x.normalStates="0">
+      <s:Ellipse top="0" right="0" bottom="0" left="0">
+        <s:stroke>
+          <s:SolidColorStroke color="#989898"/>
+        </s:stroke>
+        <s:fill>
+          <s:SolidColor color="#EFEFEF"/>
+        </s:fill>
+      </s:Ellipse>
+      <s:Ellipse top="3" right="3" bottom="3" left="3">
+        <s:fill>
+          <s:LinearGradient rotation="90">
+            <s:GradientEntry color="#000000" alpha="0.15" ratio="0"/>
+            <s:GradientEntry color="#000000" alpha="0" ratio="1"/>
+          </s:LinearGradient>
+        </s:fill>
+      </s:Ellipse>
+    </s:Group>
+
+  </s:Group>
 
 </s:Skin>
