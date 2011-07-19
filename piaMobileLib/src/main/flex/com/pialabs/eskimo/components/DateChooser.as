@@ -75,22 +75,35 @@ package com.pialabs.eskimo.components
      */
     public var minYear:Number = 1980;
     
+    /**
+     * @private
+     */
     private var _datePattern:String = DateUtils.defaultDateTimePattern;
     private var _datePatternChange:Boolean = true;
     
-    private var _selectedDate:Date = new Date();
+    /**
+     * @private
+     */
+    protected var _selectedDate:Date = new Date();
     
+    /**
+     * @private
+     */
     private var _selectedDateChange:Boolean = true;
-    ;
-    
     private var _dayProviderChange:Boolean;
     private var _monthProviderChange:Boolean;
     private var _yearProviderChange:Boolean;
     
+    /**
+     * @private
+     */
     private var _dayProvider:IList;
     private var _monthProvider:IList;
     private var _yearProvider:IList;
     
+    /**
+     * @private
+     */
     override protected function partAdded(partName:String, instance:Object):void
     {
       if (monthList == instance)
@@ -104,7 +117,7 @@ package com.pialabs.eskimo.components
       
       if (dayList == instance)
       {
-        dayList.addEventListener(IndexChangeEvent.CHANGE, onMonthOrYearChange);
+        dayList.addEventListener(IndexChangeEvent.CHANGE, onDayChange);
       }
       
       if (dayLabel == instance)
@@ -121,6 +134,9 @@ package com.pialabs.eskimo.components
       }
     }
     
+    /**
+     * @private
+     */
     private function createMonthProvider():void
     {
       var array:Array = new Array();
@@ -137,6 +153,9 @@ package com.pialabs.eskimo.components
     
     }
     
+    /**
+     * @private
+     */
     private function createYearProvider():void
     {
       var array:Array = new Array();
@@ -153,6 +172,9 @@ package com.pialabs.eskimo.components
     
     }
     
+    /**
+     * @private
+     */
     private function createDayProvider(endDateOfMonth:Number):void
     {
       var array:Array = new Array();
@@ -178,13 +200,17 @@ package com.pialabs.eskimo.components
       
       var dateUtils:DateUtils = new DateUtils();
       
+      var numberDaynMonth:int = dateUtils.numberDayInMonth(_selectedDate.month + 1, _selectedDate.fullYear);
+      
       if (_datePatternChange)
       {
         createYearProvider();
         
         createMonthProvider();
         
-        createDayProvider(dateUtils.numberDayInMonth(_selectedDate.month + 1, _selectedDate.fullYear));
+        createDayProvider(numberDaynMonth);
+        
+        updateListPositions();
         
         _datePatternChange = false;
         _selectedDateChange = false;
@@ -192,7 +218,7 @@ package com.pialabs.eskimo.components
       
       if (_selectedDateChange)
       {
-        createDayProvider(dateUtils.numberDayInMonth(_selectedDate.month + 1, _selectedDate.fullYear));
+        createDayProvider(numberDaynMonth);
         
         _selectedDateChange = false;
       }
@@ -221,10 +247,11 @@ package com.pialabs.eskimo.components
       selectDateOfMonth()
     }
     
-    override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+    /**
+     * @private
+     */
+    protected function updateListPositions():void
     {
-      super.updateDisplayList(unscaledWidth, unscaledHeight);
-      
       var dayIndex:int = datePattern.indexOf(DateUtils.DAY_CHAR);
       var monthIndex:int = datePattern.indexOf(DateUtils.MONTH_CHAR);
       var yearIndex:int = datePattern.indexOf(DateUtils.YEAR_CHAR);
@@ -248,6 +275,7 @@ package com.pialabs.eskimo.components
       {
         dayPos = 2;
       }
+      
       if (monthIndex == minIndex)
       {
         monthPos = 0;
@@ -256,6 +284,7 @@ package com.pialabs.eskimo.components
       {
         monthPos = 2;
       }
+      
       if (yearIndex == minIndex)
       {
         yearPos = 0;
@@ -264,11 +293,15 @@ package com.pialabs.eskimo.components
       {
         yearPos = 2;
       }
+      
       dateInput.setElementIndex(dayGroup, dayPos);
       dateInput.setElementIndex(monthGroup, monthPos);
       dateInput.setElementIndex(yearGroup, yearPos);
     }
     
+    /**
+     * @private
+     */
     private function onMonthOrYearChange(event:Event):void
     {
       var dateUtils:DateUtils = new DateUtils();
@@ -287,9 +320,19 @@ package com.pialabs.eskimo.components
       dispatchEvent(evt);
     }
     
-    
+    /**
+     * @private
+     */
     private function onDayChange(event:Event):void
     {
+      var dateUtils:DateUtils = new DateUtils();
+      
+      var newYear:int = yearList.selectedIndex + minYear;
+      var newMonth:int = monthList.selectedIndex;
+      var newDay:int = Math.min(dayList.selectedIndex + 1, dateUtils.numberDayInMonth(newMonth + 1, newYear));
+      
+      _selectedDate.setFullYear(newYear, newMonth, newDay);
+      
       var evt:Event = new IndexChangeEvent(IndexChangeEvent.CHANGE);
       dispatchEvent(evt);
     }
@@ -318,26 +361,37 @@ package com.pialabs.eskimo.components
       }
     }
     
+    /**
+     * @private
+     */
     private function selectDateOfMonth():void
     {
       var dateOfMonth:Number = selectedDate.date - 1;
+      
       dayList.validateNow();
+      
       dayList.selectedIndex = dateOfMonth;
+      
+      dayList.invalidateProperties();
     }
     
+    /**
+     * @private
+     */
     private function selectMonth():void
     {
       var month:Number = selectedDate.month;
-      monthList.validateNow();
       monthList.selectedIndex = month;
     }
     
+    /**
+    * @private
+    */
     private function selectYear():void
     {
       var year:Number = selectedDate.fullYear;
       var selectedIndex:Number = year - minYear;
       
-      yearList.validateNow();
       yearList.selectedIndex = Math.max(0, selectedIndex);
     }
     
