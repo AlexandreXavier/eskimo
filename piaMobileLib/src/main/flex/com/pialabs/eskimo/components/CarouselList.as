@@ -3,6 +3,7 @@ package com.pialabs.eskimo.components
   import com.pialabs.eskimo.layouts.CircularLayout;
   
   import flash.display.DisplayObject;
+  import flash.events.Event;
   import flash.events.MouseEvent;
   import flash.geom.Point;
   import flash.utils.getTimer;
@@ -15,9 +16,13 @@ package com.pialabs.eskimo.components
   import spark.effects.animation.MotionPath;
   import spark.effects.animation.SimpleMotionPath;
   import spark.effects.easing.EasingFraction;
-  import flash.events.Event;
+  import spark.layouts.supportClasses.LayoutBase;
   
-  public class CarrouselList extends List
+  /**
+  * CarrouselList is a list that display a carrousel.
+  * @see com.pialabs.eskimo.CircularLayout
+  */
+  public class CarouselList extends List
   {
     private var mouseDownX:Number;
     private var mouseDownY:Number;
@@ -25,7 +30,7 @@ package com.pialabs.eskimo.components
     private static const EVENT_HISTORY_LENGTH:int = 5;
     private static const ANGLE_SENSIBILITY:int = 500;
     
-    private static const MAX_VELOCITY:Number = 0.4;
+    private static const MAX_VELOCITY:Number = 0.7;
     
     /**
      * @private
@@ -64,15 +69,12 @@ package com.pialabs.eskimo.components
      */
     private var _currentVelocity:Number;
     
-    public function CarrouselList()
+    public function CarouselList()
     {
       super();
       
-      layout = new CircularLayout();
+      super.layout = new CircularLayout();
       addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
-      
-      setStyle("verticalScrollPolicy", "off");
-      setStyle("horizontalScrollPolicy", "off");
       
       mouseEventCoordinatesHistory = new Vector.<Point>(EVENT_HISTORY_LENGTH);
       mouseEventTimeHistory = new Vector.<int>(EVENT_HISTORY_LENGTH);
@@ -197,6 +199,11 @@ package com.pialabs.eskimo.components
       _currentVelocity = Math.min(MAX_VELOCITY, _currentVelocity);
       
       return _currentVelocity;
+    }
+    
+    override public function set layout(value:LayoutBase):void
+    {
+    
     }
   }
 }

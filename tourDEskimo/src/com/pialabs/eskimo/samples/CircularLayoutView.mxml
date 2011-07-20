@@ -24,14 +24,43 @@
     <s:layout>
       <s:VerticalLayout horizontalAlign="center"/>
     </s:layout>
-    <components:CarrouselList id="slideDataGroup" width="100%" height="200"
-                              itemRenderer="com.pialabs.eskimo.samples.renderers.ImageRenderer"
-                              dataProvider="{photoList}">
+    <components:CarouselList id="slideDataGroup" width="100%" height="180"
+                             itemRenderer="com.pialabs.eskimo.samples.renderers.ImageRenderer"
+                             dataProvider="{photoList}">
       <components:layout>
-        <layouts:CircularLayout id="circularLayout" angle="{slider.value}"/>
+        <layouts:CircularLayout id="circularLayout" angle="{slider.value}"
+                                depthRation="{sliderDepth.value}"
+                                itemWidth="{sliderWidth.value}"
+                                itemHeight="{sliderHeight.value}"
+                                heightRatio="{sliderHeightRatio.value}"/>
       </components:layout>
-    </components:CarrouselList>
-    <s:HSlider id="slider" width="100%" minimum="0" maximum="{Math.PI}"
-               stepSize="0.01"/>
+    </components:CarouselList>
+  </s:SkinnableContainer>
+
+  <s:SkinnableContainer width="100%" styleName="parameterContainerStyle">
+    <s:layout>
+      <s:VerticalLayout horizontalAlign="center"/>
+    </s:layout>
+    <s:Form width="100%">
+      <s:FormItem label="Angle" width="100%">
+        <s:HSlider id="slider" minimum="0" maximum="{Math.PI}" stepSize="0.01"/>
+      </s:FormItem>
+      <s:FormItem label="Depth ratio" width="100%">
+        <s:HSlider id="sliderDepth" minimum="0.1" maximum="1" stepSize="0.01"
+                   value="0.7"/>
+      </s:FormItem>
+      <s:FormItem label="Height ratio" width="100%">
+        <s:HSlider id="sliderHeightRatio" minimum="-1" maximum="1"
+                   stepSize="0.01" value="1"/>
+      </s:FormItem>
+      <s:FormItem label="Item width" width="100%">
+        <s:HSlider id="sliderWidth" minimum="10" maximum="200" stepSize="1"
+                   value="75"/>
+      </s:FormItem>
+      <s:FormItem label="Item width" width="100%">
+        <s:HSlider id="sliderHeight" minimum="10" maximum="200" stepSize="1"
+                   value="75"/>
+      </s:FormItem>
+    </s:Form>
   </s:SkinnableContainer>
 </views:SampleView>

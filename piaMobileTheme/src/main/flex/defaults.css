@@ -328,3 +328,10 @@ ios|SearchTextInputSkin
 {
   icon: Embed(source="com/pialabs/eskimo/skins/mobile/ios/assets/searchIcon.png");
 }
+
+components|CarouselList
+{
+  contentBackgroundAlpha: 0;
+  verticalScrollPolicy: off;
+  horizontalScrollPolicy: off;
+}

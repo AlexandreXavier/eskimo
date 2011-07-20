@@ -45,6 +45,8 @@
         <model:Sample uid="1000306" name="ListStepper"
                       exclusiveOS="{Model.ANDROID}"
                       resource="com.pialabs.eskimo.samples.ListStepperView"/>
+        <model:Sample uid="1000307" name="CarouselList"
+                      resource="com.pialabs.eskimo.samples.CircularLayoutView"/>
       </model:samples>
     </model:Category>
 
@@ -63,9 +65,7 @@
                       resource="com.pialabs.eskimo.samples.FormView"/>
         <model:Sample uid="1000501" name="SlideDataGroup"
                       resource="com.pialabs.eskimo.samples.SlideDataGroupView"/>
-        <model:Sample uid="1000502" name="CircularLayout"
-                      resource="com.pialabs.eskimo.samples.CircularLayoutView"/>
-        <model:Sample uid="1000503" name="MultiPlateformeGroup"
+        <model:Sample uid="1000502" name="MultiPlateformeGroup"
                       resource="com.pialabs.eskimo.samples.MultiPlateformeGroupView"/>
       </model:samples>
     </model:Category>
