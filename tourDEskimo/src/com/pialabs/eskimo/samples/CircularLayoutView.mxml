@@ -28,7 +28,7 @@
                              itemRenderer="com.pialabs.eskimo.samples.renderers.ImageRenderer"
                              dataProvider="{photoList}">
       <components:layout>
-        <layouts:CircularLayout id="circularLayout" angle="{slider.value}"
+        <layouts:CircularLayout id="circularLayout"
                                 depthRation="{sliderDepth.value}"
                                 itemWidth="{sliderWidth.value}"
                                 itemHeight="{sliderHeight.value}"
@@ -45,10 +45,6 @@
           <s:VerticalLayout horizontalAlign="center"/>
         </s:layout>
         <s:Form width="100%">
-          <s:FormItem label="Angle" width="100%">
-            <s:HSlider id="slider" minimum="0" maximum="{2*Math.PI}"
-                       stepSize="0.01"/>
-          </s:FormItem>
           <s:FormItem label="Depth ratio" width="100%">
             <s:HSlider id="sliderDepth" minimum="0.1" maximum="1"
                        stepSize="0.01" value="0.5"/>

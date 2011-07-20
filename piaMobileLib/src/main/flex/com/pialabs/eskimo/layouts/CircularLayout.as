@@ -1,6 +1,7 @@
 package com.pialabs.eskimo.layouts
 {
   import flash.display.DisplayObject;
+  import flash.events.Event;
   
   import mx.core.IVisualElement;
   
@@ -81,6 +82,7 @@ package com.pialabs.eskimo.layouts
       return element;
     }
     
+    [Bindable(event = "angleChange")]
     /**
      * Current rotation angle of the layout
      */
@@ -96,6 +98,7 @@ package com.pialabs.eskimo.layouts
     {
       _angle = value;
       target.invalidateDisplayList();
+      dispatchEvent(new Event("angleChange"));
     }
     
     /**
