@@ -20,17 +20,31 @@ package com.pialabs.eskimo.components
   
   /**
   * CarrouselList is a list that display a carrousel.
-  * @see com.pialabs.eskimo.CircularLayout
+  * @see com.pialabs.eskimo.layouts.CircularLayout
   */
   public class CarouselList extends List
   {
-    private var mouseDownX:Number;
-    private var mouseDownY:Number;
+    /**
+    * @private
+    */
+    protected var mouseDownX:Number;
+    /**
+     * @private
+     */
+    protected var mouseDownY:Number;
     
-    private static const EVENT_HISTORY_LENGTH:int = 5;
-    private static const ANGLE_SENSIBILITY:int = 500;
-    
-    private static const MAX_VELOCITY:Number = 0.7;
+    /**
+     * @private
+     */
+    public static const EVENT_HISTORY_LENGTH:int = 5;
+    /**
+     * @private
+     */
+    public static const ANGLE_SENSIBILITY:int = 500;
+    /**
+     * @private
+     */
+    public static const MAX_VELOCITY:Number = 0.7;
     
     /**
      * @private
@@ -60,7 +74,6 @@ package com.pialabs.eskimo.components
      * @private
      * Roll animations.
      */
-    private var _animate:Animate = new Animate();
     private var _animateThrow:Animate = new Animate();
     
     /**
@@ -69,6 +82,9 @@ package com.pialabs.eskimo.components
      */
     private var _currentVelocity:Number;
     
+    /**
+     * Constructor
+     */
     public function CarouselList()
     {
       super();
@@ -80,6 +96,9 @@ package com.pialabs.eskimo.components
       mouseEventTimeHistory = new Vector.<int>(EVENT_HISTORY_LENGTH);
     }
     
+    /**
+     * @private
+     */
     private function onMouseDown(event:MouseEvent):void
     {
       mouseDownX = this.mouseX;
@@ -88,11 +107,10 @@ package com.pialabs.eskimo.components
       clearHistory();
       dataGroup.filters = null;
       _animateThrow.stop();
-      _animate.stop();
       
       var sbRoot:DisplayObject = this.systemManager.getSandboxRoot();
       
-      sbRoot.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+      sbRoot.addEventListener(Event.ENTER_FRAME, onEnterFrame);
       sbRoot.addEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, onMouseUp);
       sbRoot.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
       
@@ -100,7 +118,10 @@ package com.pialabs.eskimo.components
       startTime = getTimer();
     }
     
-    private function onMouseMove(event:MouseEvent):void
+    /**
+     * @private
+     */
+    private function onEnterFrame(event:Event):void
     {
       (layout as CircularLayout).angle -= (this.mouseX - mouseDownX) * Math.PI / ANGLE_SENSIBILITY;
       
@@ -121,11 +142,14 @@ package com.pialabs.eskimo.components
       mouseDownY = this.mouseY;
     }
     
+    /**
+     * @private
+     */
     private function onMouseUp(event:Event):void
     {
       var sbRoot:DisplayObject = this.systemManager.getSandboxRoot();
       
-      sbRoot.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+      sbRoot.removeEventListener(Event.ENTER_FRAME, onEnterFrame);
       
       sbRoot.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
       
@@ -173,8 +197,6 @@ package com.pialabs.eskimo.components
       _animateThrow.play([(layout as CircularLayout)]); //run the animation
     }
     
-    
-    
     /**
      * Get the current velovity of the movment.
      */
@@ -201,9 +223,16 @@ package com.pialabs.eskimo.components
       return _currentVelocity;
     }
     
+    /**
+     * Layout can only be CircularLayout for the moment.
+     * @see com.pialabs.eskimo.layouts.CircularLayout
+     */
     override public function set layout(value:LayoutBase):void
     {
-    
+      if (value is CircularLayout)
+      {
+        super.layout = value;
+      }
     }
   }
 }

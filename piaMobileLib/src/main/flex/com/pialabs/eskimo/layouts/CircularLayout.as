@@ -11,11 +11,25 @@ package com.pialabs.eskimo.layouts
   */
   public class CircularLayout extends LayoutBase
   {
+    /**
+     * @private
+     */
     private var _angle:Number = 0;
-    
+    /**
+     * @private
+     */
     private var _itemWidth:Number = 75;
+    /**
+     * @private
+     */
     private var _itemHeight:Number = 75;
-    private var _depthRation:Number = 0.7;
+    /**
+     * @private
+     */
+    private var _depthRation:Number = 0.5;
+    /**
+     * @private
+     */
     private var _heightRatio:Number = 1;
     
     public function CircularLayout()
@@ -67,44 +81,68 @@ package com.pialabs.eskimo.layouts
       return element;
     }
     
+    /**
+     * Current rotation angle of the layout
+     */
     public function get angle():Number
     {
       return _angle;
     }
     
+    /**
+     * @private
+     */
     public function set angle(value:Number):void
     {
       _angle = value;
       target.invalidateDisplayList();
     }
     
+    /**
+     * Width of an item
+     */
     public function get itemWidth():Number
     {
       return _itemWidth;
     }
     
+    /**
+     * @private
+     */
     public function set itemWidth(value:Number):void
     {
       _itemWidth = value;
       target.invalidateDisplayList();
     }
     
+    /**
+     * Height of an item
+     */
     public function get itemHeight():Number
     {
       return _itemHeight;
     }
     
+    /**
+     * @private
+     */
     public function set itemHeight(value:Number):void
     {
       _itemHeight = value;
       target.invalidateDisplayList();
     }
     
+    /**
+     * Depth of the farest item (between 0 and 1).
+     */
     public function get depthRation():Number
     {
       return _depthRation;
     }
     
+    /**
+     * @private
+     */
     public function set depthRation(value:Number):void
     {
       value = Math.min(0.99, value);
@@ -113,11 +151,18 @@ package com.pialabs.eskimo.layouts
       target.invalidateDisplayList();
     }
     
+    /**
+     * Height ratio (normaly between -1 and 1).
+     * 0 is equivalent to horizontal circle layout and 1, -1 to vertical circle layout.
+     */
     public function get heightRatio():Number
     {
       return _heightRatio;
     }
     
+    /**
+     * @private
+     */
     public function set heightRatio(value:Number):void
     {
       _heightRatio = value;
