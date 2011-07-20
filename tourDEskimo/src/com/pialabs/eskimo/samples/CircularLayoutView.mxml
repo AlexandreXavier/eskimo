@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
+                  xmlns:s="library://ns.adobe.com/flex/spark"
+                  title="CircularLayoutView"
+                  xmlns:views="com.pialabs.eskimo.views.*"
+                  xmlns:layouts="com.pialabs.eskimo.layouts.*"
+                  xmlns:components="com.pialabs.eskimo.components.*">
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+    <s:ArrayCollection id="photoList">
+      <fx:Object source="data/img/photo01.jpg"/>
+      <fx:Object source="data/img/photo02.jpg"/>
+      <fx:Object source="data/img/photo03.jpg"/>
+      <fx:Object source="data/img/photo04.jpg"/>
+      <fx:Object source="data/img/photo05.jpg"/>
+      <fx:Object source="data/img/photo06.jpg"/>
+      <fx:Object source="data/img/photo07.jpg"/>
+      <fx:Object source="data/img/photo08.jpg"/>
+      <fx:Object source="data/img/photo09.jpg"/>
+      <fx:Object source="data/img/photo10.jpg"/>
+    </s:ArrayCollection>
+  </fx:Declarations>
+  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+    <s:layout>
+      <s:VerticalLayout horizontalAlign="center"/>
+    </s:layout>
+    <components:CarrouselList id="slideDataGroup" width="100%" height="200"
+                              itemRenderer="com.pialabs.eskimo.samples.renderers.ImageRenderer"
+                              dataProvider="{photoList}">
+      <components:layout>
+        <layouts:CircularLayout id="circularLayout" angle="{slider.value}"/>
+      </components:layout>
+    </components:CarrouselList>
+    <s:HSlider id="slider" width="100%" minimum="0" maximum="{Math.PI}"
+               stepSize="0.01"/>
+  </s:SkinnableContainer>
+</views:SampleView>
