@@ -65,8 +65,8 @@
                       resource="com.pialabs.eskimo.samples.FormView"/>
         <model:Sample uid="1000501" name="SlideDataGroup"
                       resource="com.pialabs.eskimo.samples.SlideDataGroupView"/>
-        <model:Sample uid="1000502" name="MultiPlateformeGroup"
-                      resource="com.pialabs.eskimo.samples.MultiPlateformeGroupView"/>
+        <model:Sample uid="1000502" name="MultiPlatformGroup"
+                      resource="com.pialabs.eskimo.samples.MultiPlatformGroupView"/>
       </model:samples>
     </model:Category>
 

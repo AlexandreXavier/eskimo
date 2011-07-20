@@ -11,15 +11,15 @@
   <s:Label width="100%" fontSize="14" text="This container renders children for a specfic platform" />
   <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
 
-    <components:MultiplateformeGroup type="{MultiplateformeGroup.IOS}" width="100%">
+    <components:MultiplatformGroup type="{MultiplatformGroup.IOS}" width="100%">
 
       <s:Label text="This label is only visible on iOS platform" width="100%"/>
-    </components:MultiplateformeGroup>
+    </components:MultiplatformGroup>
 
-    <components:MultiplateformeGroup width="100%">
+    <components:MultiplatformGroup width="100%">
 
       <s:Label text="This label is only visible on Android platform" width="100%"/>
-    </components:MultiplateformeGroup>
+    </components:MultiplatformGroup>
   </s:SkinnableContainer>
 
 </views:SampleView>
