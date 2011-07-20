@@ -57,7 +57,7 @@
             <s:HSlider id="sliderWidth" minimum="10" maximum="200" stepSize="1"
                        value="75"/>
           </s:FormItem>
-          <s:FormItem label="Item width" width="100%">
+          <s:FormItem label="Item height" width="100%">
             <s:HSlider id="sliderHeight" minimum="10" maximum="200" stepSize="1"
                        value="75"/>
           </s:FormItem>
