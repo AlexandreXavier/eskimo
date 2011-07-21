@@ -5,6 +5,61 @@
                   xmlns:views="com.pialabs.eskimo.views.*"
                   xmlns:layouts="com.pialabs.eskimo.layouts.*"
                   xmlns:components="com.pialabs.eskimo.components.*">
+  <fx:Script>
+    <![CDATA[
+      import mx.core.FlexGlobals;
+      import mx.events.ItemClickEvent;
+      import mx.managers.PopUpManager;
+      
+      import spark.effects.Fade;
+      import spark.effects.Move;
+      import spark.effects.Resize;
+      
+      protected function slideDataGroup_itemClickHandler(event:ItemClickEvent):void
+      {
+        if (event.index == carouselList.selectedIndex)
+        {
+          var targetBounds:Rectangle = event.relatedObject.getBounds(this);
+          var point:Point = localToGlobal(new Point());
+          var imgSize:Number = Math.min(width * 0.8, 400);
+          
+          PopUpManager.addPopUp(popUp, this, true);
+          img.source = event.item.source;
+          
+          var resizeEff:Resize = new Resize(popUp);
+          
+          resizeEff.widthFrom = targetBounds.width;
+          resizeEff.widthTo = imgSize;
+          resizeEff.heightFrom = targetBounds.height;
+          resizeEff.heightTo = imgSize;
+          resizeEff.startDelay = 100;
+          
+          resizeEff.play();
+          
+          var moveEff:Move = new Move(popUp);
+          
+          var ratio:Number = FlexGlobals.topLevelApplication.runtimeDPI / FlexGlobals.topLevelApplication.applicationDPI;
+          
+          
+          moveEff.xFrom = targetBounds.x + point.x / ratio;
+          moveEff.xTo = (width - imgSize) / 2 + point.x / ratio;
+          moveEff.yFrom = targetBounds.y + point.y / ratio;
+          moveEff.yTo = (height - imgSize) / 2 + point.y / ratio;
+          moveEff.startDelay = 100;
+          
+          moveEff.play();
+          
+          var fadeEff:Fade = new Fade(popUp);
+          
+          fadeEff.alphaFrom = 0;
+          fadeEff.alphaTo = 1;
+          
+          fadeEff.play();
+        }
+      }
+    ]]>
+  </fx:Script>
+
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
     <s:ArrayCollection id="photoList">
@@ -19,14 +74,22 @@
       <fx:Object source="data/img/photo09.jpg"/>
       <fx:Object source="data/img/photo10.jpg"/>
     </s:ArrayCollection>
+
+    <s:Group width="200" height="200" id="popUp"
+             mouseDownOutside="PopUpManager.removePopUp(popUp)">
+      <s:Image width="100%" height="100%" id="img" smooth="true"/>
+    </s:Group>
   </fx:Declarations>
+
+
   <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
     <s:layout>
       <s:VerticalLayout horizontalAlign="center"/>
     </s:layout>
-    <components:CarouselList id="slideDataGroup" width="100%" height="180"
+    <components:CarouselList id="carouselList" width="100%" height="180"
                              itemRenderer="com.pialabs.eskimo.samples.renderers.ImageRenderer"
-                             dataProvider="{photoList}">
+                             dataProvider="{photoList}"
+                             itemClick="slideDataGroup_itemClickHandler(event)">
       <components:layout>
         <layouts:CircularLayout id="circularLayout"
                                 depthRation="{sliderDepth.value}"

@@ -33,6 +33,9 @@ package com.pialabs.eskimo.layouts
      */
     private var _heightRatio:Number = 1;
     
+    /**
+     * Constructor
+     */
     public function CircularLayout()
     {
       super();
@@ -50,13 +53,13 @@ package com.pialabs.eskimo.layouts
       
       for (var i:uint = 0; i < numElements; i++)
       {
-        var elementAngle:Number = i * 2 * Math.PI / numElements + _angle;
+        var elementAngle:Number = -i * 2 * Math.PI / numElements + _angle;
         var element:IVisualElement = getVisualElement(i);
-        var sizeRatio:Number = ((Math.sin(elementAngle) + 1) / 2) * (1 - _depthRation) + _depthRation;
+        var sizeRatio:Number = ((Math.cos(elementAngle) + 1) / 2) * (1 - _depthRation) + _depthRation;
         var elementWidth:Number = _itemWidth * sizeRatio;
         var elementHeight:Number = _itemHeight * sizeRatio;
-        var elementX:Number = Math.cos(elementAngle) * (width - _itemWidth) / 2 + (width - elementWidth) / 2;
-        var elementY:Number = Math.sin(elementAngle) * (height - _itemHeight) * _heightRatio / 2 + (height - elementHeight) / 2;
+        var elementX:Number = -Math.sin(elementAngle) * (width - _itemWidth) / 2 + (width - elementWidth) / 2;
+        var elementY:Number = Math.cos(elementAngle) * (height - _itemHeight) * _heightRatio / 2 + (height - elementHeight) / 2;
         
         element.setLayoutBoundsPosition(elementX, elementY);
         element.setLayoutBoundsSize(elementWidth, elementHeight);
