@@ -4,7 +4,7 @@ package com.pialabs.eskimo.views
   
   public class SampleItemRenderer extends IconItemRenderer
   {
-    [Embed(source = "assets/fleche.png")]
+    [Embed(source = "/assets/fleche.png")]
     private var _decorator:Class;
     
     public function SampleItemRenderer()

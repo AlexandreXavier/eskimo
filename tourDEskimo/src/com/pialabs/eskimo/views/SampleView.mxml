@@ -13,11 +13,11 @@
       import spark.events.ViewNavigatorEvent;
       
       [Bindable]
-      [Embed(source = "assets/apple.png")]
+      [Embed(source = "/assets/apple.png")]
       private var _logoAppleCls:Class;
       
       [Bindable]
-      [Embed(source = "assets/android.png")]
+      [Embed(source = "/assets/android.png")]
       private var _logoAndroidCls:Class;
       
       protected function onViewActivate(event:ViewNavigatorEvent):void

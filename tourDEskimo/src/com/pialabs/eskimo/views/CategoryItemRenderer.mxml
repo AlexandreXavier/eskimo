@@ -4,7 +4,7 @@
                     labelField="name" iconWidth="30" iconHeight="30" height="60"
                     verticalCenter="0" verticalAlign="middle" iconField="icon"
                     xmlns:icons="com.pialabs.eskimo.icons.*"
-                    decorator="@Embed(source='assets/fleche.png')">
+                    decorator="@Embed(source='/assets/fleche.png')">
   <fx:Script>
     <![CDATA[
       override protected function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void
