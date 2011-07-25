@@ -241,6 +241,85 @@
     }
 }
 
+@media (os-platform:"QNX")
+{
+  global
+  {
+    modalTransparencyBlur: 0;
+    modalTransparency: 0.5;
+    modalTransparencyColor: black;
+    modalTransparencyDuration: 250;   
+  }
+  
+  s|Form
+  {
+    skinClass:ClassReference("com.pialabs.eskimo.skins.mobile.android.FormSkin");
+    backgroundAlpha: 0;
+  } 
+  s|FormItem
+  {
+    skinClass:ClassReference("com.pialabs.eskimo.skins.mobile.android.FormItemSkin");
+    backgroundAlpha: 0;
+  } 
+  s|FormItem s|CheckBox
+  {
+    skinClass: ClassReference("spark.skins.mobile.CheckBoxSkin");   
+  }
+  
+  controls|SkinnableAlert
+  {
+    skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.AlertSkin");
+    backgroundColor: #424242;
+    backgroundAlpha: 0.9;
+  }
+  
+  
+  components|UniqueChoiceList
+  {
+    skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.UniqueChoiceListSkin");
+    contentBackgroundAlpha: 0;
+  }
+  
+  
+  components|ContextableList
+  {
+    alternatingItemColors: #000000;
+    color: #FFFFFF;
+    contentBackgroundColor: #000000;
+  }
+  
+  components|ConfirmButton
+  {
+    skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.ConfirmButtonSkin");   
+    confirmChromeColor: #FF3333;
+    buttonColor: #000000;
+  }
+  
+  s|NumericStepper
+  {
+    skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.NumericStepperSkin");
+    fontSize: 30;
+    chromeColor: #FF7800;
+  }
+  
+  s|CheckBox
+  {
+    skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.MobileCheckBoxSkin");
+    iconPlacement: "right";
+  }
+  
+  s|RadioButton
+  {
+    skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.RadioButtonSkin");
+    iconPlacement: "right";
+  }
+  
+  components|DateChooser
+  {
+    skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.DateChooserSkin");
+  }
+}
+
 components|MobileContextMenu
 {
     skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.MobileContextMenuSkin");
