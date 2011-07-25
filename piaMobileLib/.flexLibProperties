@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="true" version="3">
   <includeClasses>
-    <classEntry path="com.piaction.components.SlideDataGroup"/>
-    <classEntry path="com.piaction.components.UniqueChoiceList"/>
-    <classEntry path="com.piaction.controls.SkinnableAlert"/>
-    <classEntry path="com.piaction.events.ConfirmEvent"/>
-    <classEntry path="com.piaction.events.ContextableListEvent"/>
-    <classEntry path="com.piaction.events.DeletableListEvent"/>
-    <classEntry path="com.piaction.events.MobileCalendarEvent"/>
-    <classEntry path="com.piaction.events.MobileContextMenuEvent"/>
-    <classEntry path="com.piaction.layouts.SlideLayout"/>
+    <classEntry path="com.pialabs.eskimo.components.CarouselList"/>
+    <classEntry path="com.pialabs.eskimo.components.maps.GMap"/>
+    <classEntry path="com.pialabs.eskimo.components.maps.GMapEvent"/>
+    <classEntry path="com.pialabs.eskimo.layouts.CircularLayout"/>
+    <classEntry path="com.pialabs.eskimo.components.maps.GMapHTMLTemplate"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

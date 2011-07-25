@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
+                  xmlns:s="library://ns.adobe.com/flex/spark" title="GMapView"
+                  xmlns:maps="com.pialabs.eskimo.components.maps.*"
+                  xmlns:views="com.pialabs.eskimo.views.*">
+  <fx:Script>
+    <![CDATA[
+      import com.pialabs.eskimo.controls.SkinnableAlert;
+      
+      import mx.events.FlexEvent;
+      
+      protected function map_completeHandler(event:Event):void
+      {
+        // TODO Auto-generated method stub
+        map.setCenter(48.833679, 2.290113);
+        map.zoom = 15;
+      }
+    ]]>
+  </fx:Script>
+  <fx:Declarations>
+    <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
+  </fx:Declarations>
+
+  <s:SkinnableContainer width="100%" height="60%"
+                        styleName="componentContainerStyle">
+    <s:layout>
+      <s:VerticalLayout horizontalAlign="center"/>
+    </s:layout>
+    <maps:GMap id="map" width="100%" height="100%" zoom="{zoomSlider.value}"
+               complete="map_completeHandler(event)"
+               error="SkinnableAlert.show('Loading Error')"/>
+  </s:SkinnableContainer>
+  <s:SkinnableContainer width="100%" height="40%"
+                        styleName="parameterContainerStyle">
+    <s:Scroller width="100%" height="100%">
+
+
+      <s:Group width="100%">
+
+        <s:layout>
+          <s:VerticalLayout horizontalAlign="center"/>
+        </s:layout>
+        <s:Form width="100%">
+          <!-- Label-->
+          <s:FormItem label="Center on PIA">
+            <s:Button label="Center" click="map.setCenter(48.833679,2.290113)"/>
+          </s:FormItem>
+          <s:FormItem label="Zoom">
+
+            <s:HSlider id="zoomSlider" minimum="1" maximum="18" stepSize="1"
+                       value="15"/>
+          </s:FormItem>
+          <s:FormItem label="Add marker">
+            <s:HGroup width="100%">
+              <s:TextInput id="latMarker" text="48.833679" width="100%"
+                           restrict="0-9 . -"/>
+              <s:TextInput id="lngMarker" text="2.290113" width="100%"
+                           restrict="0-9 . -"/>
+              <s:Button label="Add"
+                        click="map.addMarker(parseFloat(latMarker.text),parseFloat(lngMarker.text),'PIA','Custom description')"
+                        width="100%"/>
+            </s:HGroup>
+          </s:FormItem>
+          <s:FormItem label="Add marker Img">
+            <s:HGroup width="100%">
+              <s:TextInput id="latMarker2" text="48.833679" width="100%"
+                           restrict="0-9 . -"/>
+              <s:TextInput id="lngMarker2" text="2.290113" width="100%"
+                           restrict="0-9 . -"/>
+              <s:Button label="Add"
+                        click="map.addMarkerImage(parseFloat(latMarker2.text),parseFloat(lngMarker2.text), 'http://www.adobe.com/education/products/images/air_appicon__50x50.gif', 50, 50, new Point(25, 50), 'PIA', 'comment')"
+                        width="100%"/>
+            </s:HGroup>
+          </s:FormItem>
+          <s:FormItem label="Marker visibility">
+            <s:HGroup width="100%">
+
+              <s:Button label="Hide" click="map.clearOverlays()" width="100%"/>
+              <s:Button label="Show" click="map.showOverlays()" width="100%"/>
+              <s:Button label="Delete" click="map.deleteOverlays()" width="100%"/>
+            </s:HGroup>
+          </s:FormItem>
+        </s:Form>
+      </s:Group>
+    </s:Scroller>
+  </s:SkinnableContainer>
+</views:SampleView>

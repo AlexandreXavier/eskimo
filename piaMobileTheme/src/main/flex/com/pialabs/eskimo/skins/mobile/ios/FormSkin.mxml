@@ -101,7 +101,7 @@ The iOS skin class for the Spark Form component.
            right="0" top="0" bottom="0" added="invalidateDisplayList()">
     <s:layout>
       <s:FormLayout paddingTop="0" paddingBottom="0" paddingLeft="15"
-                    paddingRight="5" gap="0"/>
+                    horizontalAlign="justify" paddingRight="5" gap="0"/>
     </s:layout>
   </s:Group>
 

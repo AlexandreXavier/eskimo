@@ -126,7 +126,7 @@
 
     <!-- The icon the system uses for the application. For at least one resolution,
     specify the path to a PNG file included in the AIR package. Optional. -->
-   <icon>
+    <icon>
         <image16x16>assets/appIcon16.png</image16x16>
         <image32x32>assets/appIcon32.png</image32x32>
         <image36x36>assets/appIcon36.png</image36x36>
@@ -226,7 +226,7 @@
 			    <!--Removing the permission android.permission.INTERNET will have the side effect
 					of preventing you from debugging your application on your device-->
 			    <uses-permission android:name="android.permission.INTERNET"/>
-			    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>-->
+			    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 			    <!--<uses-permission android:name="android.permission.READ_PHONE_STATE"/>-->
 			    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>-->
 			    <!--The DISABLE_KEYGUARD and WAKE_LOCK permissions should be toggled together
