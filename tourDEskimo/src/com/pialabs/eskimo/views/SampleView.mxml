@@ -20,6 +20,10 @@
       [Embed(source = "/assets/android.png")]
       private var _logoAndroidCls:Class;
       
+      [Bindable]
+      [Embed(source = "/assets/blackberry.png")]
+      private var _logoQNXCls:Class;
+      
       protected function onViewActivate(event:ViewNavigatorEvent):void
       {
         var sample:Sample = Sample(data);
@@ -35,6 +39,9 @@
             case Model.IOS:
               osPicto.addElement(appleIcon);
               break;
+            case Model.QNX:
+              osPicto.addElement(qnxIcon);
+              break;
             default:
               throw new TypeError("Unknown OS:" + sample.exclusiveOS);
               break;
@@ -44,6 +51,7 @@
         {
           osPicto.addElement(appleIcon);
           osPicto.addElement(androidIcon);
+          osPicto.addElement(qnxIcon);
         }
         
         this.actionContent = [availableOS];
@@ -66,7 +74,7 @@
     ]]>
   </fx:Script>
   <fx:Declarations>
-    <s:VGroup id="availableOS" gap="0">
+    <s:VGroup id="availableOS" gap="0" horizontalAlign="center">
       <s:Label height="100%" color="#ffffff" fontSize="12" id="OSlabel"
                text="Managed OS" verticalAlign="middle" width="100%"/>
       <s:HGroup id="osPicto" horizontalAlign="center" width="100%">
@@ -78,6 +86,7 @@
                    height="25"/>
     <s:BitmapImage id="androidIcon" source="{_logoAndroidCls}" width="25"
                    height="25"/>
+    <s:BitmapImage id="qnxIcon" source="{_logoQNXCls}" width="25" height="25"/>
 
   </fx:Declarations>
   <s:layout>

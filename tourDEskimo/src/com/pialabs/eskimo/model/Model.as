@@ -26,7 +26,8 @@ package com.pialabs.eskimo.model
     
     public static const IOS:String = "IOS";
     public static const ANDROID:String = "ANDROID";
-    public static const OS_STYLES:ArrayCollection = new ArrayCollection([IOS, ANDROID]);
+    public static const QNX:String = "QNX";
+    public static const OS_STYLES:ArrayCollection = new ArrayCollection([IOS, ANDROID, QNX]);
     
     
     public function Model()

@@ -78,7 +78,7 @@
         <model:Sample uid="1000601" name="SearchTextInput"
                       exclusiveOS="{Model.IOS}"
                       resource="com.pialabs.eskimo.samples.SearchTextInputView"/>
-        <model:Sample uid="1000602" name="GMap" exclusiveOS="{Model.IOS}"
+        <model:Sample uid="1000602" name="GMap"
                       resource="com.pialabs.eskimo.samples.GMapView"/>
       </model:samples>
     </model:Category>
