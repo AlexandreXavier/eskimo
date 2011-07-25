@@ -11,6 +11,7 @@ package com.pialabs.eskimo.components.maps
   import flash.geom.Point;
   import flash.geom.Rectangle;
   import flash.media.StageWebView;
+  import flash.system.Capabilities;
   import flash.utils.ByteArray;
   import flash.utils.Dictionary;
   
@@ -64,7 +65,7 @@ package com.pialabs.eskimo.components.maps
     /**
      * @private
      */
-    private var _directoryTmp:File = File.documentsDirectory.resolvePath("eskimo/");
+    private var _directoryTmp:File = File.documentsDirectory.resolvePath("eskimoTmp/");
     
     /**
      * @private
@@ -84,6 +85,13 @@ package com.pialabs.eskimo.components.maps
     public function GMap()
     {
       super();
+      
+      var currentOS:String = Capabilities.os.toLocaleUpperCase();
+      if (currentOS.lastIndexOf("QNX") != -1)
+      {
+        _fileTmp = File.createTempFile();
+      }
+      
       
       addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
       addEventListener(Event.REMOVED_FROM_STAGE, onRemovedToStage, false, 0, true);
@@ -161,8 +169,13 @@ package com.pialabs.eskimo.components.maps
       if (currLocation.indexOf('message://[CallBack]') != -1)
       {
         applyCallBack(currLocation.split('message://[CallBack]')[1]);
+        e.preventDefault();
       }
-      e.preventDefault();
+      else if (currLocation.indexOf('http://') != -1 || currLocation.indexOf('https://') != -1)
+      {
+        e.preventDefault();
+      }
+    
     }
     
     /**
@@ -187,6 +200,10 @@ package com.pialabs.eskimo.components.maps
     
     private function deleteTmpFiles():void
     {
+      if (_fileTmp.exists)
+      {
+        _fileTmp.deleteFile();
+      }
       if (_directoryTmp.exists)
       {
         _directoryTmp.deleteDirectory(true);
