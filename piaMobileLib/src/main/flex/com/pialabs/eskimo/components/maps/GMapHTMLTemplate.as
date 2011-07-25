@@ -1,6 +1,10 @@
 package com.pialabs.eskimo.components.maps
 {
   
+  /**
+  * HTML template for GMap component.
+  * @see com.pialabs.eskimo.components.maps.GMap
+  */
   public class GMapHTMLTemplate
   {
     public static const HTML_TEMPLATE:XML = <script><![CDATA[

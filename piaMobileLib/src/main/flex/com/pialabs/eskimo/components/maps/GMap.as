@@ -337,11 +337,19 @@ package com.pialabs.eskimo.components.maps
       return _mapInitialized;
     }
     
+    /**
+    * @private
+    * Add a js callback
+    */
     private function addCallBack(key:String, func:Function):void
     {
       _callbacks[key] = func;
     }
     
+    /**
+     * @private
+     * Apply a callback from JS
+     */
     private function applyCallBack(jSonArgs:String):void
     {
       var serializeObject:Object = JSON.decode(jSonArgs);
@@ -354,6 +362,10 @@ package com.pialabs.eskimo.components.maps
       }
     }
     
+    /**
+     * @private
+     * Call a JS function
+     */
     public function callJSFunction(functionName:String, ... arguments):void
     {
       var serializeObject:Object = {};
