@@ -1,6 +1,7 @@
 package com.pialabs.eskimo.components.maps
 {
   import com.adobe.serialization.json.JSON;
+  import com.pialabs.eskimo.controls.SkinnableAlert;
   
   import flash.events.ErrorEvent;
   import flash.events.Event;
@@ -72,6 +73,17 @@ package com.pialabs.eskimo.components.maps
      */
     private var _fileTmp:File = _directoryTmp.resolvePath("index.html");
     
+    /**
+     * @private
+     */
+    private var _currentOS:String;
+    
+    /**
+     * @private
+     * For callback iOS demands http://, qnx message:// and android don't care...
+     */
+    private var protecolBridge:String = "http";
+    
     
     /**
     * JS callback dictionnary
@@ -86,10 +98,13 @@ package com.pialabs.eskimo.components.maps
     {
       super();
       
-      var currentOS:String = Capabilities.os.toLocaleUpperCase();
-      if (currentOS.lastIndexOf("QNX") != -1)
+      _currentOS = Capabilities.version.toLocaleUpperCase();
+      
+      if (_currentOS.lastIndexOf("QNX") != -1)
       {
         _fileTmp = File.createTempFile();
+        // Qnx don't listen for callback if the protocol is http:// (BUT iOS is waiting for http://...)
+        protecolBridge = "message";
       }
       
       
@@ -98,7 +113,14 @@ package com.pialabs.eskimo.components.maps
       
       webView = new StageWebView();
       
+      // iOS Crash if the stage is not setted
+      if (_currentOS.lastIndexOf("IOS") != -1)
+      {
+        webView.stage = this.stage;
+      }
+      
       webView.addEventListener(LocationChangeEvent.LOCATION_CHANGING, onLocationChanging);
+      webView.addEventListener(LocationChangeEvent.LOCATION_CHANGE, onLocationChanging);
       
       addCallBack("onInitialized", onInitialized);
       addCallBack("onMarkerClicked", onMarkerClicked);
@@ -142,9 +164,19 @@ package com.pialabs.eskimo.components.maps
     protected function init():void
     {
       webView.viewPort = new Rectangle(0, 200, stage.stageWidth, 400);
-      webView.stage = null;
+      if (_currentOS.lastIndexOf("IOS") != -1)
+      {
+        webView.stage = this.stage;
+      }
+      else
+      {
+        webView.stage = null;
+      }
       
       var html:String = GMapHTMLTemplate.HTML_TEMPLATE.toString();
+      
+      // Because of QNX exception we replace the protocol if necessary
+      html = html.replace("http://[CallBack]", protecolBridge + "://[CallBack]");
       
       var _fileStream:FileStream = new FileStream();
       _fileStream.open(_fileTmp, FileMode.WRITE);
@@ -165,17 +197,17 @@ package com.pialabs.eskimo.components.maps
     private function onLocationChanging(e:Event):void
     {
       var currLocation:String = unescape((e as LocationChangeEvent).location);
+      trace(currLocation);
       
-      if (currLocation.indexOf('message://[CallBack]') != -1)
+      if (currLocation.indexOf(protecolBridge + '://[CallBack]') == 0)
       {
-        applyCallBack(currLocation.split('message://[CallBack]')[1]);
+        applyCallBack(currLocation.split(protecolBridge + '://[CallBack]')[1]);
         e.preventDefault();
       }
-      else if (currLocation.indexOf('http://') != -1 || currLocation.indexOf('https://') != -1)
+      else if (currLocation.indexOf('http://') == 0 || currLocation.indexOf('https://') == 0)
       {
         e.preventDefault();
       }
-    
     }
     
     /**
@@ -185,6 +217,8 @@ package com.pialabs.eskimo.components.maps
     {
       webView.loadURL('javascript:');
       
+      callJSFunction("setProtocol", protecolBridge);
+      
       deleteTmpFiles();
     }
     
@@ -193,6 +227,7 @@ package com.pialabs.eskimo.components.maps
      */
     private function onWebViewError(event:ErrorEvent):void
     {
+      trace(event.toString());
       dispatchEvent(event.clone());
       
       deleteTmpFiles();
@@ -239,7 +274,6 @@ package com.pialabs.eskimo.components.maps
         showOverlays();
       }
       
-      webView.stage = this.stage;
       
       dispatchEvent(new Event(Event.COMPLETE));
     }
@@ -369,7 +403,12 @@ package com.pialabs.eskimo.components.maps
      */
     private function applyCallBack(jSonArgs:String):void
     {
-      var serializeObject:Object = JSON.decode(jSonArgs);
+      //iOS don't link when we put jSON directly in URl, so we convert it in Base64...
+      var base64Encoder:Base64Decoder = new Base64Decoder();
+      base64Encoder.decode(jSonArgs);
+      var ba:ByteArray = base64Encoder.toByteArray();
+      
+      var serializeObject:Object = JSON.decode(ba.readUTFBytes(ba.length));
       
       var func:Function = _callbacks[serializeObject.method];
       
@@ -391,7 +430,13 @@ package com.pialabs.eskimo.components.maps
       
       var jSonArgs:String = JSON.encode(serializeObject);
       
-      webView.loadURL("javascript:doCall('" + jSonArgs + "')");
+      //iOS don't link when we put jSON directly in URl, so we convert it in Base64...
+      var base64Encoder:Base64Encoder = new Base64Encoder();
+      base64Encoder.encode(jSonArgs, 0, jSonArgs.length);
+      var argsEncoded:String = base64Encoder.toString();
+      argsEncoded = argsEncoded.split("\n").join("");
+      
+      webView.loadURL("javascript:doCall('" + argsEncoded + "')");
     }
   
   }

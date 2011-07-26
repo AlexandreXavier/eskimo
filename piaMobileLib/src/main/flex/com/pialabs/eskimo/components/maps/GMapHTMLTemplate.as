@@ -56,12 +56,12 @@ package com.pialabs.eskimo.components.maps
         
         _serializeObject.arguments = argumentsArray;
         
-        location.href = 'message://[CallBack]' + JSON.stringify( _serializeObject );
+        location.href = 'http://[CallBack]' + btoa( JSON.stringify( _serializeObject ) );
       }
       
       function doCall(jsonArgs)
       {
-        var _serializeObject = JSON.parse( jsonArgs );
+        var _serializeObject = JSON.parse( atob( jsonArgs ) );
         var method = _serializeObject.method;
         
         var targetFunction;
@@ -101,6 +101,7 @@ package com.pialabs.eskimo.components.maps
       
       
       function addMarker(lat, lng, title, description, showInfoWindow) {
+        
       	var latlng = new google.maps.LatLng(lat, lng);
         marker = new google.maps.Marker({
           position: latlng,
@@ -112,7 +113,6 @@ package com.pialabs.eskimo.components.maps
         {
           addMarkerWindow(marker, title, description);
         }
-        
         google.maps.event.addListener(marker, 'click', function() {
           callback( 'onMarkerClicked', marker.getPosition().lat(), marker.getPosition().lng() );
         });
@@ -136,7 +136,7 @@ package com.pialabs.eskimo.components.maps
         });
         markersArray.push(marker);
         
-        if(description != 'null')
+        if(showInfoWindow)
         {
           addMarkerWindow(marker, title, description);
         }
