@@ -12,6 +12,7 @@ package com.pialabs.eskimo.components
   import mx.core.ClassFactory;
   import mx.core.IVisualElement;
   import mx.core.mx_internal;
+  import mx.events.CollectionEvent;
   import mx.events.EffectEvent;
   import mx.events.FlexEvent;
   import mx.events.SandboxMouseEvent;
@@ -49,8 +50,8 @@ package com.pialabs.eskimo.components
   public class ListWheel extends List
   {
     private static const EVENT_HISTORY_LENGTH:int = 5;
-    private static const MAX_VELOCITY:Number = 0.4;
-    private static const MOTION_BLUR:Number = 20;
+    private static const MAX_VELOCITY:Number = 0.6;
+    private static const MOTION_BLUR:Number = 10;
     
     /**
     * @private
@@ -162,12 +163,21 @@ package com.pialabs.eskimo.components
       if (value != _dataProvider)
       {
         _dataProvider = value as ArrayCollection;
+        _dataProvider.addEventListener(CollectionEvent.COLLECTION_CHANGE, listWhell_collectionChangeHandler);
         
         _dataProviderChange = true;
         
         invalidateProperties();
         invalidateDisplayList();
       }
+    }
+    
+    protected function listWhell_collectionChangeHandler(event:Event):void
+    {
+      _dataProviderChange = true;
+      
+      invalidateProperties();
+      invalidateDisplayList();
     }
     
     /**

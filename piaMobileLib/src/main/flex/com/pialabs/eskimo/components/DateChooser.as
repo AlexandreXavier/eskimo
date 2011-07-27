@@ -86,14 +86,14 @@ package com.pialabs.eskimo.components
      * @private
      */
     private var _selectedDateChange:Boolean = true;
-    private var _dayProviderChange:Boolean;
     private var _monthProviderChange:Boolean;
     private var _yearProviderChange:Boolean;
     
     /**
      * @private
      */
-    private var _dayProvider:IList;
+    [Bindable] 
+    public var _dayProvider:IList = new ArrayCollection();
     private var _monthProvider:IList;
     private var _yearProvider:IList;
     
@@ -114,6 +114,7 @@ package com.pialabs.eskimo.components
       if (dayList == instance)
       {
         dayList.addEventListener(IndexChangeEvent.CHANGE, onDayChange);
+        dayList.dataProvider = _dayProvider;
       }
       
       if (dayLabel == instance)
@@ -173,18 +174,24 @@ package com.pialabs.eskimo.components
      */
     private function createDayProvider(endDateOfMonth:Number):void
     {
-      var array:Array = new Array();
-      
       var dateUtils:DateUtils = new DateUtils();
       var dayPattern:String = dateUtils.dayPattern(datePattern);
-      for (var day:Number = 1; day <= endDateOfMonth; day++)
-      {
-        array.push(dateUtils.formatDay(day, dayPattern));
-      }
       
-      _dayProvider = new ArrayCollection(array);
-      _dayProviderChange = true;
-    
+      var dayProviderLength:int = _dayProvider.length;
+      if(dayProviderLength > endDateOfMonth)
+      {
+        for (var dayIndex:Number = dayProviderLength - 1; dayIndex >= endDateOfMonth; dayIndex--)
+        {
+          _dayProvider.removeItemAt(dayIndex);
+        }
+      }
+      else if(dayProviderLength < endDateOfMonth)
+      {
+        for (var day:Number = dayProviderLength + 1; day <= endDateOfMonth; day++)
+        {
+          _dayProvider.addItem(dateUtils.formatDay(day, dayPattern));
+        }
+      }
     }
     
     /**
@@ -234,16 +241,10 @@ package com.pialabs.eskimo.components
         _monthProviderChange = false;
         
       }
-      if (_dayProviderChange)
-      {
-        dayList.dataProvider = _dayProvider;
-        _dayProviderChange = false;
-        
-      }
       
       selectYear();
       selectMonth();
-      selectDateOfMonth()
+      selectDateOfMonth();
     }
     
     /**
@@ -462,8 +463,6 @@ package com.pialabs.eskimo.components
       
       invalidateProperties();
     }
-  
-  
   
   }
 }
