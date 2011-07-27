@@ -290,8 +290,7 @@ package com.pialabs.eskimo.components
     {
       clearHistory();
       dataGroup.filters = null;
-      _animateThrow.stop();
-      _animate.stop();
+      cancelAnimations();
       
       _oldY = this.mouseY;
       var sbRoot:DisplayObject = this.systemManager.getSandboxRoot();
@@ -407,6 +406,16 @@ package com.pialabs.eskimo.components
       _animateThrow.motionPaths = smps;
       _animateThrow.duration = duration;
       _animateThrow.play([this]); //run the animation
+    }
+    
+    private function cancelAnimations():void
+    {
+      _animateThrow.removeEventListener(EffectEvent.EFFECT_END, onThowFinish);
+      _animateThrow.removeEventListener(EffectEvent.EFFECT_UPDATE, onThrowUpdate);
+      _animateThrow.stop();
+      
+      _animate.removeEventListener(EffectEvent.EFFECT_END, onRollEnd);
+      _animate.stop();
     }
     
     /**
