@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--- The android skin class for the popup of Eskimo Toast component.
+@see com.pialabs.eskimo.components.Toast
+-->
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009"
+             xmlns:s="library://ns.adobe.com/flex/spark"
+             xmlns:mx="library://ns.adobe.com/flex/mx">
+  <!-- host component -->
+  <fx:Metadata>
+    [HostComponent("com.pialabs.eskimo.components.Toast")]
+  </fx:Metadata>
+
+  <!-- SkinParts
+  name=labelDisplay, type=spark.components.Label, required=true
+  -->
+
+  <fx:Script>
+    <![CDATA[
+      static private const exclusions:Array = ["labelDisplay", "dropShadow"];
+      
+      /**
+       * @private
+       */
+      override public function get colorizeExclusions():Array
+      {
+        return exclusions;
+      }
+      
+      /**
+       * @private
+       */
+      override protected function initializationComplete():void
+      {
+        useChromeColor = true;
+        super.initializationComplete();
+      }
+    ]]>
+  </fx:Script>
+
+  <s:states>
+    <s:State name="normal"/>
+    <s:State name="closed"/>
+  </s:states>
+
+  <s:transitions>
+    <s:Transition fromState="closed" toState="normal" autoReverse="true">
+      <s:Fade target="{content}" duration="200"/>
+    </s:Transition>
+  </s:transitions>
+
+  <s:Group id="content" left="0" top="0" right="0" bottom="0"
+           visible.closed="false">
+
+    <!--- Border fill -->
+    <s:Rect id="border" left="0" top="0" right="0" bottom="0" radiusX="5"
+            alpha="0.9">
+      <s:fill>
+        <s:SolidColor id="backgroundFill" color="#CCCCCC"/>
+      </s:fill>
+      <s:stroke>
+        <s:SolidColorStroke color="#FFFFFF" weight="1"/>
+      </s:stroke>
+    </s:Rect>
+
+    <s:RectangularDropShadow id="dropShadow" left="1" top="1" right="1"
+                             bottom="1" tlRadius="5" trRadius="5" blRadius="5"
+                             brRadius="5" angle="90" distance="5"/>
+
+    <s:Label id="labelDisplay" top="10" right="10" bottom="10" left="10"/>
+  </s:Group>
+</s:SparkSkin>

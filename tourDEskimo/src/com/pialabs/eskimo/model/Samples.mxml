@@ -56,6 +56,8 @@
                       resource="com.pialabs.eskimo.samples.AlertView"/>
         <model:Sample uid="1000401" name="PopOver" exclusiveOS="{Model.IOS}"
                       resource="com.pialabs.eskimo.samples.PopOverView"/>
+        <model:Sample uid="1000401" name="Toast" exclusiveOS="{Model.ANDROID}"
+                      resource="com.pialabs.eskimo.samples.ToastView"/>
       </model:samples>
     </model:Category>
 
