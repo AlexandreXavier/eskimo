@@ -16,11 +16,8 @@ The iOS skin class for the Eskimo SplitView component.
 
   <fx:Script>
     <![CDATA[
-      import mx.core.Container;
       import mx.core.IVisualElementContainer;
       import mx.events.FlexEvent;
-      
-      import spark.components.supportClasses.GroupBase;
       
       protected function onStateChange(event:FlexEvent):void
       {
@@ -44,11 +41,14 @@ The iOS skin class for the Eskimo SplitView component.
       override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
       {
         super.updateDisplayList(unscaledWidth, unscaledHeight);
+        
+        popOver.maxHeight = unscaledHeight - 80;
       }
       
       protected function showPopOver():void
       {
         popOver.target = hostComponent.panelButton;
+        
         popOver.open(this, false);
       }
     ]]>
