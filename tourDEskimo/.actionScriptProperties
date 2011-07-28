@@ -37,13 +37,16 @@
     <application path="tourDEskimo.mxml">
       <airExcludes/>
     </application>
+    <application path="tourDEskimoSplit.mxml">
+      <airExcludes/>
+    </application>
   </applications>
   <modules/>
   <buildCSSFiles/>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
   <buildTargets>
-    <buildTarget buildTargetName="com.adobe.flexide.multiplatform.ios.platform" iosSettingsVersion="1" provisioningFile="/Users/fred/Projets/pia-mobile-pack/trunk/tourDEskimo/iOS/tourdeskimo_profile.mobileprovision" releasePackageType="">
-      <airSettings airCertificatePath="/Users/fred/Dropbox/iOs/Certificats.p12" airTimestamp="true" version="1">
+    <buildTarget buildTargetName="com.adobe.flexide.multiplatform.ios.platform" iosSettingsVersion="1" provisioningFile="/Users/emmanuel/Documents/workspace/pia-mobile-pack/trunk/tourDEskimo/iOS/tourdeskimo_profile.mobileprovision" releasePackageType="">
+      <airSettings airCertificatePath="/Users/emmanuel/Documents/workspace/field-agent/trunk/field-agent-swt/iOs/Certificats.p12" airTimestamp="true" version="1">
         <airExcludes/>
       </airSettings>
       <multiPlatformSettings enabled="true" includePlatformLibs="false" platformID="com.adobe.flexide.multiplatform.ios.platform" version="2"/>

@@ -29,7 +29,7 @@
 
     <components:DeletableList id="deletableList" width="100%" height="100%"
                               alternatingItemColors="[0xEDEDED, 0xFFFFFF]"
-                              dataProvider="{_dataProvider}">
+                              dataProvider="{_dataProvider}" itemDeleted="trace(event)">
     </components:DeletableList>
   </s:SkinnableContainer>
 </views:SampleView>

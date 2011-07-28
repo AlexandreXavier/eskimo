@@ -69,6 +69,8 @@
                       resource="com.pialabs.eskimo.samples.SlideDataGroupView"/>
         <model:Sample uid="1000502" name="MultiPlatformGroup"
                       resource="com.pialabs.eskimo.samples.MultiPlatformGroupView"/>
+        <model:Sample uid="1000503" name="SplitView" exclusiveOS="{Model.IOS}"
+                      resource="com.pialabs.eskimo.samples.SplitViewView"/>
       </model:samples>
     </model:Category>
 

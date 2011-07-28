@@ -160,6 +160,11 @@
     {
       skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.DateChooserSkin");
     }
+    
+    s|ActionBar.beveled s|Group#navigationGroup s|Button.splitViewPanelButtonStyle
+    {
+      skinClass: ClassReference("spark.skins.mobile.BeveledActionButtonSkin");
+    }
 }
 
 @media (os-platform:"ANDROID")
@@ -426,4 +431,15 @@ components|Toast
   marginBottom: 30;
   marginLeft: 10;
   marginRight: 10;
+}
+
+components|SplitViewApplication
+{
+  backgroundColor: #000000;
+}
+
+components|SplitView
+{
+  skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.SplitViewSkin");
+  panelButtonStyleName: "splitViewPanelButtonStyle";
 }

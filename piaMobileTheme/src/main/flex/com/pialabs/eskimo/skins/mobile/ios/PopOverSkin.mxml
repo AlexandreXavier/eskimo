@@ -308,7 +308,7 @@
                         paddingLeft="5"/>
     </s:layout>
     <s:Group id="contentGroup" minWidth="0" minHeight="0" width="100%"
-             height="100%">
+             height="100%" clipAndEnableScrolling="true">
       <s:layout>
         <s:VerticalLayout horizontalAlign="justify" gap="5"/>
       </s:layout>

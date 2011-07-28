@@ -97,7 +97,12 @@ package com.pialabs.eskimo.components
       var e:DeletableListEvent = new DeletableListEvent(DeletableListEvent.ITEM_DELETED, false, false, mouseX, mouseY, this, false, false, false, true, 0, itemIndex, data, this);
       parentList.dispatchEvent(e);
       
-      parentList.dataProvider.removeItemAt(parentList.dataProvider.getItemIndex(data));
+      var itemIndex:int = parentList.dataProvider.getItemIndex(data);
+      
+      if(itemIndex != -1)
+      {
+        parentList.dataProvider.removeItemAt(itemIndex);
+      }
     }
     
     /**
