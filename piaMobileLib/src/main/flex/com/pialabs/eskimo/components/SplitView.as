@@ -4,6 +4,7 @@ package com.pialabs.eskimo.components
   import flash.events.Event;
   import flash.events.MouseEvent;
   import flash.events.StageOrientationEvent;
+  import flash.system.Capabilities;
   
   import mx.core.mx_internal;
   import mx.events.FlexEvent;
@@ -13,6 +14,7 @@ package com.pialabs.eskimo.components
   import spark.components.View;
   import spark.components.ViewNavigator;
   import spark.components.supportClasses.SkinnableComponent;
+  import spark.components.supportClasses.ViewDescriptor;
   import spark.components.supportClasses.ViewNavigatorBase;
   
   use namespace mx_internal;
@@ -102,7 +104,7 @@ package com.pialabs.eskimo.components
       
       panelButton = new Button();
       panelButton.label = _panelButtonLabel;
-      panelButton.addEventListener(MouseEvent.CLICK, onpanelClick);
+      panelButton.addEventListener(MouseEvent.CLICK, onPanelClick);
     }
     
     /**
@@ -110,7 +112,16 @@ package com.pialabs.eskimo.components
      */
     private function onAddedToStage(event:Event):void
     {
-      stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGE, onOrientationChange);
+      var currentOS:String = Capabilities.version;
+      if (currentOS.lastIndexOf("AND") != -1)
+      {
+        stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGE, onOrientationChange);
+      }
+      
+      else
+      {
+        stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGING, onOrientationChanging);
+      }
     }
     
     /**
@@ -118,7 +129,16 @@ package com.pialabs.eskimo.components
      */
     private function onRemovedToStage(event:Event):void
     {
-      stage.removeEventListener(StageOrientationEvent.ORIENTATION_CHANGE, onOrientationChange);
+      var currentOS:String = Capabilities.version;
+      if (currentOS.lastIndexOf("AND") != -1)
+      {
+        stage.removeEventListener(StageOrientationEvent.ORIENTATION_CHANGE, onOrientationChange);
+      }
+      
+      else
+      {
+        stage.removeEventListener(StageOrientationEvent.ORIENTATION_CHANGING, onOrientationChanging);
+      }
     }
     
     /**
@@ -173,12 +193,15 @@ package com.pialabs.eskimo.components
         contentGroup.removeAllElements();
         contentGroup.addElement(_contentNavigator);
         
-        _contentNavigator.addEventListener("viewChangeComplete", onViewChange);
+        // TODO find a way to use "viewChangeStart" event... instead of Event.ADDED
+        //_contentNavigator.addEventListener("viewChangeStart", onViewChange);
+        
+        _contentNavigator.addEventListener(Event.ADDED, onViewChange);
         
         _contentNavigatorChange = false;
       }
       
-      panelButton.styleName = "splitViewPanelButtonStyle";
+      panelButton.styleName = getStyle("panelButtonStyleName");
       
       panelButton.visible = panelButton.includeInLayout = !_isLandscape;
     }
@@ -215,9 +238,16 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onpanelClick(event:Event):void
+    protected function onPanelClick(event:Event):void
     {
-      showPanel();
+      if (_panelVisible)
+      {
+        hidePanel();
+      }
+      else
+      {
+        showPanel();
+      }
     }
     
     /**
@@ -225,46 +255,74 @@ package com.pialabs.eskimo.components
      */
     private function onViewChange(event:Event):void
     {
-      var object:Object = _contentNavigator.navigationStack.topView;
+      var viewDescriptor:ViewDescriptor = _contentNavigator.navigationStack.topView;
       
-      if (object && object.instance)
+      if (viewDescriptor && event.target is viewDescriptor.viewClass)
       {
-        _currentContentView = object.instance;
-        
-        if (_currentContentView.navigationContent == null)
+        if (viewDescriptor && viewDescriptor.instance)
         {
-          _currentContentView.navigationContent = [];
+          _currentContentView = viewDescriptor.instance;
+          
+          if (_currentContentView.navigationContent == null)
+          {
+            _currentContentView.navigationContent = [];
+          }
+          var navigationContent:Array = _currentContentView.navigationContent;
+          navigationContent.unshift(panelButton);
+          _currentContentView.navigationContent = navigationContent;
+          
         }
-        var navigationContent:Array = _currentContentView.navigationContent;
-        navigationContent.push(panelButton);
-        _currentContentView.navigationContent = navigationContent;
-        
+        invalidateDisplayList();
       }
+    }
+    
+    /**
+     * @private
+     */
+    private function onOrientationChanging(event:Event):void
+    {
+      var orientation:String = stage.orientation;
+      
+      if (getOrientation())
+      {
+        _panelVisible = false;
+        _isLandscape = true;
+      }
+      else
+      {
+        _isLandscape = false;
+      }
+      invalidateSkinState();
+      invalidateDisplayList();
+    }
+    
+    /**
+     * @private
+     * For Android
+     */
+    private function onOrientationChange(event:Event):void
+    {
+      var orientation:String = stage.orientation;
+      
+      if (getOrientation())
+      {
+        _isLandscape = false;
+      }
+      else
+      {
+        _panelVisible = false;
+        _isLandscape = true;
+      }
+      invalidateSkinState();
       invalidateDisplayList();
     }
     
     /**
      * @private
      */
-    private function onOrientationChange(event:Event):void
+    private function getOrientation():Boolean
     {
-      var orientation:String = stage.orientation;
-      
-      switch (orientation)
-      {
-        case StageOrientation.ROTATED_LEFT:
-        case StageOrientation.ROTATED_RIGHT:
-          _panelVisible = false;
-          _isLandscape = true;
-          break;
-        case StageOrientation.DEFAULT:
-        case StageOrientation.UPSIDE_DOWN:
-        default:
-          _isLandscape = false;
-          break;
-      }
-      invalidateSkinState();
-      invalidateDisplayList();
+      return stage.stageHeight > stage.stageWidth;
     }
     
     /**
@@ -325,6 +383,7 @@ package com.pialabs.eskimo.components
       invalidateSkinState();
     }
     
+    [Bindable(event = "panelButtonLabelChange")]
     /**
      * Panel button label
      */
@@ -340,8 +399,11 @@ package com.pialabs.eskimo.components
     {
       _panelButtonLabel = value;
       invalidateProperties();
+      
+      dispatchEvent(new Event("panelButtonLabelChange"));
     }
     
+    [Bindable(event = "panelWidthChange")]
     /**
      * Panel Width
      */
@@ -357,6 +419,8 @@ package com.pialabs.eskimo.components
     {
       _panelWidth = value;
       invalidateDisplayList();
+      
+      dispatchEvent(new Event("panelWidthChange"));
     }
   
   

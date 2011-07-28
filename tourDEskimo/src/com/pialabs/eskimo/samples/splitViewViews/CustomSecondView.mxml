@@ -1,14 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:s="library://ns.adobe.com/flex/spark" title="Custom Second View">
+        xmlns:s="library://ns.adobe.com/flex/spark" title="Custom Second View"
+        xmlns:components="com.pialabs.eskimo.components.*"
+        xmlns:layouts="com.pialabs.eskimo.layouts.*">
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
   </fx:Declarations>
+
   <s:layout>
     <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
-                      paddingLeft="10"/>
+                      paddingLeft="10" verticalAlign="middle"
+                      horizontalAlign="center"/>
   </s:layout>
 
-  <s:Label text="Custom Second View"/>
-  <s:Button click="navigator.popView()" label="Pop second View"/>
+  <s:navigationContent>
+    <s:Button label="Back" click="navigator.popView()"/>
+  </s:navigationContent>
+
+  <s:actionContent>
+    <s:Button label="Some buttom"/>
+  </s:actionContent>
+
+  <fx:Script>
+    <![CDATA[
+      import com.pialabs.eskimo.utils.DateUtils;
+      
+      import mx.collections.ArrayCollection;
+      import mx.utils.StringUtil;
+      
+      [Bindable]
+      private var defaultDatePattern:String = DateUtils.defaultDateTimePattern;
+      
+      protected function applyParameters(event:Event):void
+      {
+        var minYearText:String = getValueFromTextInput(minYearTextInput);
+        if (minYearText != null)
+        {
+          dateChooser.minYear = Number(minYearText);
+        }
+        
+        var maxYearText:String = getValueFromTextInput(maxYearTextInput);
+        if (maxYearText != null)
+        {
+          dateChooser.maxYear = Number(maxYearText);
+        }
+        
+        var datePatternText:String = datePattern.selectedItem.value;
+        if (datePatternText != null && datePatternText.length > 0)
+        {
+          dateChooser.datePattern = datePatternText;
+        }
+      }
+      
+      protected function getValueFromTextInput(input:TextInput):String
+      {
+        var value:String = input.text;
+        if (value == null)
+        {
+          return null;
+        }
+        value = StringUtil.trim(value);
+        if (value.length == 0)
+        {
+          return null;
+        }
+        return value;
+      }
+    ]]>
+  </fx:Script>
+  <s:Scroller width="100%" height="100%" horizontalScrollPolicy="off"
+              verticalScrollPolicy="auto">
+    <s:VGroup width="100%" horizontalAlign="center">
+      <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+        <s:VGroup id="dateGroup" horizontalAlign="center" width="100%">
+          <components:DateChooser id="dateChooser"/>
+        </s:VGroup>
+      </s:SkinnableContainer>
+
+      <s:SkinnableContainer width="100%" styleName="parameterContainerStyle">
+        <s:layout>
+          <s:VerticalLayout horizontalAlign="center"/>
+        </s:layout>
+
+        <s:Form width="100%">
+          <s:FormItem label="Date pattern" styleName="verticalFormItemStyle"
+                      width="100%">
+            <s:ButtonBar id="datePattern" width="100%" requireSelection="true"
+                         change="applyParameters(event)">
+              <s:dataProvider>
+                <s:ArrayCollection>
+                  <fx:Object label="default" value="{defaultDatePattern}"/>
+                  <fx:Object label="d MM yyyy" value="d MM yyyy"/>
+                  <fx:Object label="MMM dd yy" value="MMM dd yy"/>
+                </s:ArrayCollection>
+              </s:dataProvider>
+            </s:ButtonBar>
+          </s:FormItem>
+          <s:FormItem width="100%" label="Minimum year">
+            <s:TextInput id="minYearTextInput" prompt="1980"/>
+          </s:FormItem>
+          <s:FormItem width="100%" label="Maximum year">
+            <s:TextInput id="maxYearTextInput" prompt="2040"/>
+          </s:FormItem>
+        </s:Form>
+        <s:Button label="Apply" click="applyParameters(event)"/>
+      </s:SkinnableContainer>
+    </s:VGroup>
+  </s:Scroller>
+
 </s:View>

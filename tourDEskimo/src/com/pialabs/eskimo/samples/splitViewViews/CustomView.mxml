@@ -6,9 +6,9 @@
   </fx:Declarations>
   <s:layout>
     <s:VerticalLayout paddingTop="10" paddingRight="10" paddingBottom="10"
-                      paddingLeft="10"/>
+                      paddingLeft="10" verticalAlign="middle"
+                      horizontalAlign="center"/>
   </s:layout>
-  <s:Label text="Custom View"/>
-  <s:Button click="navigator.pushView(CustomSecondView)"
-            label="Push second View"/>
+
+  <s:Button label="Change View" click="navigator.pushView(CustomSecondView)"/>
 </s:View>

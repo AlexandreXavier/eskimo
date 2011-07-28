@@ -11,11 +11,16 @@
   <components:panelNavigator>
     <s:ViewNavigator 
                      firstView="com.pialabs.eskimo.samples.splitViewViews.CustomListView"/>
+
   </components:panelNavigator>
 
   <components:contentNavigator>
     <s:ViewNavigator 
-                     firstView="com.pialabs.eskimo.samples.splitViewViews.CustomView"/>
+                     firstView="com.pialabs.eskimo.samples.splitViewViews.CustomView">
+      <s:navigationLayout>
+        <s:HorizontalLayout verticalAlign="middle"/>
+      </s:navigationLayout>
+    </s:ViewNavigator>
   </components:contentNavigator>
 
 </components:SplitViewApplication>
