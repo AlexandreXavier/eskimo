@@ -5,11 +5,12 @@ package com.pialabs.eskimo.components
   import flash.display.GradientType;
   import flash.geom.Matrix;
   
+  import spark.components.IconItemRenderer;
   import spark.components.LabelItemRenderer;
   import spark.components.List;
   import spark.layouts.HorizontalAlign;
   
-  public class SectionItemRenderer extends LabelItemRenderer
+  public class SectionItemRenderer extends IconItemRenderer
   {
     public function SectionItemRenderer()
     {
