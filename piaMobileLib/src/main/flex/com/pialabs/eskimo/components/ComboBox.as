@@ -231,8 +231,9 @@ package com.pialabs.eskimo.components
     
     /**
      * The default selected label when no item is selected yet.
+     * @default Select
      */
-    public function get defaultSelectedLabel():String
+    public function get prompt():String
     {
       return _defaultSelectedLabel;
     }
@@ -240,7 +241,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    public function set defaultSelectedLabel(value:String):void
+    public function set prompt(value:String):void
     {
       _defaultSelectedLabel = value;
       
