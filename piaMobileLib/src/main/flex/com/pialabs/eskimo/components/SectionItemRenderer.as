@@ -16,6 +16,12 @@ package com.pialabs.eskimo.components
       super();
     }
     
+    public var sectionTitleColor:int;
+    
+    public var sectionHeight:int;
+    
+    public var sectionTitleAlign:String;
+    
     override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void
     {
       super.drawBackground(unscaledWidth, unscaledHeight);
@@ -40,39 +46,16 @@ package com.pialabs.eskimo.components
         graphics.beginGradientFill(GradientType.LINEAR, colors, alphas, ratios, matrix);
         graphics.drawRect(0, 0, unscaledWidth, unscaledHeight);
         graphics.endFill();
-        
-        var sectionTitleColor:int = listOwner.getStyle("sectionTitleColor");
-        if(sectionTitleColor > 0)
-        {
-          labelDisplay.setStyle("color", sectionTitleColor);
-        }
       }
-      else
-      {
-        labelDisplay.setStyle("color", 0x000000);
-      }
+      
+      labelDisplay.setStyle("color", sectionTitleColor);
     }
     
     override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
     {
-      if (data is SectionTitleLabel) {
-        var listOwner:List = (this.owner as List);
-        var sectionTitleAlign:String = listOwner.getStyle("sectionTitleAlign");
-        if(sectionTitleAlign)
-        {
-          labelDisplay.setStyle("textAlign", sectionTitleAlign);
-        }
-        var sectionHeight:int = listOwner.getStyle("sectionHeight");
-        if(sectionHeight > 0)
-        {
-          this.height = sectionHeight;
-        }
-      }
-      else
-      {
-        this.height = unscaledHeight;
-      }
-      
+      labelDisplay.setStyle("textAlign", sectionTitleAlign);
+      this.height = sectionHeight;
+        
       super.updateDisplayList(unscaledWidth, unscaledHeight);
     }
   }

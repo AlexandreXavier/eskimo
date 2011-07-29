@@ -16,7 +16,7 @@
       
     ]]>
   </fx:Script>
-  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+  <s:SkinnableContainer width="100%" height="100%" styleName="componentContainerStyle">
     <s:VGroup width="100%" height="100%" horizontalAlign="center">
       <components:SectionList id="sectionList" dataProvider="{_dataProvider}" width="100%" height="100%"/>
     </s:VGroup>

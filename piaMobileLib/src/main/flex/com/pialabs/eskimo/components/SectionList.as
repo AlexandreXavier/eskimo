@@ -5,6 +5,7 @@ package com.pialabs.eskimo.components
   import flash.events.MouseEvent;
   
   import mx.core.ClassFactory;
+  import mx.core.IVisualElement;
   
   import spark.components.IItemRenderer;
   import spark.components.List;
@@ -69,6 +70,39 @@ package com.pialabs.eskimo.components
         event.preventDefault();
       }
       super.item_mouseDownHandler(event);
+    }
+    
+    override public function updateRenderer(renderer:IVisualElement, itemIndex:int, data:Object):void
+    {
+      var sectionRenderer:SectionItemRenderer = renderer as SectionItemRenderer;
+      var sectionTitleColor:uint = 0x000000;
+      var sectionHeight:int = 45;
+      var sectionTitleAlign:String = "left";
+      
+      if(data is SectionTitleLabel)
+      {
+        var secTitleColor:uint = getStyle("sectionTitleColor");
+        if(secTitleColor > 0)
+        {
+          sectionTitleColor = secTitleColor;
+        }
+        
+        var secHeight:int = getStyle("sectionHeight");
+        if(secHeight > 0)
+        {
+          sectionHeight = secHeight;
+        }
+        var secTitleAlign:String = getStyle("sectionTitleAlign");
+        if(secTitleAlign)
+        {
+          sectionTitleAlign = secTitleAlign;
+        }
+      }
+      sectionRenderer.sectionHeight = sectionHeight;
+      sectionRenderer.sectionTitleColor = sectionTitleColor;
+      sectionRenderer.sectionTitleAlign = sectionTitleAlign;
+      
+      super.updateRenderer(renderer, itemIndex, data);
     }
   }
 }
