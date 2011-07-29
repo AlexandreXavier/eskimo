@@ -29,17 +29,17 @@ package com.pialabs.eskimo.components
    */
   public class ComboBox extends SkinnableComponent
   {
-    private static const POPUP_PADDING_PERCENT:Number = 4;
+    /**
+     * @private
+     */
+    protected static const POPUP_PADDING_PERCENT:Number = 4;
     
-    public function ComboBox()
-    {
-      super();
-      this.addEventListener(MouseEvent.CLICK, popUpList);
-    }
     
     [SkinPart(required = "true")]
-    public var selectedLabel:Label;
-    
+    public var selectedLabelDisplay:Label;
+    /**
+     * @private
+     */
     private var _dataProvider:IList;
     
     /**
@@ -51,10 +51,27 @@ package com.pialabs.eskimo.components
      * @private
      */
     private var _selectedItemChange:Boolean = true;
-    
+    /**
+     * @private
+     */
+    private var _defaultSelectedLabel:String = "Select";
+    /**
+     * @private
+     */
     private var _labelField:String = "label";
+    /**
+     * @private
+     */
+    protected var popUp:UniqueChoiceList = new UniqueChoiceList();
     
-    private var popUp:UniqueChoiceList = new UniqueChoiceList();
+    /**
+     * Constructor
+     */
+    public function ComboBox()
+    {
+      super();
+      this.addEventListener(MouseEvent.CLICK, popUpList);
+    }
     
     /**
      *  The name of the field in the data provider items to display
@@ -173,13 +190,27 @@ package com.pialabs.eskimo.components
       {
         if (_selectedItem.hasOwnProperty(labelField))
         {
-          selectedLabel.text = _selectedItem[labelField];
+          selectedLabelDisplay.text = _selectedItem[labelField];
         }
         else
         {
-          selectedLabel.text = _selectedItem.toString();
+          selectedLabelDisplay.text = _selectedItem.toString();
         }
         _selectedItemChange = false;
+      }
+      else if (selectedLabelDisplay != null)
+      {
+        selectedLabelDisplay.text = _defaultSelectedLabel;
+      }
+    }
+    
+    override protected function partAdded(partName:String, instance:Object):void
+    {
+      super.partAdded(partName, instance);
+      
+      if (instance == selectedLabelDisplay)
+      {
+        selectedLabelDisplay.text = _defaultSelectedLabel;
       }
     }
     
@@ -197,5 +228,24 @@ package com.pialabs.eskimo.components
         systemManager.getSandboxRoot().removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
       }
     }
+    
+    /**
+     * The default selected label when no item is selected yet.
+     */
+    public function get defaultSelectedLabel():String
+    {
+      return _defaultSelectedLabel;
+    }
+    
+    /**
+     * @private
+     */
+    public function set defaultSelectedLabel(value:String):void
+    {
+      _defaultSelectedLabel = value;
+      
+      invalidateProperties();
+    }
+  
   }
 }
