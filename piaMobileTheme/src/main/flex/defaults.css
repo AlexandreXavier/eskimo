@@ -160,10 +160,17 @@
     {
       skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.DateChooserSkin");
     }
-    
+        
     s|ActionBar.beveled s|Group#navigationGroup s|Button.splitViewPanelButtonStyle
     {
       skinClass: ClassReference("spark.skins.mobile.BeveledActionButtonSkin");
+    }
+
+    components|SectionList
+    {
+      sectionBackgroundColor:#031037;
+      sectionTitleColor:#FFFFFF;
+      sectionHeight: 20;
     }
 }
 
@@ -244,6 +251,14 @@
     {
       skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.DateChooserSkin");
     }
+    
+    components|SectionList
+    {
+      sectionTitleAlign:center;
+      sectionBackgroundColor:#C0C0C0;
+      sectionHeight: 30;
+    }
+    
 }
 
 @media (os-platform:"QNX")

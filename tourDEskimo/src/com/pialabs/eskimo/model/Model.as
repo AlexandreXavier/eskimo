@@ -1,5 +1,7 @@
 package com.pialabs.eskimo.model
 {
+  import com.pialabs.eskimo.data.SectionTitleLabel;
+  
   import flash.system.Capabilities;
   
   import mx.collections.ArrayCollection;
@@ -59,6 +61,13 @@ package com.pialabs.eskimo.model
                                   , "Eva Shlinberg", "Cecilia Grant", "Pat Bracken", "Phyllis Adams", "Rebecca Densmore"
                                   , "Richard Morton", "Donna Boone", "Elvin Baum", "Felicia Adams"]);
     }
+    
+    public static function createGroupPersonList():ArrayCollection
+    {
+      return new ArrayCollection([new SectionTitleLabel("J"), "Jean Dupont", "John Doe", "Jing Ming", 
+        new SectionTitleLabel("M"), "Mike Smith", new SectionTitleLabel("E"), "Esteban Garcia"
+        , "Eva Shlinberg"]);
+    }  
     
     protected function getParentOf(item:Sample, searchNode:Category):Category
     {

@@ -47,6 +47,8 @@
                       resource="com.pialabs.eskimo.samples.ListStepperView"/>
         <model:Sample uid="1000307" name="CarouselList"
                       resource="com.pialabs.eskimo.samples.CircularLayoutView"/>
+        <model:Sample uid="1000307" name="SectionList"
+                      resource="com.pialabs.eskimo.samples.SectionListView"/>
       </model:samples>
     </model:Category>
 
