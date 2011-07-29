@@ -31,7 +31,7 @@ package com.pialabs.eskimo.components
         var listOwner:List = (this.owner as List);
         
         var sectionBackgroundColor:uint = listOwner.getStyle("sectionBackgroundColor");
-        if(sectionBackgroundColor == 0)
+        if (sectionBackgroundColor == 0)
         {
           sectionBackgroundColor = 0xC0C0C0;
         }
@@ -54,9 +54,15 @@ package com.pialabs.eskimo.components
     override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
     {
       labelDisplay.setStyle("textAlign", sectionTitleAlign);
-      this.height = sectionHeight;
-        
+      
       super.updateDisplayList(unscaledWidth, unscaledHeight);
+    }
+    
+    override protected function measure():void
+    {
+      super.measure();
+      
+      height = sectionHeight;
     }
   }
 }

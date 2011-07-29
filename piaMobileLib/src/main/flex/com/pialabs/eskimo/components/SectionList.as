@@ -10,7 +10,7 @@ package com.pialabs.eskimo.components
   import spark.components.IItemRenderer;
   import spark.components.List;
   import spark.layouts.VerticalLayout;
-
+  
   /**
    *  Dispatched after the selection has changed.
    *  This event is dispatched when the user interacts with the control.
@@ -33,18 +33,18 @@ package com.pialabs.eskimo.components
   
   /**
    *  The horizontal alignment of the title.
-   * 
+   *
    *  Possible values are <code>"left"</code>, <code>"center"</code>,
    *  and <code>"right"</code>.
-   *  
+   *
    *  @default "left"
    */
-  [Style(name="sectionTitleAlign", type="String", enumeration="left,center,right", inherit="no")]
+  [Style(name = "sectionTitleAlign", type = "String", enumeration = "left,center,right", inherit = "no")]
   
   /**
    *  The height of section title.
    */
-  [Style(name="sectionHeight", type="int", inherit="no")]
+  [Style(name = "sectionHeight", type = "int", inherit = "no")]
   
   public class SectionList extends List
   {
@@ -58,14 +58,16 @@ package com.pialabs.eskimo.components
       sectionLayout.horizontalAlign = "contentJustify";
       this.layout = sectionLayout;
     }
-
+    
     override protected function item_mouseDownHandler(event:MouseEvent):void
     {
       var data:Object;
       if (event.currentTarget is IItemRenderer)
+      {
         data = IItemRenderer(event.currentTarget).data;
-
-      if(data is SectionTitleLabel)
+      }
+      
+      if (data is SectionTitleLabel)
       {
         event.preventDefault();
       }
@@ -79,21 +81,21 @@ package com.pialabs.eskimo.components
       var sectionHeight:int = 45;
       var sectionTitleAlign:String = "left";
       
-      if(data is SectionTitleLabel)
+      if (data is SectionTitleLabel)
       {
         var secTitleColor:uint = getStyle("sectionTitleColor");
-        if(secTitleColor > 0)
+        if (secTitleColor > 0)
         {
           sectionTitleColor = secTitleColor;
         }
         
         var secHeight:int = getStyle("sectionHeight");
-        if(secHeight > 0)
+        if (secHeight > 0)
         {
           sectionHeight = secHeight;
         }
         var secTitleAlign:String = getStyle("sectionTitleAlign");
-        if(secTitleAlign)
+        if (secTitleAlign)
         {
           sectionTitleAlign = secTitleAlign;
         }
@@ -101,6 +103,8 @@ package com.pialabs.eskimo.components
       sectionRenderer.sectionHeight = sectionHeight;
       sectionRenderer.sectionTitleColor = sectionTitleColor;
       sectionRenderer.sectionTitleAlign = sectionTitleAlign;
+      
+      sectionRenderer.invalidateSize();
       
       super.updateRenderer(renderer, itemIndex, data);
     }
