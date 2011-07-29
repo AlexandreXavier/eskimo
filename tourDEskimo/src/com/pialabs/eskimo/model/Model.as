@@ -47,7 +47,17 @@ package com.pialabs.eskimo.model
     public static function createPersonList():ArrayCollection
     {
       return new ArrayCollection(["Jean Dupont", "John Doe", "Mike Smith", "Jing Ming", "Esteban Garcia"
-                                  , "Eva Shlinberg"]);
+                                  , "Eva Shlinberg", "Cecilia Grant"]);
+    }
+    
+    /**
+    * Create a basic list of name
+    */
+    public static function createLongPersonList():ArrayCollection
+    {
+      return new ArrayCollection(["Jean Dupont", "John Doe", "Mike Smith", "Jing Ming", "Esteban Garcia"
+                                  , "Eva Shlinberg", "Cecilia Grant", "Pat Bracken", "Phyllis Adams", "Rebecca Densmore"
+                                  , "Richard Morton", "Donna Boone", "Elvin Baum", "Felicia Adams"]);
     }
     
     protected function getParentOf(item:Sample, searchNode:Category):Category

@@ -3,15 +3,21 @@
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   title="DeletableListView"
                   xmlns:views="com.pialabs.eskimo.views.*"
-                  xmlns:components="com.pialabs.eskimo.components.*">
+                  xmlns:components="com.pialabs.eskimo.components.*"
+                  initialize="sampleview1_initializeHandler(event)">
   <fx:Script>
     <![CDATA[
       import com.pialabs.eskimo.model.Model;
       
       import mx.collections.ArrayCollection;
+      import mx.events.FlexEvent;
       
-      [Bindable]
-      private var _dataProvider:ArrayCollection = Model.createPersonList();
+      private var _dataProvider:ArrayCollection = Model.createLongPersonList();
+      
+      protected function sampleview1_initializeHandler(event:FlexEvent):void
+      {
+        deletableList.dataProvider = _dataProvider;
+      }
     ]]>
   </fx:Script>
 
@@ -19,7 +25,8 @@
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
   </fx:Declarations>
 
-  <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
+  <s:SkinnableContainer width="100%" height="100%"
+                        styleName="componentContainerStyle">
     <s:layout>
       <s:VerticalLayout horizontalAlign="center"/>
     </s:layout>
@@ -29,7 +36,7 @@
 
     <components:DeletableList id="deletableList" width="100%" height="100%"
                               alternatingItemColors="[0xEDEDED, 0xFFFFFF]"
-                              dataProvider="{_dataProvider}" itemDeleted="trace(event)">
+                              itemDeleted="trace(event)">
     </components:DeletableList>
   </s:SkinnableContainer>
 </views:SampleView>

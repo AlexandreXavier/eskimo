@@ -10,6 +10,7 @@ package com.pialabs.eskimo.components
   import mx.events.StateChangeEvent;
   import mx.states.State;
   
+  import spark.components.IItemRenderer;
   import spark.components.List;
   
   /**
@@ -71,9 +72,9 @@ package com.pialabs.eskimo.components
     {
       super.updateRenderer(renderer, itemIndex, data);
       
-      if (currentState && renderer is DeletableItemRenderer)
+      if (renderer is DeletableItemRenderer)
       {
-        (renderer as DeletableItemRenderer).currentState = currentState;
+        updateRendererState(renderer);
       }
     }
     
@@ -88,22 +89,31 @@ package com.pialabs.eskimo.components
       {
         for (var i:int = 0; i < dataGroup.numElements; i++)
         {
-          var itemRenderer:IVisualElement = useVirtualLayout ? dataGroup.getVirtualElementAt(i) : dataGroup.getElementAt(i);
-          if (itemRenderer != null)
+          var renderer:IVisualElement = useVirtualLayout ? dataGroup.getVirtualElementAt(i) : dataGroup.getElementAt(i);
+          
+          if (renderer != null)
           {
-            if (_editionMode)
-            {
-              (itemRenderer as UIComponent).currentState = EDITION_STATE;
-            }
-            else
-            {
-              (itemRenderer as UIComponent).currentState = NORMAL_STATE;
-            }
+            updateRendererState(renderer);
           }
         }
         _invalidateItemRendererState = false;
       }
     
+    }
+    
+    /**
+    * Update the renderer state between EDITION_STATE and NORMAL_STATE.
+    */
+    protected function updateRendererState(renderer:IVisualElement):void
+    {
+      if (_editionMode)
+      {
+        (renderer as UIComponent).currentState = EDITION_STATE;
+      }
+      else
+      {
+        (renderer as UIComponent).currentState = NORMAL_STATE;
+      }
     }
     
     /**
