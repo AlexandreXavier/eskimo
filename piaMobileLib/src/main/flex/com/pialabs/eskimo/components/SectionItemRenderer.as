@@ -6,10 +6,14 @@ package com.pialabs.eskimo.components
   import flash.geom.Matrix;
   
   import spark.components.IconItemRenderer;
-  import spark.components.LabelItemRenderer;
   import spark.components.List;
-  import spark.layouts.HorizontalAlign;
   
+  
+  /**
+   *  The SectionItemRenderer class displays a different background color, height
+   *  and text align for SectionTitleLabel. Used in the 
+   *  list-based control.
+   */
   public class SectionItemRenderer extends IconItemRenderer
   {
     public function SectionItemRenderer()
