@@ -85,6 +85,10 @@ package com.pialabs.eskimo.components.maps
     private var protecolBridge:String = "http";
     
     
+    private var _isIOS:Boolean;
+    private var _isQNX:Boolean;
+    
+    
     /**
     * JS callback dictionnary
     */
@@ -98,9 +102,12 @@ package com.pialabs.eskimo.components.maps
     {
       super();
       
-      _currentOS = Capabilities.version.toLocaleUpperCase();
+      _currentOS = Capabilities.os.toLocaleUpperCase();
       
-      if (_currentOS.lastIndexOf("QNX") != -1)
+      _isIOS = _currentOS.lastIndexOf("IPHONE") != -1;
+      _isQNX = _currentOS.lastIndexOf("QNX") != -1;
+      
+      if (_isQNX)
       {
         _fileTmp = File.createTempFile();
         // Qnx don't listen for callback if the protocol is http:// (BUT iOS is waiting for http://...)
@@ -113,17 +120,12 @@ package com.pialabs.eskimo.components.maps
       
       webView = new StageWebView();
       
-      // iOS Crash if the stage is not setted
-      if (_currentOS.lastIndexOf("IOS") != -1)
-      {
-        webView.stage = this.stage;
-      }
-      
       webView.addEventListener(LocationChangeEvent.LOCATION_CHANGING, onLocationChanging);
       webView.addEventListener(LocationChangeEvent.LOCATION_CHANGE, onLocationChanging);
       
       addCallBack("onInitialized", onInitialized);
       addCallBack("onMarkerClicked", onMarkerClicked);
+      addCallBack("onMarkerAdded", onMarkerAdded);
     }
     
     private function onAddedToStage(event:Event):void
@@ -164,7 +166,7 @@ package com.pialabs.eskimo.components.maps
     protected function init():void
     {
       webView.viewPort = new Rectangle(0, 200, stage.stageWidth, 400);
-      if (_currentOS.lastIndexOf("IOS") != -1)
+      if (_isIOS)
       {
         webView.stage = this.stage;
       }
@@ -197,7 +199,7 @@ package com.pialabs.eskimo.components.maps
     private function onLocationChanging(e:Event):void
     {
       var currLocation:String = unescape((e as LocationChangeEvent).location);
-      trace(currLocation);
+      trace("onLocationChanging", currLocation);
       
       if (currLocation.indexOf(protecolBridge + '://[CallBack]') == 0)
       {
@@ -208,6 +210,10 @@ package com.pialabs.eskimo.components.maps
       {
         e.preventDefault();
       }
+      else if (currLocation.indexOf('about:blank') == 0)
+      {
+        onInitialized(false);
+      }
     }
     
     /**
@@ -215,9 +221,10 @@ package com.pialabs.eskimo.components.maps
      */
     private function onWebViewReady(event:Event):void
     {
-      webView.loadURL('javascript:');
-      
-      callJSFunction("setProtocol", protecolBridge);
+      if (!_isIOS)
+      {
+        webView.loadURL('javascript:');
+      }
       
       deleteTmpFiles();
     }
@@ -257,23 +264,40 @@ package com.pialabs.eskimo.components.maps
       dispatchEvent(event);
     }
     
+    protected function onMarkerAdded():void
+    {
+      if (_overlayVisible)
+      {
+        showOverlays();
+      }
+    }
+    
     /**
      * @private
      */
-    private function onInitialized():void
+    private function onInitialized(fromJS:Boolean = true):void
     {
+      //if iOS, wait locationchanging for about:blank
+      if (_isIOS && fromJS)
+      {
+        return;
+      }
+      
       _mapInitialized = true;
       
       webView.stage = this.stage;
       
-      setCenter(_center.x, _center.y);
+      if (_center.x != 0 && _center.y != 0)
+      {
+        setCenter(_center.x, _center.y);
+      }
+      
       zoom = _zoom;
       
       if (_overlayVisible)
       {
         showOverlays();
       }
-      
       
       dispatchEvent(new Event(Event.COMPLETE));
     }
@@ -312,11 +336,6 @@ package com.pialabs.eskimo.components.maps
       {
         callJSFunction('addMarker', lat, lng, title, description, showMarkerWindow);
       }
-      
-      if (_overlayVisible)
-      {
-        showOverlays();
-      }
     }
     
     /**
@@ -327,11 +346,6 @@ package com.pialabs.eskimo.components.maps
       if (_mapInitialized)
       {
         callJSFunction('addMarkerImage', lat, lng, iconURL, iconWidth, iconHeight, anchor.x, anchor.y, title, description, showMarkerWindow);
-      }
-      
-      if (_overlayVisible)
-      {
-        showOverlays();
       }
     }
     
@@ -412,6 +426,8 @@ package com.pialabs.eskimo.components.maps
       
       var func:Function = _callbacks[serializeObject.method];
       
+      trace("applyCallBack", serializeObject.method);
+      
       if (func != null)
       {
         func.apply(null, serializeObject.arguments);
@@ -424,6 +440,13 @@ package com.pialabs.eskimo.components.maps
      */
     public function callJSFunction(functionName:String, ... arguments):void
     {
+      if (!_mapInitialized)
+      {
+        return;
+      }
+      
+      trace("callJSFunction", functionName, arguments);
+      
       var serializeObject:Object = {};
       serializeObject.method = functionName;
       serializeObject.arguments = arguments;

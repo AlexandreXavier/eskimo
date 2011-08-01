@@ -16,27 +16,29 @@ package com.pialabs.eskimo.components.maps
     <link href='http://code.google.com/apis/maps/documentation/javascript/examples/default.css' rel='stylesheet' type='text/css' />
     <script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=false'></script>
     <script type='text/javascript'>
-      
+
       var map;
       var markersArray = [];
-      var center = new google.maps.LatLng(48.833679, 2.290113);
       var zoom = 8;
       var markerVisible = true;
       
+      window.onload=initialize;
+      
+      
       function initialize() {
-         
+        var center = new google.maps.LatLng(48.833679, 2.290113);
+        
         var myOptions = {
           zoom: zoom,
           center: center,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           navigationControlOptions: {
-                style: google.maps.NavigationControlStyle.ANDROID
-            }
+            style: google.maps.NavigationControlStyle.ANDROID
+          }
         };
         
         map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
-            
-            
+        
         callback('onInitialized');
       }
       
@@ -69,6 +71,7 @@ package com.pialabs.eskimo.components.maps
         {
           targetFunction = window[ method ];
         }
+      
         targetFunction.apply(null, _serializeObject.arguments );
       }
       
@@ -82,10 +85,10 @@ package com.pialabs.eskimo.components.maps
       }
       
       function setCenter(lat, lng) {
-      	center = new google.maps.LatLng(lat, lng);
-      	
       	if(getInitialized())
         {
+        	var center = new google.maps.LatLng(lat, lng);
+      	
       		map.setCenter(center);
         }
       }
@@ -99,6 +102,28 @@ package com.pialabs.eskimo.components.maps
         }
       }
       
+      function createInfoWindowString(title, content)
+      {
+        var contentString = '<div id=\'content\'>'+
+        '<h1 id=\'firstHeading\' class=\'firstHeading\'>' + title + '</h1>'+
+        '<div id=\'bodyContent\'>'+
+        '<p>' + content + '</p>'+
+        '</div>'+
+        '</div>';
+        
+        return contentString;
+      }
+      
+      function addMarkerWindow(marker, title, description)
+      {    
+        var infowindow = new google.maps.InfoWindow({
+          content: createInfoWindowString(title, description)
+        });
+        
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map,marker);
+        });
+      }
       
       function addMarker(lat, lng, title, description, showInfoWindow) {
         
@@ -109,13 +134,15 @@ package com.pialabs.eskimo.components.maps
         });
         markersArray.push(marker);
         
-        if(showInfoWindow)
+        if(showInfoWindow == true)
         {
           addMarkerWindow(marker, title, description);
         }
         google.maps.event.addListener(marker, 'click', function() {
           callback( 'onMarkerClicked', marker.getPosition().lat(), marker.getPosition().lng() );
         });
+      
+        callback( 'onMarkerAdded' );
       }
       
       function addMarkerImage(lat, lng, iconURL, iconWidth,iconHeight, anchorX, anchorY, title, description, showInfoWindow) {
@@ -144,22 +171,13 @@ package com.pialabs.eskimo.components.maps
         google.maps.event.addListener(marker, 'click', function() {
           callback( 'onMarkerClicked', marker.getPosition().lat(), marker.getPosition().lng() );
         });
-      }
       
-      function addMarkerWindow(marker, title, description)
-      {    
-        var infowindow = new google.maps.InfoWindow({
-            content: createInfoWindowString(title, description)
-        });
-          
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.open(map,marker);
-        });
+        callback( 'onMarkerAdded' );
       }
       
       // Removes the overlays from the map, but keeps them in the array
       function clearOverlays() {
-        if (markersArray) {
+        if (markersArray != null && markersArray.length > 0) {
           for (i in markersArray) {
             markersArray[i].setMap(null);
           }
@@ -169,7 +187,7 @@ package com.pialabs.eskimo.components.maps
       
       // Shows any overlays currently in the array
       function showOverlays() {
-        if (markersArray) {
+        if (markersArray != null && markersArray.length > 0) {
           for (i in markersArray) {
             markersArray[i].setMap(map);
           }
@@ -179,7 +197,7 @@ package com.pialabs.eskimo.components.maps
       
       // Deletes all markers in the array by removing references to them
       function deleteOverlays() {
-        if (markersArray) {
+        if (markersArray != null && markersArray.length > 0) {
           for (i in markersArray) {
             markersArray[i].setMap(null);
           }
@@ -190,7 +208,7 @@ package com.pialabs.eskimo.components.maps
       function fitToMarkers() {
         var bounds = new google.maps.LatLngBounds();
         
-        if (markersArray) 
+        if (markersArray != null && markersArray.length > 0) 
         {
           for (i in markersArray) 
           {
@@ -201,20 +219,9 @@ package com.pialabs.eskimo.components.maps
         map.fitBounds(bounds);
       }
       
-      function createInfoWindowString(title, content)
-      {
-        var contentString = '<div id=\'content\'>'+
-          '<h1 id=\'firstHeading\' class=\'firstHeading\'>' + title + '</h1>'+
-          '<div id=\'bodyContent\'>'+
-          '<p>' + content + '</p>'+
-          '</div>'+
-          '</div>';
-          
-        return contentString;
-      }
     </script>
   </head>
-  <body onload='initialize()'>
+  <body>
     <!--<a id='myLink'>toto</a>-->
     <div id='map_canvas'></div>
   </body>
