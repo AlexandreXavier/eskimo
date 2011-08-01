@@ -5,7 +5,7 @@
                             splashScreenImage="assets.logosplash"
                             applicationDPI="160">
   <fx:Style source="style.css"/>
-  
+
   <fx:Script>
     <![CDATA[
       

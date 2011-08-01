@@ -48,7 +48,7 @@
           <s:FormItem label="Zoom">
 
             <s:HSlider id="zoomSlider" minimum="1" maximum="18" stepSize="1"
-                       value="15"/>
+                       value="{map.zoom}"/>
           </s:FormItem>
           <s:FormItem label="Add marker">
             <s:HGroup width="100%">
@@ -57,7 +57,7 @@
               <s:TextInput id="lngMarker" text="2.290113" width="100%"
                            restrict="0-9 . -"/>
               <s:Button label="Add"
-                        click="map.addMarker(parseFloat(latMarker.text),parseFloat(lngMarker.text),'PIA','Custom description')"
+                        click="map.addMarker(parseFloat(latMarker.text),parseFloat(lngMarker.text),'PIA','Custom description', true)"
                         width="100%"/>
             </s:HGroup>
           </s:FormItem>
@@ -68,7 +68,7 @@
               <s:TextInput id="lngMarker2" text="2.290113" width="100%"
                            restrict="0-9 . -"/>
               <s:Button label="Add"
-                        click="map.addMarkerImage(parseFloat(latMarker2.text),parseFloat(lngMarker2.text), 'http://www.adobe.com/education/products/images/air_appicon__50x50.gif', 50, 50, new Point(25, 50), 'PIA', 'comment')"
+                        click="map.addMarkerImage(parseFloat(latMarker2.text),parseFloat(lngMarker2.text), 'http://www.adobe.com/education/products/images/air_appicon__50x50.gif', 50, 50, new Point(25, 50), 'PIA', 'comment', true)"
                         width="100%"/>
             </s:HGroup>
           </s:FormItem>

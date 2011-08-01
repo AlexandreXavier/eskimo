@@ -1,12 +1,12 @@
 package com.pialabs.eskimo.components.maps
 {
   import com.adobe.serialization.json.JSON;
- 
   import com.pialabs.eskimo.controls.SkinnableAlert;
   
   import flash.events.ErrorEvent;
   import flash.events.Event;
   import flash.events.LocationChangeEvent;
+  import flash.events.TimerEvent;
   import flash.filesystem.File;
   import flash.filesystem.FileMode;
   import flash.filesystem.FileStream;
@@ -16,6 +16,7 @@ package com.pialabs.eskimo.components.maps
   import flash.system.Capabilities;
   import flash.utils.ByteArray;
   import flash.utils.Dictionary;
+  import flash.utils.Timer;
   
   import mx.core.ByteArrayAsset;
   import mx.core.FlexGlobals;
@@ -39,6 +40,10 @@ package com.pialabs.eskimo.components.maps
   * Dispatch when a marker is clicked
   */
   [Event(name = "markerClicked", type = "com.pialabs.eskimo.components.maps.GMapEvent")]
+  /**
+  * Dispatch when bounds change
+  */
+  [Event(name = "boundsChanged", type = "com.pialabs.eskimo.components.maps.GMapEvent")]
   public class GMap extends UIComponent
   {
     /**
@@ -85,9 +90,21 @@ package com.pialabs.eskimo.components.maps
      */
     private var protecolBridge:String = "http";
     
-    
+    /**
+     * @private
+     */
     private var _isIOS:Boolean;
     private var _isQNX:Boolean;
+    
+    /**
+     * @private
+     */
+    private var _iOSCSSTimer:Timer;
+    
+    /**
+    * @private
+    */
+    public var debugMode:Boolean = false;
     
     
     /**
@@ -127,6 +144,7 @@ package com.pialabs.eskimo.components.maps
       addCallBack("onInitialized", onInitialized);
       addCallBack("onMarkerClicked", onMarkerClicked);
       addCallBack("onMarkerAdded", onMarkerAdded);
+      addCallBack("onBoundsChanged", onBoundsChanged);
     }
     
     private function onAddedToStage(event:Event):void
@@ -200,7 +218,10 @@ package com.pialabs.eskimo.components.maps
     private function onLocationChanging(e:Event):void
     {
       var currLocation:String = unescape((e as LocationChangeEvent).location);
-      trace("onLocationChanging", currLocation);
+      if (debugMode)
+      {
+        trace("onLocationChanging", currLocation);
+      }
       
       if (currLocation.indexOf(protecolBridge + '://[CallBack]') == 0)
       {
@@ -211,10 +232,14 @@ package com.pialabs.eskimo.components.maps
       {
         e.preventDefault();
       }
-      else if (currLocation.indexOf('about:blank') == 0)
+      else if (_isIOS && currLocation.indexOf('about:blank') == 0)
       {
-        onInitialized(false);
       }
+    }
+    
+    private function onCSSTimer(event:TimerEvent):void
+    {
+      onInitialized(false);
     }
     
     /**
@@ -235,7 +260,10 @@ package com.pialabs.eskimo.components.maps
      */
     private function onWebViewError(event:ErrorEvent):void
     {
-      trace(event.toString());
+      if (debugMode)
+      {
+        trace(event.toString());
+      }
       dispatchEvent(event.clone());
       
       deleteTmpFiles();
@@ -261,6 +289,7 @@ package com.pialabs.eskimo.components.maps
       var event:GMapEvent = new GMapEvent(GMapEvent.MARKER_CLICKED);
       event.lat = lat;
       event.lng = lng;
+      event.zoom = _zoom;
       
       dispatchEvent(event);
     }
@@ -278,9 +307,13 @@ package com.pialabs.eskimo.components.maps
      */
     private function onInitialized(fromJS:Boolean = true):void
     {
-      //if iOS, wait locationchanging for about:blank
+      //if iOS, wait for css...
       if (_isIOS && fromJS)
       {
+        // TODO OUTCH! find a better way to wait the right moment
+        _iOSCSSTimer = new Timer(200, 1);
+        _iOSCSSTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onCSSTimer);
+        _iOSCSSTimer.start();
         return;
       }
       
@@ -303,6 +336,21 @@ package com.pialabs.eskimo.components.maps
       dispatchEvent(new Event(Event.COMPLETE));
     }
     
+    protected function onBoundsChanged(lat:Number, lng:Number, zoom:Number):void
+    {
+      _zoom = zoom;
+      
+      _center.x = lat;
+      _center.y = lng;
+      
+      var event:GMapEvent = new GMapEvent(GMapEvent.BOUNNDS_CHANGED);
+      event.lat = lat;
+      event.lng = lng;
+      event.zoom = _zoom;
+      
+      dispatchEvent(event);
+    }
+    
     /**
      * Set the center of the map
      */
@@ -317,10 +365,32 @@ package com.pialabs.eskimo.components.maps
     }
     
     /**
+    * Get current center of the map
+    */
+    public function getCenter():Point
+    {
+      return _center;
+    }
+    
+    [Bindable(event = "boundsChanged")]
+    /**
      * Zoom
      */
+    public function get zoom():Number
+    {
+      return _zoom;
+    }
+    
+    /**
+    * @private
+    */
     public function set zoom(value:Number):void
     {
+      if (_zoom == value)
+      {
+        return;
+      }
+      
       _zoom = value;
       if (_mapInitialized)
       {
@@ -427,7 +497,10 @@ package com.pialabs.eskimo.components.maps
       
       var func:Function = _callbacks[serializeObject.method];
       
-      trace("applyCallBack", serializeObject.method);
+      if (debugMode)
+      {
+        trace("applyCallBack", serializeObject.method);
+      }
       
       if (func != null)
       {
@@ -446,7 +519,10 @@ package com.pialabs.eskimo.components.maps
         return;
       }
       
-      trace("callJSFunction", functionName, arguments);
+      if (debugMode)
+      {
+        trace("callJSFunction", functionName, arguments);
+      }
       
       var serializeObject:Object = {};
       serializeObject.method = functionName;

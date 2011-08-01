@@ -13,7 +13,12 @@ package com.pialabs.eskimo.components.maps
     <meta name='viewport' content='user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' />
     <meta http-equiv='content-type' content='text/html; charset=UTF-8'/>
     <title>GMAP</title>
-    <link href='http://code.google.com/apis/maps/documentation/javascript/examples/default.css' rel='stylesheet' type='text/css' />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+      
     <script type='text/javascript' src='http://maps.google.com/maps/api/js?sensor=false'></script>
     <script type='text/javascript'>
 
@@ -21,16 +26,15 @@ package com.pialabs.eskimo.components.maps
       var markersArray = [];
       var zoom = 8;
       var markerVisible = true;
+      var initialized = false;
       
       window.onload=initialize;
       
       
       function initialize() {
-        var center = new google.maps.LatLng(48.833679, 2.290113);
         
         var myOptions = {
           zoom: zoom,
-          center: center,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           navigationControlOptions: {
             style: google.maps.NavigationControlStyle.ANDROID
@@ -39,7 +43,18 @@ package com.pialabs.eskimo.components.maps
         
         map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
         
-        callback('onInitialized');
+        google.maps.event.addListener(map, 'bounds_changed', function() {
+          if(initialized == true)
+          {
+            callback('onBoundsChanged', map.getCenter().lat(), map.getCenter().lng(), map.getZoom());
+          }
+          else
+          {
+          }
+          initialized = true;
+        });
+        
+            callback('onInitialized');
       }
       
       function callback()
@@ -128,7 +143,7 @@ package com.pialabs.eskimo.components.maps
       function addMarker(lat, lng, title, description, showInfoWindow) {
         
       	var latlng = new google.maps.LatLng(lat, lng);
-        marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
           position: latlng,
           title: title
         });
@@ -156,7 +171,7 @@ package com.pialabs.eskimo.components.maps
         
         
       	var latlng = new google.maps.LatLng(lat, lng);
-        marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
           position: latlng,
           icon: image,
           title: title
@@ -222,8 +237,7 @@ package com.pialabs.eskimo.components.maps
     </script>
   </head>
   <body>
-    <!--<a id='myLink'>toto</a>-->
-    <div id='map_canvas'></div>
+    <div id="map_canvas" style="width:100%; height:100%"></div>
   </body>
 </html>
 ]]></script>;
