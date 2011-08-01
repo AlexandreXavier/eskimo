@@ -46,6 +46,11 @@ package com.pialabs.eskimo.components
    */
   [Style(name = "sectionHeight", type = "int", inherit = "no")]
   
+  /**
+   * List that contains some section to order item.
+   * @see com.pialabs.eskimo.components.SectionItemRenderer
+   * @see com.pialabs.eskimo.data.SectionTitleLabel
+   */
   public class SectionList extends List
   {
     public function SectionList()

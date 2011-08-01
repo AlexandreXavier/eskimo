@@ -1,6 +1,7 @@
 package com.pialabs.eskimo.components.maps
 {
   import com.adobe.serialization.json.JSON;
+ 
   import com.pialabs.eskimo.controls.SkinnableAlert;
   
   import flash.events.ErrorEvent;
