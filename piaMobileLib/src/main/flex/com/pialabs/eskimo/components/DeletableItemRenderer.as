@@ -99,7 +99,7 @@ package com.pialabs.eskimo.components
       
       var itemIndex:int = parentList.dataProvider.getItemIndex(data);
       
-      if(itemIndex != -1)
+      if (itemIndex != -1)
       {
         parentList.dataProvider.removeItemAt(itemIndex);
       }
@@ -147,13 +147,16 @@ package com.pialabs.eskimo.components
         if (!_deleteOverlay)
         {
           _deleteOverlay = new DeletableItemRendererOverlay();
-          _deleteOverlay.addEventListener("delete", onDelete, false, 0, true);
-          _deleteOverlay.addEventListener(FlexEvent.CREATION_COMPLETE, onOverlayAdded);
-          addChild(_deleteOverlay);
-          
-          _deleteOverlay.deleteLabel = _deleteLabel;
         }
-        return;
+        
+        _deleteOverlay.addEventListener("delete", onDelete, false, 0, true);
+        _deleteOverlay.deleteLabel = _deleteLabel;
+        addChild(_deleteOverlay);
+        if (initialized)
+        {
+          _deleteOverlay.addEventListener(FlexEvent.CREATION_COMPLETE, onOverlayAdded);
+          return;
+        }
       }
       if (newState == "normal")
       {

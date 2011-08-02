@@ -7,11 +7,14 @@ package com.pialabs.eskimo.components
   import mx.core.ClassFactory;
   import mx.core.IVisualElement;
   import mx.core.UIComponent;
+  import mx.core.mx_internal;
   import mx.events.StateChangeEvent;
   import mx.states.State;
   
   import spark.components.IItemRenderer;
   import spark.components.List;
+  
+  use namespace mx_internal;
   
   /**
    * Dispatched when an item is deleted
@@ -52,8 +55,6 @@ package com.pialabs.eskimo.components
       super();
       
       itemRenderer = new ClassFactory(DeletableItemRenderer);
-      
-      addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onCurrentStateChange);
     }
     
     /**
@@ -87,6 +88,7 @@ package com.pialabs.eskimo.components
       
       if (_invalidateItemRendererState && dataGroup)
       {
+        
         for (var i:int = 0; i < dataGroup.numElements; i++)
         {
           var renderer:IVisualElement = useVirtualLayout ? dataGroup.getVirtualElementAt(i) : dataGroup.getElementAt(i);
@@ -96,6 +98,9 @@ package com.pialabs.eskimo.components
             updateRendererState(renderer);
           }
         }
+        
+        dataGroup.clearFreeRenderers();
+        
         _invalidateItemRendererState = false;
       }
     
@@ -114,14 +119,6 @@ package com.pialabs.eskimo.components
       {
         (renderer as UIComponent).currentState = NORMAL_STATE;
       }
-    }
-    
-    /**
-     * @private
-     */
-    private function onCurrentStateChange(event:Event):void
-    {
-      invalidateItemRendererState();
     }
     
     /**
