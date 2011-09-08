@@ -4,6 +4,7 @@ package com.pialabs.eskimo.controls
   import flash.events.Event;
   import flash.events.KeyboardEvent;
   import flash.events.MouseEvent;
+  import flash.events.StageOrientationEvent;
   import flash.ui.Keyboard;
   
   import mx.core.FlexGlobals;
@@ -16,6 +17,7 @@ package com.pialabs.eskimo.controls
   import spark.components.Button;
   import spark.components.Group;
   import spark.components.Label;
+  import spark.components.PopUpPosition;
   import spark.components.supportClasses.SkinnableComponent;
   
   /**
@@ -202,6 +204,8 @@ package com.pialabs.eskimo.controls
     private function onAddedToStage(event:Event):void
     {
       systemManager.getSandboxRoot().addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown, false, 0, true);
+      
+      stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGE, onOrientationChange, false, 0, true);
     }
     
     /**
@@ -210,6 +214,16 @@ package com.pialabs.eskimo.controls
     private function removeFromStage(event:Event):void
     {
       systemManager.getSandboxRoot().removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+      
+      stage.removeEventListener(StageOrientationEvent.ORIENTATION_CHANGE, onOrientationChange);
+    }
+    
+    /**
+     * @private
+     */
+    private function onOrientationChange(event:Event):void
+    {
+      invalidateDisplayList();
     }
     
     /**
@@ -285,6 +299,8 @@ package com.pialabs.eskimo.controls
         buttonYES.styleName = getStyle("yesButtonStyleName");
         buttonNO.styleName = getStyle("noButtonStyleName");
       }
+      
+      PopUpManager.centerPopUp(this);
     }
     
     /**

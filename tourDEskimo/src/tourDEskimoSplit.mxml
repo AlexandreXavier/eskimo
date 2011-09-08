@@ -3,24 +3,23 @@
                                  xmlns:s="library://ns.adobe.com/flex/spark"
                                  xmlns:components="com.pialabs.eskimo.components.*">
   <fx:Style source="style.css"/>
+  <fx:Script>
+    <![CDATA[
+      import spark.components.View;
+    ]]>
+  </fx:Script>
 
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
   </fx:Declarations>
 
   <components:panelNavigator>
-    <s:ViewNavigator 
-                     firstView="com.pialabs.eskimo.samples.splitViewViews.CustomListView"/>
+    <s:ViewNavigator firstView="com.pialabs.eskimo.views.CategoryListView"/>
 
   </components:panelNavigator>
 
   <components:contentNavigator>
-    <s:ViewNavigator 
-                     firstView="com.pialabs.eskimo.samples.splitViewViews.CustomView">
-      <s:navigationLayout>
-        <s:HorizontalLayout verticalAlign="middle"/>
-      </s:navigationLayout>
-    </s:ViewNavigator>
+    <s:ViewNavigator firstView="spark.components.View"/>
   </components:contentNavigator>
 
 </components:SplitViewApplication>

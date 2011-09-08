@@ -2,10 +2,13 @@ package com.pialabs.eskimo.components
 {
   import flash.display.DisplayObject;
   import flash.display.DisplayObjectContainer;
+  import flash.events.Event;
+  import flash.events.StageOrientationEvent;
   import flash.geom.Point;
   import flash.geom.Rectangle;
   
   import mx.core.FlexGlobals;
+  import mx.events.FlexEvent;
   
   import spark.components.SkinnablePopUpContainer;
   
@@ -91,6 +94,9 @@ package com.pialabs.eskimo.components
     public function PopOver()
     {
       super();
+      
+      addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
+      addEventListener(Event.REMOVED_FROM_STAGE, onAddedToStage, false, 0, true);
     }
     
     /**
@@ -102,8 +108,29 @@ package com.pialabs.eskimo.components
       super.open(owner, modal);
       _authorizeSkinInvalidation = true;
       
-      _currentPosition = UNKNOW_POSITION
+      _currentPosition = UNKNOW_POSITION;
       
+      invalidateDisplayList();
+    }
+    
+    private function onAddedToStage(event:Event):void
+    {
+      owner.addEventListener(Event.RESIZE, ownerSizeChange, false, 0, true);
+    }
+    
+    /**
+     * @private
+     */
+    private function removeFromStage(event:Event):void
+    {
+      owner.removeEventListener(Event.RESIZE, ownerSizeChange);
+    }
+    
+    /**
+     * @private
+     */
+    private function ownerSizeChange(event:Event):void
+    {
       invalidateDisplayList();
     }
     

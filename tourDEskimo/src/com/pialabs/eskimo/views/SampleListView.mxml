@@ -12,8 +12,10 @@
       import com.pialabs.eskimo.model.Sample;
       
       import mx.collections.ArrayCollection;
+      import mx.core.FlexGlobals;
       import mx.utils.StringUtil;
       
+      import spark.components.ViewNavigator;
       import spark.events.IndexChangeEvent;
       import spark.events.TextOperationEvent;
       import spark.events.ViewNavigatorEvent;
@@ -37,7 +39,17 @@
       protected function onSampleListChange(event:IndexChangeEvent):void
       {
         var seletedItem:Sample = Sample(sampleList.selectedItem);
-        navigator.pushView(seletedItem.resource, sampleList.selectedItem);
+        
+        if (FlexGlobals.topLevelApplication is tourDEskimoSplit)
+        {
+          var contentNavigator:ViewNavigator = (FlexGlobals.topLevelApplication as tourDEskimoSplit).contentNavigator as ViewNavigator;
+          contentNavigator.replaceView(seletedItem.resource, sampleList.selectedItem);
+        }
+        else
+        {
+          
+          navigator.pushView(seletedItem.resource, sampleList.selectedItem);
+        }
       }
       
       protected function filterChange(event:TextOperationEvent):void

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:View xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:s="library://ns.adobe.com/flex/spark" title="{data.name}"
-        viewActivate="onViewActivate(event)">
+        viewActivate="onViewActivate(event)"
+        creationComplete="onCreationComplete(event)">
   <fx:Script>
     <![CDATA[
       import com.pialabs.eskimo.model.Model;
       import com.pialabs.eskimo.model.Sample;
       
+      import mx.core.FlexGlobals;
+      import mx.events.FlexEvent;
       import mx.utils.StringUtil;
       
       import spark.components.TextInput;
@@ -71,6 +74,14 @@
         }
         return value;
       }
+      
+      protected function onCreationComplete(event:FlexEvent):void
+      {
+        if (FlexGlobals.topLevelApplication is tourDEskimoSplit)
+        {
+          backButton.visible = backButton.includeInLayout = false;
+        }
+      }
     ]]>
   </fx:Script>
   <fx:Declarations>
@@ -94,6 +105,6 @@
                       horizontalAlign="center"/>
   </s:layout>
   <s:navigationContent>
-    <s:Button label="Back" click="navigator.popView()"/>
+    <s:Button id="backButton" label="Back" click="navigator.popView()"/>
   </s:navigationContent>
 </s:View>

@@ -6,9 +6,11 @@ package com.pialabs.eskimo.components
     import flash.display.DisplayObjectContainer;
     import flash.events.Event;
     import flash.events.KeyboardEvent;
+    import flash.events.StageOrientationEvent;
     import flash.ui.Keyboard;
     
     import mx.collections.ArrayCollection;
+    import mx.events.FlexEvent;
     import mx.managers.PopUpManager;
     
     import spark.components.Label;
@@ -101,6 +103,8 @@ package com.pialabs.eskimo.components
         private function onAddedToStage(event:Event):void
         {
             systemManager.getSandboxRoot().addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown, false, 0, true);
+            
+            owner.addEventListener(Event.RESIZE, ownerSizeChange, false, 0, true);
         }
         
         /**
@@ -109,6 +113,16 @@ package com.pialabs.eskimo.components
         private function removeFromStage(event:Event):void
         {
             systemManager.getSandboxRoot().removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+            
+            owner.removeEventListener(Event.RESIZE, ownerSizeChange);
+        }
+        
+        /**
+         * @private
+         */
+        private function ownerSizeChange(event:Event):void
+        {
+          invalidateDisplayList();
         }
         
         /**
@@ -118,8 +132,8 @@ package com.pialabs.eskimo.components
         {
             super.measure();
             
-            measuredWidth = systemManager.getSandboxRoot().width * 0.9;
-            maxHeight = systemManager.getSandboxRoot().height * 0.9;
+            measuredWidth = owner.width * 0.9;
+            maxHeight = owner.height * 0.9;
             
         }
         
