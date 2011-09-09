@@ -50,10 +50,6 @@ package com.pialabs.eskimo.components
   {
     // constants
     /**
-    * The gap between the page items.
-    */
-    public static const ITEM_GAP:int = 18;
-    /**
     * The default selected page index.
     */
     public static const DEFAULT_INDEX:int = 0;
@@ -63,6 +59,7 @@ package com.pialabs.eskimo.components
     public static const DEFAULT_PAGE_COUNT:int = 1;
     
     // properties 
+    private var _gap:Number = 18;
     private var _selectedIndex:int = DEFAULT_INDEX;
     private var _previousIndex:int = DEFAULT_INDEX;
     private var _selectedIndexChanged:Boolean = true;
@@ -151,9 +148,9 @@ package com.pialabs.eskimo.components
       {
         _itemContainer = new HGroup();
         _itemContainer.percentHeight = 100;
-        _itemContainer.gap = ITEM_GAP;
-        _itemContainer.left = ITEM_GAP;
-        _itemContainer.right = ITEM_GAP;
+        _itemContainer.gap = _gap;
+        _itemContainer.left = _gap;
+        _itemContainer.right = _gap;
         _itemContainer.verticalAlign = "middle";
         
         this.addElement(_itemContainer);
@@ -193,9 +190,14 @@ package com.pialabs.eskimo.components
       if (_sizeChanged)
       {
         var itemsWidth:int = pageCount * this.getStyle("pageItemSize");
-        var intervalsWidth:int = (_pageCount - 1) * ITEM_GAP;
-        var bordersWidth:int = ITEM_GAP * 2;
+        var intervalsWidth:int = (_pageCount - 1) * _gap;
+        var bordersWidth:int = _gap * 2;
         _itemContainer.width = itemsWidth + intervalsWidth + bordersWidth;
+        
+        _itemContainer.gap = _gap;
+        _itemContainer.left = _gap;
+        _itemContainer.right = _gap;
+        
         this.width = _itemContainer.width;
         
         _sizeChanged = false;
@@ -301,9 +303,9 @@ package com.pialabs.eskimo.components
     {
       var index:int = 0;
       var gap:int = 0;
-
+      
       _itemContainer.removeAllElements();
-
+      
       for (index = 0; index < _pageCount; index++)
       {
         _itemContainer.addElement(createPageItem());
@@ -400,5 +402,20 @@ package com.pialabs.eskimo.components
         _selectedPageItemSizeChanged = false;
       }
     }
+    
+    public function get gap():Number
+    {
+      return _gap;
+    }
+    
+    public function set gap(value:Number):void
+    {
+      _gap = value;
+      
+      _sizeChanged = true;
+      
+      invalidateDisplayList();
+    }
+  
   }
 }
