@@ -16,7 +16,3 @@ People In Action: http://www.pia-conseil.com
 Contact us:
 UserVoice: http://eskimo.uservoice.com
 email: eskimo@pia-conseil.com
-
-
-
-
