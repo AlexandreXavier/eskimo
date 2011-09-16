@@ -3,8 +3,7 @@
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   title="MultipleChoiceListView"
                   xmlns:views="com.pialabs.eskimo.views.*"
-                  xmlns:components="com.pialabs.eskimo.components.*"
-                  initialize="sampleview1_initializeHandler(event)">
+                  initialize="sampleview1_initializeHandler(event)" xmlns:pia="http://piaction.com">
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
   </fx:Declarations>
@@ -34,7 +33,7 @@
     ]]>
   </fx:Script>
   <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
-    <components:MultipleChoiceList id="list" width="100%" height="100%">
-    </components:MultipleChoiceList>
+    <pia:MultipleChoiceList id="list" width="100%" height="100%">
+    </pia:MultipleChoiceList>
   </s:SkinnableContainer>
 </views:SampleView>

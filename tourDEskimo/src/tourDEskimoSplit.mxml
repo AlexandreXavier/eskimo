@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<components:SplitViewApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
-                                 xmlns:s="library://ns.adobe.com/flex/spark"
-                                 xmlns:components="com.pialabs.eskimo.components.*">
+<pia:SplitViewApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+                          xmlns:s="library://ns.adobe.com/flex/spark"
+                          xmlns:pia="http://piaction.com">
   <fx:Style source="style.css"/>
   <fx:Script>
     <![CDATA[
@@ -13,13 +13,13 @@
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
   </fx:Declarations>
 
-  <components:panelNavigator>
+  <pia:panelNavigator>
     <s:ViewNavigator firstView="com.pialabs.eskimo.views.CategoryListView"/>
 
-  </components:panelNavigator>
+  </pia:panelNavigator>
 
-  <components:contentNavigator>
+  <pia:contentNavigator>
     <s:ViewNavigator firstView="spark.components.View"/>
-  </components:contentNavigator>
+  </pia:contentNavigator>
 
-</components:SplitViewApplication>
+</pia:SplitViewApplication>

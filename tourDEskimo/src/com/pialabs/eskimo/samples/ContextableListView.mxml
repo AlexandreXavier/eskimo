@@ -2,8 +2,7 @@
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   title="ContextableListView"
-                  xmlns:views="com.pialabs.eskimo.views.*"
-                  xmlns:components="com.pialabs.eskimo.components.*">
+                  xmlns:views="com.pialabs.eskimo.views.*" xmlns:pia="http://piaction.com">
   <fx:Script>
     <![CDATA[
       import com.pialabs.eskimo.events.ContextableListEvent;
@@ -30,13 +29,13 @@
            text="Context menu is displayed when you perform a 'long press' (press and hold) on an item."/>
   <s:SkinnableContainer width="100%" height="100%"
                         styleName="componentContainerStyle">
-    <components:ContextableList id="list" width="100%" height="100%"
+    <pia:ContextableList id="list" width="100%" height="100%"
                                 contextMenuItemClick="list_contextMenuItemClickHandler(event)"
                                 dataProvider="{_dataProvider}">
-      <components:contextMenuItems>
+      <pia:contextMenuItems>
         <fx:Object label="Delete"/>
         <fx:Object label="Cancel"/>
-      </components:contextMenuItems>
-    </components:ContextableList>
+      </pia:contextMenuItems>
+    </pia:ContextableList>
   </s:SkinnableContainer>
 </views:SampleView>

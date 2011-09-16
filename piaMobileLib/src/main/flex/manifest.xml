@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<componentPackage>
+  <component id="GMap" class="com.pialabs.eskimo.components.maps.GMap" />
+  <component id="CarouselList" class="com.pialabs.eskimo.components.CarouselList" />
+  <component id="CheckBoxItemRenderer" class="com.pialabs.eskimo.components.CheckBoxItemRenderer" />
+  <component id="ChoiceList" class="com.pialabs.eskimo.components.ChoiceList" />
+  <component id="ComboBox" class="com.pialabs.eskimo.components.ComboBox" />
+  <component id="ConfirmButton" class="com.pialabs.eskimo.components.ConfirmButton" />
+  <component id="ContextableList" class="com.pialabs.eskimo.components.ContextableList" />
+  <component id="DateChooser" class="com.pialabs.eskimo.components.DateChooser" />
+  <component id="DeletableItemRenderer" class="com.pialabs.eskimo.components.DeletableItemRenderer" />
+  <component id="DeletableList" class="com.pialabs.eskimo.components.DeletableList" />
+  <component id="ListStepper" class="com.pialabs.eskimo.components.ListStepper" />
+  <component id="ListWheel" class="com.pialabs.eskimo.components.ListWheel" />
+  <component id="ListWheelItemRenderer" class="com.pialabs.eskimo.components.ListWheelItemRenderer" />
+  <component id="MobileContextMenu" class="com.pialabs.eskimo.components.MobileContextMenu" />
+  <component id="MultiplatformGroup" class="com.pialabs.eskimo.components.MultiplatformGroup" />
+  <component id="MultipleChoiceList" class="com.pialabs.eskimo.components.MultipleChoiceList" />
+  <component id="PageIndicator" class="com.pialabs.eskimo.components.PageIndicator" />
+  <component id="PageIndicatorItem" class="com.pialabs.eskimo.components.PageIndicatorItem" />
+  <component id="PopOver" class="com.pialabs.eskimo.components.PopOver" />
+  <component id="RadioButtonItemRenderer" class="com.pialabs.eskimo.components.RadioButtonItemRenderer" />
+  <component id="RightRadioButtonRenderer" class="com.pialabs.eskimo.components.RightRadioButtonRenderer" />
+  <component id="SectionItemRenderer" class="com.pialabs.eskimo.components.SectionItemRenderer" />
+  <component id="SectionList" class="com.pialabs.eskimo.components.SectionList" />
+  <component id="SlideDataGroup" class="com.pialabs.eskimo.components.SlideDataGroup" />
+  <component id="SplitView" class="com.pialabs.eskimo.components.SplitView" />
+  <component id="SplitViewApplication" class="com.pialabs.eskimo.components.SplitViewApplication" />
+  <component id="Toast" class="com.pialabs.eskimo.components.Toast" />
+  <component id="UniqueChoiceList" class="com.pialabs.eskimo.components.UniqueChoiceList" />
+  <component id="SkinnableAlert" class="com.pialabs.eskimo.controls.SkinnableAlert" />
+  <component id="CircularLayout" class="com.pialabs.eskimo.layouts.CircularLayout" />
+  <component id="SlideLayout" class="com.pialabs.eskimo.layouts.SlideLayout" />
+</componentPackage>

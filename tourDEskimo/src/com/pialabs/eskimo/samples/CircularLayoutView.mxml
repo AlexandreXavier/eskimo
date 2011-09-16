@@ -3,8 +3,7 @@
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   title="CircularLayoutView"
                   xmlns:views="com.pialabs.eskimo.views.*"
-                  xmlns:layouts="com.pialabs.eskimo.layouts.*"
-                  xmlns:components="com.pialabs.eskimo.components.*">
+                  xmlns:pia="http://piaction.com">
   <fx:Script>
     <![CDATA[
       import mx.core.FlexGlobals;
@@ -86,18 +85,18 @@
     <s:layout>
       <s:VerticalLayout horizontalAlign="center"/>
     </s:layout>
-    <components:CarouselList id="carouselList" width="100%" height="180"
+    <pia:CarouselList id="carouselList" width="100%" height="180"
                              itemRenderer="com.pialabs.eskimo.samples.renderers.ImageRenderer"
                              dataProvider="{photoList}"
                              itemClick="slideDataGroup_itemClickHandler(event)">
-      <components:layout>
-        <layouts:CircularLayout id="circularLayout"
+      <pia:layout>
+        <pia:CircularLayout id="circularLayout"
                                 depthRation="{sliderDepth.value}"
                                 itemWidth="{sliderWidth.value}"
                                 itemHeight="{sliderHeight.value}"
                                 heightRatio="{sliderHeightRatio.value}"/>
-      </components:layout>
-    </components:CarouselList>
+      </pia:layout>
+    </pia:CarouselList>
   </s:SkinnableContainer>
 
   <s:SkinnableContainer width="100%" height="100%"

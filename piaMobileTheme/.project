@@ -3,6 +3,7 @@
 	<name>piaMobileTheme</name>
 	<comment></comment>
 	<projects>
+		<project>piaMobileLib</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
