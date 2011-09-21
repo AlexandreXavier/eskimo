@@ -11,7 +11,6 @@
 
   <components>
     <component name="GMap" namespace="pia" category="eskimo" />
-    <component name="GMap" namespace="pia" category="eskimo" />
     <component name="CarouselList" namespace="pia" category="eskimo" />
     <component name="CheckBoxItemRenderer" namespace="pia" category="eskimo" />
     <component name="ChoiceList" namespace="pia" category="eskimo" />

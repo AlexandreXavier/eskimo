@@ -7,6 +7,10 @@
     <classEntry path="com.pialabs.eskimo.layouts.CircularLayout"/>
     <classEntry path="com.pialabs.eskimo.components.maps.GMapHTMLTemplate"/>
   </includeClasses>
-  <includeResources/>
-  <namespaceManifests/>
+  <includeResources>
+    <resourceEntry destPath="design.xml" sourcePath="design.xml"/>
+  </includeResources>
+  <namespaceManifests>
+    <namespaceManifestEntry manifest="manifest.xml" namespace="http://piaction.com"/>
+  </namespaceManifests>
 </flexLibProperties>
