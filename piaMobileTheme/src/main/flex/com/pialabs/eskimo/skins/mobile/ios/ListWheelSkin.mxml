@@ -23,6 +23,8 @@
       import mx.core.FlexVersion;
       import mx.events.FlexEvent;
       
+      import spark.utils.LabelUtil;
+      
       /* Define the skin elements that should not be colorized.
       For list, the skin itself is colorized but the individual parts are not. */
       static private const exclusions:Array = ["scroller", "background", "border"];
@@ -113,7 +115,8 @@
         {
           for each (var item:Object in dataGroup.dataProvider)
           {
-            str = dataGroup.itemToLabel(item);
+            str = hostComponent.itemToLabel(item);
+
             if (measureText(str).width > measureText(maxStr).width)
             {
               maxStr = str;

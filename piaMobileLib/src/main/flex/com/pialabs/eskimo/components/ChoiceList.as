@@ -68,6 +68,7 @@ package com.pialabs.eskimo.components
         public function set labelField(value:String):void
         {
             _labelField = value;
+            invalidateProperties();
         }
         
         /**
@@ -124,16 +125,17 @@ package com.pialabs.eskimo.components
         {
             super.commitProperties();
             
+            if (listDisplay != null)
+            {
+              listDisplay.labelField = labelField;
+            }
+            
             if (_dataProviderChange)
             {
                 listDisplay.dataProvider = dataProvider;
                 _dataProviderChange = false;
             }
             
-            if (listDisplay != null)
-            {
-                listDisplay.labelField = labelField;
-            }
         }
     }
 }

@@ -30,7 +30,6 @@ The iOS skin class for the Spark Form component.
 
   <fx:Script>
     <![CDATA[
-      import mx.containers.FormItem;
       import mx.core.IVisualElement;
       
       import spark.components.FormItem;
