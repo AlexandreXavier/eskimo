@@ -2,8 +2,7 @@
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   title="SlideDataGroupView"
-                  xmlns:views="com.pialabs.eskimo.views.*"
-                  xmlns:components="com.pialabs.eskimo.components.*">
+                  xmlns:views="com.pialabs.eskimo.views.*" xmlns:pia="http://piaction.com">
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
     <s:ArrayCollection id="photoList">
@@ -45,12 +44,12 @@
     </s:layout>
     <s:Spacer width="100%"/>
     <s:Button label="&lt;" click="slideDataGroup.previous()"/>
-    <components:SlideDataGroup id="slideDataGroup" width="150" height="150"
+    <pia:SlideDataGroup id="slideDataGroup" width="150" height="150"
                                orientation="{SlideDataGroup.HORIZONTAL}"
                                direction="{SlideDataGroup.NORMAL}"
                                itemRenderer="com.pialabs.eskimo.samples.renderers.ImageRenderer"
                                dataProvider="{photoList}">
-    </components:SlideDataGroup>
+    </pia:SlideDataGroup>
     <s:Button label="&gt;" click="slideDataGroup.next()"/>
     <s:Spacer width="100%"/>
   </s:SkinnableContainer>

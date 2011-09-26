@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark"
-                  xmlns:views="com.pialabs.eskimo.views.*"
-                  xmlns:components="com.pialabs.eskimo.components.*">
+                  xmlns:views="com.pialabs.eskimo.views.*" xmlns:pia="http://piaction.com">
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
   </fx:Declarations>
@@ -11,17 +10,17 @@
            text="This component is meant to be used with SplitViewNavigatorApplication as root application component"
            width="100%"/>
 
-  <components:SplitView width="100%" height="100%" panelWidth="200">
+  <pia:SplitView width="100%" height="100%" panelWidth="200">
 
-    <components:panelNavigator>
+    <pia:panelNavigator>
       <s:ViewNavigator 
                        firstView="com.pialabs.eskimo.samples.splitViewViews.CustomListView"/>
-    </components:panelNavigator>
+    </pia:panelNavigator>
 
-    <components:contentNavigator>
+    <pia:contentNavigator>
       <s:ViewNavigator 
                        firstView="com.pialabs.eskimo.samples.splitViewViews.CustomView"/>
-    </components:contentNavigator>
+    </pia:contentNavigator>
 
-  </components:SplitView>
+  </pia:SplitView>
 </views:SampleView>

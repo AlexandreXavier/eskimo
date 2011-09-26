@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark" title="GMapView"
-                  xmlns:maps="com.pialabs.eskimo.components.maps.*"
-                  xmlns:views="com.pialabs.eskimo.views.*">
+                  xmlns:views="com.pialabs.eskimo.views.*" xmlns:pia="http://piaction.com">
   <fx:Script>
     <![CDATA[
       import com.pialabs.eskimo.controls.SkinnableAlert;
@@ -26,9 +25,9 @@
     <s:layout>
       <s:VerticalLayout horizontalAlign="center"/>
     </s:layout>
-    <maps:GMap id="map" width="100%" height="100%" zoom="{zoomSlider.value}"
-               complete="map_completeHandler(event)"
-               error="SkinnableAlert.show(event.toString(),'Loading Error')"/>
+    <pia:GMap id="map" width="100%" height="100%" zoom="{zoomSlider.value}"
+              complete="map_completeHandler(event)"
+              error="SkinnableAlert.show(event.toString(),'Loading Error')"/>
   </s:SkinnableContainer>
   <s:SkinnableContainer width="100%" height="40%"
                         styleName="parameterContainerStyle">

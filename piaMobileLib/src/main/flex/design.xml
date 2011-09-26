@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<design>
+
+  <namespaces>
+    <namespace prefix="pia" uri="http://piaction.com" />
+  </namespaces>
+
+  <categories>
+    <category id="eskimo" label="Eskimo Mobile Components" defaultExpand="true" />
+  </categories>
+
+  <components>
+    <component name="GMap" namespace="pia" category="eskimo" />
+    <component name="CarouselList" namespace="pia" category="eskimo" />
+    <component name="CheckBoxItemRenderer" namespace="pia" category="eskimo" />
+    <component name="ChoiceList" namespace="pia" category="eskimo" />
+    <component name="ComboBox" namespace="pia" category="eskimo" />
+    <component name="ConfirmButton" namespace="pia" category="eskimo" />
+    <component name="ContextableList" namespace="pia" category="eskimo" />
+    <component name="DateChooser" namespace="pia" category="eskimo" />
+    <component name="DeletableItemRenderer" namespace="pia" category="eskimo" />
+    <component name="DeletableList" namespace="pia" category="eskimo" />
+    <component name="ListStepper" namespace="pia" category="eskimo" />
+    <component name="ListWheel" namespace="pia" category="eskimo" />
+    <component name="ListWheelItemRenderer" namespace="pia" category="eskimo" />
+    <component name="MobileContextMenu" namespace="pia" category="eskimo" />
+    <component name="MultiplatformGroup" namespace="pia" category="eskimo" />
+    <component name="MultipleChoiceList" namespace="pia" category="eskimo" />
+    <component name="PageIndicator" namespace="pia" category="eskimo" />
+    <component name="PageIndicatorItem" namespace="pia" category="eskimo" />
+    <component name="PopOver" namespace="pia" category="eskimo" />
+    <component name="RadioButtonItemRenderer" namespace="pia" category="eskimo" />
+    <component name="RightRadioButtonRenderer" namespace="pia" category="eskimo" />
+    <component name="SectionItemRenderer" namespace="pia" category="eskimo" />
+    <component name="SectionList" namespace="pia" category="eskimo" />
+    <component name="SlideDataGroup" namespace="pia" category="eskimo" />
+    <component name="SplitView" namespace="pia" category="eskimo" />
+    <component name="SplitViewApplication" namespace="pia" category="eskimo" />
+    <component name="Toast" namespace="pia" category="eskimo" />
+    <component name="UniqueChoiceList" namespace="pia" category="eskimo" />
+    <component name="SkinnableAlert" namespace="pia" category="eskimo" />
+    <component name="CircularLayout" namespace="pia" category="eskimo" />
+    <component name="SlideLayout" namespace="pia" category="eskimo" />
+  </components>
+
+</design>

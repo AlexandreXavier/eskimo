@@ -2,8 +2,7 @@
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   title="SlideDataGroupView"
-                  xmlns:views="com.pialabs.eskimo.views.*"
-                  xmlns:components="com.pialabs.eskimo.components.*">
+                  xmlns:views="com.pialabs.eskimo.views.*" xmlns:pia="http://piaction.com">
   <fx:Script>
     <![CDATA[
       import mx.utils.StringUtil;
@@ -28,7 +27,7 @@
     
     <s:HGroup>
         <s:Button label="Prev" click="pageIndicator.previous()"/>
-        <components:PageIndicator id="pageIndicator" height="40" pageCount="4" selectedIndex="2"
+        <pia:PageIndicator id="pageIndicator" height="40" pageCount="4" selectedIndex="2"
                                   pageItemColor="#D0D0D0" selectedPageItemColor="#A4CA39"/>
         <s:Button label="Next" click="pageIndicator.next()"/>
     </s:HGroup>

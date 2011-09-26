@@ -1,4 +1,4 @@
-Eskimo-0.9.1
+Eskimo-0.9.5
 Eskimo is a Flex mobile library providing native control patterns to your apps on multiple mobile.
 
 To use it:

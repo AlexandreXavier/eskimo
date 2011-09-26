@@ -9,14 +9,12 @@
       
       protected function button1_clickHandler(event:MouseEvent):void
       {
-        // TODO Auto-generated method stub
         Toast.show("Toast Example");
       }
       
       protected function button2_clickHandler(event:MouseEvent):void
       {
-        // TODO Auto-generated method stub
-        var toast:Toast = Toast.show("Toast Example");
+         var toast:Toast = Toast.show("Toast Example");
         toast.setGravity(Toast.VERTICAL_CENTER | Toast.HORIZONTAL_CENTER);
       }
     ]]>

@@ -2,8 +2,7 @@
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   title="MultiPlateformeGroupView"
-                  xmlns:views="com.pialabs.eskimo.views.*"
-                  xmlns:components="com.pialabs.eskimo.components.*">
+                  xmlns:views="com.pialabs.eskimo.views.*" xmlns:pia="http://piaction.com">
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
   </fx:Declarations>
@@ -11,15 +10,15 @@
   <s:Label width="100%" fontSize="14" text="This container renders children for a specfic platform" />
   <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
 
-    <components:MultiplatformGroup type="{MultiplatformGroup.IOS}" width="100%">
+    <pia:MultiplatformGroup type="{MultiplatformGroup.IOS}" width="100%">
 
       <s:Label text="This label is only visible on iOS platform" width="100%"/>
-    </components:MultiplatformGroup>
+    </pia:MultiplatformGroup>
 
-    <components:MultiplatformGroup width="100%">
+    <pia:MultiplatformGroup width="100%">
 
       <s:Label text="This label is only visible on Android platform" width="100%"/>
-    </components:MultiplatformGroup>
+    </pia:MultiplatformGroup>
   </s:SkinnableContainer>
 
 </views:SampleView>

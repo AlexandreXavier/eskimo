@@ -3,8 +3,7 @@
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   title="UniqueChoiceListView"
                   xmlns:views="com.pialabs.eskimo.views.*"
-                  xmlns:components="com.pialabs.eskimo.components.*"
-                  initialize="sampleview1_initializeHandler(event)">
+                  initialize="sampleview1_initializeHandler(event)" xmlns:pia="http://piaction.com">
   <fx:Script>
     <![CDATA[
       import com.pialabs.eskimo.model.Model;
@@ -16,7 +15,6 @@
       
       protected function sampleview1_initializeHandler(event:FlexEvent):void
       {
-        // TODO Auto-generated method stub
         list.dataProvider = Model.createPersonList();
         
         selectedItem = list.dataProvider.getItemAt(0);
@@ -31,7 +29,7 @@
     <s:layout>
       <s:VerticalLayout horizontalAlign="center"/>
     </s:layout>
-    <components:UniqueChoiceList id="list" width="190" height="100%"
+    <pia:UniqueChoiceList id="list" width="190" height="100%"
                                  change="selectedItem = list.selectedItem"/>
     <s:Label text="{'Selected item : ' + selectedItem}" color="#000000"/>
   </s:SkinnableContainer>
