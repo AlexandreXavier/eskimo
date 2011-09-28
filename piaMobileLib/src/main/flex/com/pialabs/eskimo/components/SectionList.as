@@ -2,9 +2,11 @@ package com.pialabs.eskimo.components
 {
   import com.pialabs.eskimo.data.SectionTitleLabel;
   
+  import flash.events.Event;
   import flash.events.MouseEvent;
   import flash.geom.Point;
   
+  import mx.collections.IList;
   import mx.core.ClassFactory;
   import mx.core.IFactory;
   import mx.core.IVisualElement;
@@ -14,7 +16,6 @@ package com.pialabs.eskimo.components
   
   import spark.components.Group;
   import spark.components.IItemRenderer;
-  import spark.components.IconItemRenderer;
   import spark.components.List;
   import spark.layouts.VerticalLayout;
   import spark.utils.LabelUtil;
@@ -63,6 +64,7 @@ package com.pialabs.eskimo.components
      */
     private var _maintainSectionOnTop:Boolean = false;
     
+    
     [SkinPart(required = "false")]
     public var currentSectionRendererLayer:Group;
     
@@ -88,6 +90,16 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
+    private var _regenerateSectionIndices:Boolean = false;
+    
+    /**
+     * @private
+     */
+    private var _sestionTitleIndices:Vector.<int> = new Vector.<int>();
+    
+    /**
+     * @private
+     */
     public function SectionList()
     {
       super();
@@ -97,6 +109,31 @@ package com.pialabs.eskimo.components
       sectionLayout.gap = 0;
       sectionLayout.horizontalAlign = "contentJustify";
       this.layout = sectionLayout;
+    }
+    
+    override protected function dataProvider_collectionChangeHandler(event:Event):void
+    {
+      super.dataProvider_collectionChangeHandler(event);
+      
+      _regenerateSectionIndices = true;
+      
+      invalidateDisplayList();
+    }
+    
+    private function generateSectionIndicesVector():void
+    {
+      _sestionTitleIndices = new Vector.<int>();
+      
+      if (dataProvider)
+      {
+        for (var i:int = 0; i < dataProvider.length; i++)
+        {
+          if (_isSectionTitleFunction(dataProvider.getItemAt(i)))
+          {
+            _sestionTitleIndices.push(i);
+          }
+        }
+      }
     }
     
     /**
@@ -135,6 +172,7 @@ package com.pialabs.eskimo.components
       
       previousSectionIndex = getPreviousSectionTitleIndex(firstVisibleIndice);
       
+      
       if (previousSectionIndex == -1)
       {
         currentSectionRenderer.visible = false;
@@ -146,7 +184,7 @@ package com.pialabs.eskimo.components
       if (visu)
       {
         point = (visu as UIComponent).localToGlobal(new Point());
-        point = globalToLocal(point);
+        point = currentSectionRendererLayer.globalToLocal(point);
         
         if (point.y >= 0)
         {
@@ -156,6 +194,7 @@ package com.pialabs.eskimo.components
       }
       
       nextSectionIndex = getNextSectionTitleIndex(firstVisibleIndice + 1);
+      
       
       currentSectionRenderer.visible = true;
       
@@ -171,9 +210,9 @@ package com.pialabs.eskimo.components
       if (visu)
       {
         point = (visu as UIComponent).localToGlobal(new Point());
-        point = globalToLocal(point);
+        point = currentSectionRendererLayer.globalToLocal(point);
         
-        currectionSectionY = Math.min(point.y - currentSectionRenderer.height, 0);
+        currectionSectionY = Math.min(point.y - currentSectionRenderer.getLayoutBoundsHeight(), 0);
       }
       
       currentSectionRenderer.setLayoutBoundsPosition(0, currectionSectionY);
@@ -185,22 +224,19 @@ package com.pialabs.eskimo.components
      */
     protected function getPreviousSectionTitleIndex(index:int):int
     {
-      if (dataProvider == null)
+      if (_sestionTitleIndices.length == 0)
       {
         return -1;
       }
       
-      while (index >= 0)
+      for (var i:int = _sestionTitleIndices.length - 1; i >= 0; i--)
       {
-        var item:Object = dataProvider.getItemAt(index);
-        var isTitle:Boolean = _isSectionTitleFunction(item);
-        if (isTitle)
+        if (index >= _sestionTitleIndices[i])
         {
-          break;
+          return _sestionTitleIndices[i];
         }
-        index--;
       }
-      return index;
+      return -1;
     }
     
     /**
@@ -208,22 +244,19 @@ package com.pialabs.eskimo.components
      */
     protected function getNextSectionTitleIndex(index:int):int
     {
-      if (dataProvider == null)
+      if (_sestionTitleIndices.length == 0)
       {
         return -1;
       }
       
-      while (index <= dataProvider.length - 1)
+      for (var i:int = 0; i < _sestionTitleIndices.length; i++)
       {
-        var item:Object = dataProvider.getItemAt(index);
-        var isTitle:Boolean = _isSectionTitleFunction(item);
-        if (isTitle)
+        if (index <= _sestionTitleIndices[i])
         {
-          break;
+          return _sestionTitleIndices[i];
         }
-        index++;
       }
-      return index;
+      return -1;
     }
     
     /**
@@ -271,7 +304,14 @@ package com.pialabs.eskimo.components
             currentSectionRendererLayer.addElement(currentSectionRenderer);
           }
         }
+        
+        if (_regenerateSectionIndices)
+        {
+          generateSectionIndicesVector();
+          _regenerateSectionIndices = false;
+        }
       }
+    
     }
     
     /**
@@ -404,8 +444,16 @@ package com.pialabs.eskimo.components
     public function set isSectionTitleFunction(value:Function):void
     {
       _isSectionTitleFunction = value;
+      
+      _regenerateSectionIndices = true;
+      
+      invalidateProperties();
+      invalidateDisplayList();
     }
     
+    /**
+     * @private
+     */
     override public function set itemRenderer(value:IFactory):void
     {
       super.itemRenderer = value;
@@ -413,6 +461,19 @@ package com.pialabs.eskimo.components
       _itemRendererChange = true;
       
       invalidateProperties();
+    }
+    
+    /**
+     * @private
+     */
+    override public function set dataProvider(value:IList):void
+    {
+      super.dataProvider = value;
+      
+      _regenerateSectionIndices = true;
+      
+      invalidateProperties();
+      invalidateDisplayList();
     }
     
     /**
