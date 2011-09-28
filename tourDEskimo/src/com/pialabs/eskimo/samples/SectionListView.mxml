@@ -2,11 +2,11 @@
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   xmlns:views="com.pialabs.eskimo.views.*"
-                  
                   title="SectionListView" xmlns:pia="http://piaction.com">
 
   <fx:Script>
     <![CDATA[
+      import com.pialabs.eskimo.data.SectionTitleLabel;
       import com.pialabs.eskimo.model.Model;
       
       import mx.collections.ArrayCollection;
@@ -14,11 +14,19 @@
       [Bindable]
       private var _dataProvider:ArrayCollection = Model.createGroupPersonList();
       
+      private function defaultIsSectionTitleFunction(item:Object):Boolean
+      {
+        return (item is SectionTitleLabel);
+      }
     ]]>
   </fx:Script>
-  <s:SkinnableContainer width="100%" height="100%" styleName="componentContainerStyle">
+  <s:SkinnableContainer width="100%" height="100%"
+                        styleName="componentContainerStyle">
     <s:VGroup width="100%" height="100%" horizontalAlign="center">
-      <pia:SectionList id="sectionList" dataProvider="{_dataProvider}" width="100%" height="100%"/>
+      <pia:SectionList id="sectionList" dataProvider="{_dataProvider}"
+                       maintainSectionOnTop="true"
+                       isSectionTitleFunction="defaultIsSectionTitleFunction"
+                       sectionLabelField="label" width="100%" height="100%"/>
     </s:VGroup>
   </s:SkinnableContainer>
 

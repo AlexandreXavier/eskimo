@@ -11,40 +11,36 @@ package com.pialabs.eskimo.components
   
   /**
    *  The SectionItemRenderer class displays a different background color, height
-   *  and text align for SectionTitleLabel. Used in the 
+   *  and text align for SectionTitleLabel. Used in the
    *  list-based control.
    */
-  public class SectionItemRenderer extends IconItemRenderer
+  public class SectionItemRenderer extends IconItemRenderer implements ISectionRenderer
   {
+    private var _isSectionTitle:Boolean;
+    
     public function SectionItemRenderer()
     {
       super();
     }
     
-    public var sectionTitleColor:int;
-    
-    public var sectionHeight:int;
-    
-    public var sectionTitleAlign:String;
-    
     override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void
     {
-      super.drawBackground(unscaledWidth, unscaledHeight);
       
-      if (data is SectionTitleLabel)
+      if (_isSectionTitle)
       {
         var listOwner:List = (this.owner as List);
         
-        var sectionBackgroundColor:uint = listOwner.getStyle("sectionBackgroundColor");
-        if (sectionBackgroundColor == 0)
-        {
-          sectionBackgroundColor = 0xC0C0C0;
-        }
+        var sectionBackgroundColor:uint = getStyle("backgroundColor");
         
-        var colors:Array = [sectionBackgroundColor, sectionBackgroundColor];
-        var alphas:Array = [.6, .4];
+        var colors:Array = [0, 0];
+        var alphas:Array = [0.2, 0];
         var ratios:Array = [0, 255];
         var matrix:Matrix = new Matrix();
+        
+        // opaque background
+        graphics.beginFill(sectionBackgroundColor);
+        graphics.drawRect(0, 0, unscaledWidth, unscaledHeight);
+        graphics.endFill();
         
         // gradient overlay
         matrix.createGradientBox(unscaledWidth, unscaledHeight, Math.PI / 2, 0, 0);
@@ -52,22 +48,26 @@ package com.pialabs.eskimo.components
         graphics.drawRect(0, 0, unscaledWidth, unscaledHeight);
         graphics.endFill();
       }
-      
-      labelDisplay.setStyle("color", sectionTitleColor);
+      else
+      {
+        super.drawBackground(unscaledWidth, unscaledHeight);
+      }
+    
     }
     
     override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
     {
-      labelDisplay.setStyle("textAlign", sectionTitleAlign);
-      
       super.updateDisplayList(unscaledWidth, unscaledHeight);
     }
     
-    override protected function measure():void
+    public function get isSectionTitle():Boolean
     {
-      super.measure();
-      
-      height = sectionHeight;
+      return _isSectionTitle;
+    }
+    
+    public function set isSectionTitle(value:Boolean):void
+    {
+      _isSectionTitle = value;
     }
   }
 }

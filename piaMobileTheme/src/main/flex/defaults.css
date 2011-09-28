@@ -166,11 +166,10 @@
       skinClass: ClassReference("spark.skins.mobile.BeveledActionButtonSkin");
     }
 
-    components|SectionList
+    .sectionRendererStyle
     {
-      sectionBackgroundColor:#031037;
-      sectionTitleColor:#FFFFFF;
-      sectionHeight: 20;
+      backgroundColor:#AAAAAA;
+      color:#FFFFFF;
     }
 }
 
@@ -252,11 +251,10 @@
       skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.DateChooserSkin");
     }
     
-    components|SectionList
+    .sectionRendererStyle
     {
-      sectionTitleAlign:center;
-      sectionBackgroundColor:#C0C0C0;
-      sectionHeight: 30;
+      textAlign:center;
+      backgroundColor:#AAAAAA;
     }
     
 }
@@ -337,6 +335,12 @@
   components|DateChooser
   {
     skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.DateChooserSkin");
+  }
+  
+  .sectionRendererStyle
+  {
+    textAlign:center;
+    backgroundColor:#C0C0C0;
   }
 }
 
@@ -457,4 +461,10 @@ components|SplitView
 {
   skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.SplitViewSkin");
   panelButtonStyleName: "splitViewPanelButtonStyle";
+}
+
+components|SectionList
+{
+  sectionRendererStyleName: "sectionRendererStyle";
+  skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.SectionListSkin");
 }
