@@ -21,6 +21,10 @@ The iOS skin class for the Eskimo SplitView component.
       import mx.events.FlexEvent;
       import mx.events.FlexMouseEvent;
       
+      import spark.skins.mobile.BeveledActionButtonSkin;
+      
+      private var registerSkinObject:BeveledActionButtonSkin;
+      
       protected function onStateChange(event:FlexEvent):void
       {
         var panelContainer:IVisualElementContainer;

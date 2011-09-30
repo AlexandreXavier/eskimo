@@ -281,7 +281,7 @@
   } 
   s|FormItem s|CheckBox
   {
-    skinClass: ClassReference("spark.skins.mobile.CheckBoxSkin");   
+    iconPlacement: "left";  
   }
   
   controls|SkinnableAlert
