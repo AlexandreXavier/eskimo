@@ -2,7 +2,8 @@
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   title="SlideDataGroupView"
-                  xmlns:views="com.pialabs.eskimo.views.*" xmlns:pia="http://piaction.com">
+                  xmlns:views="com.pialabs.eskimo.views.*"
+                  xmlns:pia="http://piaction.com">
   <fx:Declarations>
     <!-- Placer ici les éléments non visuels (services et objets de valeur, par exemple). -->
     <s:ArrayCollection id="photoList">
@@ -16,6 +17,80 @@
       <fx:Object source="data/img/photo08.jpg"/>
       <fx:Object source="data/img/photo09.jpg"/>
       <fx:Object source="data/img/photo10.jpg"/>
+      <fx:Object source="data/img/photo11.jpg"/>
+      <fx:Object source="data/img/photo12.jpg"/>
+      <fx:Object source="data/img/photo13.jpg"/>
+      <fx:Object source="data/img/photo14.jpg"/>
+      <fx:Object source="data/img/photo15.jpg"/>
+      <fx:Object source="data/img/photo16.jpg"/>
+      <fx:Object source="data/img/photo17.jpg"/>
+      <fx:Object source="data/img/photo18.jpg"/>
+      <fx:Object source="data/img/photo19.jpg"/>
+      <fx:Object source="data/img/photo20.jpg"/>
+
+      <fx:Object source="data/img/photo01.jpg"/>
+      <fx:Object source="data/img/photo02.jpg"/>
+      <fx:Object source="data/img/photo03.jpg"/>
+      <fx:Object source="data/img/photo04.jpg"/>
+      <fx:Object source="data/img/photo05.jpg"/>
+      <fx:Object source="data/img/photo06.jpg"/>
+      <fx:Object source="data/img/photo07.jpg"/>
+      <fx:Object source="data/img/photo08.jpg"/>
+      <fx:Object source="data/img/photo09.jpg"/>
+      <fx:Object source="data/img/photo10.jpg"/>
+      <fx:Object source="data/img/photo11.jpg"/>
+      <fx:Object source="data/img/photo12.jpg"/>
+      <fx:Object source="data/img/photo13.jpg"/>
+      <fx:Object source="data/img/photo14.jpg"/>
+      <fx:Object source="data/img/photo15.jpg"/>
+      <fx:Object source="data/img/photo16.jpg"/>
+      <fx:Object source="data/img/photo17.jpg"/>
+      <fx:Object source="data/img/photo18.jpg"/>
+      <fx:Object source="data/img/photo19.jpg"/>
+      <fx:Object source="data/img/photo20.jpg"/>
+
+      <fx:Object source="data/img/photo01.jpg"/>
+      <fx:Object source="data/img/photo02.jpg"/>
+      <fx:Object source="data/img/photo03.jpg"/>
+      <fx:Object source="data/img/photo04.jpg"/>
+      <fx:Object source="data/img/photo05.jpg"/>
+      <fx:Object source="data/img/photo06.jpg"/>
+      <fx:Object source="data/img/photo07.jpg"/>
+      <fx:Object source="data/img/photo08.jpg"/>
+      <fx:Object source="data/img/photo09.jpg"/>
+      <fx:Object source="data/img/photo10.jpg"/>
+      <fx:Object source="data/img/photo11.jpg"/>
+      <fx:Object source="data/img/photo12.jpg"/>
+      <fx:Object source="data/img/photo13.jpg"/>
+      <fx:Object source="data/img/photo14.jpg"/>
+      <fx:Object source="data/img/photo15.jpg"/>
+      <fx:Object source="data/img/photo16.jpg"/>
+      <fx:Object source="data/img/photo17.jpg"/>
+      <fx:Object source="data/img/photo18.jpg"/>
+      <fx:Object source="data/img/photo19.jpg"/>
+      <fx:Object source="data/img/photo20.jpg"/>
+
+      <fx:Object source="data/img/photo01.jpg"/>
+      <fx:Object source="data/img/photo02.jpg"/>
+      <fx:Object source="data/img/photo03.jpg"/>
+      <fx:Object source="data/img/photo04.jpg"/>
+      <fx:Object source="data/img/photo05.jpg"/>
+      <fx:Object source="data/img/photo06.jpg"/>
+      <fx:Object source="data/img/photo07.jpg"/>
+      <fx:Object source="data/img/photo08.jpg"/>
+      <fx:Object source="data/img/photo09.jpg"/>
+      <fx:Object source="data/img/photo10.jpg"/>
+      <fx:Object source="data/img/photo11.jpg"/>
+      <fx:Object source="data/img/photo12.jpg"/>
+      <fx:Object source="data/img/photo13.jpg"/>
+      <fx:Object source="data/img/photo14.jpg"/>
+      <fx:Object source="data/img/photo15.jpg"/>
+      <fx:Object source="data/img/photo16.jpg"/>
+      <fx:Object source="data/img/photo17.jpg"/>
+      <fx:Object source="data/img/photo18.jpg"/>
+      <fx:Object source="data/img/photo19.jpg"/>
+      <fx:Object source="data/img/photo20.jpg"/>
+
     </s:ArrayCollection>
   </fx:Declarations>
   <fx:Script>
@@ -45,10 +120,12 @@
     <s:Spacer width="100%"/>
     <s:Button label="&lt;" click="slideDataGroup.previous()"/>
     <pia:SlideDataGroup id="slideDataGroup" width="150" height="150"
-                               orientation="{SlideDataGroup.HORIZONTAL}"
-                               direction="{SlideDataGroup.NORMAL}"
-                               itemRenderer="com.pialabs.eskimo.samples.renderers.ImageRenderer"
-                               dataProvider="{photoList}">
+                        useVirtualLayout="true"
+                        virtualRendererPreloadEnable="true"
+                        orientation="{SlideDataGroup.HORIZONTAL}"
+                        direction="{SlideDataGroup.NORMAL}"
+                        itemRenderer="com.pialabs.eskimo.samples.renderers.ImageRenderer"
+                        dataProvider="{photoList}">
     </pia:SlideDataGroup>
     <s:Button label="&gt;" click="slideDataGroup.next()"/>
     <s:Spacer width="100%"/>

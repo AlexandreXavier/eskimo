@@ -1,5 +1,7 @@
 package com.pialabs.eskimo.layouts
 {
+  import com.pialabs.eskimo.components.SlideDataGroup;
+  
   import flash.display.Sprite;
   import flash.events.Event;
   import flash.geom.Point;
@@ -50,13 +52,21 @@ package com.pialabs.eskimo.layouts
     */
     public var direction:int = 1;
     
-    private var _direction:int;
+    /**
+    * Duration of the transition.
+    */
+    public var slideDuration:int = 300;
+    
     
     /**
      * Oriantation of the slide
      */
     public var orientation:String = HORIZONTAL;
     
+    /**
+     * @private
+     */
+    private var _direction:int;
     /**
      * @private
      */
@@ -100,61 +110,105 @@ package com.pialabs.eskimo.layouts
     override public function updateDisplayList(width:Number, height:Number):void
     {
       super.updateDisplayList(width, height);
+      
       var numElements:int = target.numElements;
       
-      if (_oldIndex == -1)
+      var element:IVisualElement;
+      
+      // If it use virtual layout, we only have to positionate the current element
+      if (useVirtualLayout)
       {
-        for (var i:uint = 0; i < numElements; i++)
+        if (_oldIndex == -1)
         {
-          var element:IVisualElement = getVisualElement(i);
-          if (i == _index)
+          // Beware that calling getVirtualElementAt function create an instanse of the renderer
+          element = getVisualElement(_index);
+          showVisualElement(element, true);
+          element.setLayoutBoundsSize(width, height);
+          element.setLayoutBoundsPosition(0, 0);
+          
+          createExtraRendererInstance(width, height);
+        }
+        
+      }
+      // Else we have to positionate/set visibility all elements
+      else
+      {
+        if (_oldIndex == -1)
+        {
+          for (var i:uint = 0; i < numElements; i++)
           {
-            showVisualElement(element, true);
-            element.setLayoutBoundsSize(width, height);
-            element.setLayoutBoundsPosition(0, 0);
-          }
-          else
-          {
-            showVisualElement(element, false);
+            element = getVisualElement(i);
+            if (i == _index)
+            {
+              showVisualElement(element, true);
+              element.setLayoutBoundsSize(width, height);
+              element.setLayoutBoundsPosition(0, 0);
+            }
+            else
+            {
+              showVisualElement(element, false);
+            }
           }
         }
       }
-      else
+      
+      if (_oldIndex != -1)
       {
-        createViewPort(width, height);
+        _oldElement = getVisualElement(_oldIndex);
+        _oldElement.setLayoutBoundsSize(width, height);
+        showVisualElement(_oldElement, true);
         
         _newElement = getVisualElement(_index);
         showVisualElement(_newElement, true);
         _newElement.setLayoutBoundsSize(width, height);
         
         _direction = direction * (_oldIndex - _index);
+        
+        var tweenEndValue:Number;
         if (orientation == HORIZONTAL)
         {
           _newElement.setLayoutBoundsPosition(-_direction * width, 0);
+          tweenEndValue = width;
         }
         else if (orientation == VERTICAL)
         {
           _newElement.setLayoutBoundsPosition(0, -_direction * height);
+          tweenEndValue = height;
         }
-        _oldElement = getVisualElement(_oldIndex);
         
-        _tween = new Tween(this, 0, width, 300, 30, tweenUpdateHandler, tweenEndHandler);
+        if (_tween)
+        {
+          _tween.stop();
+        }
+        
+        _tween = new Tween(this, 0, tweenEndValue, slideDuration, 30, tweenUpdateHandler, tweenEndHandler);
       }
     }
     
-    /**
-     * @private
-     */
-    private function createViewPort(width:Number, height:Number):void
+    private function createExtraRendererInstance(width:Number, height:Number):void
     {
-      var ratio:Number = FlexGlobals.topLevelApplication.runtimeDPI / FlexGlobals.topLevelApplication.applicationDPI;
-      var targetPosition:Point = target.localToGlobal(new Point())
-      _mask.graphics.clear();
-      _mask.graphics.beginFill(0xFFFFFF);
-      _mask.graphics.drawRect(targetPosition.x, targetPosition.y, width * ratio, height * ratio);
-      _mask.graphics.endFill();
-      target.mask = _mask;
+      if (!(target is SlideDataGroup) || (target as SlideDataGroup).virtualRendererPreloadEnable == false)
+      {
+        return;
+      }
+      
+      var virtualInstanceNumber:int = 3;
+      
+      var element:IVisualElement;
+      
+      var firstIndex:int = Math.max(_index - Math.floor(virtualInstanceNumber / 2), 0);
+      var lastIndex:int = Math.min(_index + Math.floor(virtualInstanceNumber / 2), target.numElements - 1);
+      for (var j:uint = firstIndex; j <= lastIndex; j++)
+      {
+        element = getVisualElement(j);
+        if (j != _index)
+        {
+          showVisualElement(element, false);
+          element.setLayoutBoundsSize(width, height);
+        }
+      }
     }
+    
     
     /**
      * @private
@@ -186,9 +240,9 @@ package com.pialabs.eskimo.layouts
       
       showVisualElement(_oldElement, false);
       
-      _oldIndex = -1
+      _oldIndex = -1;
       
-      target.mask = null;
+      target.invalidateDisplayList();
     }
     
     /**

@@ -195,7 +195,7 @@
     } 
     s|FormItem s|CheckBox
     {
-     skinClass: ClassReference("spark.skins.mobile.CheckBoxSkin");   
+        skinClass: ClassReference("spark.skins.mobile.CheckBoxSkin");   
     }
     
     controls|SkinnableAlert
