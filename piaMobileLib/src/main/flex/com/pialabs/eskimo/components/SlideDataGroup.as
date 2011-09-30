@@ -40,6 +40,22 @@ package com.pialabs.eskimo.components
      */
     public static const REVERSE:int = -1;
     
+    
+    /**
+     * @private
+     */
+    private var _virtualRendererPreloadEnable:Boolean = false;
+    
+    /**
+     * @private
+     */
+    private var _useVirtualLayout:Boolean;
+    
+    /**
+     * @private
+     */
+    private var _slideDuration:uint = 300;
+    
     /**
     * Constructor
     */
@@ -47,8 +63,10 @@ package com.pialabs.eskimo.components
     {
       super();
       super.layout = new SlideLayout();
+      super.layout.useVirtualLayout = true;
       addEventListener(TransformGestureEvent.GESTURE_SWIPE, onSwipe);
       slideLayout.addEventListener("indexChanged", onIndexChanged);
+      clipAndEnableScrolling = true;
     }
     
     /**
@@ -59,6 +77,8 @@ package com.pialabs.eskimo.components
       if (value is SlideLayout)
       {
         super.layout = value;
+        layout.useVirtualLayout = _useVirtualLayout;
+        (layout as SlideLayout).slideDuration = slideDuration;
         layout.addEventListener("indexChanged", onIndexChanged);
       }
       else
@@ -196,5 +216,62 @@ package com.pialabs.eskimo.components
     {
       dispatchEvent(new Event("selectedIndexChanged"));
     }
+    
+    /**
+     * Enable the creation of the next and previous item renderer.
+     * Property to set only if <code>useVirtualLayout</code> is set to true
+     * @default false
+     */
+    public function get virtualRendererPreloadEnable():Boolean
+    {
+      return _virtualRendererPreloadEnable;
+    }
+    
+    /**
+     * @private
+     */
+    public function set virtualRendererPreloadEnable(value:Boolean):void
+    {
+      _virtualRendererPreloadEnable = value;
+    }
+    
+    /**
+     * Enable vitualization.
+     * @default true
+     */
+    public function get useVirtualLayout():Boolean
+    {
+      return _useVirtualLayout;
+    }
+    
+    /**
+     * @private
+     */
+    public function set useVirtualLayout(value:Boolean):void
+    {
+      _useVirtualLayout = value;
+      layout.useVirtualLayout = _useVirtualLayout;
+    }
+    
+    /**
+     * Duration of the slide transition in millisecond.
+     * @default 300
+     */
+    public function get slideDuration():uint
+    {
+      return _slideDuration;
+    }
+    
+    /**
+     * @private
+     */
+    public function set slideDuration(value:uint):void
+    {
+      _slideDuration = value;
+      
+      (layout as SlideLayout).slideDuration = slideDuration;
+    }
+  
+  
   }
 }
