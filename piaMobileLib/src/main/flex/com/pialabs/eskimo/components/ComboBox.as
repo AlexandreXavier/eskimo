@@ -155,7 +155,7 @@ package com.pialabs.eskimo.components
      */
     public function get selectedItem():Object
     {
-      return popUp.selectedItem;
+      return _selectedItem;
     }
     
     /**
