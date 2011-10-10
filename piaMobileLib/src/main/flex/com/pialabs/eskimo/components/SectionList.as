@@ -8,6 +8,7 @@ package com.pialabs.eskimo.components
   
   import mx.collections.IList;
   import mx.core.ClassFactory;
+  import mx.core.IDataRenderer;
   import mx.core.IFactory;
   import mx.core.IVisualElement;
   import mx.core.UIComponent;
@@ -267,7 +268,7 @@ package com.pialabs.eskimo.components
       var data:Object;
       if (event.currentTarget is IItemRenderer)
       {
-        data = IItemRenderer(event.currentTarget).data;
+        data = IDataRenderer(event.currentTarget).data;
       }
       
       var isTitle:Boolean = _isSectionTitleFunction(data);
@@ -354,6 +355,11 @@ package com.pialabs.eskimo.components
         var rendererStyleName:String = (renderer as UIComponent).styleName as String;
         if (isTitle)
         {
+          if (renderer is IDataRenderer)
+          {
+            (renderer as IDataRenderer).data = data;
+          }
+          
           (renderer as ISectionRenderer).isSectionTitle = true;
           
           if (renderer is IItemRenderer)

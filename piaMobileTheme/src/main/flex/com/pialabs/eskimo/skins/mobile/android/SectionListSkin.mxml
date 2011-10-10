@@ -32,10 +32,10 @@
       
       /* Define the skin elements that should not be colorized.
              For list, the skin itself is colorized but the individual parts are not. */
-      static private const exclusions:Array = ["scroller", "background", "border"];
+      static private const exclusions:Array = ["scroller", "background", "border", "currentSectionRendererLayer"];
       
       /* exclusions before Flex 4.5 for backwards-compatibility purposes */
-      static private const exclusions_4_0:Array = ["scroller", "background"];
+      static private const exclusions_4_0:Array = ["scroller", "background", "currentSectionRendererLayer"];
       
       /**
        * @private
@@ -84,12 +84,16 @@
           border.visible = true;
           background.left = background.top = background.right = background.bottom = 1;
           scroller.minViewportInset = 1;
+          currentSectionRendererLayer.left = currentSectionRendererLayer.top = currentSectionRendererLayer.right = currentSectionRendererLayer.bottom = 1;
+          currentSectionMask.left = currentSectionMask.top = currentSectionMask.right = currentSectionMask.bottom = 1;
         }
         else
         {
           border.visible = false;
           background.left = background.top = background.right = background.bottom = 0;
           scroller.minViewportInset = 0;
+          currentSectionRendererLayer.left = currentSectionRendererLayer.top = currentSectionRendererLayer.right = currentSectionRendererLayer.bottom = 0;
+          currentSectionMask.left = currentSectionMask.top = currentSectionMask.right = currentSectionMask.bottom = 0;
         }
         
         borderStroke.color = getStyle("borderColor");
@@ -133,15 +137,6 @@
     </fx:Component>
   </fx:Declarations>
 
-  <!-- border -->
-  <!--- @private -->
-  <s:Rect left="0" right="0" top="0" bottom="0" id="border">
-    <s:stroke>
-      <!--- @private -->
-      <s:SolidColorStroke id="borderStroke" weight="1"/>
-    </s:stroke>
-  </s:Rect>
-
   <!-- fill -->
   <!--- Defines the background appearance of the list-based component. -->
   <s:Rect id="background" left="1" right="1" top="1" bottom="1">
@@ -150,6 +145,8 @@
       <s:SolidColor id="bgFill" color="0xFFFFFF"/>
     </s:fill>
   </s:Rect>
+
+
 
   <!--- The Scroller component to add scroll bars to the list. -->
   <s:Scroller left="0" top="0" right="0" bottom="0" id="scroller"
@@ -167,6 +164,23 @@
     </s:DataGroup>
   </s:Scroller>
 
-  <s:Group id="currentSectionRendererLayer" left="0" top="0" right="0"
-           clipAndEnableScrolling="true" bottom="0"/>
+  <s:Group id="currentSectionRendererLayer" mask="{currentSectionMask}" left="0"
+           top="0" right="0" bottom="0"/>
+  <!--TODO Understand why we need to use a mask instead of the clipAndEnableScrolling property-->
+  <s:Group id="currentSectionMask" left="0" top="0" right="0" bottom="0">
+    <s:Rect left="0" top="0" right="0" bottom="0">
+      <s:fill>
+        <s:SolidColor/>
+      </s:fill>
+    </s:Rect>
+  </s:Group>
+
+  <!-- border -->
+  <!--- @private -->
+  <s:Rect left="0" right="0" top="0" bottom="0" id="border">
+    <s:stroke>
+      <!--- @private -->
+      <s:SolidColorStroke id="borderStroke" weight="1"/>
+    </s:stroke>
+  </s:Rect>
 </s:SparkSkin>
