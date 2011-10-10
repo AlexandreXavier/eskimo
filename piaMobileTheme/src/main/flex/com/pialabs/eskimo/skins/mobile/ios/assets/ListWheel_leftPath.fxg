@@ -1,0 +1,15 @@
+
+<Graphic version="2.0" xmlns="http://ns.adobe.com/fxg/2008" viewHeight="150" viewWidth="3"
+    scaleGridLeft="1" scaleGridTop="1" scaleGridRight="1" scaleGridBottom="1">
+  <Path data="M 3 0 L 0 3 V 147 L 3 150" >
+    <fill>
+      <LinearGradient rotation="90">
+
+        <GradientEntry ratio="0" color="#1F1E27"/>
+        <GradientEntry ratio="0.3" color="#C8CADB"/>
+        <GradientEntry ratio="0.7" color="#C8CADB"/>
+        <GradientEntry ratio="1" color="#1F1E27"/>
+      </LinearGradient>
+    </fill>
+  </Path>
+</Graphic>

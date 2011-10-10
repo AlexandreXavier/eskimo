@@ -377,7 +377,6 @@ components|ListWheel
     skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.ListWheelSkin");
     gradientColorBegin: #5555AA;
     gradientColorEnd: #3333AA;
-    selectionColor: #FFFFFF;
 }
 
 components|ListWheel s|Label

@@ -1,0 +1,9 @@
+
+<Graphic version="2.0" xmlns="http://ns.adobe.com/fxg/2008" viewHeight="30" viewWidth="80"
+    scaleGridLeft="1" scaleGridTop="1" scaleGridRight="1" scaleGridBottom="1">
+  <Rect width="80" height="30">
+    <fill>
+      <SolidColor color="#cccccc" alpha="0.3"/>
+    </fill>
+  </Rect>
+</Graphic>

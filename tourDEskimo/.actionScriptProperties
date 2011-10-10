@@ -27,7 +27,6 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
-      <libraryPathEntry kind="1" linkType="1" path="libs"/>
       <libraryPathEntry kind="3" linkType="1" path="/piaMobileLib/bin/piaMobileLib.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/piaMobileTheme/bin/piaMobileTheme.swc" useDefaultLinkType="false"/>
     </libraryPath>
