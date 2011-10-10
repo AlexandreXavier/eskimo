@@ -195,7 +195,7 @@
     } 
     s|FormItem s|CheckBox
     {
-      iconPlacement: "left";    
+      iconPlacement: "left";
     }
     
     controls|SkinnableAlert
