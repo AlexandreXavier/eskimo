@@ -1,0 +1,14 @@
+
+<Graphic version="2.0" xmlns="http://ns.adobe.com/fxg/2008" viewHeight="30" viewWidth="80"
+    scaleGridLeft="1" scaleGridTop="1" scaleGridRight="1" scaleGridBottom="1">
+  <Line xFrom="0" xTo="80" yFrom="0" yTo="0">
+    <stroke>
+      <SolidColorStroke color="#8A8BA0"/>
+    </stroke>
+  </Line>
+  <Line xFrom="0" xTo="80" yFrom="30" yTo="30">
+    <stroke>
+      <SolidColorStroke color="#8A8BA0"/>
+    </stroke>
+  </Line>
+</Graphic>
