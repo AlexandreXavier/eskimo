@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spark:DefaultItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" height="50" cacheAsBitmap="true" fontSize="25" textAlign="center"
+                           xmlns:s="library://ns.adobe.com/flex/spark" xmlns:spark="spark.skins.spark.*">
+  <fx:Declarations>
+    <!-- Place non-visual elements (e.g., services, value objects) here -->
+  </fx:Declarations>
+</spark:DefaultItemRenderer>
