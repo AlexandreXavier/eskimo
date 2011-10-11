@@ -7,6 +7,7 @@ package com.pialabs.eskimo.components
   
   import mx.collections.IList;
   import mx.events.ItemClickEvent;
+  import mx.managers.IFocusManagerComponent;
   import mx.managers.PopUpManager;
   
   import spark.components.Label;
@@ -27,7 +28,7 @@ package com.pialabs.eskimo.components
   /**
    * The ComboBox control lets the user make a single choice within a set of mutually exclusive choices.
    */
-  public class ComboBox extends SkinnableComponent
+  public class ComboBox extends SkinnableComponent implements IFocusManagerComponent
   {
     /**
      * @private
@@ -111,6 +112,7 @@ package com.pialabs.eskimo.components
     
     private function popUpList(event:MouseEvent):void
     {
+      focusManager.setFocus(this);
       var popupSkinClass:Object = getStyle("popupSkinClass");
       if (popupSkinClass != null)
       {
