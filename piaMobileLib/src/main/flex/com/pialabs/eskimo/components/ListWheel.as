@@ -57,7 +57,7 @@ package com.pialabs.eskimo.components
     * @private
     * Data provider setted by the user.
     */
-    private var _dataProvider:ArrayCollection = new ArrayCollection();
+    private var _dataProvider:IList = new ArrayCollection();
     
     /**
      * @private
@@ -148,7 +148,7 @@ package com.pialabs.eskimo.components
     }
     
     /**
-     * DataProvider property (that should be an ArrayCollection).
+     * DataProvider property.
      */
     override public function get dataProvider():IList
     {
@@ -162,7 +162,7 @@ package com.pialabs.eskimo.components
     {
       if (value != _dataProvider)
       {
-        _dataProvider = value as ArrayCollection;
+        _dataProvider = value;
         _dataProvider.addEventListener(CollectionEvent.COLLECTION_CHANGE, listWhell_collectionChangeHandler);
         
         _dataProviderChange = true;
@@ -233,7 +233,7 @@ package com.pialabs.eskimo.components
       {
         if (_dataProvider)
         {
-          var sourceDP:Array = _dataProvider.source;
+          var sourceDP:Array = _dataProvider.toArray();
           sourceDP = sourceDP.concat(sourceDP);
           sourceDP = sourceDP.concat(sourceDP);
           _customDataprovider = new ArrayCollection(sourceDP);
