@@ -141,11 +141,17 @@ Move the indicator tooltip string to a resource bundle
     <!--- @copy spark.components.FormItem#helpContentGroup -->
     <s:Group id="helpContentGroup" excludeFrom="errorStates" fontStyle="italic"
              fontWeight="normal" color="0x666666" width="100%" height="100%"
-             baseline="0"/>
+             baseline="0" textAlign="right"/>
     <!--- @copy spark.components.FormItem#errorTextDisplay -->
     <s:RichText id="errorTextDisplay" includeIn="errorStates" fontStyle="italic"
-                fontWeight="normal" color="0xFE0000" width="100%" height="100%"
-                baseline="0" maxDisplayedLines="-1"/>
+                fontWeight="normal" color="0xAAAAAA" width="100%" height="100%"
+                baseline="0" maxDisplayedLines="-1" textAlign="right"/>
+    <!--- @private -->
+    <s:Group height="100%">
+      
+      <s:Image id="indicatorDisplay" verticalCenter="0" toolTip="Required"
+               toolTip.errorStates="" includeIn="requiredStates,errorStates"/>
+    </s:Group>
   </s:HGroup>
   <!--- @copy spark.components.SkinnableContainer#contentGroup -->
   <!-- Don't show the error tip on the content elements -->
@@ -154,15 +160,6 @@ Move the indicator tooltip string to a resource bundle
     <s:layout>
       <s:VerticalLayout horizontalAlign="justify"/>
     </s:layout>
-  </s:Group>
-  <!-- Don't include the indicator in layout since we position it ourselves -->
-  <s:Group x="{contentGroup.x + contentGroup.contentWidth + 4}"
-           y="{contentGroup.y}"
-           height="{Math.max(indicatorDisplay.height, contentGroup.contentHeight)}"
-           includeInLayout="false">
-    <!--- @private -->
-    <s:Image id="indicatorDisplay" verticalCenter="0" toolTip="Required"
-             toolTip.errorStates="" includeIn="requiredStates,errorStates"/>
   </s:Group>
 
 

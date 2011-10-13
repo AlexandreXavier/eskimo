@@ -77,6 +77,7 @@ The iOS skin class for the Spark Form component.
   <s:states>
     <s:State name="normal"/>
     <s:State name="disabled"/>
+    <s:State name="error" />
   </s:states>
   <!--- Defines the appearance of the SkinnableContainer class's background. -->
   <s:Rect id="background" left="0" right="0" top="0" bottom="0" radiusX="10"

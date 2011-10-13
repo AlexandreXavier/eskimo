@@ -148,8 +148,7 @@ The iOS skin class for the Spark FormItem component.
     </s:layout>
   </s:Group>
   <!-- Don't include the indicator in layout since we position it ourselves -->
-  <s:Group x="{contentGroup.x + contentGroup.contentWidth + 4}"
-           y="{contentGroup.y}"
+  <s:Group x="{contentGroup.x + contentGroup.contentWidth}" y="{contentGroup.y}"
            height="{Math.max(indicatorDisplay.height, contentGroup.contentHeight)}"
            includeInLayout="false">
     <!--- @private -->
@@ -161,9 +160,4 @@ The iOS skin class for the Spark FormItem component.
   <s:Group id="helpContentGroup" excludeFrom="errorStates" fontStyle="italic"
            fontWeight="normal" color="0x666666" left="helpCol:0"
            right="helpCol:10" bottom="row1:10" baseline="row1:0"/>
-  <!--- @copy spark.components.FormItem#errorTextDisplay -->
-  <s:RichText id="errorTextDisplay" includeIn="errorStates" fontStyle="italic"
-              fontWeight="normal" color="0xFE0000" left="helpCol:0"
-              right="helpCol:10" bottom="row1:10" baseline="row1:0"
-              maxDisplayedLines="-1"/>
 </s:Skin>
