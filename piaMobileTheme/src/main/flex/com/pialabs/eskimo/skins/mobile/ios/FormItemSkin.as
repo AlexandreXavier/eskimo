@@ -98,10 +98,8 @@ package com.pialabs.eskimo.skins.mobile.ios
       if (!labelDisplay)
       {
         labelDisplay = new Label();
+        labelDisplay.id = "labelDisplay";
         
-        labelDisplay.setStyle("verticalAlign", "middle");
-        labelDisplay.setStyle("fontWeight", "bold");
-        labelDisplay.setStyle("color", 0x000000);
         labelDisplay.top = "row1:4";
         labelDisplay.bottom = "row1:4";
         labelDisplay.left = "labelCol:0";

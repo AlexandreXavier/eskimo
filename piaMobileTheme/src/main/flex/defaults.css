@@ -59,11 +59,20 @@
     s|FormItem #labelDisplay
     {
         color: #000000;
+        verticalAlign: middle;
+        fontWeight: bold;
     }
     s|FormItem #sequenceDisplay
     {
         color: #000000;
     }
+    s|FormItem #errorTextDisplay
+    {
+      fontStyle: italic;
+      fontWeight: normal;
+      color: #AAAAAA;
+      textAlign: right;
+    } 
     
     s|FormItem s|TextInput
     {
@@ -198,6 +207,15 @@
         skinClass:ClassReference("com.pialabs.eskimo.skins.mobile.android.FormItemSkin");
         backgroundAlpha: 0;
     } 
+    
+    s|FormItem #errorTextDisplay
+    {
+      fontStyle: italic;
+      fontWeight: normal;
+      color: #AAAAAA;
+      textAlign: right;
+    } 
+    
     s|FormItem s|CheckBox
     {
       iconPlacement: "left";

@@ -35,7 +35,7 @@ package com.pialabs.eskimo.skins.mobile.android
         vlayout.horizontalAlign = "justify";
         vlayout.paddingTop = 0;
         vlayout.paddingBottom = 0;
-        vlayout.gap = 0;
+        vlayout.gap = 10;
         
         contentGroup.layout = vlayout;
         

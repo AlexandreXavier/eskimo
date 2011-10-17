@@ -16,7 +16,7 @@
     backgroundColor: #000000;
   }
   
-  samples|FormView s|Label
+  samples|FormView #labelDisplay
   {
     color: #FFFFFF;
   }
