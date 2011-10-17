@@ -39,8 +39,7 @@
                               buttonPercentWidth="100"
                               buttonLabel="Confirm Button" cancelLabel="Cancel"
                               confirmLabel="Confirm"
-                              confirmChromeColor="#FF3333"
-                              confirm="SkinnableAlert.show('Do you really want to delete this person ?', 'Confirmation')"/>
+                              confirmChromeColor="#FF3333"/>
   </s:SkinnableContainer>
   <s:SkinnableContainer width="100%" styleName="parameterContainerStyle">
     <s:layout>
