@@ -1,6 +1,9 @@
 package com.pialabs.eskimo.skins.mobile.ios
 {
+  import flash.events.Event;
+  
   import mx.core.IVisualElement;
+  import mx.events.FlexEvent;
   import mx.states.State;
   
   import spark.components.Group;
@@ -34,6 +37,13 @@ package com.pialabs.eskimo.skins.mobile.ios
       super();
       
       states = [new State({name: "normal"}), new State({name: "error"}), new State({name: "disabled"})];
+      
+      addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete, false, 0, true);
+    }
+    
+    private function onCreationComplete(event:Event):void
+    {
+      invalidateDisplayList();
     }
     
     override protected function createChildren():void

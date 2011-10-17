@@ -51,6 +51,11 @@
         backgroundAlpha: 0;
         color: #395A8F;
     } 
+    s|FormItem s|TextInput
+    {
+      paddingTop: 0;
+      paddingBottom: 0;
+    }
     s|FormItem #labelDisplay
     {
         color: #000000;
