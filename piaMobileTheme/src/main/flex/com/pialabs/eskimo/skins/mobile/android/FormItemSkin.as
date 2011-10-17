@@ -22,6 +22,9 @@ package com.pialabs.eskimo.skins.mobile.android
   
   [States("normal", "disabled", "error", "required", "requiredAndDisabled", "requiredAndError")]
   
+  /**
+  * Form item skins for Android
+  */
   public class FormItemSkin extends Skin
   {
     public var contentGroup:Group;
@@ -34,6 +37,9 @@ package com.pialabs.eskimo.skins.mobile.android
     [Bindable]
     public var hostComponent:FormItem;
     
+    /**
+    * @private
+    */
     public function FormItemSkin()
     {
       super();
@@ -50,11 +56,17 @@ package com.pialabs.eskimo.skins.mobile.android
       addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete, false, 0, true);
     }
     
+    /**
+     * @private
+     */
     private function onCreationComplete(event:Event):void
     {
       invalidateDisplayList();
     }
     
+    /**
+     * @private
+     */
     override protected function createChildren():void
     {
       super.createChildren();
@@ -105,7 +117,9 @@ package com.pialabs.eskimo.skins.mobile.android
       }
     }
     
-    
+    /**
+     * @private
+     */
     override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
     {
       super.updateDisplayList(unscaledWidth, unscaledHeight);

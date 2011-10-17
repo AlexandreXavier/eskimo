@@ -21,6 +21,9 @@ package com.pialabs.eskimo.skins.mobile.ios
   
   [States("normal", "disabled", "error", "required", "requiredAndDisabled", "requiredAndError")]
   
+  /**
+   * Form item skin for iOS
+   */
   public class FormItemSkin extends Skin
   {
     public var labelDisplay:Label;
@@ -86,11 +89,17 @@ package com.pialabs.eskimo.skins.mobile.ios
       addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete, false, 0, true);
     }
     
+    /**
+     * @private
+     */
     private function onCreationComplete(event:Event):void
     {
       invalidateDisplayList();
     }
     
+    /**
+     * @private
+     */
     override protected function createChildren():void
     {
       super.createChildren();
@@ -130,7 +139,9 @@ package com.pialabs.eskimo.skins.mobile.ios
       }
     }
     
-    
+    /**
+     * @private
+     */
     override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
     {
       super.updateDisplayList(unscaledWidth, unscaledHeight);
