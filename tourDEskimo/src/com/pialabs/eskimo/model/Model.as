@@ -64,10 +64,10 @@ package com.pialabs.eskimo.model
     
     public static function createGroupPersonList():ArrayCollection
     {
-      return new ArrayCollection([new SectionTitleLabel("J"), "Jean Dupont", "John Doe", "Jing Ming", 
-        new SectionTitleLabel("M"), "Mike Smith", new SectionTitleLabel("E"), "Esteban Garcia"
-        , "Eva Shlinberg"]);
-    }  
+      return new ArrayCollection([new SectionTitleLabel("J"), "Jean Dupont", "John Doe", "Jing Ming"
+                                                        , new SectionTitleLabel("M"), "Mike Smith"
+                                                        , new SectionTitleLabel("E"), "Esteban Garcia", "Eva Shlinberg"]);
+    }
     
     protected function getParentOf(item:Sample, searchNode:Category):Category
     {

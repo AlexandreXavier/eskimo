@@ -422,12 +422,19 @@ components|PageIndicator
 
 components|DeletableItemRenderer
 {
-    deleteButtonChromeColor: #CC2A27;
-    deleteButtonColor: #FFFFFF;
+    paddingTop: 5;
+    paddingBottom: 5;
+    verticalAlign: middle;
     editIcon: Embed(source="com/pialabs/eskimo/skins/mobile/ios/assets/delete.png");
     editIconWidth: 27;
     editIconHeight: 27;
-    paddingLeft: 35;
+    deleteButtonStyle: deletetableItemRendererDeleteButtonStyle;
+}
+
+components|DeletableItemRenderer .deletetableItemRendererDeleteButtonStyle
+{
+  chromeColor: #CC2A27;
+  color: #FFFFFF
 }
 
 components|MultipleChoiceList
