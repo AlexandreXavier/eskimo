@@ -5,6 +5,8 @@ package com.pialabs.eskimo.controls
   import flash.events.KeyboardEvent;
   import flash.events.MouseEvent;
   import flash.events.StageOrientationEvent;
+  import flash.system.Capabilities;
+  import flash.system.System;
   import flash.ui.Keyboard;
   
   import mx.core.FlexGlobals;
@@ -166,6 +168,10 @@ package com.pialabs.eskimo.controls
      */
     protected static var _buttonHeight:Number = 50;
     
+    private var currentOS:String;
+    
+    private var isIOS:Boolean;
+    
     
     /**
      * Constructor
@@ -199,6 +205,10 @@ package com.pialabs.eskimo.controls
       
       addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
       addEventListener(Event.REMOVED_FROM_STAGE, removeFromStage, false, 0, true);
+      
+      currentOS = Capabilities.version.toLocaleUpperCase();
+      isIOS = currentOS.lastIndexOf("IOS") != -1;
+      
     }
     
     private function onAddedToStage(event:Event):void
@@ -236,21 +246,22 @@ package com.pialabs.eskimo.controls
       {
         controlBarGroup.height = _buttonHeight;
         controlBarGroup.removeAllElements();
+        
         if (buttonFlags & SkinnableAlert.OK)
         {
-          controlBarGroup.addElement(buttonOK);
+          controlBarGroup.addElementAt(buttonOK, isIOS ? 0: controlBarGroup.numChildren);
         }
         if (buttonFlags & SkinnableAlert.YES)
         {
-          controlBarGroup.addElement(buttonYES);
+          controlBarGroup.addElementAt(buttonYES, isIOS ? 0 : controlBarGroup.numChildren);
         }
         if (buttonFlags & SkinnableAlert.NO)
         {
-          controlBarGroup.addElement(buttonNO);
+          controlBarGroup.addElementAt(buttonNO, isIOS ? 0 : controlBarGroup.numChildren);
         }
         if (buttonFlags & SkinnableAlert.CANCEL)
         {
-          controlBarGroup.addElement(buttonCANCEL);
+          controlBarGroup.addElementAt(buttonCANCEL, isIOS ? 0 : controlBarGroup.numChildren);
         }
       }
       if (instance == titleDisplay)
@@ -276,19 +287,19 @@ package com.pialabs.eskimo.controls
           controlBarGroup.removeAllElements();
           if (buttonFlags & SkinnableAlert.OK)
           {
-            controlBarGroup.addElement(buttonOK);
+            controlBarGroup.addElementAt(buttonOK, isIOS ? 0 : controlBarGroup.numChildren);
           }
           if (buttonFlags & SkinnableAlert.YES)
           {
-            controlBarGroup.addElement(buttonYES);
+            controlBarGroup.addElementAt(buttonYES, isIOS ? 0 : controlBarGroup.numChildren);
           }
           if (buttonFlags & SkinnableAlert.NO)
           {
-            controlBarGroup.addElement(buttonNO);
+            controlBarGroup.addElementAt(buttonNO, isIOS ? 0 : controlBarGroup.numChildren);
           }
           if (buttonFlags & SkinnableAlert.CANCEL)
           {
-            controlBarGroup.addElement(buttonCANCEL);
+            controlBarGroup.addElementAt(buttonCANCEL, isIOS ? 0 : controlBarGroup.numChildren);
           }
         }
         
