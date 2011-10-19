@@ -424,6 +424,7 @@ components|DeletableItemRenderer
 {
     paddingTop: 5;
     paddingBottom: 5;
+    editIconPadding:10;
     verticalAlign: middle;
     editIcon: Embed(source="com/pialabs/eskimo/skins/mobile/ios/assets/delete.png");
     editIconWidth: 27;

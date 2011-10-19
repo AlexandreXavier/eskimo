@@ -2,35 +2,32 @@ package com.pialabs.eskimo.components
 {
   import com.pialabs.eskimo.events.DeletableListEvent;
   
-  import flash.display.FrameLabel;
   import flash.events.Event;
+  import flash.events.MouseEvent;
+  import flash.filesystem.FileMode;
   
-  import mx.events.FlexEvent;
-  import mx.states.AddChild;
+  import mx.core.UIComponent;
+  import mx.core.mx_internal;
+  import mx.events.EffectEvent;
   import mx.states.State;
   
+  import spark.components.Button;
   import spark.components.IconItemRenderer;
+  import spark.components.Image;
+  import spark.components.LabelItemRenderer;
+  import spark.core.ContentCache;
+  import spark.effects.Animate;
+  import spark.effects.animation.MotionPath;
+  import spark.effects.animation.SimpleMotionPath;
+  import spark.effects.easing.EasingFraction;
+  
+  use namespace mx_internal;
   
   /**
-   * ChromeColor of the delete button.
-   * @default 0xCC2A27
+   * Style name of the delete button.
+   * @default deletetableItemRendererDeleteButtonStyle
    */
-  [Style(name = "deleteButtonChromeColor", inherit = "yes", type = "uint")]
-  /**
-   * Text color of the delete button
-   * @default 0xFFFFFF
-   */
-  [Style(name = "deleteButtonColor", inherit = "yes", type = "uint")]
-  /**
-   * Width of the delete button.
-   * @default NaN
-   */
-  [Style(name = "deleteButtonWidth", inherit = "yes", type = "Number")]
-  /**
-   * Height of the delete button.
-   * @default NaN
-   */
-  [Style(name = "deleteButtonHeight", inherit = "yes", type = "Number")]
+  [Style(name = "deleteButtonStyle", inherit = "yes", type = "String")]
   /**
    * height of the delete button.
    * @default 0xCC2A27
@@ -46,6 +43,11 @@ package com.pialabs.eskimo.components
    * @default 27 px
    */
   [Style(name = "editIconHeight", inherit = "yes", type = "Number")]
+  /**
+   * Padding of the edit icon.
+   * @default 5 px
+   */
+  [Style(name = "editIconPadding", inherit = "yes", type = "Number")]
   
   /**
    * Default itemRenderer of the DeletableList.
@@ -57,16 +59,55 @@ package com.pialabs.eskimo.components
    */
   public class DeletableItemRenderer extends IconItemRenderer
   {
+    protected var _editionIcon:Image;
     /**
      * @private
+     *  Delete button.
      */
-    private var _deleteOverlay:DeletableItemRendererOverlay;
-    
+    protected var _deleteButton:Button;
     /**
      * @private
      * Label of the delete buttons.
      */
     protected static var _deleteLabel:String = "Delete";
+    
+    /**
+     * @private
+     */
+    protected var _confirmationMode:Boolean;
+    /**
+     * @private
+     */
+    private var editIconSprite:UIComponent;
+    /**
+     * @private
+     */
+    private var deleteButtonMask:UIComponent;
+    
+    /**
+     * @private
+     */
+    private var _confirmationModeChange:Boolean;
+    
+    /**
+     * @private
+     */
+    private var _animateEdition:Animate = new Animate();
+    private var _animateConfirmation:Animate = new Animate();
+    private var _animateDelete:Animate = new Animate();
+    
+    private var _editionAnimationDuration:Number = 300;
+    private var _animateConfirmationDuration:Number = 200;
+    
+    private var _itemRecycled:Boolean = true;
+    
+    /**
+     *  @private
+     *  Static icon image cache.  This is the default for iconContentLoader.
+     */
+    mx_internal static var _imageCache:ContentCache;
+    
+    
     
     /**
      * @Constructor
@@ -75,7 +116,48 @@ package com.pialabs.eskimo.components
     {
       super();
       
-      states = [new State({name: "normal"}), new State({name: "edition"}), new State({name: "confirmation"})]
+      states = [new State({name: "normal"}), new State({name: "edition"}), new State({name: "confirmation"})];
+      
+      if (_imageCache == null)
+      {
+        _imageCache = new ContentCache();
+        _imageCache.enableCaching = true;
+        _imageCache.maxCacheEntries = 100;
+      }
+      
+      addEventListener(Event.ADDED_TO_STAGE, onAddedTostage);
+    }
+    
+    /**
+     * @private
+     */
+    private function onAddedTostage(event:Event):void
+    {
+      removeEventListener(Event.ADDED_TO_STAGE, onAddedTostage);
+      addEventListener(Event.REMOVED_FROM_STAGE, onAddedTostage);
+    }
+    
+    /**
+     * @private
+     */
+    private function onRemovedTostage(event:Event):void
+    {
+      _itemRecycled = true;
+      
+      removeEventListener(Event.REMOVED_FROM_STAGE, onAddedTostage);
+      addEventListener(Event.ADDED_TO_STAGE, onAddedTostage);
+    }
+    
+    /**
+     * @private
+     */
+    protected function createEditionIconDisplay():void
+    {
+      _editionIcon = new Image();
+      
+      _editionIcon.smooth = true;
+      
+      _editionIcon.contentLoader = _imageCache;
     }
     
     /**
@@ -83,8 +165,32 @@ package com.pialabs.eskimo.components
      */
     override protected function createChildren():void
     {
+      if (!_deleteButton)
+      {
+        _deleteButton = new Button();
+        
+        _deleteButton.visible = false;
+        
+        _deleteButton.addEventListener(MouseEvent.CLICK, onDelete);
+        
+        addChild(_deleteButton);
+      }
+      if (!_editionIcon)
+      {
+        createEditionIconDisplay();
+        
+        _editionIcon.source = getStyle("editIcon");
+        _editionIcon.addEventListener(MouseEvent.CLICK, onEditionIconClick, false, 0, true);
+        
+        editIconSprite = new UIComponent();
+        
+        editIconSprite.includeInLayout = false;
+        
+        editIconSprite.addChild(_editionIcon);
+        addChild(editIconSprite);
+      }
+      
       super.createChildren();
-    
     }
     
     /**
@@ -92,6 +198,8 @@ package com.pialabs.eskimo.components
      */
     protected function onDelete(event:Event):void
     {
+      stage.removeEventListener(MouseEvent.MOUSE_DOWN, onRemoveConfirmation);
+      
       var parentList:DeletableList = owner as DeletableList;
       
       var e:DeletableListEvent = new DeletableListEvent(DeletableListEvent.ITEM_DELETED, false, false, mouseX, mouseY, this, false, false, false, true, 0, itemIndex, data, this);
@@ -108,30 +216,322 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+    override protected function commitProperties():void
     {
-      maxWidth = unscaledWidth;
+      super.commitProperties();
       
-      super.updateDisplayList(unscaledWidth, unscaledHeight);
+      _deleteButton.label = _deleteLabel;
       
-      if (_deleteOverlay)
+      if (_confirmationModeChange)
       {
-        _deleteOverlay.width = unscaledWidth;
-        _deleteOverlay.height = unscaledHeight;
+        if (_confirmationMode)
+        {
+          stage.addEventListener(MouseEvent.MOUSE_DOWN, onRemoveConfirmation, false, 0, true);
+        }
+        
+        applyEditIconEffect();
+        applyDeleteButtonEffect()
+        
+        _editionIcon.mouseEnabled = _editionIcon.mouseChildren = !_confirmationMode;
+        
+        _confirmationModeChange = false;
       }
-    
+      
+      _deleteButton.styleName = getStyle("deleteButtonStyle");
     }
     
     /**
      * @private
      */
-    override protected function commitProperties():void
+    override protected function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void
     {
-      super.commitProperties();
+      //super.layoutContents(unscaledWidth, unscaledHeight);
       
-      if (_deleteOverlay)
+      if (!labelDisplay)
       {
-        _deleteOverlay.deleteLabel = _deleteLabel;
+        return;
+      }
+      
+      var paddingLeft:Number = getStyle("paddingLeft");
+      var paddingRight:Number = getStyle("paddingRight");
+      var paddingTop:Number = getStyle("paddingTop");
+      var paddingBottom:Number = getStyle("paddingBottom");
+      var verticalAlign:String = getStyle("verticalAlign");
+      var editIconPadding:Number = getStyle("editIconPadding");
+      
+      var viewWidth:Number = unscaledWidth - paddingLeft - paddingRight;
+      var viewHeight:Number = unscaledHeight - paddingTop - paddingBottom;
+      
+      var vAlign:Number;
+      if (verticalAlign == "top")
+      {
+        vAlign = 0;
+      }
+      else if (verticalAlign == "bottom")
+      {
+        vAlign = 1;
+      }
+      else // if (verticalAlign == "middle")
+      {
+        vAlign = 0.5;
+      }
+      
+      // _deleteButton
+      var deleteButtonWidth:Number = getElementPreferredWidth(_deleteButton);
+      var deleteButtonHeight:Number = getElementPreferredHeight(_deleteButton);
+      
+      deleteButtonHeight = Math.min(deleteButtonHeight, viewHeight);
+      var deleteButtonX:Number = unscaledWidth - paddingRight - deleteButtonWidth;
+      var deleteButtonY:Number = paddingTop + (viewHeight - deleteButtonHeight) / 2
+      
+      setElementSize(_deleteButton, deleteButtonWidth, deleteButtonHeight);
+      setElementPosition(_deleteButton, deleteButtonX, deleteButtonY);
+      
+      // _editionIcon
+      var editionWidth:Number = getStyle("editIconWidth");
+      var editionHeight:Number = getStyle("editIconHeight");
+      var editionX:Number = currentState == "edition" ? editIconPadding : -editionWidth;
+      var editionY:Number = paddingTop + viewHeight / 2;
+      
+      setElementPosition(editIconSprite, editionX + editionWidth / 2, editionY);
+      setElementSize(_editionIcon, editionWidth, editionHeight);
+      _editionIcon.x = -editionWidth / 2;
+      _editionIcon.y = -editionHeight / 2;
+      
+      _editionIcon.visible = currentState == "edition";
+      
+      var horizontalGap:Number = getStyle("horizontalGap");
+      
+      // labelDisplay
+      var offsetLeft:Number = Math.max(0, editionX + editionWidth) + horizontalGap - paddingLeft;
+      offsetLeft = Math.max(offsetLeft, 0);
+      var offsetRight:Number = _confirmationMode ? deleteButtonWidth + horizontalGap : 0;
+      
+      layoutIconItemRendererContents(unscaledWidth, unscaledHeight, offsetLeft, offsetRight);
+    }
+    
+    /**
+     * @private
+     */
+    override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
+    {
+      if (!_animateConfirmation.isPlaying)
+      {
+        super.updateDisplayList(unscaledWidth, unscaledHeight);
+      }
+    }
+    
+    /**
+     * @private
+     */
+    protected function layoutIconItemRendererContents(unscaledWidth:Number, unscaledHeight:Number, leftOffset:Number, rightOffset:Number):void
+    {
+      super.layoutContents(unscaledWidth - leftOffset - rightOffset, unscaledHeight);
+      
+      var newX:Number;
+      var newY:Number;
+      if (iconDisplay)
+      {
+        newX = iconDisplay.getLayoutBoundsX() + leftOffset;
+        newY = iconDisplay.getLayoutBoundsY();
+        setElementPosition(iconDisplay, newX, newY);
+      }
+      if (decoratorDisplay)
+      {
+        newX = decoratorDisplay.getLayoutBoundsX() + leftOffset;
+        newY = decoratorDisplay.getLayoutBoundsY();
+        setElementPosition(decoratorDisplay, newX, newY);
+      }
+      if (labelDisplay)
+      {
+        newX = labelDisplay.getLayoutBoundsX() + leftOffset;
+        newY = labelDisplay.getLayoutBoundsY();
+        setElementPosition(labelDisplay, newX, newY);
+      }
+      if (messageDisplay)
+      {
+        newX = messageDisplay.getLayoutBoundsX() + leftOffset;
+        newY = messageDisplay.getLayoutBoundsY();
+        setElementPosition(messageDisplay, newX, newY);
+      }
+    }
+    
+    /**
+     * @private
+     */
+    protected function showEditionIcon():void
+    {
+      _animateEdition.stop();
+      
+      _editionIcon.visible = true;
+      
+      var iconWidth:Number = getStyle("editIconWidth");
+      var editIconPadding:Number = getStyle("editIconPadding");
+      
+      var smp:SimpleMotionPath = new SimpleMotionPath("x");
+      smp.valueFrom = editIconSprite.x;
+      smp.valueTo = editIconPadding + iconWidth / 2;
+      
+      
+      var smps:Vector.<MotionPath> = new Vector.<MotionPath>();
+      smps[0] = smp;
+      
+      _animateEdition.addEventListener(EffectEvent.EFFECT_END, onEditionAnimationFinish);
+      _animateEdition.addEventListener(EffectEvent.EFFECT_UPDATE, onEditionAnimationUpdate);
+      
+      //set the SimpleMotionPath to the Animate Object
+      _animateEdition.easer = new spark.effects.easing.Sine(EasingFraction.OUT);
+      _animateEdition.motionPaths = smps;
+      _animateEdition.duration = _editionAnimationDuration;
+      _animateEdition.play([editIconSprite]); //run the animation
+    }
+    
+    /**
+    * @private
+    */
+    protected function hideEditionIcon():void
+    {
+      if (_animateEdition.isPlaying)
+      {
+        _animateEdition.stop();
+      }
+      
+      var iconWidth:Number = getStyle("editIconWidth");
+      var paddingLeft:Number = getStyle("paddingLeft");
+      
+      var smp:SimpleMotionPath = new SimpleMotionPath("x");
+      smp.valueFrom = editIconSprite.x;
+      smp.valueTo = -iconWidth / 2;
+      
+      var smps:Vector.<MotionPath> = new Vector.<MotionPath>();
+      smps[0] = smp;
+      
+      _animateEdition.addEventListener(EffectEvent.EFFECT_END, onEditionAnimationFinish, false, 0, true);
+      _animateEdition.addEventListener(EffectEvent.EFFECT_UPDATE, onEditionAnimationUpdate, false, 0, true);
+      
+      //set the SimpleMotionPath to the Animate Object
+      _animateEdition.easer = new spark.effects.easing.Sine(EasingFraction.OUT);
+      _animateEdition.motionPaths = smps;
+      _animateEdition.duration = _editionAnimationDuration;
+      _animateEdition.play([editIconSprite]); //run the animation
+    }
+    
+    /**
+     * @private
+     */
+    private function onEditionAnimationUpdate(event:EffectEvent):void
+    {
+      var paddingLeft:Number = getStyle("paddingLeft");
+      
+      var editionWidth:Number = getStyle("editIconWidth");
+      var editionX:Number = editIconSprite.getLayoutBoundsX() - editionWidth / 2;
+      
+      var horizontalGap:Number = getStyle("horizontalGap");
+      
+      var offsetLeft:Number = Math.max(0, editionX + editionWidth) + horizontalGap - paddingLeft;
+      offsetLeft = Math.max(offsetLeft, 0);
+      var offsetRight:Number = 0;
+      
+      layoutIconItemRendererContents(unscaledWidth, unscaledHeight, offsetLeft, offsetRight);
+    }
+    
+    /**
+     * @private
+     */
+    private function onEditionAnimationFinish(event:EffectEvent):void
+    {
+      if (currentState == "normal")
+      {
+        _editionIcon.visible = false;
+      }
+      
+      invalidateDisplayList();
+    }
+    
+    /**
+     * @private
+     */
+    protected function applyEditIconEffect():void
+    {
+      var smp:SimpleMotionPath = new SimpleMotionPath("rotation");
+      smp.valueFrom = editIconSprite.rotation;
+      smp.valueTo = _confirmationMode ? 90 : 0;
+      
+      var smps:Vector.<MotionPath> = new Vector.<MotionPath>();
+      smps[0] = smp;
+      
+      //set the SimpleMotionPath to the Animate Object
+      _animateConfirmation.easer = new spark.effects.easing.Sine(EasingFraction.OUT);
+      _animateConfirmation.motionPaths = smps;
+      _animateConfirmation.duration = _animateConfirmationDuration;
+      _animateConfirmation.play([editIconSprite]); //run the animation
+    }
+    
+    /**
+     * @private
+     */
+    protected function applyDeleteButtonEffect():void
+    {
+      if (!deleteButtonMask)
+      {
+        deleteButtonMask = new UIComponent();
+      }
+      
+      if (_animateDelete.isPlaying)
+      {
+        _animateDelete.stop()
+      }
+      
+      addChild(deleteButtonMask);
+      
+      _deleteButton.visible = true;
+      
+      _deleteButton.mask = deleteButtonMask;
+      
+      var smp:SimpleMotionPath = new SimpleMotionPath("width");
+      smp.valueFrom = deleteButtonMask.width;
+      smp.valueTo = _confirmationMode ? getElementPreferredWidth(_deleteButton) : 0;
+      
+      var smps:Vector.<MotionPath> = new Vector.<MotionPath>();
+      smps[0] = smp;
+      
+      _animateDelete.addEventListener(EffectEvent.EFFECT_END, onConfirmationAnimationFinish, false, 0, true);
+      _animateDelete.addEventListener(EffectEvent.EFFECT_UPDATE, onConfirmationAnimationUpdate, false, 0, true);
+      
+      //set the SimpleMotionPath to the Animate Object
+      _animateDelete.easer = new spark.effects.easing.Sine(EasingFraction.OUT);
+      _animateDelete.motionPaths = smps;
+      _animateDelete.duration = _animateConfirmationDuration;
+      _animateDelete.play([deleteButtonMask]); //run the animation
+    }
+    
+    /**
+     * @private
+     */
+    private function onConfirmationAnimationUpdate(event:EffectEvent):void
+    {
+      setElementPosition(deleteButtonMask, _deleteButton.getLayoutBoundsX() + _deleteButton.width - deleteButtonMask.width, 0);
+      
+      deleteButtonMask.graphics.clear();
+      deleteButtonMask.graphics.beginFill(0);
+      deleteButtonMask.graphics.drawRect(-2, 0, deleteButtonMask.width + 4, this.height);
+      deleteButtonMask.graphics.endFill();
+    }
+    
+    /**
+     * @private
+     */
+    private function onConfirmationAnimationFinish(event:EffectEvent):void
+    {
+      deleteButtonMask.mask = null;
+      
+      removeChild(deleteButtonMask);
+      
+      _deleteButton.visible = _confirmationMode;
+      
+      if (!_animateEdition.isPlaying)
+      {
+        invalidateDisplayList();
       }
     }
     
@@ -142,60 +542,55 @@ package com.pialabs.eskimo.components
     {
       super.stateChanged(oldState, newState, recursive);
       
-      if (newState == "edition")
+      if (!_itemRecycled)
       {
-        if (!_deleteOverlay)
+        if (newState == "edition")
         {
-          _deleteOverlay = new DeletableItemRendererOverlay();
+          showEditionIcon();
         }
+        else if (newState == "normal")
+        {
+          hideEditionIcon();
+        }
+      }
+      else
+      {
+        _itemRecycled = false;
+        invalidateDisplayList();
+      }
+    }
+    
+    /**
+     * @private
+     */
+    protected function onRemoveConfirmation(event:Event):void
+    {
+      if (_confirmationMode && event.target != _deleteButton && event.target != _editionIcon)
+      {
+        stage.removeEventListener(MouseEvent.MOUSE_DOWN, onRemoveConfirmation);
+        _confirmationMode = false;
         
-        _deleteOverlay.addEventListener("delete", onDelete, false, 0, true);
-        _deleteOverlay.deleteLabel = _deleteLabel;
-        addChild(_deleteOverlay);
-        if (initialized)
-        {
-          _deleteOverlay.addEventListener(FlexEvent.CREATION_COMPLETE, onOverlayAdded);
-          return;
-        }
-      }
-      if (newState == "normal")
-      {
-        if (_deleteOverlay)
-        {
-          _deleteOverlay.addEventListener(FlexEvent.STATE_CHANGE_COMPLETE, stateChangeComplete_handler);
-        }
-      }
-      if (_deleteOverlay)
-      {
-        _deleteOverlay.currentState = newState;
+        
+        _confirmationModeChange = true;
+        invalidateProperties();
       }
     }
     
     /**
      * @private
      */
-    private function stateChangeComplete_handler(event:Event):void
+    protected function onEditionIconClick(event:MouseEvent):void
     {
-      // We get called directly with null if there's no skin to listen to.
-      if (event)
+      if (!_confirmationMode)
       {
-        event.target.removeEventListener(FlexEvent.STATE_CHANGE_COMPLETE, stateChangeComplete_handler);
+        _confirmationMode = true;
+        
+        _confirmationModeChange = true;
+        
+        invalidateProperties();
       }
-      
-      if (_deleteOverlay && _deleteOverlay.parent)
-      {
-        removeChild(_deleteOverlay);
-      }
-      _deleteOverlay = null
     }
     
-    /**
-     * @private
-     */
-    private function onOverlayAdded(event:Event):void
-    {
-      _deleteOverlay.currentState = currentState;
-    }
     
     /**
      * Label of the delete buttons.
