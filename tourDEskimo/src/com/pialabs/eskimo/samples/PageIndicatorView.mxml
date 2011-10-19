@@ -2,34 +2,35 @@
 <views:SampleView xmlns:fx="http://ns.adobe.com/mxml/2009"
                   xmlns:s="library://ns.adobe.com/flex/spark"
                   title="SlideDataGroupView"
-                  xmlns:views="com.pialabs.eskimo.views.*" xmlns:pia="http://piaction.com">
+                  xmlns:views="com.pialabs.eskimo.views.*"
+                  xmlns:pia="http://piaction.com">
   <fx:Script>
     <![CDATA[
       import mx.utils.StringUtil;
+      
       protected function applyParameters(event:Event):void
       {
         var pageCountText:String = getValueFromTextInput(pageCount);
-        if(pageCountText != null)
+        if (pageCountText != null)
         {
           pageIndicator.pageCount = Number(pageCountText);
         }
       }
     ]]>
   </fx:Script>
-  
+
   <fx:Declarations>
-        <!-- Place non-visual elements (e.g., services, value objects) here -->
+    <!-- Place non-visual elements (e.g., services, value objects) here -->
   </fx:Declarations>
   <s:SkinnableContainer width="100%" styleName="componentContainerStyle">
     <s:layout>
       <s:VerticalLayout horizontalAlign="center"/>
     </s:layout>
-    
-    <s:HGroup>
-        <s:Button label="Prev" click="pageIndicator.previous()"/>
-        <pia:PageIndicator id="pageIndicator" height="40" pageCount="4" selectedIndex="2"
-                                  pageItemColor="#D0D0D0" selectedPageItemColor="#A4CA39"/>
-        <s:Button label="Next" click="pageIndicator.next()"/>
+
+    <s:HGroup verticalAlign="middle">
+      <s:Button label="Prev" click="pageIndicator.previous()"/>
+      <pia:PageIndicator id="pageIndicator" pageCount="4" selectedIndex="1"/>
+      <s:Button label="Next" click="pageIndicator.next()"/>
     </s:HGroup>
   </s:SkinnableContainer>
   <s:SkinnableContainer width="100%" styleName="parameterContainerStyle">
@@ -37,24 +38,23 @@
       <s:VerticalLayout horizontalAlign="center"/>
     </s:layout>
     <s:Form width="100%">
-      <!-- Selected Page Item Size -->
-      <s:FormItem width="100%" label="Selected item size">
-        <s:HSlider id="selectedPageItemSize" 
-                 change="{pageIndicator. setStyle('selectedPageItemSize', selectedPageItemSize.value)}"
-                 maximum="40" minimum="8" stepSize="1" value="15"/>
-      </s:FormItem>
       <!-- Page Item Size -->
       <s:FormItem width="100%" label="Item size">
-        <s:HSlider id="pageItemSize" 
-                   change="{pageIndicator. setStyle('pageItemSize', pageItemSize.value)}"
+        <s:HSlider id="pageItemSize"
+                   change="pageIndicator.itemWidth = pageIndicator.itemHeight = pageItemSize.value"
                    maximum="40" minimum="8" stepSize="1" value="15"/>
-      </s:FormItem>        
+      </s:FormItem>
       <!-- Page Count -->
-      
+
       <s:FormItem label="Number of items" width="100%">
         <s:TextInput id="pageCount" prompt="4"/>
       </s:FormItem>
+
+      <s:FormItem label="Loop" width="100%">
+        <s:CheckBox id="loopEnable"
+                    change="pageIndicator.autoLoop = loopEnable.selected"/>
+      </s:FormItem>
     </s:Form>
-    <s:Button label="Apply" click="applyParameters(event)" />
+    <s:Button label="Apply" click="applyParameters(event)"/>
   </s:SkinnableContainer>
 </views:SampleView>

@@ -6,6 +6,8 @@
     <classEntry path="com.pialabs.eskimo.components.maps.GMapEvent"/>
     <classEntry path="com.pialabs.eskimo.layouts.CircularLayout"/>
     <classEntry path="com.pialabs.eskimo.components.maps.GMapHTMLTemplate"/>
+    <classEntry path="com.pialabs.eskimo.components.PageIndicator"/>
+    <classEntry path="com.pialabs.eskimo.components.PageIndicatorItem"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="design.xml" sourcePath="design.xml"/>

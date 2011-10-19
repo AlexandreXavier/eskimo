@@ -4,6 +4,7 @@
 @namespace components "com.pialabs.eskimo.components.*";
 @namespace controls "com.pialabs.eskimo.controls.*";
 @namespace ios "com.pialabs.eskimo.skins.mobile.ios.*";
+@namespace ns "http://piaction.com";
 
 @media (os-platform:"IOS")
 {
@@ -146,15 +147,11 @@
     
     components|PageIndicator
     {
-        pageItemColor: #FFFFFF;
-        pageItemAlpha: 0.5;
-        selectedPageItemColor: #FFFFFF;
-        selectedPageItemAlpha: 1;
-        pageItemSize: 15;
-        selectedPageItemSize: 15;
-        backgroundColor: #000000;
-        backgroundAlpha: 0;
-        borderAlpha: 0;
+      itemSkinClass: ClassReference("com.pialabs.eskimo.skins.mobile.android.PageIndicatorItemSkin");
+      chromeAlpha: 1;
+      chromeColor: #888888;
+      selectedChromeAlpha: 1;
+      selectedChromeColor: #BBBB44;
     }
     
     components|ConfirmButton
