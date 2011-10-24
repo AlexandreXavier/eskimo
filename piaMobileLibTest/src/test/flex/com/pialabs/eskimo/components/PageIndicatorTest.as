@@ -69,9 +69,6 @@ package com.pialabs.eskimo.components
     [Test]
     public function testPrevious():void
     {
-      // default
-      _pageIndicator.previous();
-      Assert.assertEquals(PageIndicator.DEFAULT_INDEX, _pageIndicator.selectedIndex);
       // normal case
       _pageIndicator.pageCount = 2;
       _pageIndicator.selectedIndex = 1;
@@ -88,14 +85,6 @@ package com.pialabs.eskimo.components
       // page count to 0
       _pageIndicator.pageCount = 0;
       Assert.assertEquals(1, _pageIndicator.pageCount);
-    }
-    
-    [Test]
-    public function testSelectedIndexIsNegatif():void
-    {
-      _pageIndicator.selectedIndex = -1;
-      Assert.assertEquals(0, _pageIndicator.selectedIndex);
-    
     }
     
     [Test(async)]

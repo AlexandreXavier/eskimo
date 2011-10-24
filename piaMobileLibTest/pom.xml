@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.pialabs.eskimo</groupId>
+    <artifactId>eskimo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>piaMobileLibTest</artifactId>
+  <packaging>swf</packaging>
+
+  <name>piaMobileLibTest</name>
+
+  <build>
+    <sourceDirectory>src/test/flex</sourceDirectory>
+    <testSourceDirectory>src/test/flex</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.sonatype.flexmojos</groupId>
+        <artifactId>flexmojos-maven-plugin</artifactId>
+        <extensions>true</extensions>
+       
+        <configuration>
+          <swfVersion>${flex.swf.version}</swfVersion>
+          <targetPlayer>10.2</targetPlayer>
+          <compilerWarnings>
+            <warn-no-constructor>false</warn-no-constructor>
+          </compilerWarnings>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.adobe.flex</groupId>
+            <artifactId>compiler</artifactId>
+            <version>${flex.sdk.version}</version>
+            <type>pom</type>
+        </dependency>
+      </dependencies>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.adobe.flex.framework</groupId>
+      <artifactId>air-framework</artifactId>
+      <version>${flex.sdk.version}</version>
+      <type>pom</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.adobe.flex.framework</groupId>
+      <artifactId>mobilecomponents</artifactId>
+      <version>${flex.sdk.version}</version>
+      <type>swc</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.pialabs.eskimo</groupId>
+      <artifactId>piaMobileTheme</artifactId>
+      <version>${project.version}</version>
+      <type>swc</type>
+      <scope>theme</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.pialabs.eskimo</groupId>
+      <artifactId>piaMobileLib</artifactId>
+      <version>${project.version}</version>
+      <type>swc</type>
+    </dependency>
+    
+    <!-- Test Libs-->
+
+    <dependency>
+      <groupId>com.adobe.flexunit</groupId>
+      <artifactId>flexunit</artifactId>
+      <version>4.0-rc-1</version>
+      <type>swc</type>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.sonatype.flexmojos</groupId>
+      <artifactId>flexmojos-unittest-fluint</artifactId>
+      <version>4.0-RC2</version>
+      <type>swc</type>
+    </dependency>
+
+  </dependencies>
+
+</project>

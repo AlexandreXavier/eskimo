@@ -1,0 +1,210 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.pialabs.eskimo</groupId>
+    <artifactId>eskimo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>tourDEskimo</artifactId>
+  <packaging>swf</packaging>
+
+  <name>tourDEskimo</name>
+  
+  <properties>
+   <air.build.dir>${basedir}/target/air</air.build.dir>
+  </properties>
+
+  <build>
+    <sourceDirectory>src/main/flex</sourceDirectory>
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+    
+      <!-- Compiling swf -->
+      <plugin>
+        <groupId>org.sonatype.flexmojos</groupId>
+        <artifactId>flexmojos-maven-plugin</artifactId>
+        <extensions>true</extensions>
+       
+        <configuration>
+          <sourceFile>./tourDEskimo.mxml</sourceFile>
+          <swfVersion>${flex.swf.version}</swfVersion>
+          <compilerWarnings>
+            <warn-no-constructor>false</warn-no-constructor>
+          </compilerWarnings>
+          
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.adobe.flex</groupId>
+            <artifactId>compiler</artifactId>
+            <version>${flex.sdk.version}</version>
+            <type>pom</type>
+          </dependency>
+        </dependencies>
+      </plugin>
+      
+      <!-- Packaging -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>2.3</version>
+        <executions>
+          <execution>
+            <id>air</id>
+            <phase>generate-resources</phase>
+             <goals>
+               <goal>copy-resources</goal>
+             </goals>
+             <configuration>
+               <outputDirectory>${air.build.dir}</outputDirectory>
+               <preloader>spark.preloaders.SplashScreen</preloader>
+               <resources>
+                 <resource>
+                   <directory>${basedir}/src/main/flex</directory>
+                   <filtering>false</filtering>
+                   <includes>
+                     <include>**/*.xml</include>
+                   </includes> 
+                 </resource>
+               </resources>
+             </configuration>
+          </execution>
+          <execution>
+            <id>assets</id>
+            <phase>generate-resources</phase>
+             <goals>
+               <goal>copy-resources</goal>
+             </goals>
+             <configuration>
+               <outputDirectory>${basedir}/target/assets</outputDirectory>
+               <resources>
+                 <resource>
+                   <directory>${basedir}/src/main/flex/assets</directory>
+                   <filtering>false</filtering>
+                   <includes>
+                     <include>**/*.png</include>
+                   </includes> 
+                 </resource>
+               </resources>
+               
+             </configuration>
+          </execution>
+
+        </executions>
+      </plugin>
+          
+      <!-- AIR packaging -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.1.1</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+              <goals>
+              <goal>exec</goal>
+              </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <executable>java</executable>
+          <workingDirectory>${basedir}/target</workingDirectory>
+          <arguments>
+            <argument>-classpath</argument>
+            <classpath/>
+            <argument>com.adobe.air.ADT</argument>
+            <argument>-package</argument>
+            <argument>-target</argument>
+            <argument>apk</argument>
+            <argument>-storetype</argument>
+            <argument>pkcs12</argument>
+            <argument>-keystore</argument>
+            <argument>${android.certificat}</argument>
+            <argument>-storepass</argument>
+            <argument>${android.certificat.password}</argument>
+            <argument>${project.build.finalName}.apk</argument>
+            <argument>${air.build.dir}/tourDEskimo-app.xml</argument>
+            <argument>${project.build.finalName}.swf</argument>
+            <argument>assets</argument>
+          </arguments>
+        </configuration>
+      </plugin>
+      
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <filesets>
+            <fileset>
+              <directory>target</directory>
+            </fileset>
+          </filesets>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.adobe.flex.framework</groupId>
+      <artifactId>air-framework</artifactId>
+      <version>${flex.sdk.version}</version>
+      <type>pom</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.adobe.flex.framework</groupId>
+      <artifactId>mobilecomponents</artifactId>
+      <version>${flex.sdk.version}</version>
+      <type>swc</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.adobe.flex.framework</groupId>
+      <artifactId>mobile</artifactId>
+      <version>${flex.sdk.version}</version>
+      <classifier>theme</classifier>
+      <type>swc</type>
+      <scope>theme</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.pialabs.eskimo</groupId>
+      <artifactId>piaMobileTheme</artifactId>
+      <version>${project.version}</version>
+      <type>swc</type>
+      <scope>theme</scope>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.pialabs.eskimo</groupId>
+      <artifactId>piaMobileLib</artifactId>
+      <version>${project.version}</version>
+      <type>swc</type>
+    </dependency>
+    
+    <!-- Flex ADT tool -->
+    <dependency>
+      <groupId>com.adobe.flex.compiler</groupId>
+      <artifactId>adt</artifactId>      
+      <version>${flex.sdk.version}</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>com.adobe.flex.compiler</groupId>
+      <artifactId>smali</artifactId>      
+      <version>${flex.sdk.version}</version>
+      <type>jar</type>
+    </dependency>
+    <dependency>
+      <groupId>com.adobe.flex.compiler</groupId>
+      <artifactId>baksmali</artifactId>      
+      <version>${flex.sdk.version}</version>
+      <type>jar</type>
+    </dependency>
+    
+  </dependencies>
+
+</project>

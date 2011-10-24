@@ -1,0 +1,87 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.pialabs.eskimo</groupId>
+    <artifactId>eskimo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>piaMobileLib</artifactId>
+  <packaging>swc</packaging>
+
+  <name>piaMobileLib</name>
+  
+  <repositories>
+    <repository>
+      <id>hasbanana-repository</id>
+      <url>http://www.hasbanana.com/maven/repo</url>
+    </repository>
+  </repositories>
+
+  <build>
+    <sourceDirectory>src/main/flex</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.sonatype.flexmojos</groupId>
+        <artifactId>flexmojos-maven-plugin</artifactId>
+        <extensions>true</extensions>
+       
+        <configuration>
+          <swfVersion>${flex.swf.version}</swfVersion>
+          <compilerWarnings>
+            <warn-no-constructor>false</warn-no-constructor>
+          </compilerWarnings>
+          <namespaces>
+            <namespace>
+              <uri>http://piaction.com</uri>
+              <manifest>src/main/resources/manifest.xml</manifest>
+            </namespace>
+          </namespaces>
+          <includeNamespaces>
+            <namespace>http://piaction.com</namespace>
+          </includeNamespaces>
+          <includeFiles>
+            <include>design.xml</include>
+          </includeFiles>
+          <localesSourcePath>${basedir}/src/main/locale/{locale}/</localesSourcePath>
+          <localesCompiled>
+            <locale>fr_FR</locale>
+            <locale>en_US</locale>
+          </localesCompiled>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.adobe.flex</groupId>
+            <artifactId>compiler</artifactId>
+            <version>${flex.sdk.version}</version>
+            <type>pom</type>
+        </dependency>
+      </dependencies>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.adobe.flex.framework</groupId>
+      <artifactId>air-framework</artifactId>
+      <version>${flex.sdk.version}</version>
+      <type>pom</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.adobe.flex.framework</groupId>
+      <artifactId>mobilecomponents</artifactId>
+      <version>${flex.sdk.version}</version>
+      <type>swc</type>
+    </dependency>
+    
+    <dependency>
+      <groupId>com.adobe.flex.corelib</groupId>
+      <artifactId>as3corelib</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <type>swc</type>
+    </dependency>
+  </dependencies>
+
+</project>
