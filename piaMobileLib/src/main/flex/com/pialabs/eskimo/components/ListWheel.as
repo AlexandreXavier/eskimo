@@ -49,76 +49,76 @@ package com.pialabs.eskimo.components
   */
   public class ListWheel extends List
   {
-    private static const EVENT_HISTORY_LENGTH:int = 5;
-    private static const MAX_VELOCITY:Number = 0.6;
-    private static const MOTION_BLUR:Number = 10;
+    protected static const EVENT_HISTORY_LENGTH:int = 5;
+    protected static const MAX_VELOCITY:Number = 0.6;
+    protected static const MOTION_BLUR:Number = 10;
     
     /**
     * @private
     * Data provider setted by the user.
     */
-    private var _dataProvider:IList = new ArrayCollection();
+    protected var _dataProvider:IList = new ArrayCollection();
     
     /**
      * @private
      * Used data provider which is 3 times the _dataProvider to simulate a looped data provider.
      */
-    private var _customDataprovider:ArrayCollection;
+    protected var _customDataprovider:ArrayCollection;
     
     /**
      * @private
      * History of EVENT_HISTORY_LENGTH last mouse positions.
      */
-    private var mouseEventCoordinatesHistory:Vector.<Point>;
+    protected var mouseEventCoordinatesHistory:Vector.<Point>;
     
     /**
      * @private
      * History of EVENT_HISTORY_LENGTH last mouse positions.
      */
-    private var mouseEventTimeHistory:Vector.<int>;
+    protected var mouseEventTimeHistory:Vector.<int>;
     
     /**
      * @private
      * Current position on histories arrays.
      */
-    private var mouseEventLength:Number = 0;
+    protected var mouseEventLength:Number = 0;
     
     /**
      * @private
      * StartTime of historisation.
      */
-    private var startTime:int;
+    protected var startTime:int;
     
     /**
      * @private
      * Roll animations.
      */
-    private var _animate:Animate = new Animate();
-    private var _animateThrow:Animate = new Animate();
+    protected var _animate:Animate = new Animate();
+    protected var _animateThrow:Animate = new Animate();
     
     /**
      * @private
      * Motion blur.
      */
-    private var effect:BlurFilter = new BlurFilter(0, 0);
+    protected var effect:BlurFilter = new BlurFilter(0, 0);
     
     /**
      * @private
      * Scroll velovity (px/ms).
      */
-    private var _currentVelocity:Number;
+    protected var _currentVelocity:Number;
     
     /**
      * @private
      * Boolean to know if we need to animate.
      */
-    private var _haveToAnimate:Boolean;
+    protected var _haveToAnimate:Boolean;
     
     /**
      * @private
      * Vertical scroll position.
      */
-    private var _verticalScrollPosition:Number = 0;
+    protected var _verticalScrollPosition:Number = 0;
     
     /**
      * @private
@@ -284,7 +284,7 @@ package com.pialabs.eskimo.components
      * @private
      * Index change handler
      */
-    private function onChange(event:Event):void
+    protected function onChange(event:Event):void
     {
       if (dataProvider)
       {
@@ -296,7 +296,7 @@ package com.pialabs.eskimo.components
      * @private
      * MouseDown handler.
      */
-    private function onMouseDown(event:MouseEvent):void
+    protected function onMouseDown(event:MouseEvent):void
     {
       clearHistory();
       dataGroup.filters = null;
@@ -318,7 +318,7 @@ package com.pialabs.eskimo.components
      * @private
      * MouseUp handler.
      */
-    private function onMouseUp(event:Event):void
+    protected function onMouseUp(event:Event):void
     {
       var sbRoot:DisplayObject = this.systemManager.getSandboxRoot();
       
@@ -333,7 +333,7 @@ package com.pialabs.eskimo.components
      * @private
      * Enterframe during mouse pressed.
      */
-    private function onEnterFrame(event:Event):void
+    protected function onEnterFrame(event:Event):void
     {
       verticalScrollPosition += (_oldY - this.mouseY);
       
@@ -390,7 +390,7 @@ package com.pialabs.eskimo.components
     /**
      * Throw the list thanks to the move histories to compute the velocity.
      */
-    private function throwScroll():void
+    protected function throwScroll():void
     {
       var currentIndex:int = (mouseEventLength % EVENT_HISTORY_LENGTH);
       
@@ -418,7 +418,7 @@ package com.pialabs.eskimo.components
       _animateThrow.play([this]); //run the animation
     }
     
-    private function cancelAnimations():void
+    protected function cancelAnimations():void
     {
       _animateThrow.removeEventListener(EffectEvent.EFFECT_END, onThowFinish);
       _animateThrow.removeEventListener(EffectEvent.EFFECT_UPDATE, onThrowUpdate);
@@ -432,7 +432,7 @@ package com.pialabs.eskimo.components
      * @private
      * During throw animation.
      */
-    private function onThrowUpdate(event:EffectEvent):void
+    protected function onThrowUpdate(event:EffectEvent):void
     {
       var ratio:Number = 1 - (event.effectInstance.playheadTime / event.effectInstance.duration);
       
@@ -442,7 +442,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onThowFinish(event:Event):void
+    protected function onThowFinish(event:Event):void
     {
       dataGroup.filters = null;
       _haveToAnimate = true;
@@ -453,7 +453,7 @@ package com.pialabs.eskimo.components
      * @private
      * Move history cleaning.
      */
-    private function clearHistory():void
+    protected function clearHistory():void
     {
       for (var i:int = 0; i < EVENT_HISTORY_LENGTH; i++)
       {
@@ -491,7 +491,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function updateBlurFilter(ratio:Number = 1):void
+    protected function updateBlurFilter(ratio:Number = 1):void
     {
       effect.blurY = MOTION_BLUR * ratio * Math.abs(currentVelocity);
       
@@ -501,7 +501,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function scrollToItem():void
+    protected function scrollToItem():void
     {
       if (!layout)
       {
@@ -554,7 +554,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onRollEnd(event:Event):void
+    protected function onRollEnd(event:Event):void
     {
       var verticalScrollCenterPosition:Number = dataGroup.verticalScrollPosition + dataGroup.scrollRect.height / 2;
       

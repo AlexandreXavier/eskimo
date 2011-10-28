@@ -12,7 +12,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _selectedItem:Object;
+    protected var _selectedItem:Object;
     
     /**
      * Constructor

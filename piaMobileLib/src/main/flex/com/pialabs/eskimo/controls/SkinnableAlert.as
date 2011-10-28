@@ -105,11 +105,11 @@ package com.pialabs.eskimo.controls
     /**
      * @private
      */
-    private var _text:String;
+    protected var _text:String;
     /**
      * @private
      */
-    private var _title:String;
+    protected var _title:String;
     
     /**
      * Title skin part
@@ -168,9 +168,9 @@ package com.pialabs.eskimo.controls
      */
     protected static var _buttonHeight:Number = 50;
     
-    private var currentOS:String;
+    protected var currentOS:String;
     
-    private var isIOS:Boolean;
+    protected var isIOS:Boolean;
     
     
     /**
@@ -208,10 +208,10 @@ package com.pialabs.eskimo.controls
       
       currentOS = Capabilities.version.toLocaleUpperCase();
       isIOS = currentOS.lastIndexOf("IOS") != -1;
-      
+    
     }
     
-    private function onAddedToStage(event:Event):void
+    protected function onAddedToStage(event:Event):void
     {
       systemManager.getSandboxRoot().addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown, false, 0, true);
       
@@ -221,7 +221,7 @@ package com.pialabs.eskimo.controls
     /**
      * @private
      */
-    private function removeFromStage(event:Event):void
+    protected function removeFromStage(event:Event):void
     {
       systemManager.getSandboxRoot().removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
       
@@ -231,7 +231,7 @@ package com.pialabs.eskimo.controls
     /**
      * @private
      */
-    private function onOrientationChange(event:Event):void
+    protected function onOrientationChange(event:Event):void
     {
       invalidateDisplayList();
     }
@@ -249,7 +249,7 @@ package com.pialabs.eskimo.controls
         
         if (buttonFlags & SkinnableAlert.OK)
         {
-          controlBarGroup.addElementAt(buttonOK, isIOS ? 0: controlBarGroup.numChildren);
+          controlBarGroup.addElementAt(buttonOK, isIOS ? 0 : controlBarGroup.numChildren);
         }
         if (buttonFlags & SkinnableAlert.YES)
         {

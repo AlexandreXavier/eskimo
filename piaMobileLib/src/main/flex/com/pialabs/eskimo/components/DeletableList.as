@@ -45,7 +45,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _invalidateItemRendererState:Boolean;
+    protected var _invalidateItemRendererState:Boolean;
     
     /**
      * @private

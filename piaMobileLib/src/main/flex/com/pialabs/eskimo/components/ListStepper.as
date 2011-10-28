@@ -45,7 +45,7 @@ package com.pialabs.eskimo.components
     /**
      *  @private
      */
-    private var _allowValueWrap:Boolean = false;
+    protected var _allowValueWrap:Boolean = false;
     
     [Inspectable(category = "General", defaultValue = "false")]
     

@@ -117,9 +117,9 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _buttonLabel:String = "";
-    private var _cancelLabel:String = "";
-    private var _confirmLabel:String = "";
+    protected var _buttonLabel:String = "";
+    protected var _cancelLabel:String = "";
+    protected var _confirmLabel:String = "";
     
     /**
      * Normal state.
@@ -158,7 +158,7 @@ package com.pialabs.eskimo.components
      * @private
      * Creation complete handler.
      */
-    private function onCreationComplete(event:Event):void
+    protected function onCreationComplete(event:Event):void
     {
       states = [new State({name: NORMAL_STATE}), new State({name: CONFIRMATION_STATE})];
       currentState = NORMAL_STATE;
@@ -168,7 +168,7 @@ package com.pialabs.eskimo.components
      * @private
      * State change handler.
      */
-    private function onStateChange(event:StateChangeEvent):void
+    protected function onStateChange(event:StateChangeEvent):void
     {
       invalidateSkinState();
     }
@@ -264,7 +264,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function updateConfirmButtonDisplayList():void
+    protected function updateConfirmButtonDisplayList():void
     {
       if (_confirmColorChanged)
       {
@@ -286,7 +286,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function updateCancelButtonDisplayList():void
+    protected function updateCancelButtonDisplayList():void
     {
       if (_cancelColorChanged)
       {
@@ -308,7 +308,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function updateButtonDisplayList():void
+    protected function updateButtonDisplayList():void
     {
       if (_buttonColorChanged)
       {
@@ -340,7 +340,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function isConfirmButtonUpdatedStyle(styleProp:String):Boolean
+    protected function isConfirmButtonUpdatedStyle(styleProp:String):Boolean
     {
       if (styleProp == "confirmColor")
       {
@@ -366,7 +366,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function isCancelButtonUpdatedStyle(styleProp:String):Boolean
+    protected function isCancelButtonUpdatedStyle(styleProp:String):Boolean
     {
       if (styleProp == "cancelColor")
       {
@@ -392,7 +392,7 @@ package com.pialabs.eskimo.components
     /**
     * @private
     */
-    private function isButtonUpdatedStyle(styleProp:String):Boolean
+    protected function isButtonUpdatedStyle(styleProp:String):Boolean
     {
       if (styleProp == "buttonColor")
       {

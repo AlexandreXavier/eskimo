@@ -49,17 +49,17 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _label:String;
-    private var _duration:int = 1000;
+    protected var _label:String;
+    protected var _duration:int = 1000;
     
     /**
      * @private
      */
-    private var _displayTimer:Timer;
-    private var _opened:Boolean;
-    private var _gravity:uint = BOTTOM | HORIZONTAL_CENTER;
-    private var _xOffset:Number = 0;
-    private var _yOffset:Number = 0;
+    protected var _displayTimer:Timer;
+    protected var _opened:Boolean;
+    protected var _gravity:uint = BOTTOM | HORIZONTAL_CENTER;
+    protected var _xOffset:Number = 0;
+    protected var _yOffset:Number = 0;
     
     /**
      * Top position
@@ -208,7 +208,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private static function queueToast(toast:Toast):void
+    protected static function queueToast(toast:Toast):void
     {
       if (_toastQueue == null)
       {
@@ -260,7 +260,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onCreationComplete(event:FlexEvent):void
+    protected function onCreationComplete(event:FlexEvent):void
     {
       removeEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete);
       
@@ -286,7 +286,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onCloseComplete(event:FlexEvent):void
+    protected function onCloseComplete(event:FlexEvent):void
     {
       skin.removeEventListener(FlexEvent.STATE_CHANGE_COMPLETE, onCloseComplete);
       
@@ -373,11 +373,14 @@ package com.pialabs.eskimo.components
     */
     public function cancel():void
     {
-      var index:int = _toastQueue.indexOf(this);
-      
-      if (index != -1)
+      if (_toastQueue)
       {
-        _toastQueue.splice(index, 1);
+        var index:int = _toastQueue.indexOf(this);
+        
+        if (index != -1)
+        {
+          _toastQueue.splice(index, 1);
+        }
       }
       
       if (_displayTimer.running)

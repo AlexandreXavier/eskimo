@@ -64,18 +64,18 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _maxYear:Number = 2040;
+    protected var _maxYear:Number = 2040;
     
     /**
      * @private
      */
-    private var _minYear:Number = 1980;
+    protected var _minYear:Number = 1980;
     
     /**
      * @private
      */
-    private var _datePattern:String = DateUtils.defaultDateTimePattern;
-    private var _datePatternChange:Boolean = true;
+    protected var _datePattern:String = DateUtils.defaultDateTimePattern;
+    protected var _datePatternChange:Boolean = true;
     
     /**
      * @private
@@ -93,9 +93,9 @@ package com.pialabs.eskimo.components
      * @private
      */
     [Bindable] 
-    public var _dayProvider:IList = new ArrayCollection();
-    private var _monthProvider:IList;
-    private var _yearProvider:IList;
+    protected var _dayProvider:IList = new ArrayCollection();
+    protected var _monthProvider:IList;
+    protected var _yearProvider:IList;
     
     /**
      * @private
@@ -134,7 +134,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function createMonthProvider():void
+    protected function createMonthProvider():void
     {
       var array:Array = new Array();
       
@@ -153,7 +153,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function createYearProvider():void
+    protected function createYearProvider():void
     {
       var array:Array = new Array();
       
@@ -172,7 +172,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function createDayProvider(endDateOfMonth:Number):void
+    protected function createDayProvider(endDateOfMonth:Number):void
     {
       var dateUtils:DateUtils = new DateUtils();
       var dayPattern:String = dateUtils.dayPattern(datePattern);
@@ -197,7 +197,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    override protected function commitProperties():void
+    protected protected function commitProperties():void
     {
       super.commitProperties();
       
@@ -302,7 +302,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onMonthOrYearChange(event:Event):void
+    protected function onMonthOrYearChange(event:Event):void
     {
       var dateUtils:DateUtils = new DateUtils();
       
@@ -323,7 +323,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onDayChange(event:Event):void
+    protected function onDayChange(event:Event):void
     {
       var dateUtils:DateUtils = new DateUtils();
       
@@ -364,7 +364,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function selectDateOfMonth():void
+    protected function selectDateOfMonth():void
     {
       var dateOfMonth:Number = selectedDate.date - 1;
       
@@ -378,7 +378,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function selectMonth():void
+    protected function selectMonth():void
     {
       var month:Number = selectedDate.month;
       monthList.validateNow();
@@ -389,7 +389,7 @@ package com.pialabs.eskimo.components
     /**
     * @private
     */
-    private function selectYear():void
+    protected function selectYear():void
     {
       var year:Number = selectedDate.fullYear;
       var selectedIndex:Number = year - minYear;

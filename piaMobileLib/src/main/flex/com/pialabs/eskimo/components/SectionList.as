@@ -51,19 +51,19 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _sectionHeight:Number = 27;
+    protected var _sectionHeight:Number = 27;
     /**
      * @private
      */
-    private var _isSectionTitleFunction:Function = defaultIsSectionTitleFunction;
+    protected var _isSectionTitleFunction:Function = defaultIsSectionTitleFunction;
     /**
      * @private
      */
-    private var _sectionLabelField:String = "label";
+    protected var _sectionLabelField:String = "label";
     /**
      * @private
      */
-    private var _maintainSectionOnTop:Boolean = false;
+    protected var _maintainSectionOnTop:Boolean = false;
     
     
     [SkinPart(required = "false")]
@@ -91,12 +91,12 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _regenerateSectionIndices:Boolean = false;
+    protected var _regenerateSectionIndices:Boolean = false;
     
     /**
      * @private
      */
-    private var _sestionTitleIndices:Vector.<int> = new Vector.<int>();
+    protected var _sestionTitleIndices:Vector.<int> = new Vector.<int>();
     
     /**
      * @private

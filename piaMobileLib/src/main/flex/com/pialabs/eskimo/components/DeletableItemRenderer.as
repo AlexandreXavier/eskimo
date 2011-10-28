@@ -78,28 +78,28 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var editIconSprite:UIComponent;
+    protected var editIconSprite:UIComponent;
     /**
      * @private
      */
-    private var deleteButtonMask:UIComponent;
-    
-    /**
-     * @private
-     */
-    private var _confirmationModeChange:Boolean;
+    protected var deleteButtonMask:UIComponent;
     
     /**
      * @private
      */
-    private var _animateEdition:Animate = new Animate();
-    private var _animateConfirmation:Animate = new Animate();
-    private var _animateDelete:Animate = new Animate();
+    protected var _confirmationModeChange:Boolean;
     
-    private var _editionAnimationDuration:Number = 300;
-    private var _animateConfirmationDuration:Number = 200;
+    /**
+     * @private
+     */
+    protected var _animateEdition:Animate = new Animate();
+    protected var _animateConfirmation:Animate = new Animate();
+    protected var _animateDelete:Animate = new Animate();
     
-    private var _itemRecycled:Boolean = true;
+    protected var _editionAnimationDuration:Number = 300;
+    protected var _animateConfirmationDuration:Number = 200;
+    
+    protected var _itemRecycled:Boolean = true;
     
     /**
      *  @private
@@ -131,7 +131,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onAddedTostage(event:Event):void
+    protected function onAddedTostage(event:Event):void
     {
       removeEventListener(Event.ADDED_TO_STAGE, onAddedTostage);
       addEventListener(Event.REMOVED_FROM_STAGE, onAddedTostage);
@@ -140,7 +140,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onRemovedTostage(event:Event):void
+    protected function onRemovedTostage(event:Event):void
     {
       _itemRecycled = true;
       
@@ -419,7 +419,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onEditionAnimationUpdate(event:EffectEvent):void
+    protected function onEditionAnimationUpdate(event:EffectEvent):void
     {
       var paddingLeft:Number = getStyle("paddingLeft");
       
@@ -438,7 +438,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onEditionAnimationFinish(event:EffectEvent):void
+    protected function onEditionAnimationFinish(event:EffectEvent):void
     {
       if (currentState == "normal")
       {
@@ -508,7 +508,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onConfirmationAnimationUpdate(event:EffectEvent):void
+    protected function onConfirmationAnimationUpdate(event:EffectEvent):void
     {
       setElementPosition(deleteButtonMask, _deleteButton.getLayoutBoundsX() + _deleteButton.width - deleteButtonMask.width, 0);
       
@@ -521,7 +521,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onConfirmationAnimationFinish(event:EffectEvent):void
+    protected function onConfirmationAnimationFinish(event:EffectEvent):void
     {
       deleteButtonMask.mask = null;
       

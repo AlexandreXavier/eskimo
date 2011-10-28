@@ -18,7 +18,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _index:int;
+    protected var _index:int;
     
     /**
      * @private

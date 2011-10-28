@@ -49,11 +49,11 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _panelNavigator:ViewNavigatorBase;
+    protected var _panelNavigator:ViewNavigatorBase;
     /**
      * @private
      */
-    private var _contentNavigator:ViewNavigatorBase;
+    protected var _contentNavigator:ViewNavigatorBase;
     /**
      * @private
      */
@@ -65,7 +65,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _panelVisible:Boolean;
+    protected var _panelVisible:Boolean;
     /**
      * @private
      */
@@ -73,7 +73,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _panelButtonLabel:String = "Panel";
+    protected var _panelButtonLabel:String = "Panel";
     /**
      * @private
      */
@@ -110,7 +110,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onAddedToStage(event:Event):void
+    protected function onAddedToStage(event:Event):void
     {
       var currentOS:String = Capabilities.version;
       if (currentOS.lastIndexOf("AND") != -1)
@@ -127,7 +127,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onRemovedToStage(event:Event):void
+    protected function onRemovedToStage(event:Event):void
     {
       var currentOS:String = Capabilities.version;
       if (currentOS.lastIndexOf("AND") != -1)
@@ -253,7 +253,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onViewChange(event:Event):void
+    protected function onViewChange(event:Event):void
     {
       var viewDescriptor:ViewDescriptor = _contentNavigator.navigationStack.topView;
       
@@ -279,7 +279,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onOrientationChanging(event:Event):void
+    protected function onOrientationChanging(event:Event):void
     {
       var orientation:String = stage.orientation;
       
@@ -300,7 +300,7 @@ package com.pialabs.eskimo.components
      * @private
      * For Android
      */
-    private function onOrientationChange(event:Event):void
+    protected function onOrientationChange(event:Event):void
     {
       var orientation:String = stage.orientation;
       
@@ -320,7 +320,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function getOrientation():Boolean
+    protected function getOrientation():Boolean
     {
       return stage.stageHeight > stage.stageWidth;
     }

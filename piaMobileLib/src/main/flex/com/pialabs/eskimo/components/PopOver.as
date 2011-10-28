@@ -113,7 +113,7 @@ package com.pialabs.eskimo.components
       invalidateDisplayList();
     }
     
-    private function onAddedToStage(event:Event):void
+    protected function onAddedToStage(event:Event):void
     {
       owner.addEventListener(Event.RESIZE, ownerSizeChange, false, 0, true);
     }
@@ -121,7 +121,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function removeFromStage(event:Event):void
+    protected function removeFromStage(event:Event):void
     {
       owner.removeEventListener(Event.RESIZE, ownerSizeChange);
     }
@@ -129,7 +129,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function ownerSizeChange(event:Event):void
+    protected function ownerSizeChange(event:Event):void
     {
       invalidateDisplayList();
     }

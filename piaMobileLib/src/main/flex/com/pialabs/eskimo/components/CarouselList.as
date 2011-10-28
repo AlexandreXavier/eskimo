@@ -134,7 +134,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onMouseDown(event:MouseEvent):void
+    protected function onMouseDown(event:MouseEvent):void
     {
       mouseDownX = originalMouseDownX = this.mouseX;
       mouseDownY = this.mouseY;
@@ -159,7 +159,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onEnterFrame(event:Event):void
+    protected function onEnterFrame(event:Event):void
     {
       if (Math.abs(this.mouseX - originalMouseDownX) > TOUCH_SENSIBILITY)
       {
@@ -188,7 +188,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onMouseUp(event:Event):void
+    protected function onMouseUp(event:Event):void
     {
       var sbRoot:DisplayObject = this.systemManager.getSandboxRoot();
       
@@ -204,7 +204,7 @@ package com.pialabs.eskimo.components
      * @private
      * Move history cleaning.
      */
-    private function clearHistory():void
+    protected function clearHistory():void
     {
       for (var i:int = 0; i < EVENT_HISTORY_LENGTH; i++)
       {
@@ -216,7 +216,7 @@ package com.pialabs.eskimo.components
     /**
      * Throw the list thanks to the move histories to compute the velocity.
      */
-    private function throwScroll():void
+    protected function throwScroll():void
     {
       var currentIndex:int = (mouseEventLength % EVENT_HISTORY_LENGTH);
       
@@ -247,7 +247,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onThrowEnd(event:Event):void
+    protected function onThrowEnd(event:Event):void
     {
       scrollToItem();
     }
@@ -255,7 +255,7 @@ package com.pialabs.eskimo.components
     /**
      * Get the current velovity of the movment.
      */
-    public function get currentVelocity():Number
+    protected function get currentVelocity():Number
     {
       var dist:Number = 0;
       var time:Number = 0;
@@ -282,7 +282,7 @@ package com.pialabs.eskimo.components
      * Layout can only be CircularLayout for the moment.
      * @see com.pialabs.eskimo.layouts.CircularLayout
      */
-    override public function set layout(value:LayoutBase):void
+    protected public function set layout(value:LayoutBase):void
     {
       if (value is CircularLayout)
       {
@@ -293,7 +293,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function scrollToItem():void
+    protected function scrollToItem():void
     {
       if (!layout || !dataProvider)
       {
@@ -355,7 +355,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onRollEnd(event:Event):void
+    protected function onRollEnd(event:Event):void
     {
       if (isThrowing)
       {

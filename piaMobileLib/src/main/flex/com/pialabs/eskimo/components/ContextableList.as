@@ -44,7 +44,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _contextMenuItems:Array;
+    protected var _contextMenuItems:Array;
     protected var _contextList:MobileContextMenu;
     /**
      * @private
@@ -137,7 +137,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onTimerComplete(event:TimerEvent):void
+    protected function onTimerComplete(event:TimerEvent):void
     {
       _timer.removeEventListener(TimerEvent.TIMER_COMPLETE, onTimerComplete);
       

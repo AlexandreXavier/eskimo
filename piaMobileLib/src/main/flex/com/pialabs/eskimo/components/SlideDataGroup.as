@@ -44,17 +44,17 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _virtualRendererPreloadEnable:Boolean = false;
+    protected var _virtualRendererPreloadEnable:Boolean = false;
     
     /**
      * @private
      */
-    private var _useVirtualLayout:Boolean;
+    protected var _useVirtualLayout:Boolean;
     
     /**
      * @private
      */
-    private var _slideDuration:uint = 300;
+    protected var _slideDuration:uint = 300;
     
     /**
     * Constructor
@@ -187,7 +187,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private function onSwipe(event:TransformGestureEvent):void
+    protected function onSwipe(event:TransformGestureEvent):void
     {
       var lt:SlideLayout = layout as SlideLayout;
       if (event.offsetX != 0)
@@ -204,7 +204,7 @@ package com.pialabs.eskimo.components
     /**
     * @private
     */
-    private function get slideLayout():SlideLayout
+    protected function get slideLayout():SlideLayout
     {
       return (layout as SlideLayout);
     }
@@ -212,7 +212,7 @@ package com.pialabs.eskimo.components
     /**
     * @private
     */
-    private function onIndexChanged(event:Event):void
+    protected function onIndexChanged(event:Event):void
     {
       dispatchEvent(new Event("selectedIndexChanged"));
     }

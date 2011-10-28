@@ -69,7 +69,7 @@ package com.pialabs.eskimo.components
         /**
          * @private
          */
-        private function onToggleChange(event:Event):void
+        protected function onToggleChange(event:Event):void
         {
             if (checkBox.selected != selected)
             {

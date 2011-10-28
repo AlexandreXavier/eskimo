@@ -46,8 +46,8 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _pageCount:uint;
-    private var _selectedIndex:int = 0;
+    protected var _pageCount:uint;
+    protected var _selectedIndex:int = 0;
     
     /**
      * @private
@@ -58,13 +58,13 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _itemWidth:Number = 10;
-    private var _itemHeight:Number = 10;
+    protected var _itemWidth:Number = 10;
+    protected var _itemHeight:Number = 10;
     
     /**
      * @private
      */
-    private var _autoLoop:Boolean;
+    protected var _autoLoop:Boolean;
     
     /**
     * Vector of added elements

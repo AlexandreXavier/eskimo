@@ -41,12 +41,12 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _dataProvider:IList;
+    protected var _dataProvider:IList;
     
     /**
      * @private
      */
-    private var _selectedItem:Object;
+    protected var _selectedItem:Object;
     
     /**
      * @private
@@ -110,7 +110,7 @@ package com.pialabs.eskimo.components
       return _dataProvider;
     }
     
-    private function popUpList(event:MouseEvent):void
+    protected function popUpList(event:MouseEvent):void
     {
       focusManager.setFocus(this);
       var popupSkinClass:Object = getStyle("popupSkinClass");

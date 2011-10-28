@@ -20,11 +20,11 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    private var _panelNavigator:ViewNavigatorBase;
+    protected var _panelNavigator:ViewNavigatorBase;
     /**
      * @private
      */
-    private var _contentNavigator:ViewNavigatorBase;
+    protected var _contentNavigator:ViewNavigatorBase;
     /**
      * @private
      */
