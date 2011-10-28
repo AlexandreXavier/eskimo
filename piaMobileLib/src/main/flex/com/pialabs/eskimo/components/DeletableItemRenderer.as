@@ -20,6 +20,7 @@ package com.pialabs.eskimo.components
   import spark.effects.animation.MotionPath;
   import spark.effects.animation.SimpleMotionPath;
   import spark.effects.easing.EasingFraction;
+  import spark.filters.DropShadowFilter;
   
   use namespace mx_internal;
   
@@ -181,6 +182,9 @@ package com.pialabs.eskimo.components
         
         _editionIcon.source = getStyle("editIcon");
         _editionIcon.addEventListener(MouseEvent.CLICK, onEditionIconClick, false, 0, true);
+        
+        var filter:DropShadowFilter = new DropShadowFilter(1, 45, 0, 0.6, 3, 3);
+        _editionIcon.filters = [filter];
         
         editIconSprite = new UIComponent();
         

@@ -282,7 +282,7 @@ package com.pialabs.eskimo.components
      * Layout can only be CircularLayout for the moment.
      * @see com.pialabs.eskimo.layouts.CircularLayout
      */
-    protected public function set layout(value:LayoutBase):void
+    override public function set layout(value:LayoutBase):void
     {
       if (value is CircularLayout)
       {

@@ -92,7 +92,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    [Bindable] 
+    [Bindable]
     protected var _dayProvider:IList = new ArrayCollection();
     protected var _monthProvider:IList;
     protected var _yearProvider:IList;
@@ -178,14 +178,14 @@ package com.pialabs.eskimo.components
       var dayPattern:String = dateUtils.dayPattern(datePattern);
       
       var dayProviderLength:int = _dayProvider.length;
-      if(dayProviderLength > endDateOfMonth)
+      if (dayProviderLength > endDateOfMonth)
       {
         for (var dayIndex:Number = dayProviderLength - 1; dayIndex >= endDateOfMonth; dayIndex--)
         {
           _dayProvider.removeItemAt(dayIndex);
         }
       }
-      else if(dayProviderLength < endDateOfMonth)
+      else if (dayProviderLength < endDateOfMonth)
       {
         for (var day:Number = dayProviderLength + 1; day <= endDateOfMonth; day++)
         {
@@ -197,7 +197,7 @@ package com.pialabs.eskimo.components
     /**
      * @private
      */
-    protected protected function commitProperties():void
+    override protected function commitProperties():void
     {
       super.commitProperties();
       
