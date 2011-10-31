@@ -2,6 +2,7 @@
 <s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
                             xmlns:s="library://ns.adobe.com/flex/spark"
                             firstView="com.pialabs.eskimo.views.CategoryListView"
+                            firstViewData="{viewData}"
                             splashScreenImage="assets.logosplash"
                             applicationDPI="160">
   <fx:Style source="style.css"/>
@@ -13,5 +14,6 @@
   </fx:Script>
   <fx:Declarations>
     <!-- Place non-visual elements (e.g., services, value objects) here -->
+    <fx:Object id="viewData" name="CategoryList"/>
   </fx:Declarations>
 </s:ViewNavigatorApplication>

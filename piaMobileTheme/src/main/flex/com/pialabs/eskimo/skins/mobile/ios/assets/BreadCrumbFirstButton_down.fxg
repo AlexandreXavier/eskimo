@@ -1,0 +1,17 @@
+<Graphic version="2.0" xmlns="http://ns.adobe.com/fxg/2008" viewWidth="58" viewHeight="28"
+    scaleGridLeft="20" scaleGridTop="1" scaleGridRight="38" scaleGridBottom="27">
+  
+
+  <Path data="M 0 0 L 38 0 L 58 14 L 38 28 L 0 28 z">
+    <fill>
+      <SolidColor color="#000000" alpha="0.2"/>
+    </fill>
+  </Path>
+  
+  <Path data="M 0 0 L 38 0 L 58 14 L 38 28 L 0 28">
+    <stroke>
+      <SolidColorStroke color="#000000" weight="1" alpha="0.2"/>
+    </stroke>
+  </Path>
+  
+</Graphic>

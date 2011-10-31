@@ -1,20 +1,16 @@
 package com.pialabs.eskimo.skins.mobile.ios
 {
-  import com.pialabs.eskimo.skins.mobile.ios.assets.ButtonBarFirst_down;
-  import com.pialabs.eskimo.skins.mobile.ios.assets.ButtonBarFirst_fill;
-  import com.pialabs.eskimo.skins.mobile.ios.assets.ButtonBarFirst_selected;
-  import com.pialabs.eskimo.skins.mobile.ios.assets.ButtonBarFirst_up;
+  import com.pialabs.eskimo.skins.mobile.ios.assets.BreadCrumbButton_down;
+  import com.pialabs.eskimo.skins.mobile.ios.assets.BreadCrumbButton_up;
+  import com.pialabs.eskimo.skins.mobile.ios.assets.BreadCrumbFirstButton_down;
   
   import mx.core.DPIClassification;
+  import mx.core.UIComponent;
   
-  /**
-   * The iOS skin class for the first Button of BreadCrumb component.
-   *
-   *  @see com.pialabs.eskimo.components.BreadCrumb
-   */
-  public class ButtonBarFirstButtonSkin extends ButtonSkin
+  
+  public class BreadCrumbFirstButtonSkin extends ButtonSkin
   {
-    public function ButtonBarFirstButtonSkin()
+    public function BreadCrumbFirstButtonSkin()
     {
       super();
       
@@ -28,15 +24,15 @@ package com.pialabs.eskimo.skins.mobile.ios
           layoutBorderSize = 0;
           layoutPaddingTop = 0;
           layoutPaddingBottom = 0;
-          layoutPaddingLeft = 10;
-          layoutPaddingRight = 10;
+          layoutPaddingLeft = 5;
+          layoutPaddingRight = 25;
           measuredDefaultWidth = 58;
           measuredDefaultHeight = 28;
           
-          upBorderSkin = com.pialabs.eskimo.skins.mobile.ios.assets.ButtonBarFirst_up;
-          downBorderSkin = com.pialabs.eskimo.skins.mobile.ios.assets.ButtonBarFirst_down;
-          selectedBorderSkin = com.pialabs.eskimo.skins.mobile.ios.assets.ButtonBarFirst_selected;
-          fillClass = com.pialabs.eskimo.skins.mobile.ios.assets.ButtonBarFirst_fill;
+          upBorderSkin = BreadCrumbButton_up;
+          downBorderSkin = BreadCrumbFirstButton_down;
+          selectedBorderSkin = UIComponent;
+          fillClass = null;
           
           break;
         }
@@ -69,6 +65,18 @@ package com.pialabs.eskimo.skins.mobile.ios
       else
       {
         return upBorderSkin;
+      }
+    }
+    
+    override protected function drawBackground(unscaledWidth:Number, unscaledHeight:Number):void
+    {
+      super.drawBackground(unscaledWidth, unscaledHeight);
+      
+      var isSelected:Boolean = currentState.indexOf("Selected") >= 0;
+      
+      if (_fill)
+      {
+        _fill.visible = !isSelected;
       }
     }
   

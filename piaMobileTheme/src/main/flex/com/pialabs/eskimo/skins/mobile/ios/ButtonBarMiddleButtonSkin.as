@@ -8,9 +8,9 @@ package com.pialabs.eskimo.skins.mobile.ios
   import mx.core.DPIClassification;
   
   /**
-   * The iOS skin class for the middle Button of ButtonBar component.
+   * The iOS skin class for the middle Button of BreadCrumb component.
    *
-   *  @see spark.components.ButtonBar
+   *  @see com.pialabs.eskimo.components.BreadCrumb
    */
   public class ButtonBarMiddleButtonSkin extends ButtonSkin
   {

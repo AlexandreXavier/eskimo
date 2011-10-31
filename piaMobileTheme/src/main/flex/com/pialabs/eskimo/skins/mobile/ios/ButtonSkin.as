@@ -65,12 +65,12 @@ package com.pialabs.eskimo.skins.mobile.ios
     /**
      * @private
      */
-    private var _fill:DisplayObject;
+    protected var _fill:DisplayObject;
     
     /**
      * @private
      */
-    private var colorized:Boolean;
+    protected var colorized:Boolean;
     
     /**
      * The fill class of the button

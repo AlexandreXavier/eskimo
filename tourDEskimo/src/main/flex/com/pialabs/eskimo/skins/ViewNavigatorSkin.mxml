@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+        xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:components="com.pialabs.eskimo.components.*">
+  <!-- host component -->
+  <fx:Metadata>
+    [HostComponent("spark.components.ViewNavigator")]
+  </fx:Metadata>
+
+  <!-- states -->
+  <s:states>
+    <s:State name="landscapeAndOverlay"/>
+    <s:State name="portraitAndOverlay"/>
+    <s:State name="landscape"/>
+    <s:State name="portrait"/>
+    <s:State name="disabled"/>
+    <s:State name="normal"/>
+  </s:states>
+
+  <!-- SkinParts
+  name=contentGroup, type=spark.components.Group, required=false
+  name=actionBar, type=spark.components.ActionBar, required=false
+  -->
+  <s:layout>
+    <s:VerticalLayout gap="0" horizontalAlign="justify"/>
+  </s:layout>
+
+  <s:ActionBar id="actionBar"/>
+  
+  <components:BreadCrumb viewNavigator="{hostComponent}" labelField="name" iconField="null"/>
+  
+  <s:Group id="contentGroup" height="100%"/>
+
+</s:Skin>

@@ -64,3 +64,8 @@
     skinClass: ClassReference("com.pialabs.eskimo.skins.mobile.ios.VerticalFormItemSkin");
   }
 }
+
+s|ViewNavigator
+{
+  skinClass: ClassReference("com.pialabs.eskimo.skins.ViewNavigatorSkin");
+}
