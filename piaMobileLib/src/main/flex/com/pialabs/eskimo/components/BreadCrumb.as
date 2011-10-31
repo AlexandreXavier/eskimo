@@ -127,11 +127,14 @@ package com.pialabs.eskimo.components
      */
     public function set viewNavigator(value:ViewNavigator):void
     {
-      dataProvider = null;
-      
-      _viewNavigator = value;
-      
-      _viewNavigator.addEventListener("viewChangeComplete", onViewChangeComplete, false, 0, true);
+      if (value != viewNavigator)
+      {
+        dataProvider = null;
+        
+        _viewNavigator = value;
+        
+        _viewNavigator.addEventListener("viewChangeComplete", onViewChangeComplete, false, 0, true);
+      }
     }
   
   

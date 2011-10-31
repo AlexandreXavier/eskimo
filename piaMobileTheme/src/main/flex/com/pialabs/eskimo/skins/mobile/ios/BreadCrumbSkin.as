@@ -12,6 +12,11 @@ package com.pialabs.eskimo.skins.mobile.ios
   import spark.skins.mobile.supportClasses.ButtonBarButtonClassFactory;
   import spark.skins.mobile.supportClasses.MobileSkin;
   
+  
+  [Style(name = "borderColor", inherit = "no", type = "uint", format = "Color")]
+  
+  [Style(name = "borderAlpha", inherit = "no", type = "Number")]
+  
   /**
    *  The iOS skin class for the BreadCrumb component.
    *
@@ -156,6 +161,8 @@ package com.pialabs.eskimo.skins.mobile.ios
       
       var chromeColor:uint = getStyle("chromeColor");
       var fillAlpha:Number = getStyle("fillAlpha");
+      var borderColor:uint = getStyle("borderColor");
+      var borderAlpha:Number = getStyle("borderAlpha");
       
       graphics.clear();
       graphics.beginFill(chromeColor, fillAlpha);
@@ -171,7 +178,7 @@ package com.pialabs.eskimo.skins.mobile.ios
       
       graphics.endFill();
       
-      graphics.lineStyle(1, 0, 0.2);
+      graphics.lineStyle(1, borderColor, borderAlpha);
       graphics.moveTo(0, 0);
       graphics.lineTo(unscaledWidth, 0);
       graphics.moveTo(0, unscaledHeight - 1);
