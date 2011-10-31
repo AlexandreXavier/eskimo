@@ -166,7 +166,7 @@ package com.pialabs.eskimo.skins.mobile.ios
       
       var gradientBoxMatrix:Matrix = new Matrix();
       gradientBoxMatrix.createGradientBox(unscaledWidth, unscaledHeight, Math.PI / 2, 0, 0);
-      graphics.beginGradientFill(GradientType.LINEAR, [0xFFFFFF, 0xFFFFFF, 0xFFFFFF], [0.4, 0, 0.3], [0, 128, 255], gradientBoxMatrix);
+      graphics.beginGradientFill(GradientType.LINEAR, [0xFFFFFF, 0xFFFFFF, 0xFFFFFF], [0.5, 0, 0.3], [0, 128, 255], gradientBoxMatrix);
       graphics.drawRect(0, 0, unscaledWidth, unscaledHeight);
       
       graphics.endFill();

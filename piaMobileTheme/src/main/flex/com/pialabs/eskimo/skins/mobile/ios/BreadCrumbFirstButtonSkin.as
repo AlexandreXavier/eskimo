@@ -79,6 +79,16 @@ package com.pialabs.eskimo.skins.mobile.ios
         _fill.visible = !isSelected;
       }
     }
+    
+    /**
+     *  @private
+     */
+    override protected function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void
+    {
+      super.layoutContents(unscaledWidth, unscaledHeight);
+      
+      super.labelDisplayShadow.y = super.labelDisplayShadow.y + 2;
+    }
   
   }
 }
