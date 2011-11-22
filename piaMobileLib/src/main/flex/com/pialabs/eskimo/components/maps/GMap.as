@@ -1,6 +1,5 @@
 package com.pialabs.eskimo.components.maps
 {
-  import com.adobe.serialization.json.JSON;
   import com.pialabs.eskimo.controls.SkinnableAlert;
   
   import flash.events.ErrorEvent;
@@ -493,7 +492,7 @@ package com.pialabs.eskimo.components.maps
       base64Encoder.decode(jSonArgs);
       var ba:ByteArray = base64Encoder.toByteArray();
       
-      var serializeObject:Object = JSON.decode(ba.readUTFBytes(ba.length));
+      var serializeObject:Object = JSON.parse(ba.readUTFBytes(ba.length));
       
       var func:Function = _callbacks[serializeObject.method];
       
@@ -528,7 +527,7 @@ package com.pialabs.eskimo.components.maps
       serializeObject.method = functionName;
       serializeObject.arguments = arguments;
       
-      var jSonArgs:String = JSON.encode(serializeObject);
+      var jSonArgs:String = JSON.stringify(serializeObject);
       
       //iOS don't link when we put jSON directly in URl, so we convert it in Base64...
       var base64Encoder:Base64Encoder = new Base64Encoder();

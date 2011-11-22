@@ -7,12 +7,9 @@
     <classEntry path="com.pialabs.eskimo.layouts.CircularLayout"/>
     <classEntry path="com.pialabs.eskimo.components.maps.GMapHTMLTemplate"/>
     <classEntry path="com.pialabs.eskimo.components.PageIndicator"/>
-    <classEntry path="com.pialabs.eskimo.components.PageIndicatorItem"/>
   </includeClasses>
-  <includeResources>
-    <resourceEntry destPath="design.xml" sourcePath="design.xml"/>
-  </includeResources>
+  <includeResources/>
   <namespaceManifests>
-    <namespaceManifestEntry manifest="manifest.xml" namespace="http://piaction.com"/>
+    <namespaceManifestEntry manifest="/Users/rde/Documents/Projects/eskimo/piaMobileLib/src/main/resources/manifest.xml" namespace="http://piaction.com"/>
   </namespaceManifests>
 </flexLibProperties>

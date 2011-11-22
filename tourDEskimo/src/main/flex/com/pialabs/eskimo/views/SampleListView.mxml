@@ -9,17 +9,17 @@
 
   <fx:Script>
     <![CDATA[
-      import com.pialabs.eskimo.model.Category;
-      import com.pialabs.eskimo.model.Sample;
-      
-      import mx.collections.ArrayCollection;
-      import mx.core.FlexGlobals;
-      import mx.utils.StringUtil;
-      
-      import spark.components.ViewNavigator;
-      import spark.events.IndexChangeEvent;
-      import spark.events.TextOperationEvent;
-      import spark.events.ViewNavigatorEvent;
+		import com.pialabs.eskimo.model.Category;
+		import com.pialabs.eskimo.model.Sample;
+		
+		import mx.collections.ArrayCollection;
+		import mx.core.FlexGlobals;
+		import mx.utils.StringUtil;
+		
+		import spark.components.ViewNavigator;
+		import spark.events.IndexChangeEvent;
+		import spark.events.TextOperationEvent;
+		import spark.events.ViewNavigatorEvent;
       
       [Bindable]
       private var _dp:ArrayCollection;

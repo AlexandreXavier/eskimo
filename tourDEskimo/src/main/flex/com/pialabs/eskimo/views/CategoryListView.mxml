@@ -11,14 +11,14 @@
   </fx:Declarations>
   <fx:Script>
     <![CDATA[
-      import com.pialabs.eskimo.model.Category;
-      import com.pialabs.eskimo.model.Model;
-      import com.pialabs.eskimo.model.Sample;
-      
-      import mx.collections.ArrayCollection;
-      
-      import spark.events.IndexChangeEvent;
-      import spark.events.ViewNavigatorEvent;
+		import com.pialabs.eskimo.model.Category;
+		import com.pialabs.eskimo.model.Model;
+		import com.pialabs.eskimo.model.Sample;
+		
+		import mx.collections.ArrayCollection;
+		
+		import spark.events.IndexChangeEvent;
+		import spark.events.ViewNavigatorEvent;
       
       
       [Bindable]
